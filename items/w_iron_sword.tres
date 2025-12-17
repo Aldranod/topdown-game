@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EquipableItemData" load_steps=8 format=3 uid="uid://buds5k3chctuo"]
+
+[ext_resource type="Script" uid="uid://dp6mnl2n2v8cg" path="res://items/item_effects/item_effect.gd" id="1_gtf66"]
+[ext_resource type="Script" uid="uid://cgh5nf2ude5c1" path="res://items/scripts/equipable_item_modifier.gd" id="2_7pfk8"]
+[ext_resource type="Script" uid="uid://bqflwu4k7h7sy" path="res://items/scripts/equipable_item_data.gd" id="3_iql6b"]
+[ext_resource type="Texture2D" uid="uid://uxuqoqnbv302" path="res://items/sprites/gear.png" id="4_7pfk8"]
+[ext_resource type="Texture2D" uid="uid://bbywv4x3kg6s7" path="res://Player/Sprites/player_sprite_sword.png" id="4_iql6b"]
+
+[sub_resource type="Resource" id="Resource_iql6b"]
+script = ExtResource("2_7pfk8")
+type = 1
+metadata/_custom_type_script = "uid://cgh5nf2ude5c1"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoaxr"]
+atlas = ExtResource("4_7pfk8")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+script = ExtResource("3_iql6b")
+modifiers = Array[ExtResource("2_7pfk8")]([SubResource("Resource_iql6b")])
+sprite_texture = ExtResource("4_iql6b")
+name = "Iron Sword"
+description = "A standard sword, made of iron."
+texture = SubResource("AtlasTexture_eoaxr")
+cost = 750
+metadata/_custom_type_script = "uid://bqflwu4k7h7sy"

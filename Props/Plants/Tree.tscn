@@ -1,0 +1,136 @@
+[gd_scene load_steps=12 format=3 uid="uid://d388ot7vwnh0y"]
+
+[ext_resource type="Texture2D" uid="uid://j428iomk435y" path="res://Props/Sprites/tree_1.png" id="1_8adpf"]
+[ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_a671x"]
+[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_hyh2h"]
+[ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_qetsp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qetsp"]
+shader = ExtResource("2_hyh2h")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
+size = Vector2(32, 101.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a671x"]
+radius = 43.0
+
+[sub_resource type="Animation" id="Animation_qetsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hyh2h"]
+resource_name = "hide"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i0y2m"]
+resource_name = "show"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i0y2m"]
+_data = {
+&"RESET": SubResource("Animation_qetsp"),
+&"hide": SubResource("Animation_hyh2h"),
+&"show": SubResource("Animation_i0y2m")
+}
+
+[node name="Tree" type="Node2D" groups=["hidable"]]
+script = ExtResource("1_a671x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_qetsp")
+position = Vector2(-44, 0)
+texture = ExtResource("1_8adpf")
+offset = Vector2(45, 0)
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 136)
+script = ExtResource("4_qetsp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-43, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(46, 10)
+shape = SubResource("RectangleShape2D_a671x")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(44, -18)
+shape = SubResource("CircleShape2D_a671x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i0y2m")
+}

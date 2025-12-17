@@ -1,0 +1,56 @@
+class_name EnemyStateAttack extends EnemyState
+
+@export var attack_cooldown : float = 0.2
+var anim_name : String = "attack"
+var _animation_finished : bool = false
+var _direction :  Vector2
+@onready var attack_hurt_box: HurtBox = $"../../Sprite2D/AttackHurtBox"
+
+@export_category("AI")
+
+@export var idle_state : EnemyState
+
+func init() -> void:
+	pass
+	
+func enter() -> void:
+	#if attack_hurt_box:
+		#attack_hurt_box.monitoring = true
+	_animation_finished = false
+	enemy.velocity = Vector2.ZERO
+	_direction = enemy.global_position.direction_to(PlayerManager.player.global_position)
+	enemy.set_direction(_direction)
+	attack_select()
+	print(anim_name)
+	enemy.update_animation(anim_name)
+	enemy.animation_player.animation_finished.connect( _on_animation_finished)
+	pass
+	
+func exit() -> void:
+	enemy.animation_player.animation_finished.disconnect( _on_animation_finished)
+	#if attack_hurt_box:
+		#attack_hurt_box.monitoring = false
+	pass
+	
+func process( _delta: float ) -> EnemyState:
+	if PlayerManager.player.hp <= 0:
+		return idle_state
+	if _animation_finished == true:
+		return idle_state
+	return null
+
+func physics( _delta: float ) -> EnemyState:
+	return null
+
+func _on_animation_finished( _a : String) -> void:
+	await get_tree().create_timer(attack_cooldown).timeout
+	_animation_finished = true	
+
+func attack_select() -> void:
+	if $"../../AnimationPlayer".has_animation("attack2_down"):
+		var rand = randi_range(0,1)
+		if rand == 0:
+			anim_name = "attack"
+		else:
+			anim_name = "attack2"	
+	pass

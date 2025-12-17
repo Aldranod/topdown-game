@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgscudnwe6np7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rw508"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_lyhnx"]
+_limits = [0.0, 0.3, 0.0, 1.0]
+_data = [Vector2(0.00212314, 0), 0.0, 0.0, 0, 0, Vector2(0.0997877, 0.152037), 1.05962, 1.05962, 0, 0, Vector2(0.496815, 0.3), 0.0, 0.0, 0, 0, Vector2(0.944798, 0.100639), -1.05962, -1.05962, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_oter3"]
+curve = SubResource("Curve_lyhnx")
+
+[sub_resource type="Gradient" id="Gradient_h64y5"]
+colors = PackedColorArray(1, 1, 1, 0.0784314, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xs6s2"]
+gradient = SubResource("Gradient_h64y5")
+
+[sub_resource type="Curve" id="Curve_4nciu"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_a4n88"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 15.0479), 0.0, 0.0, 0, 0, Vector2(0.0467091, 20.8107), 107.88, 107.88, 0, 0, Vector2(0.248408, 30), 0.0, 0.0, 0, 0, Vector2(1, 29.6885), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_q1fhw"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_buffn"]
+curve_x = SubResource("Curve_4nciu")
+curve_y = SubResource("Curve_a4n88")
+curve_z = SubResource("Curve_q1fhw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uxrgw"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -400, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1000, 1, 1)
+gravity = Vector3(0, 3000, 0)
+scale_min = 0.2
+scale_over_velocity_curve = SubResource("CurveXYZTexture_buffn")
+color_initial_ramp = SubResource("GradientTexture1D_xs6s2")
+alpha_curve = SubResource("CurveTexture_oter3")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_rw508")
+amount = 2000
+lifetime = 0.8
+preprocess = 0.5
+speed_scale = 0.5
+visibility_rect = Rect2(-500, -400, 1000, 800)
+process_material = SubResource("ParticleProcessMaterial_uxrgw")

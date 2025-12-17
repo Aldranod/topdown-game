@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb3jg2dmd2khe"]
+
+[ext_resource type="Script" uid="uid://dfxfklhmay7qc" path="res://Levels/scripts/level_transition_interact.gd" id="1_3citu"]
+[ext_resource type="Resource" uid="uid://c0q7p266oy8v1" path="res://items/key_dungeon.tres" id="2_jurk8"]
+[ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="2_yt5bq"]
+[ext_resource type="AudioStream" uid="uid://cm2dd6cpe6as6" path="res://Interactables/Dungeon/locked_door.wav" id="3_opggl"]
+[ext_resource type="AudioStream" uid="uid://dg7yc1ggu3gyh" path="res://Interactables/Dungeon/unlock_door.wav" id="4_6lhcn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45xa8"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[node name="LevelTransitionInteract" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_3citu")
+key_item = ExtResource("2_jurk8")
+locked_audio = ExtResource("3_opggl")
+open_audio = ExtResource("4_6lhcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_45xa8")
+debug_color = Color(0.710425, 0.324488, 0.904354, 0.42)
+
+[node name="PersistentDataHandler" parent="." instance=ExtResource("2_yt5bq")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn1ajmvwh5xly"]
+
+[ext_resource type="Script" uid="uid://dva18ymvwywhu" path="res://GeneralNodes/EnemySpawner/enemy_spawner.gd" id="1_pgh7c"]
+[ext_resource type="Script" uid="uid://janmhyn2mfai" path="res://GeneralNodes/PersistentDataHandler/persistent-data-handler.gd" id="2_nawnw"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_pgh7c")
+
+[node name="PersistentDataHandler" type="Node" parent="."]
+script = ExtResource("2_nawnw")
+metadata/_custom_type_script = "uid://janmhyn2mfai"

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://j1smqtrje3b"]
+
+[ext_resource type="Texture2D" uid="uid://khutty6hcyjt" path="res://GUI/dialog_system/sprites/text-bubble.png" id="1_8pqou"]
+[ext_resource type="Script" uid="uid://b2wogcn8nqywx" path="res://GUI/notes_menu/notes_menu.gd" id="1_u7vrl"]
+[ext_resource type="FontFile" uid="uid://jk1i6udjycsw" path="res://GUI/fonts/Abaddon Light.ttf" id="2_jp7kj"]
+[ext_resource type="FontFile" uid="uid://blofs77f4laor" path="res://GUI/fonts/Abaddon Bold.ttf" id="3_u7vrl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mv3m5"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+texture = ExtResource("1_8pqou")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[node name="NotesMenu" type="CanvasLayer"]
+script = ExtResource("1_u7vrl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+modulate = Color(0.859375, 0.826438, 0.763953, 1)
+layout_mode = 1
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 416.0
+offset_bottom = 256.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mv3m5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/PanelContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_jp7kj")
+theme_override_fonts/bold_font = ExtResource("3_u7vrl")
+bbcode_enabled = true
+text = "s ddd d d dd d d d                 dd
+dddd d  dd d ddd dddd
+ddddddddddd ddddddddddddddd
+dsdsdsdsdsd
+sdsdsdsdsdsdsd
+ssdsdsdsdsddddddddddddddddddd
+"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="NPCResource" load_steps=4 format=3 uid="uid://o0ruh8jf0kgx"]
+
+[ext_resource type="Texture2D" uid="uid://b54jyrslltha4" path="res://npc/sprites/portraits/portrait_placeholder.png" id="1_nk3e4"]
+[ext_resource type="Script" uid="uid://cnu3pauuaiagc" path="res://npc/scripts/npc_resource.gd" id="2_mlifc"]
+[ext_resource type="Texture2D" uid="uid://b7yh4vrwwmew0" path="res://npc/sprites/npc_sprite_02.png" id="3_wq8vb"]
+
+[resource]
+script = ExtResource("2_mlifc")
+npc_name = "Tosekh"
+sprite = ExtResource("3_wq8vb")
+portrait = ExtResource("1_nk3e4")
+dialog_audio_pitch = 1.16
+metadata/_custom_type_script = "uid://cnu3pauuaiagc"

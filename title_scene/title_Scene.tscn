@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://4uyba845je8m"]
+
+[ext_resource type="PackedScene" uid="uid://c8xmjm2nd64cw" path="res://Tile Maps/dungeon_small.tscn" id="1_ljakt"]
+[ext_resource type="Script" uid="uid://dfs8p8hmoov41" path="res://title_scene/title_scene.gd" id="1_n7msw"]
+[ext_resource type="PackedScene" uid="uid://c3sm25e1issmv" path="res://Interactables/Dungeon/pushable_statue.tscn" id="2_0w75n"]
+[ext_resource type="AudioStream" uid="uid://bjxy5kmusc5o4" path="res://title_scene/audio/waves.mp3" id="2_d06lf"]
+[ext_resource type="Texture2D" uid="uid://k8nhdnefe3u8" path="res://title_scene/sprites/title.png" id="3_0w75n"]
+[ext_resource type="AudioStream" uid="uid://mkqh62filg76" path="res://title_scene/audio/menu_focus.wav" id="3_05l2a"]
+[ext_resource type="AudioStream" uid="uid://danm6guxr83il" path="res://title_scene/audio/menu_select.wav" id="4_ikr7a"]
+[ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="5_fvjit"]
+[ext_resource type="PackedScene" uid="uid://ds2s6jmjqwrcs" path="res://title_scene/splash_scene.tscn" id="8_05l2a"]
+
+[sub_resource type="Animation" id="Animation_fvjit"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n7msw"]
+resource_name = "default"
+length = 5.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 3, 2, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5j2a"]
+_data = {
+&"RESET": SubResource("Animation_fvjit"),
+&"default": SubResource("Animation_n7msw")
+}
+
+[node name="TitleScene" type="Node2D"]
+script = ExtResource("1_n7msw")
+music = ExtResource("2_d06lf")
+button_focus_audio = ExtResource("3_05l2a")
+button_press_audio = ExtResource("4_ikr7a")
+
+[node name="Dungeon_01_Tilemap" parent="." instance=ExtResource("1_ljakt")]
+position = Vector2(-32, 0)
+layer_0/tile_data = PackedInt32Array(131075, 655362, 2, 196611, 655362, 3, 262147, 458754, 3, 131076, 720898, 2, 196612, 720898, 3, 262148, 524290, 3, 131077, 262146, 7, 196613, 131074, 1, 262149, 131074, 2, 131078, 458754, 7, 196614, 196610, 1, 262150, 196610, 2, 327683, 458754, 4, 393219, 2, 1, 458755, 2, 2, 327684, 524290, 4, 393220, 65538, 1, 458756, 65538, 2, 327685, 131074, 0, 393221, 131074, 1, 458757, 131074, 2, 327686, 196610, 0, 393222, 196610, 1, 458758, 196610, 2, 131079, 786434, 2, 196615, 2, 1, 262151, 2, 2, 131080, 786434, 2, 196616, 65538, 1, 262152, 65538, 2, 131081, 786434, 2, 196617, 131074, 1, 262153, 131074, 2, 131082, 262146, 7, 196618, 196610, 1, 262154, 196610, 2, 327687, 2, 0, 393223, 2, 1, 458759, 2, 2, 327688, 65538, 0, 393224, 65538, 1, 458760, 65538, 2, 327689, 131074, 0, 393225, 131074, 1, 458761, 131074, 2, 327690, 196610, 0, 393226, 196610, 1, 458762, 196610, 2, 131083, 458754, 7, 196619, 786434, 3, 262155, 2, 2, 131084, 851970, 2, 196620, 851970, 3, 262156, 262146, 3, 131085, 917506, 2, 196621, 917506, 3, 262157, 327682, 3, 131086, 983042, 2, 196622, 131074, 4, 262158, 786434, 1, 327691, 2, 0, 393227, 2, 1, 458763, 2, 2, 327692, 262146, 4, 393228, 65538, 1, 458764, 65538, 2, 327693, 327682, 4, 393229, 131074, 1, 458765, 131074, 2, 327694, 786434, 2, 393230, 196610, 1, 458766, 196610, 2, 327695, 262146, 7, 393231, 2, 1, 458767, 2, 2, 327696, 458754, 7, 393232, 65538, 1, 458768, 65538, 2, 327680, 262146, 7, 393216, 65538, 1, 458752, 65538, 2, 327681, 458754, 7, 393217, 131074, 1, 458753, 131074, 2, 327682, 786434, 2, 393218, 196610, 1, 458754, 196610, 2, -65528, 589826, 7, 8, 786434, 0, 65544, 786434, 1, -65529, 589826, 7, 7, 786434, 0, 65543, 786434, 1, -65530, 589826, 7, 6, 458754, 5, 65542, 458754, 6, -65531, 589826, 7, 5, 262146, 5, 65541, 262146, 6, -65532, 589826, 7, 4, 720898, 0, 65540, 720898, 1, -65533, 589826, 7, 3, 655362, 0, 65539, 655362, 1, -65527, 589826, 7, 9, 786434, 0, 65545, 786434, 1, -65526, 589826, 7, 10, 262146, 5, 65546, 262146, 6, -65525, 589826, 7, 11, 458754, 5, 65547, 458754, 6, -65524, 589826, 7, 12, 851970, 0, 65548, 851970, 1, -65523, 589826, 7, 13, 917506, 0, 65549, 917506, 1, -65522, 589826, 7, 14, 983042, 0, 65550, 983042, 1, 131087, 524290, 7, 196623, 262146, 5, 262159, 262146, 6, 131088, 524290, 7, 196624, 458754, 5, 262160, 458754, 6, 131074, 589826, 2, 196610, 196610, 4, 262146, 786434, 1, 131073, 655362, 7, 196609, 458754, 5, 262145, 458754, 6, 131072, 655362, 7, 196608, 262146, 5, 262144, 262146, 6, 524288, 2, 7, 524289, 196610, 7, 524290, 720898, 6, 524291, 720898, 6, 524292, 720898, 6, 524293, 2, 7, 524294, 196610, 7, 524295, 720898, 6, 524296, 720898, 6, 524297, 720898, 6, 524298, 2, 7, 524299, 196610, 7, 524300, 720898, 6, 524301, 720898, 6, 524302, 720898, 6, 524303, 2, 7, 524304, 196610, 7, 65538, 589826, 1, 2, 589826, 0, -65534, 655362, 7, -131070, 655362, 7, -131069, 655362, 7, -131068, 655362, 7, -131067, 655362, 7, -131066, 655362, 7, -131065, 655362, 7, -131064, 655362, 7, -131063, 655362, 7, -131062, 655362, 7, -131061, 655362, 7, -131060, 655362, 7, -131059, 655362, 7, -131058, 655362, 7, -131057, 655362, 7, -131056, 655362, 7, -65521, 589826, 7, 15, 655362, 7, 65551, 655362, 7, 65552, 655362, 7, -131071, 655362, 7, -131072, 655362, 7, 65536, 655362, 7, 0, 655362, 7, -65536, 655362, 7, 1, 655362, 7, 65537, 655362, 7, -65535, 655362, 7, -65520, 655362, 7, 16, 655362, 7, 589824, 655362, 7, 589825, 655362, 7, 589826, 655362, 7, 589827, 655362, 7, 589828, 655362, 7, 589829, 655362, 7, 589830, 655362, 7, 589831, 655362, 7, 589832, 655362, 7, 589833, 655362, 7, 589834, 655362, 7, 589835, 655362, 7, 589836, 655362, 7, 589837, 655362, 7, 589838, 655362, 7, 589839, 655362, 7, 589840, 655362, 7, 655376, 655362, 7, 655375, 655362, 7, 655374, 655362, 7, 655373, 655362, 7, 655372, 655362, 7, 655371, 655362, 7, 655370, 655362, 7, 655369, 655362, 7, 655368, 655362, 7, 655367, 655362, 7, 655366, 655362, 7, 655365, 655362, 7, 655364, 655362, 7, 655363, 655362, 7, 655362, 655362, 7, 655361, 655362, 7, 655360, 655362, 7)
+
+[node name="Props" type="Node" parent="."]
+
+[node name="PushableStatue" parent="Props" instance=ExtResource("2_0w75n")]
+position = Vector2(448, 198)
+
+[node name="PushableStatue2" parent="Props" instance=ExtResource("2_0w75n")]
+position = Vector2(95, 199)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.498)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(242, 116)
+texture = ExtResource("3_0w75n")
+hframes = 4
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_c5j2a")
+}
+autoplay = "default"
+
+[node name="ButtonNew" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = 43.0
+offset_right = 68.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "new game"
+
+[node name="ButtonContinue" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = 82.0
+offset_right = 68.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "continue"
+
+[node name="SplashScene" parent="CanvasLayer" instance=ExtResource("8_05l2a")]
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_fvjit")]
+position = Vector2(240, 146)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4

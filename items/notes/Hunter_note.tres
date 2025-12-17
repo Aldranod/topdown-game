@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="NoteData" load_steps=2 format=3 uid="uid://w7njtashe55k"]
+
+[ext_resource type="Script" uid="uid://dks8jv35qjo2b" path="res://items/notes/note_data.gd" id="1_71c5j"]
+
+[resource]
+script = ExtResource("1_71c5j")
+name = "Letter"
+content = "My Lord,
+I am writing this letter because I have discovered something that has deeply disturbed me.
+During my daily walk through the northern quarter of the forest, I came across traces of greenskins!
+I have never encountered them so close on this side of the mountains!
+I humbly request that you send a patrol to my area.
+Hunter Tosekh."
+metadata/_custom_type_script = "uid://dks8jv35qjo2b"

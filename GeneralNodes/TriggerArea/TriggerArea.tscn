@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhs62ktwdql3w"]
+
+[ext_resource type="Script" uid="uid://bij0ymnx0qvhg" path="res://GeneralNodes/TriggerArea/trigger_area.gd" id="1_ohkrd"]
+[ext_resource type="Script" uid="uid://janmhyn2mfai" path="res://GeneralNodes/PersistentDataHandler/persistent-data-handler.gd" id="2_vgdgk"]
+
+[node name="TriggerArea" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_ohkrd")
+
+[node name="PersistentDataHandler" type="Node" parent="."]
+script = ExtResource("2_vgdgk")
+metadata/_custom_type_script = "uid://janmhyn2mfai"

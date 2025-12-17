@@ -1,0 +1,231 @@
+[gd_scene load_steps=16 format=3 uid="uid://d4hgaqdibwenn"]
+
+[ext_resource type="Texture2D" uid="uid://doxogtmgi5xlh" path="res://GeneralNodes/SavePoint/savepoint.png" id="1_h8gxk"]
+[ext_resource type="Script" uid="uid://c62qv7apfl8wc" path="res://GeneralNodes/SavePoint/save_point.gd" id="1_som7s"]
+[ext_resource type="FontFile" uid="uid://jk1i6udjycsw" path="res://GUI/fonts/Abaddon Light.ttf" id="3_73h1e"]
+
+[sub_resource type="Animation" id="Animation_73h1e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h8gxk"]
+resource_name = "default"
+length = 0.53
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_som7s"]
+_data = {
+&"RESET": SubResource("Animation_73h1e"),
+&"default": SubResource("Animation_h8gxk")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h8gxk"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6i1qj"]
+radius = 15.0
+
+[sub_resource type="Gradient" id="Gradient_rwsb4"]
+offsets = PackedFloat32Array(0.119469, 0.300885, 0.619469, 0.867257, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.733333, 0, 1, 1, 0.38809, 0.130318, 1, 0.433594, 0.0884552, 0.0560639, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h8gxk"]
+gradient = SubResource("Gradient_rwsb4")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="GDScript" id="GDScript_73h1e"]
+script/source = "extends PointLight2D
+
+func _ready() -> void:
+	flicker()
+	
+func flicker() -> void:
+	energy = randf() * 0.1 + 0.5
+	scale = Vector2(1,1) * energy
+	await get_tree().create_timer(0.1333).timeout
+	flicker()
+	pass	
+"
+
+[sub_resource type="Animation" id="Animation_ijh4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-47, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_som7s"]
+resource_name = "saved"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-47, -1), Vector2(-47, -55)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.856), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n1x5j"]
+_data = {
+&"RESET": SubResource("Animation_ijh4g"),
+&"saved": SubResource("Animation_som7s")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_som7s"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector3(0, -250, 0)
+color = Color(1, 0.582311, 0.461844, 1)
+
+[node name="SavePoint" type="Node2D"]
+script = ExtResource("1_som7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h8gxk")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_som7s")
+}
+autoplay = "default"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 8)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_h8gxk")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 8)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6i1qj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_h8gxk")
+script = SubResource("GDScript_73h1e")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -47.0
+offset_top = -1.0
+offset_right = 49.0
+offset_bottom = 22.0
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_73h1e")
+theme_override_font_sizes/font_size = 11
+text = "Game Saved"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelAnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_n1x5j")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.25
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_som7s")

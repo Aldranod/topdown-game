@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://bfaap4b5jhegh"]
+
+[ext_resource type="Script" uid="uid://dbyrfay6we700" path="res://quests/scripts/quest_reward_item.gd" id="1_h2gqc"]
+[ext_resource type="Script" uid="uid://7ba1efrybphi" path="res://quests/scripts/quest_resource.gd" id="2_2j85w"]
+
+[resource]
+script = ExtResource("2_2j85w")
+title = "Hidden path"
+description = "Find hidden path near rocks, to the west of courier station"
+steps = Array[String](["Find hidden path"])
+reward_xp = 300
+reward_items = Array[ExtResource("1_h2gqc")]([])
+metadata/_custom_type_script = "uid://7ba1efrybphi"

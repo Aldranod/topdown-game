@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqv16plyp2ftc"]
+
+[ext_resource type="Script" uid="uid://oktoobpf8w8r" path="res://GeneralNodes/enemy_boundary.gd" id="1_1xq1q"]
+[ext_resource type="Script" uid="uid://janmhyn2mfai" path="res://GeneralNodes/PersistentDataHandler/persistent-data-handler.gd" id="2_71vox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ajo"]
+size = Vector2(64, 64)
+
+[node name="EnemyBoundary" type="StaticBody2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_1xq1q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w1ajo")
+
+[node name="PersistentDataHandler" type="Node" parent="."]
+script = ExtResource("2_71vox")
+metadata/_custom_type_script = "uid://janmhyn2mfai"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=3 format=3 uid="uid://c683xth5ysphc"]
+
+[ext_resource type="Script" uid="uid://dbyrfay6we700" path="res://quests/scripts/quest_reward_item.gd" id="1_r3mg0"]
+[ext_resource type="Script" uid="uid://7ba1efrybphi" path="res://quests/scripts/quest_resource.gd" id="2_ojs7j"]
+
+[resource]
+script = ExtResource("2_ojs7j")
+title = "Daigne-Bean"
+description = "Daingne-Bean is headquarters of Mountain Guard and well fortified Keep hidden in Tearup Peeks. After victorious campaing against rebels, whats left from your company is marching north to home."
+steps = Array[String](["Get to Daigne-Bean"])
+reward_xp = 300
+reward_items = Array[ExtResource("1_r3mg0")]([])
+metadata/_custom_type_script = "uid://7ba1efrybphi"

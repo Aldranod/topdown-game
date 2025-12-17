@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="NPCResource" load_steps=4 format=3 uid="uid://c1rvd27i7p1rp"]
+
+[ext_resource type="Texture2D" uid="uid://dcukdekpd1rnv" path="res://npc/sprites/portraits/npc_portrait_01.png" id="1_0ta3b"]
+[ext_resource type="Script" uid="uid://cnu3pauuaiagc" path="res://npc/scripts/npc_resource.gd" id="2_hqbxp"]
+[ext_resource type="Texture2D" uid="uid://7c8ligg0ioxl" path="res://npc/sprites/npc_sprite.png" id="3_lgpw0"]
+
+[resource]
+script = ExtResource("2_hqbxp")
+npc_name = "Cpt. Thaaw"
+sprite = ExtResource("3_lgpw0")
+portrait = ExtResource("1_0ta3b")
+dialog_audio_pitch = 0.5
+metadata/_custom_type_script = "uid://cnu3pauuaiagc"
