@@ -35,5 +35,6 @@ z_index = 3
 material = SubResource("CanvasItemMaterial_s2l1d")
 amount = 50
 texture = ExtResource("1_7ulke")
+lifetime = 5.0
 visibility_rect = Rect2(-500, -200, 1000, 400)
 process_material = SubResource("ParticleProcessMaterial_iqqpu")

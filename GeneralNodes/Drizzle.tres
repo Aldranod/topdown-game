@@ -1,0 +1,51 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 uid="uid://c6fo1dt0oqfg3"]
+
+[sub_resource type="Curve" id="Curve_0egkd"]
+_limits = [0.0, 0.3, 0.0, 1.0]
+_data = [Vector2(0, 0.012883484), 0.0, 0.0, 0, 0, Vector2(0.11439114, 0.10559821), 0.8457454, 0.8457454, 0, 0, Vector2(0.50553507, 0.3), 0.0, 0.0, 0, 0, Vector2(0.88560885, 0.09363502), -1.0237966, -1.0237966, 0, 0, Vector2(0.9889299, 0.00690189), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_e1h3q"]
+curve = SubResource("Curve_0egkd")
+
+[sub_resource type="Gradient" id="Gradient_vro2x"]
+colors = PackedColorArray(1, 1, 1, 0.078431375, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8nra7"]
+gradient = SubResource("Gradient_vro2x")
+
+[sub_resource type="Curve" id="Curve_77s21"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_opl84"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 14.746933), 0.0, 0.0, 0, 0, Vector2(0.07749078, 21.924847), 81.05058, 81.05058, 0, 0, Vector2(0.2619926, 30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_nwnd2"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_w72l4"]
+curve_x = SubResource("Curve_77s21")
+curve_y = SubResource("Curve_opl84")
+curve_z = SubResource("Curve_nwnd2")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5000, 1000, 1)
+angle_min = 11.0000105
+angle_max = 12.0000105
+direction = Vector3(1, 1, 0)
+spread = 10.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 300, 0)
+scale_min = 0.19999999
+scale_over_velocity_curve = SubResource("CurveXYZTexture_w72l4")
+color_initial_ramp = SubResource("GradientTexture1D_8nra7")
+alpha_curve = SubResource("CurveTexture_e1h3q")

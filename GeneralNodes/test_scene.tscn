@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgreg4jfr0fv0"]
+
+[ext_resource type="Material" uid="uid://c6fo1dt0oqfg3" path="res://GeneralNodes/Drizzle.tres" id="1_7yl4j"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="1_dwudj"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="2_5m3q0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dwudj"]
+blend_mode = 1
+
+[node name="testScene" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 2
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = ExtResource("1_dwudj")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_dwudj")
+position = Vector2(100, -13)
+amount = 2000
+preprocess = 0.5
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("1_7yl4j")
+
+[node name="WeatherManager" parent="." instance=ExtResource("2_5m3q0")]

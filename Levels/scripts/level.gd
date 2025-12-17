@@ -17,7 +17,10 @@ func _ready() -> void:
 	if darkness:
 		PlayerManager.player.player_light_switch(true)
 	else:
-		PlayerManager.player.player_light_switch(false)		
+		PlayerManager.player.player_light_switch(false)
+	if $WeatherManager:
+		$WeatherManager.change_to(Drizzle)	
+		$WeatherManager.change_to(Fog)	
 
 func _free_level() -> void:
 	PlayerManager.unparent_player( self )

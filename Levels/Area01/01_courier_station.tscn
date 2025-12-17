@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=34 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
@@ -26,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://dfao1r52i6rrt" path="res://quests/utility_nodes/quest_activated_switch.tscn" id="23_oter3"]
 [ext_resource type="PackedScene" uid="uid://dfdpv5bgkgbid" path="res://GeneralNodes/day_night_cycle.tscn" id="25_xs6s2"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="26_4nciu"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="27_a4n88"]
+[ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="28_q1fhw"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="29_buffn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_copt3"]
 radius = 20.45
@@ -44,8 +47,28 @@ script = ExtResource("1_buffn")
 music = ExtResource("2_rw508")
 target_node = NodePath("TriggerArea/DialogInteraction2")
 
+[node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_a4n88")]
+particle = NodePath("../Particles")
+color_rect = NodePath("../Parallax2D/ColorRect")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(100, -13)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("28_q1fhw")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 2
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = ExtResource("29_buffn")
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(1, 1, 1, 0)
+
 [node name="DayNightCycle" parent="." instance=ExtResource("25_xs6s2")]
-visible = false
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("3_oibqc")]
 z_index = -2

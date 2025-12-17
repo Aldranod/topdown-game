@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxckttjyuufk3"]
+
+[ext_resource type="Script" uid="uid://u4beiqcthwes" path="res://GeneralNodes/concurrent_state_machine.gd" id="1_rhetv"]
+[ext_resource type="Script" uid="uid://da2ce0dblyfi4" path="res://GeneralNodes/rain_state_machine.gd" id="2_evd8v"]
+[ext_resource type="Script" uid="uid://cdwr7g5kqd18k" path="res://GeneralNodes/fog_state_machine.gd" id="3_mejy6"]
+
+[node name="WeatherManager" type="Node"]
+script = ExtResource("1_rhetv")
+
+[node name="RainStateMachine" type="Node" parent="."]
+script = ExtResource("2_evd8v")
+debug = false
+
+[node name="FogStateMachine" type="Node" parent="."]
+script = ExtResource("3_mejy6")
+debug = false
