@@ -12,6 +12,7 @@ func _ready() -> void:
 	pass
 
 func change_to(new_state):
+	await get_tree().process_frame
 	if new_state.type == "Rain":
 		rain_state_machine.state = new_state.new(particle)
 	elif new_state.type == "Fog":

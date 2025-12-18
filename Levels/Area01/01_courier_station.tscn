@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=37 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
@@ -42,10 +42,35 @@ size = Vector2(112, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oter3"]
 size = Vector2(112, 80)
 
+[sub_resource type="Gradient" id="Gradient_7y3vb"]
+offsets = PackedFloat32Array(0, 0.14333333, 0.68666667, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lc8n7"]
+gradient = SubResource("Gradient_7y3vb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_buffn"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(650, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1400, 200, 1)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 1.1999999
+color_ramp = SubResource("GradientTexture1D_lc8n7")
+anim_offset_max = 1.0
+
 [node name="01_courier_station" type="Node2D"]
 script = ExtResource("1_buffn")
 music = ExtResource("2_rw508")
-weather = true
+weather_active = true
+weather_layer_1 = 1
+weather_layer_2 = 2
 
 [node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_a4n88")]
 particle = NodePath("../Particles")
@@ -1571,18 +1596,20 @@ Checking if quest is complete"
 z_index = -1
 position = Vector2(-872, 64)
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("26_4nciu")]
-position = Vector2(1200, 8)
+[node name="Leafs" parent="." instance=ExtResource("26_4nciu")]
+position = Vector2(32, 48)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_buffn")
 
-[node name="GPUParticles2D2" parent="." instance=ExtResource("26_4nciu")]
-position = Vector2(1200, 584)
-local_coords = true
+[node name="Leafs2" parent="." instance=ExtResource("26_4nciu")]
+position = Vector2(184, 648)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_buffn")
 
-[node name="GPUParticles2D3" parent="." instance=ExtResource("26_4nciu")]
-position = Vector2(424, 8)
-
-[node name="GPUParticles2D4" parent="." instance=ExtResource("26_4nciu")]
-position = Vector2(400, 632)
+[node name="Leafs3" parent="." instance=ExtResource("26_4nciu")]
+position = Vector2(-2792, 256)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_buffn")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.72014123, 0.7266938, 0.85546875, 1)

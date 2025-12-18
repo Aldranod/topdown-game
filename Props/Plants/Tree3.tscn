@@ -1,13 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://d388ot7vwnh0y"]
+[gd_scene load_steps=13 format=3 uid="uid://d3pt5h60ltre7"]
 
-[ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_a671x"]
-[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_hyh2h"]
-[ext_resource type="Texture2D" uid="uid://r0q5lbcefr02" path="res://Props/Sprites/tree_3.png" id="3_i0y2m"]
-[ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_qetsp"]
-[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_i0y2m"]
+[ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_1hi0e"]
+[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_qlplb"]
+[ext_resource type="Texture2D" uid="uid://j428iomk435y" path="res://Props/Sprites/tree_1.png" id="3_l0jnn"]
+[ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_s73q3"]
+[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_lq8hr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qetsp"]
-shader = ExtResource("2_hyh2h")
+shader = ExtResource("2_qlplb")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
 size = Vector2(32, 101.5)
@@ -105,18 +105,18 @@ _data = {
 &"show": SubResource("Animation_i0y2m")
 }
 
-[node name="Tree" type="Node2D" groups=["hidable"]]
-script = ExtResource("1_a671x")
+[node name="Tree3" type="Node2D" groups=["hidable"]]
+script = ExtResource("1_1hi0e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_qetsp")
 position = Vector2(-44, 0)
-texture = ExtResource("3_i0y2m")
+texture = ExtResource("3_l0jnn")
 offset = Vector2(45, 0)
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 136)
-script = ExtResource("4_qetsp")
+script = ExtResource("4_s73q3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-43, 0)
@@ -142,4 +142,4 @@ modulate = Color(0, 0, 0, 0.45882353)
 show_behind_parent = true
 position = Vector2(3, 54)
 scale = Vector2(3, 3)
-texture = ExtResource("5_i0y2m")
+texture = ExtResource("5_lq8hr")

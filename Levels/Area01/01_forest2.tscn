@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://ccjs8vvt5r2j0"]
+[gd_scene load_steps=32 format=4 uid="uid://ccjs8vvt5r2j0"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_tx3e1"]
 [ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_yqe0x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="5_205g3"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="6_52met"]
 [ext_resource type="PackedScene" uid="uid://bb3jg2dmd2khe" path="res://Levels/level_transition_interact.tscn" id="7_rv3hk"]
+[ext_resource type="PackedScene" uid="uid://d3pt5h60ltre7" path="res://Props/Plants/Tree3.tscn" id="12_3htwn"]
 [ext_resource type="PackedScene" uid="uid://dfdpv5bgkgbid" path="res://GeneralNodes/day_night_cycle.tscn" id="16_n7whc"]
 [ext_resource type="Resource" uid="uid://bfaap4b5jhegh" path="res://quests/long_way_home.tres" id="18_3htwn"]
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="18_n8y0a"]
@@ -21,6 +22,9 @@
 [ext_resource type="Resource" uid="uid://co6pgaqxncolt" path="res://quests/kill_greenskins.tres" id="23_r5khe"]
 [ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="24_ce4hh"]
 [ext_resource type="PackedScene" uid="uid://dhs62ktwdql3w" path="res://GeneralNodes/TriggerArea/TriggerArea.tscn" id="26_e7osk"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="27_x36nl"]
+[ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="28_j58va"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="29_gvois"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="33_w23xq"]
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="34_j2ak2"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="35_uuwre"]
@@ -35,6 +39,8 @@ radius = 104.0
 [node name="02" type="Node2D"]
 script = ExtResource("1_tx3e1")
 music = ExtResource("2_yqe0x")
+weather_active = true
+weather_layer_1 = 4
 
 [node name="DayNightCycle" parent="." instance=ExtResource("16_n7whc")]
 visible = false
@@ -327,19 +333,13 @@ position = Vector2(-112, 824)
 rotation = 0.0773495
 
 [node name="Tree31" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(920, 240)
+position = Vector2(928, 232)
 
 [node name="Tree48" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(904, -88)
 
-[node name="Tree51" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(400, 104)
-
 [node name="Tree52" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(624, -32)
-
-[node name="Tree54" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(688, 136)
 
 [node name="Tree33" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(128, -96)
@@ -358,12 +358,6 @@ position = Vector2(8, 72)
 
 [node name="Tree176" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(576, -40)
-
-[node name="Tree120" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(104, 88)
-
-[node name="Tree175" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(152, 336)
 
 [node name="Tree127" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(-96, -96)
@@ -812,9 +806,6 @@ position = Vector2(-128, 304)
 [node name="Tree108" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(1112, 192)
 
-[node name="Tree102" parent="Props" instance=ExtResource("33_w23xq")]
-position = Vector2(1040, 368)
-
 [node name="Tree17" parent="Props" instance=ExtResource("33_w23xq")]
 position = Vector2(1232, 200)
 
@@ -985,6 +976,21 @@ position = Vector2(-104, 400)
 
 [node name="Tree247" parent="Props" instance=ExtResource("34_j2ak2")]
 position = Vector2(488, -96)
+
+[node name="Tree3" parent="Props" instance=ExtResource("12_3htwn")]
+position = Vector2(1032, 360)
+
+[node name="Tree18" parent="Props" instance=ExtResource("12_3htwn")]
+position = Vector2(696, 112)
+
+[node name="Tree19" parent="Props" instance=ExtResource("12_3htwn")]
+position = Vector2(408, 104)
+
+[node name="Tree20" parent="Props" instance=ExtResource("12_3htwn")]
+position = Vector2(160, 336)
+
+[node name="Tree21" parent="Props" instance=ExtResource("12_3htwn")]
+position = Vector2(88, 96)
 
 [node name="EnemyBoundaries" type="StaticBody2D" parent="."]
 position = Vector2(128, 160)
@@ -1225,3 +1231,27 @@ position = Vector2(1040, 168)
 
 [node name="Goblin2" parent="." instance=ExtResource("35_uuwre")]
 position = Vector2(160, 496)
+
+[node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_x36nl")]
+particle = NodePath("../Particles")
+color_rect = NodePath("../Parallax2D/ColorRect")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(100, -13)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("28_j58va")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 3
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = ExtResource("29_gvois")
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(1, 1, 1, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.72156864, 0.7254902, 0.85490197, 1)

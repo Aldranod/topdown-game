@@ -30,7 +30,7 @@ scale_max = 1.1999999
 color_ramp = SubResource("GradientTexture1D_lc8n7")
 anim_offset_max = 1.0
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="Leafs" type="GPUParticles2D"]
 z_index = 3
 material = SubResource("CanvasItemMaterial_s2l1d")
 amount = 50

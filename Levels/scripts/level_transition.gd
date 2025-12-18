@@ -20,6 +20,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 	set( _v):
 		side = _v
 		_update_area()
+		
 @export var snap_to_grid : bool = false :
 	set( _v):
 		_snap_to_grid()

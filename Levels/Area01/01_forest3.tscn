@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://delb33wkyd1ot"]
+[gd_scene load_steps=16 format=4 uid="uid://delb33wkyd1ot"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_1isia"]
 [ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_4trk6"]
 [ext_resource type="PackedScene" uid="uid://dfdpv5bgkgbid" path="res://GeneralNodes/day_night_cycle.tscn" id="3_nrifg"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="4_dpmxw"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="6_q43gn"]
+[ext_resource type="PackedScene" uid="uid://d3pt5h60ltre7" path="res://Props/Plants/Tree3.tscn" id="8_ara22"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="8_gh1bc"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="11_ls81i"]
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="12_kegpd"]
@@ -277,6 +278,15 @@ position = Vector2(2448, -984)
 [node name="Tree475" parent="Props" instance=ExtResource("12_kegpd")]
 position = Vector2(1888, -1000)
 rotation = -0.0308511
+
+[node name="Tree3" parent="Props" instance=ExtResource("8_ara22")]
+position = Vector2(2866, -1231)
+
+[node name="Tree" parent="Props" instance=ExtResource("11_ls81i")]
+position = Vector2(2809, -1263)
+
+[node name="Tree2" parent="Props" instance=ExtResource("12_kegpd")]
+position = Vector2(2835, -1064)
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true

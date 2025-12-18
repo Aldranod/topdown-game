@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwd54brf8s2an"]
+[gd_scene load_steps=8 format=3 uid="uid://cwd54brf8s2an"]
 
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="1_6fkwm"]
 [ext_resource type="Texture2D" uid="uid://ds875pcuhv4gq" path="res://Props/Sprites/tree_2.png" id="1_oo00u"]
 [ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="3_g2xs6"]
+[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="4_g2xs6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0fuln"]
 shader = ExtResource("1_6fkwm")
@@ -13,7 +14,7 @@ size = Vector2(32, 101.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_a671x"]
 radius = 43.0
 
-[node name="Tree" type="Node2D"]
+[node name="Tree2" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -35,3 +36,11 @@ shape = SubResource("RectangleShape2D_8adpf")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-2, -36)
 shape = SubResource("CircleShape2D_a671x")
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 0.45882353)
+show_behind_parent = true
+position = Vector2(3, 25)
+scale = Vector2(3, 3)
+texture = ExtResource("4_g2xs6")

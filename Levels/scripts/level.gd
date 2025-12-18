@@ -1,19 +1,38 @@
 class_name  Level extends Node2D
 
+enum WeatherType { None, HeavyRain, Fog, NoFog, Drizzle }
+
 @export var music : AudioStream
 @export var cutscene : bool = false
 @export var cutscene_trigger : NPC
 @export var darkness : bool = false
-@export var weather : bool = false
+
+var weather_map : Dictionary = {}
+
+@export_group("Weather Settings")
+@export var weather_active : bool = false
+@export var weather_layer_1: WeatherType = WeatherType.None
+@export var weather_layer_2: WeatherType = WeatherType.None
+
+#@export var weather : bool = false
+#@export var weather_mod1: WEATHER
+#@export var weather_mod2: WEATHER
+#@export var weather_mod3: WEATHER
 
 func _ready() -> void:
+	weather_map = {
+		WeatherType.HeavyRain: HeavyRain,
+		WeatherType.Fog: Fog,
+		WeatherType.NoFog: NoFog,
+		WeatherType.Drizzle: Drizzle
+	}
 	self.y_sort_enabled = true
 	PlayerManager.set_as_parent( self )
 	LevelManager.level_load_started.connect( _free_level)
 	AudioManager.play_music(music)
 	play_cutscene()
 	darkness_check()
-	weatcher_check()
+	weather_check()
 		
 func play_cutscene() -> void:
 	if cutscene:
@@ -30,13 +49,25 @@ func darkness_check() -> void:
 	else:
 		PlayerManager.player.player_light_switch(false)
 	pass
-	
-func weatcher_check() -> void:
-	if weather:
-		$WeatherManager.change_to(HeavyRain)	
-		$WeatherManager.change_to(Fog)	
-	else:
+
+func weather_check() -> void:
+	if not weather_active:
 		return	
+	_apply_weather_from_enum(weather_layer_1)
+	_apply_weather_from_enum(weather_layer_2)
+
+func _apply_weather_from_enum(type_enum: WeatherType) -> void:
+	# If "None" is selected, do nothing
+	if type_enum == WeatherType.None:
+		return
+		
+	# Look up the script in the dictionary
+	if weather_map.has(type_enum):
+		var script_to_load = weather_map[type_enum]
+		# Pass the SCRIPT to the manager (exactly what it expects)
+		$WeatherManager.change_to(script_to_load)
+	else:
+		print("Error: Weather type not found in map for enum value: ", type_enum)
 
 func _free_level() -> void:
 	PlayerManager.unparent_player( self )
