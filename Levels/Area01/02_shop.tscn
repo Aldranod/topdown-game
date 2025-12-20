@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://cbtvh4md226dg"]
+[gd_scene load_steps=17 format=4 uid="uid://cbtvh4md226dg"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_7727t"]
-[ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_svxhr"]
+[ext_resource type="AudioStream" uid="uid://cmk3h77kvk7f2" path="res://Levels/Music/example_music_02.ogg" id="2_qkluu"]
 [ext_resource type="PackedScene" uid="uid://65ltrbv0lnuk" path="res://Tile Maps/Sprites/shop_tilemap_layer.tscn" id="4_0asvh"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="5_w1irt"]
 [ext_resource type="Script" uid="uid://banrw54ry8ssi" path="res://quests/utility_nodes/quest_activated_switch.gd" id="6_ena7o"]
@@ -13,14 +13,13 @@
 [ext_resource type="Resource" uid="uid://dphrny44nvo2e" path="res://items/potion.tres" id="10_qkluu"]
 [ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="11_meb4l"]
 [ext_resource type="PackedScene" uid="uid://bfv1mqfl26ouj" path="res://GeneralNodes/TutorialHint/tutorial_hint.tscn" id="13_24ur4"]
-[ext_resource type="Script" uid="uid://b0tksxbpaphu2" path="res://Levels/Area01/listener.gd" id="14_54jjq"]
 [ext_resource type="PackedScene" uid="uid://rro2nnmqmcql" path="res://items/notes/note.tscn" id="15_qkluu"]
 [ext_resource type="Resource" uid="uid://s2mcg5pdalej" path="res://items/notes/courier_outpost_note.tres" id="16_ena7o"]
 [ext_resource type="PackedScene" uid="uid://dsqvx0e8msa5u" path="res://Props/pot/Pot.tscn" id="22_mhjp3"]
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_7727t")
-music = ExtResource("2_svxhr")
+music = ExtResource("2_qkluu")
 
 [node name="ShopTilemapLayer" parent="." instance=ExtResource("4_0asvh")]
 z_index = -2
@@ -85,13 +84,13 @@ position = Vector2(261, 85)
 position = Vector2(275, 105)
 
 [node name="Pot7" parent="Pots" instance=ExtResource("22_mhjp3")]
-position = Vector2(260, -24)
+position = Vector2(275, 6)
 
 [node name="Pot8" parent="Pots" instance=ExtResource("22_mhjp3")]
-position = Vector2(376, -26)
+position = Vector2(375, 3)
 
 [node name="Pot9" parent="Pots" instance=ExtResource("22_mhjp3")]
-position = Vector2(343, -26)
+position = Vector2(350, 3)
 
 [node name="Pot10" parent="Pots" instance=ExtResource("22_mhjp3")]
 position = Vector2(246, 116)
@@ -100,7 +99,7 @@ position = Vector2(246, 116)
 position = Vector2(302, 81)
 
 [node name="Treasure-chest" parent="." instance=ExtResource("9_pm6ju")]
-position = Vector2(305, -28)
+position = Vector2(368, 47)
 item_data = ExtResource("10_qkluu")
 
 [node name="ItemPickup" parent="." instance=ExtResource("11_meb4l")]
@@ -109,19 +108,17 @@ position = Vector2(349, 97)
 item_data = ExtResource("9_ktyg8")
 respawnable = false
 
-[node name="Area2D" parent="." instance=ExtResource("13_24ur4")]
-position = Vector2(345, 97)
-description = "Press \"ESC\" to open your equipment."
-action_signal_name = ""
-pause_menu_signal = true
-
-[node name="listener" type="Node2D" parent="."]
-script = ExtResource("14_54jjq")
-
 [node name="Note" parent="." instance=ExtResource("15_qkluu")]
 z_index = 1
 position = Vector2(146, 130)
 note_data = ExtResource("16_ena7o")
 
+[node name="Area2D2" parent="." instance=ExtResource("13_24ur4")]
+position = Vector2(149.00002, 130)
+scale = Vector2(0.7, 0.7)
+description = "Press \"E\" to read a note."
+target_nodes = Array[NodePath]([NodePath("../Note")])
+action_signal_name = "player_interacted"
+pause_menu_signal = true
+
 [connection signal="enetered_from_here" from="LevelTransition" to="LevelTransition/QuestActivatedSwitch/QuestAdvanceTrigger" method="advance_quest"]
-[connection signal="inv_open" from="listener" to="Area2D" method="_on_action_performed"]

@@ -14,7 +14,7 @@ func _ready() -> void:
 	LevelManager.level_load_started.connect( _free_level)
 	AudioManager.play_music(music)
 	if cutscene:
-		$GPUParticles2D.emitting = true
+		#$GPUParticles2D.emitting = true
 		play_cutscene()
 
 func _free_level() -> void:

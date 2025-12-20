@@ -6,9 +6,10 @@ enum WeatherType { None, HeavyRain, Fog, NoFog, Drizzle }
 @export var cutscene : bool = false
 @export var cutscene_trigger : NPC
 @export var darkness : bool = false
-
+#b8b9da
+#Color(6.042, 6.345, 6.047)
 var weather_map : Dictionary = {}
-
+#$CanvasModulate
 @export_group("Weather Settings")
 @export var weather_active : bool = false
 @export var weather_layer_1: WeatherType = WeatherType.None
@@ -33,6 +34,23 @@ func _ready() -> void:
 	play_cutscene()
 	darkness_check()
 	weather_check()
+	#LevelManager.time_tick.connect(lightning)
+	start_lightning_loop()
+
+func start_lightning_loop() -> void:
+	while weather_active:
+		# 1. Calculate random wait time
+		var wait_time = randf_range(10.0, 45.0)
+		# 2. Wait for that time
+		await get_tree().create_timer(wait_time).timeout
+		# 3. Trigger Lightning
+		await lightning()
+	
+func lightning() -> void:
+	var tween = create_tween()
+	tween.tween_property($CanvasModulate, "color", Color(1, 1, 1, 1), 0.2)
+	tween.tween_property($CanvasModulate, "color", Color8(184, 185, 218), 0.3)
+	pass
 		
 func play_cutscene() -> void:
 	if cutscene:

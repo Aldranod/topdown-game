@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://ba2fjdmwuhyta"]
+[gd_scene load_steps=20 format=4 uid="uid://ba2fjdmwuhyta"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_ifayf"]
 [ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_egi7x"]
-[ext_resource type="PackedScene" uid="uid://dfdpv5bgkgbid" path="res://GeneralNodes/day_night_cycle.tscn" id="3_8cdk0"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="4_85pkc"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="6_i7a6h"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="7_7cpcr"]
@@ -13,8 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="11_px4by"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="12_h3631"]
 [ext_resource type="PackedScene" uid="uid://51holitkfpng" path="res://Enemies/Orc/Orc.tscn" id="13_52f2m"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="15_n18kk"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="15_p3bum"]
 [ext_resource type="PackedScene" uid="uid://dm0xqp572cxo5" path="res://Enemies/ArmoredGoblin/ArmoredGoblin.tscn" id="16_cdlkg"]
+[ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="16_xsj10"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="17_bah24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d2vj"]
 size = Vector2(304, 88)
@@ -25,9 +27,9 @@ size = Vector2(48, 1752)
 [node name="02" type="Node2D"]
 script = ExtResource("1_ifayf")
 music = ExtResource("2_egi7x")
-
-[node name="DayNightCycle" parent="." instance=ExtResource("3_8cdk0")]
-visible = false
+weather_active = true
+weather_layer_1 = 2
+weather_layer_2 = 1
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("4_85pkc")]
 z_index = -2
@@ -912,3 +914,27 @@ collision_mask = 0
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="EnemyBoundaries4"]
 position = Vector2(200, -136)
 shape = SubResource("RectangleShape2D_fyw77")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.72156864, 0.7254902, 0.85490197, 1)
+
+[node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("15_n18kk")]
+particle = NodePath("../Particles")
+color_rect = NodePath("../Parallax2D/ColorRect")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(100, -13)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("16_xsj10")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 3
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = ExtResource("17_bah24")
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(1, 1, 1, 0)

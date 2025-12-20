@@ -928,15 +928,11 @@ _data = {
 script = ExtResource("13_ys2o2")
 item = ExtResource("14_t3vbn")
 probability = 33.0
-min_amount = 1
-max_amount = 1
 metadata/_custom_type_script = "uid://c5sraeeen4dul"
 
 [sub_resource type="Resource" id="Resource_67htc"]
 script = ExtResource("13_ys2o2")
 item = ExtResource("15_j3imk")
-probability = 100.0
-min_amount = 1
 max_amount = 3
 metadata/_custom_type_script = "uid://c5sraeeen4dul"
 

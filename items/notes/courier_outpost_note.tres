@@ -6,6 +6,8 @@
 script = ExtResource("1_2n7p1")
 name = "Letter"
 content = "Awer,
+
 Recent flood destroyed the bridge over the river. Notify Lord Esteve's steward, and ask him for some workers to rebuild it.
+
 Roo-a-Wan, Courier Outpost Bailiff."
 metadata/_custom_type_script = "uid://dks8jv35qjo2b"

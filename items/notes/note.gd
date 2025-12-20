@@ -3,6 +3,7 @@ class_name NoteItem extends Node2D
 @export var note_data : NoteData
 @onready var area_2d: Area2D = $Area2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+signal player_interacted
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
@@ -10,6 +11,7 @@ func _ready() -> void:
 	pass
 
 func player_interact() -> void:
+	player_interacted.emit()
 	NotesMenu.show_note(note_data)
 	pass
 

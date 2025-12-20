@@ -9,7 +9,7 @@ func _init(particle_emitter):
 func enter():
 	emitter.process_material = load("res://GeneralNodes/Drizzle.tres")
 	emitter.emitting = true
-	emitter.amount = 2000
+	emitter.amount = 6000
 
 func exit():
 	emitter.process_material = null

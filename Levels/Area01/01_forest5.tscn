@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://cjkgsd07odbl3"]
+[gd_scene load_steps=11 format=4 uid="uid://cjkgsd07odbl3"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_yvvke"]
 [ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_1xknh"]
-[ext_resource type="PackedScene" uid="uid://dfdpv5bgkgbid" path="res://GeneralNodes/day_night_cycle.tscn" id="3_fgvvv"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="4_uen81"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="5_8qvne"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="6_a5tlt"]
@@ -15,9 +14,6 @@
 [node name="02" type="Node2D"]
 script = ExtResource("1_yvvke")
 music = ExtResource("2_1xknh")
-
-[node name="DayNightCycle" parent="." instance=ExtResource("3_fgvvv")]
-visible = false
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("4_uen81")]
 z_index = -2
@@ -76,3 +72,6 @@ position = Vector2(-616, -624)
 
 [node name="SavePoint" parent="." instance=ExtResource("11_yvvke")]
 position = Vector2(-408, -1448)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.72156864, 0.7254902, 0.85490197, 1)
