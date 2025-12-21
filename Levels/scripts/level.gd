@@ -6,12 +6,12 @@ enum WeatherType { None, HeavyRain, Fog, NoFog, Drizzle }
 @export var cutscene : bool = false
 @export var cutscene_trigger : NPC
 @export var darkness : bool = false
-#b8b9da
-#Color(6.042, 6.345, 6.047)
+
 var weather_map : Dictionary = {}
 #$CanvasModulate
 @export_group("Weather Settings")
 @export var weather_active : bool = false
+@export var storm : bool = false
 @export var weather_layer_1: WeatherType = WeatherType.None
 @export var weather_layer_2: WeatherType = WeatherType.None
 
@@ -38,7 +38,7 @@ func _ready() -> void:
 	start_lightning_loop()
 
 func start_lightning_loop() -> void:
-	while weather_active:
+	while storm:
 		# 1. Calculate random wait time
 		var wait_time = randf_range(10.0, 45.0)
 		# 2. Wait for that time

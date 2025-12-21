@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://2skrsr8v2bj3"]
+[gd_scene load_steps=53 format=4 uid="uid://2skrsr8v2bj3"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_xqm6i"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ij12k"]
@@ -45,6 +45,7 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="45_6mffx"]
 [ext_resource type="Script" uid="uid://b0tksxbpaphu2" path="res://Levels/Area01/listener.gd" id="45_ij12k"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="46_stv3e"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="46_ugfek"]
 
 [sub_resource type="Animation" id="Animation_qseal"]
 length = 0.001
@@ -68,9 +69,15 @@ _data = {
 radius = 84.0
 height = 610.5
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ugfek"]
+polygon = PackedVector2Array(-32, -72, 128, -128, 160, -64, 16, -8)
+
 [node name="01_forest1" type="Node2D"]
 script = ExtResource("1_xqm6i")
 music = ExtResource("2_ij12k")
+weather_active = true
+storm = true
+weather_layer_1 = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.72156864, 0.7254902, 0.85490197, 1)
@@ -1571,7 +1578,7 @@ position = Vector2(240, 168)
 position = Vector2(256, 96)
 
 [node name="Tree346" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(328, 240)
+position = Vector2(280, 256)
 
 [node name="Tree347" parent="Props" instance=ExtResource("33_h8754")]
 position = Vector2(-512, -240)
@@ -1601,10 +1608,10 @@ position = Vector2(-352, -240)
 position = Vector2(-416, -120)
 
 [node name="Tree366" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(344, 168)
+position = Vector2(416, 168)
 
 [node name="Tree367" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(344, 168)
+position = Vector2(408, 152)
 
 [node name="Tree368" parent="Props" instance=ExtResource("33_h8754")]
 position = Vector2(-456, -176)
@@ -1613,7 +1620,7 @@ position = Vector2(-456, -176)
 position = Vector2(-424, -224)
 
 [node name="Tree372" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(288, 272)
+position = Vector2(240, 272)
 
 [node name="Tree373" parent="Props" instance=ExtResource("33_h8754")]
 position = Vector2(416, 88)
@@ -1637,13 +1644,13 @@ position = Vector2(472, 224)
 position = Vector2(312, 80)
 
 [node name="Tree380" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(360, 232)
+position = Vector2(256, 232)
 
 [node name="Tree381" parent="Props" instance=ExtResource("33_h8754")]
 position = Vector2(464, 216)
 
 [node name="Tree382" parent="Props" instance=ExtResource("33_h8754")]
-position = Vector2(320, 160)
+position = Vector2(368, 160)
 
 [node name="Tree383" parent="Props" instance=ExtResource("33_h8754")]
 position = Vector2(-352, 240)
@@ -2592,6 +2599,20 @@ pause_menu_signal = true
 [node name="listener" type="Node2D" parent="."]
 position = Vector2(576, 680)
 script = ExtResource("45_ij12k")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(91.50003, -99.08147)
+rotation = -0.261799
+scale = Vector2(1.7961701, 1.2606003)
+color = Color(0.9763299, 1, 0.003638208, 1)
+shadow_enabled = true
+texture = ExtResource("46_ugfek")
+offset = Vector2(0, 600)
+texture_scale = 2.6
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(120, 304)
+occluder = SubResource("OccluderPolygon2D_ugfek")
 
 [connection signal="finished" from="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction" to="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction/DialogCutscene" method="play"]
 [connection signal="inv_open" from="listener" to="Area2D2" method="_on_action_performed"]

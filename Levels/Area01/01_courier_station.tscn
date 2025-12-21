@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=42 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="3_oibqc"]
 [ext_resource type="PackedScene" uid="uid://65ltrbv0lnuk" path="res://Tile Maps/Sprites/shop_tilemap_layer.tscn" id="4_3bspo"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="5_043pa"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="6_043pa"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="6_yxt3t"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="7_a8r62"]
 [ext_resource type="PackedScene" uid="uid://bb3jg2dmd2khe" path="res://Levels/level_transition_interact.tscn" id="8_1vqeb"]
@@ -1594,8 +1595,8 @@ metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
 [node name="LevelTransition2" parent="." instance=ExtResource("7_a8r62")]
 position = Vector2(-880, 48)
-level = "uid://ccjs8vvt5r2j0"
-target_transition_area = "LevelTransition2"
+level = "uid://b58lmqkilmjc2"
+target_transition_area = "LevelTransition3"
 center_player = true
 size = 1
 
@@ -1654,5 +1655,11 @@ action_signal_name = "bonfire_used"
 
 [node name="SavePoint" parent="." instance=ExtResource("30_uxrgw")]
 position = Vector2(1920, 176)
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(2320, 160)
+rotation = 0.261799
+scale = Vector2(1.0937498, 1.140625)
+texture = ExtResource("6_043pa")
 
 [connection signal="player_entered" from="QuestActivatedSwitch/TriggerArea2" to="DialogInteraction" method="player_interact"]

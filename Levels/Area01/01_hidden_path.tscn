@@ -1,0 +1,1136 @@
+[gd_scene load_steps=22 format=4 uid="uid://b58lmqkilmjc2"]
+
+[ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_mmrm0"]
+[ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_8txwn"]
+[ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="3_tiv40"]
+[ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="4_ehhpf"]
+[ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="5_8g2sa"]
+[ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="6_1cnbi"]
+[ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="7_ax3yf"]
+[ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="8_ghwdk"]
+[ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="9_lu4uy"]
+[ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="10_icjuy"]
+[ext_resource type="PackedScene" uid="uid://d3pt5h60ltre7" path="res://Props/Plants/Tree3.tscn" id="11_8txwn"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="12_8g2sa"]
+[ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="13_1cnbi"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="14_ax3yf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26wv"]
+radius = 72.0
+height = 336.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8x3rt"]
+radius = 39.9999
+height = 271.529
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm352"]
+radius = 65.9603
+height = 136.062
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnd1j"]
+radius = 96.0
+height = 271.529
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc4yx"]
+radius = 64.0
+height = 304.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_je3bq"]
+radius = 64.0
+height = 304.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yetf5"]
+radius = 64.0
+height = 304.0
+
+[node name="02" type="Node2D"]
+script = ExtResource("1_mmrm0")
+music = ExtResource("2_8txwn")
+weather_active = true
+weather_layer_1 = 2
+weather_layer_2 = 4
+
+[node name="grass-tiles-01" parent="." instance=ExtResource("3_tiv40")]
+z_index = -2
+position = Vector2(800, 1536)
+tile_map_data = PackedByteArray("AADr/9z/AQAEAAMAAADr/93/AQABAAEAAADr/97/AQAAAAAAAADr/9//AQANAAQAAADr/+D/AQANAAYAAADr/+H/AQANAAcAAADr/+L/AQAAAAAAAADr/+P/AQAAAAAAAADr/+T/AQAAAAAAAADr/+X/AQAAAAAAAADr/+b/AQAAAAAAAADr/+f/AQAHAAAAAADr/+j/AQAHAAIAAADr/+n/AQAAAAAAAADr/+r/AQAAAAAAAADr/+v/AQAAAAAAAADr/+z/AQAAAAAAAADr/+3/AQAAAAAAAADr/+7/AQAAAAAAAADr/+//AQAAAAAAAADr//D/AQAAAAAAAADr//H/AQAAAAAAAADr//L/AQAAAAAAAADr//P/AQAAAAAAAADr//T/AQAAAAAAAADs/9z/AQAAAAAAAADs/93/AQAAAAAAAADs/97/AQAAAAAAAADs/9//AQAOAAQAAADs/+D/AQAOAAYAAADs/+H/AQAOAAcAAADs/+L/AQAAAAAAAADs/+P/AQAAAAAAAADs/+T/AQAAAAAAAADs/+X/AQAEAAMAAADs/+b/AQAAAAAAAADs/+f/AQAAAAAAAADs/+j/AQAAAAAAAADs/+n/AQAAAAAAAADs/+r/AQAKAAQAAADs/+v/AQAKAAUAAADs/+z/AQAKAAYAAADs/+3/AQAKAAcAAADs/+7/AQAAAAAAAADs/+//AQAAAAAAAADs//D/AQAAAAAAAADs//H/AQAAAAAAAADs//L/AQAAAAAAAADs//P/AQAAAAAAAADs//T/AQAAAAAAAADt/9z/AQAAAAAAAADt/93/AQAAAAAAAADt/97/AQAAAAAAAADt/9//AQAAAAAAAADt/+D/AQAAAAAAAADt/+H/AQAAAAAAAADt/+L/AQAAAAAAAADt/+P/AQAAAAAAAADt/+T/AQAAAAAAAADt/+X/AQAAAAAAAADt/+b/AQAAAAAAAADt/+f/AQAAAAAAAADt/+j/AQAAAAAAAADt/+n/AQAAAAAAAADt/+r/AQALAAQAAADt/+v/AQAEAAMAAADt/+z/AQALAAYAAADt/+3/AQALAAcAAADt/+7/AQAAAAAAAADt/+//AQAAAAAAAADt//D/AQAAAAAAAADt//H/AQAAAAAAAADt//L/AQAAAAAAAADt//P/AQAAAAAAAADt//T/AQAAAAAAAADu/9z/AQAAAAAAAADu/93/AQAAAAAAAADu/97/AQAAAAAAAADu/9//AQAAAAAAAADu/+D/AQAAAAAAAADu/+H/AQAAAAAAAADu/+L/AQAAAAAAAADu/+P/AQABAAEAAADu/+T/AQAAAAAAAADu/+X/AQAAAAAAAADu/+b/AQAAAAAAAADu/+f/AQAAAAAAAADu/+j/AQAAAAAAAADu/+n/AQACAAMAAADu/+r/AQANAAQAAADu/+v/AQANAAUAAADu/+z/AQANAAYAAADu/+3/AQANAAcAAADu/+7/AQAAAAAAAADu/+//AQAAAAAAAADu//D/AQAAAAAAAADu//H/AQAAAAAAAADu//L/AQAAAAAAAADu//P/AQAAAAAAAADu//T/AQAAAAAAAADv/9z/AQAAAAAAAADv/93/AQAAAAAAAADv/97/AQAAAAAAAADv/9//AQAAAAAAAADv/+D/AQAAAAAAAADv/+H/AQAAAAAAAADv/+L/AQABAAEAAADv/+P/AQAAAAAAAADv/+T/AQAAAAAAAADv/+X/AQAAAAAAAADv/+b/AQAAAAAAAADv/+f/AQAAAAAAAADv/+j/AQAAAAAAAADv/+n/AQABAAEAAADv/+r/AQAOAAQAAADv/+v/AQAOAAUAAADv/+z/AQAOAAYAAADv/+3/AQAOAAcAAADv/+7/AQAAAAAAAADv/+//AQAAAAAAAADv//D/AQAAAAAAAADv//H/AQAAAAAAAADv//L/AQAAAAAAAADv//P/AQABAAEAAADv//T/AQAAAAAAAADw/9z/AQAAAAAAAADw/93/AQAAAAAAAADw/97/AQAAAAAAAADw/9//AQAAAAAAAADw/+D/AQAAAAAAAADw/+H/AQAAAAAAAADw/+L/AQAAAAAAAADw/+P/AQAAAAAAAADw/+T/AQAAAAAAAADw/+X/AQAAAAAAAADw/+b/AQAAAAAAAADw/+f/AQAAAAAAAADw/+j/AQAAAAAAAADw/+n/AQAAAAAAAADw/+r/AQAAAAAAAADw/+v/AQAAAAAAAADw/+z/AQAAAAAAAADw/+3/AQAAAAAAAADw/+7/AQAAAAAAAADw/+//AQABAAEAAADw//D/AQAAAAAAAADw//H/AQAAAAAAAADw//L/AQAAAAAAAADw//P/AQAAAAAAAADw//T/AQAAAAAAAADx/9z/AQAAAAAAAADx/93/AQAAAAAAAADx/97/AQAAAAAAAADx/9//AQAAAAAAAADx/+D/AQAAAAAAAADx/+H/AQAAAAAAAADx/+L/AQAAAAAAAADx/+P/AQAAAAAAAADx/+T/AQAAAAAAAADx/+X/AQAAAAAAAADx/+b/AQAAAAAAAADx/+f/AQAAAAAAAADx/+j/AQAAAAAAAADx/+n/AQAAAAAAAADx/+r/AQAAAAAAAADx/+v/AQAAAAAAAADx/+z/AQAAAAAAAADx/+3/AQAAAAAAAADx/+7/AQAAAAAAAADx/+//AQAAAAAAAADx//D/AQAAAAAAAADx//H/AQAAAAAAAADx//L/AQAAAAAAAADx//P/AQAAAAAAAADx//T/AQAAAAAAAADy/9z/AQABAAAAAADy/93/AQAAAAAAAADy/97/AQAAAAAAAADy/9//AQAAAAAAAADy/+D/AQAAAAAAAADy/+H/AQAAAAAAAADy/+L/AQAAAAAAAADy/+P/AQAAAAAAAADy/+T/AQAAAAAAAADy/+X/AQAAAAAAAADy/+b/AQAAAAAAAADy/+f/AQAAAAAAAADy/+j/AQABAAAAAADy/+n/AQABAAAAAADy/+r/AQABAAAAAADy/+v/AQABAAAAAADy/+z/AQAAAAAAAADy/+3/AQAAAAAAAADy/+7/AQAAAAAAAADy/+//AQAAAAAAAADy//D/AQAAAAAAAADy//H/AQAAAAAAAADy//L/AQAAAAAAAADy//P/AQAAAAAAAADy//T/AQAAAAAAAADz/9z/AQAKAAQAAADz/93/AQAKAAUAAADz/97/AQAKAAYAAADz/9//AQAKAAcAAADz/+D/AQABAAEAAADz/+H/AQAAAAAAAADz/+L/AQABAAAAAADz/+P/AQABAAAAAADz/+T/AQABAAAAAADz/+X/AQAAAAAAAADz/+b/AQAAAAAAAADz/+f/AQAAAAAAAADz/+j/AQABAAAAAADz/+n/AQABAAAAAADz/+r/AQABAAEAAADz/+v/AQABAAAAAADz/+z/AQAAAAAAAADz/+3/AQAAAAAAAADz/+7/AQAAAAAAAADz/+//AQAAAAAAAADz//D/AQAAAAAAAADz//H/AQAAAAAAAADz//L/AQAAAAAAAADz//P/AQAAAAAAAADz//T/AQAAAAAAAAD0/9z/AQALAAQAAAD0/93/AQALAAUAAAD0/97/AQALAAYAAAD0/9//AQALAAcAAAD0/+D/AQABAAAAAAD0/+H/AQAAAAAAAAD0/+L/AQABAAAAAAD0/+P/AQABAAAAAAD0/+T/AQABAAEAAAD0/+X/AQABAAAAAAD0/+b/AQABAAAAAAD0/+f/AQAAAAAAAAD0/+j/AQABAAAAAAD0/+n/AQABAAAAAAD0/+r/AQABAAAAAAD0/+v/AQABAAAAAAD0/+z/AQAAAAAAAAD0/+3/AQAAAAAAAAD0/+7/AQAAAAAAAAD0/+//AQAAAAAAAAD0//D/AQAAAAAAAAD0//H/AQAAAAAAAAD0//L/AQAAAAAAAAD0//P/AQAAAAAAAAD0//T/AQAAAAAAAAD1/9z/AQAMAAQAAAD1/93/AQAMAAUAAAD1/97/AQAMAAYAAAD1/9//AQAMAAcAAAD1/+D/AQABAAAAAAD1/+H/AQAAAAAAAAD1/+L/AQAAAAAAAAD1/+P/AQABAAAAAAD1/+T/AQABAAAAAAD1/+X/AQABAAAAAAD1/+b/AQABAAAAAAD1/+f/AQABAAAAAAD1/+j/AQABAAAAAAD1/+n/AQABAAAAAAD1/+r/AQABAAAAAAD1/+v/AQABAAAAAAD1/+z/AQAAAAAAAAD1/+3/AQAAAAAAAAD1/+7/AQAAAAAAAAD1/+//AQAAAAAAAAD1//D/AQAAAAAAAAD1//H/AQAAAAAAAAD1//L/AQAAAAAAAAD1//P/AQAAAAAAAAD1//T/AQAAAAAAAAD2/9z/AQANAAQAAAD2/93/AQANAAUAAAD2/97/AQANAAYAAAD2/9//AQANAAcAAAD2/+D/AQABAAAAAAD2/+H/AQABAAAAAAD2/+L/AQABAAAAAAD2/+P/AQABAAAAAAD2/+T/AQAMAAUAAAD2/+X/AQABAAAAAAD2/+b/AQABAAAAAAD2/+f/AQABAAAAAAD2/+j/AQABAAAAAAD2/+n/AQAAAAAAAAD2/+r/AQAAAAAAAAD2/+v/AQAAAAAAAAD2/+z/AQAAAAAAAAD2/+3/AQAAAAAAAAD2/+7/AQAAAAAAAAD2/+//AQABAAEAAAD2//D/AQAAAAAAAAD2//H/AQAAAAAAAAD2//L/AQAAAAAAAAD2//P/AQAAAAAAAAD2//T/AQAAAAAAAAD3/9z/AQAOAAQAAAD3/93/AQAOAAUAAAD3/97/AQAOAAYAAAD3/9//AQAOAAcAAAD3/+D/AQABAAAAAAD3/+H/AQABAAAAAAD3/+L/AQABAAAAAAD3/+P/AQABAAAAAAD3/+T/AQABAAAAAAD3/+X/AQABAAAAAAD3/+b/AQABAAAAAAD3/+f/AQAAAAAAAAD3/+j/AQABAAAAAAD3/+n/AQAAAAAAAAD3/+r/AQAAAAAAAAD3/+v/AQAAAAAAAAD3/+z/AQAAAAAAAAD3/+3/AQAAAAAAAAD3/+7/AQAAAAAAAAD3/+//AQAAAAAAAAD3//D/AQAAAAAAAAD3//H/AQAAAAAAAAD3//L/AQAAAAAAAAD3//P/AQAAAAAAAAD3//T/AQAAAAAAAAD4/9z/AQABAAAAAAD4/93/AQABAAAAAAD4/97/AQABAAAAAAD4/9//AQABAAAAAAD4/+D/AQABAAAAAAD4/+H/AQABAAAAAAD4/+L/AQABAAAAAAD4/+P/AQABAAAAAAD4/+T/AQABAAAAAAD4/+X/AQABAAAAAAD4/+b/AQABAAAAAAD4/+f/AQABAAAAAAD4/+j/AQABAAAAAAD4/+n/AQAAAAAAAAD4/+r/AQAAAAAAAAD4/+v/AQAAAAAAAAD4/+z/AQAAAAAAAAD4/+3/AQAEAAMAAAD4/+7/AQAAAAAAAAD4/+//AQAAAAAAAAD4//D/AQAAAAAAAAD4//H/AQAAAAAAAAD4//L/AQABAAEAAAD4//P/AQABAAEAAAD4//T/AQAAAAAAAAD5/9z/AQABAAEAAAD5/93/AQAFAAAAAAD5/97/AQAFAAIAAAD5/9//AQAMAAUAAAD5/+D/AQABAAAAAAD5/+H/AQABAAEAAAD5/+L/AQABAAAAAAD5/+P/AQABAAAAAAD5/+T/AQABAAEAAAD5/+X/AQABAAAAAAD5/+b/AQABAAAAAAD5/+f/AQABAAAAAAD5/+j/AQABAAAAAAD5/+n/AQAAAAAAAAD5/+r/AQAFAAMAAAD5/+v/AQAAAAAAAAD5/+z/AQAAAAAAAAD5/+3/AQAAAAAAAAD5/+7/AQAAAAAAAAD5/+//AQAAAAAAAAD5//D/AQAEAAMAAAD5//H/AQAAAAAAAAD5//L/AQAAAAAAAAD5//P/AQAAAAAAAAD5//T/AQAAAAAAAAD6/9z/AQABAAAAAAD6/93/AQAHAAAAAAD6/97/AQAHAAIAAAD6/9//AQAAAAAAAAD6/+D/AQABAAAAAAD6/+H/AQABAAAAAAD6/+L/AQABAAAAAAD6/+P/AQABAAAAAAD6/+T/AQABAAAAAAD6/+X/AQABAAEAAAD6/+b/AQABAAAAAAD6/+f/AQABAAAAAAD6/+j/AQABAAAAAAD6/+n/AQAAAAAAAAD6/+r/AQAGAAMAAAD6/+v/AQAAAAAAAAD6/+z/AQAAAAAAAAD6/+3/AQAAAAAAAAD6/+7/AQAAAAAAAAD6/+//AQAAAAAAAAD6//D/AQAAAAAAAAD6//H/AQAAAAAAAAD6//L/AQAAAAAAAAD6//P/AQAAAAAAAAD6//T/AQAAAAAAAAD7/9z/AQABAAAAAAD7/93/AQABAAAAAAD7/97/AQAAAAAAAAD7/9//AQAAAAAAAAD7/+D/AQABAAAAAAD7/+H/AQABAAAAAAD7/+L/AQABAAAAAAD7/+P/AQABAAAAAAD7/+T/AQABAAAAAAD7/+X/AQABAAAAAAD7/+b/AQABAAAAAAD7/+f/AQABAAAAAAD7/+j/AQABAAAAAAD7/+n/AQABAAAAAAD7/+r/AQAHAAMAAAD7/+v/AQABAAAAAAD7/+z/AQABAAAAAAD7/+3/AQABAAAAAAD7/+7/AQABAAAAAAD7/+//AQABAAAAAAD7//D/AQABAAAAAAD7//H/AQABAAAAAAD7//L/AQABAAAAAAD7//P/AQABAAAAAAD7//T/AQABAAAAAADr/9D/AQABAAAAAADr/9H/AQABAAAAAADr/9L/AQABAAAAAADr/9P/AQABAAAAAADr/9T/AQABAAAAAADr/9X/AQABAAAAAADr/9b/AQABAAAAAADr/9f/AQAAAAAAAADr/9j/AQAAAAAAAADr/9n/AQAAAAAAAADr/9r/AQAAAAAAAADr/9v/AQAAAAAAAADs/9D/AQABAAAAAADs/9H/AQABAAAAAADs/9L/AQABAAAAAADs/9P/AQABAAAAAADs/9T/AQABAAAAAADs/9X/AQABAAAAAADs/9b/AQABAAAAAADs/9f/AQAAAAAAAADs/9j/AQAAAAAAAADs/9n/AQAAAAAAAADs/9r/AQAAAAAAAADs/9v/AQAAAAAAAADt/9D/AQABAAAAAADt/9H/AQABAAAAAADt/9L/AQABAAAAAADt/9P/AQABAAAAAADt/9T/AQABAAAAAADt/9X/AQABAAAAAADt/9b/AQABAAAAAADt/9f/AQAAAAAAAADt/9j/AQAAAAAAAADt/9n/AQAAAAAAAADt/9r/AQAAAAAAAADt/9v/AQAAAAAAAADu/9D/AQABAAAAAADu/9H/AQABAAEAAADu/9L/AQABAAAAAADu/9P/AQAEAAMAAADu/9T/AQABAAAAAADu/9X/AQABAAAAAADu/9b/AQABAAAAAADu/9f/AQAAAAAAAADu/9j/AQAAAAAAAADu/9n/AQACAAEAAADu/9r/AQAEAAMAAADu/9v/AQAAAAAAAADv/9D/AQABAAAAAADv/9H/AQABAAAAAADv/9L/AQABAAAAAADv/9P/AQABAAAAAADv/9T/AQABAAAAAADv/9X/AQABAAAAAADv/9b/AQABAAAAAADv/9f/AQABAAAAAADv/9j/AQABAAAAAADv/9n/AQABAAAAAADv/9r/AQABAAAAAADv/9v/AQABAAAAAADw/9D/AQABAAAAAADw/9H/AQABAAAAAADw/9L/AQABAAAAAADw/9P/AQABAAAAAADw/9T/AQABAAAAAADw/9X/AQABAAAAAADw/9b/AQABAAAAAADw/9f/AQABAAAAAADw/9j/AQABAAAAAADw/9n/AQABAAEAAADw/9r/AQABAAAAAADw/9v/AQABAAAAAADx/9D/AQABAAAAAADx/9H/AQABAAAAAADx/9L/AQABAAAAAADx/9P/AQABAAAAAADx/9T/AQABAAAAAADx/9X/AQABAAAAAADx/9b/AQABAAAAAADx/9f/AQABAAAAAADx/9j/AQABAAAAAADx/9n/AQABAAAAAADx/9r/AQABAAAAAADx/9v/AQABAAAAAADy/9D/AQABAAAAAADy/9H/AQABAAAAAADy/9L/AQABAAAAAADy/9P/AQABAAEAAADy/9T/AQABAAAAAADy/9X/AQABAAAAAADy/9b/AQABAAAAAADy/9f/AQABAAAAAADy/9j/AQABAAAAAADy/9n/AQABAAAAAADy/9r/AQABAAAAAADy/9v/AQABAAAAAADz/9D/AQABAAAAAADz/9H/AQABAAAAAADz/9L/AQABAAAAAADz/9P/AQABAAEAAADz/9T/AQABAAAAAADz/9X/AQABAAAAAADz/9b/AQABAAAAAADz/9f/AQABAAAAAADz/9j/AQABAAAAAADz/9n/AQABAAAAAADz/9r/AQABAAAAAADz/9v/AQABAAAAAAD0/9D/AQABAAAAAAD0/9H/AQABAAAAAAD0/9L/AQABAAAAAAD0/9P/AQABAAAAAAD0/9T/AQABAAAAAAD0/9X/AQABAAAAAAD0/9b/AQABAAAAAAD0/9f/AQAAAAAAAAD0/9j/AQAEAAMAAAD0/9n/AQABAAAAAAD0/9r/AQABAAAAAAD0/9v/AQAAAAAAAAD1/9D/AQABAAAAAAD1/9H/AQABAAAAAAD1/9L/AQABAAAAAAD1/9P/AQABAAAAAAD1/9T/AQABAAAAAAD1/9X/AQABAAAAAAD1/9b/AQABAAAAAAD1/9f/AQAAAAAAAAD1/9j/AQAAAAAAAAD1/9n/AQABAAAAAAD1/9r/AQABAAAAAAD1/9v/AQAAAAAAAAD2/9D/AQABAAAAAAD2/9H/AQABAAAAAAD2/9L/AQABAAEAAAD2/9P/AQABAAAAAAD2/9T/AQABAAAAAAD2/9X/AQABAAAAAAD2/9b/AQABAAAAAAD2/9f/AQAAAAAAAAD2/9j/AQAAAAAAAAD2/9n/AQAAAAAAAAD2/9r/AQAAAAAAAAD2/9v/AQAAAAAAAAD3/9D/AQABAAAAAAD3/9H/AQABAAAAAAD3/9L/AQABAAEAAAD3/9P/AQABAAAAAAD3/9T/AQABAAAAAAD3/9X/AQABAAEAAAD3/9b/AQABAAAAAAD3/9f/AQAAAAAAAAD3/9j/AQAAAAAAAAD3/9n/AQAAAAAAAAD3/9r/AQAAAAAAAAD3/9v/AQAAAAAAAAD4/9D/AQABAAAAAAD4/9H/AQABAAAAAAD4/9L/AQABAAEAAAD4/9P/AQABAAAAAAD4/9T/AQABAAAAAAD4/9X/AQABAAAAAAD4/9b/AQABAAAAAAD4/9f/AQAAAAAAAAD4/9j/AQAAAAAAAAD4/9n/AQAAAAAAAAD4/9r/AQAAAAAAAAD4/9v/AQAAAAAAAAD5/9D/AQABAAAAAAD5/9H/AQABAAAAAAD5/9L/AQABAAAAAAD5/9P/AQABAAAAAAD5/9T/AQABAAAAAAD5/9X/AQABAAAAAAD5/9b/AQABAAAAAAD5/9f/AQAAAAAAAAD5/9j/AQAAAAAAAAD5/9n/AQAAAAAAAAD5/9r/AQAAAAAAAAD5/9v/AQABAAEAAAD6/9D/AQABAAAAAAD6/9H/AQABAAEAAAD6/9L/AQABAAAAAAD6/9P/AQABAAAAAAD6/9T/AQABAAAAAAD6/9X/AQABAAAAAAD6/9b/AQABAAAAAAD6/9f/AQAAAAAAAAD6/9j/AQAAAAAAAAD6/9n/AQAAAAAAAAD6/9r/AQAAAAAAAAD6/9v/AQAAAAAAAAD7/9D/AQABAAAAAAD7/9H/AQABAAAAAAD7/9L/AQABAAAAAAD7/9P/AQABAAAAAAD7/9T/AQABAAAAAAD7/9X/AQABAAAAAAD7/9b/AQABAAAAAAD7/9f/AQAAAAAAAAD7/9j/AQAAAAAAAAD7/9n/AQAAAAAAAAD7/9r/AQAAAAAAAAD7/9v/AQAAAAAAAADn/9f/AQABAAAAAADo/9f/AQABAAAAAADp/9f/AQABAAAAAADq/9f/AQAAAAAAAADn/9j/AQAAAAAAAADn/9n/AQAAAAAAAADn/9r/AQAAAAAAAADn/9v/AQAAAAAAAADn/9z/AQAAAAAAAADn/93/AQAAAAAAAADn/97/AQAAAAAAAADn/9//AQAAAAAAAADn/+D/AQAAAAAAAADn/+H/AQAAAAAAAADn/+L/AQAAAAAAAADn/+P/AQAAAAAAAADn/+T/AQAAAAAAAADn/+X/AQAAAAAAAADn/+b/AQAAAAAAAADn/+f/AQAAAAAAAADn/+j/AQAAAAAAAADn/+n/AQAAAAAAAADn/+r/AQAAAAAAAADn/+v/AQAAAAAAAADn/+z/AQAAAAAAAADn/+3/AQAAAAAAAADn/+7/AQAAAAAAAADn/+//AQAAAAAAAADn//D/AQAAAAAAAADn//H/AQAAAAAAAADn//L/AQAAAAAAAADo/9j/AQAAAAAAAADo/9n/AQAAAAAAAADo/9r/AQAAAAAAAADo/9v/AQAAAAAAAADo/9z/AQAAAAAAAADo/93/AQAAAAAAAADo/97/AQAAAAAAAADo/9//AQAAAAAAAADo/+D/AQAAAAAAAADo/+H/AQAAAAAAAADo/+L/AQAAAAAAAADo/+P/AQAAAAAAAADo/+T/AQAAAAAAAADo/+X/AQAAAAAAAADo/+b/AQAAAAAAAADo/+f/AQAAAAAAAADo/+j/AQAAAAAAAADo/+n/AQABAAEAAADo/+r/AQAAAAAAAADo/+v/AQAAAAAAAADo/+z/AQAAAAAAAADo/+3/AQAAAAAAAADo/+7/AQAAAAAAAADo/+//AQAAAAAAAADo//D/AQAAAAAAAADo//H/AQAAAAAAAADo//L/AQAAAAAAAADp/9j/AQAAAAAAAADp/9n/AQAAAAAAAADp/9r/AQAAAAAAAADp/9v/AQAAAAAAAADp/9z/AQAAAAAAAADp/93/AQAAAAAAAADp/97/AQAAAAAAAADp/9//AQAAAAAAAADp/+D/AQAAAAAAAADp/+H/AQAAAAAAAADp/+L/AQAAAAAAAADp/+P/AQAAAAAAAADp/+T/AQAAAAAAAADp/+X/AQAAAAAAAADp/+b/AQAAAAAAAADp/+f/AQAAAAAAAADp/+j/AQAAAAAAAADp/+n/AQAAAAAAAADp/+r/AQAAAAAAAADp/+v/AQAAAAAAAADp/+z/AQAAAAAAAADp/+3/AQAAAAAAAADp/+7/AQAAAAAAAADp/+//AQAAAAAAAADp//D/AQAAAAAAAADp//H/AQAAAAAAAADp//L/AQAAAAAAAADo//P/AQABAAEAAADo//T/AQAAAAAAAADp//P/AQAAAAAAAADp//T/AQAAAAAAAADq/9z/AQAAAAAAAADq/93/AQAAAAAAAADq/97/AQAAAAAAAADq/9//AQAKAAQAAADq/+D/AQAKAAYAAADq/+H/AQAKAAcAAADq/+L/AQAAAAAAAADq/+P/AQAAAAAAAADq/+T/AQAAAAAAAADq/+X/AQABAAEAAADq/+b/AQAAAAAAAADq/+f/AQAFAAAAAADq/+j/AQAFAAIAAADq/+n/AQAAAAAAAADq/+r/AQAAAAAAAADq/+v/AQAAAAAAAADq/+z/AQABAAEAAADq/+3/AQAAAAAAAADq/+7/AQAAAAAAAADq/+//AQAAAAAAAADq//D/AQAAAAAAAADq//H/AQAAAAAAAADq//L/AQAAAAAAAADq//P/AQAAAAAAAADq//T/AQAAAAAAAADn//P/AQAAAAAAAADn//T/AQAAAAAAAADq/9j/AQAAAAAAAADq/9n/AQABAAEAAADq/9r/AQAAAAAAAADq/9v/AQAAAAAAAADn/9H/AQABAAAAAADn/9L/AQABAAAAAADn/9P/AQABAAAAAADn/9T/AQABAAAAAADo/9H/AQABAAAAAADo/9L/AQABAAEAAADo/9P/AQABAAAAAADo/9T/AQABAAAAAADp/9H/AQABAAAAAADp/9L/AQABAAAAAADp/9P/AQABAAAAAADp/9T/AQABAAAAAADq/9H/AQABAAAAAADq/9L/AQABAAAAAADq/9P/AQABAAAAAADq/9T/AQABAAAAAADn/9X/AQABAAAAAADn/9b/AQABAAAAAADo/9X/AQABAAAAAADo/9b/AQABAAAAAADp/9X/AQABAAAAAADp/9b/AQABAAAAAADq/9X/AQABAAAAAADq/9b/AQABAAAAAADn/9D/AQABAAAAAADo/9D/AQABAAAAAADp/9D/AQABAAAAAADq/9D/AQABAAAAAADj/9n/AQAAAAAAAADj/9r/AQAAAAAAAADj/9v/AQAAAAAAAADj/9z/AQAAAAAAAADj/93/AQAAAAAAAADj/97/AQAAAAAAAADj/9//AQAAAAAAAADj/+D/AQAAAAAAAADj/+H/AQAAAAAAAADj/+L/AQAAAAAAAADj/+P/AQAAAAAAAADj/+T/AQAAAAAAAADj/+X/AQAAAAAAAADj/+b/AQAAAAAAAADj/+f/AQAAAAAAAADj/+j/AQAAAAAAAADj/+n/AQAAAAAAAADj/+r/AQAAAAAAAADj/+v/AQAAAAAAAADj/+z/AQAAAAAAAADj/+3/AQAAAAAAAADj/+7/AQAAAAAAAADj/+//AQAAAAAAAADj//D/AQAAAAAAAADj//H/AQAAAAAAAADj//L/AQAAAAAAAADj//P/AQAAAAAAAADj//T/AQAAAAAAAADk/9n/AQAAAAAAAADk/9r/AQAAAAAAAADk/9v/AQABAAEAAADk/9z/AQAAAAAAAADk/93/AQAAAAAAAADk/97/AQAAAAAAAADk/9//AQAAAAAAAADk/+D/AQAAAAAAAADk/+H/AQAAAAAAAADk/+L/AQAAAAAAAADk/+P/AQAAAAAAAADk/+T/AQAAAAAAAADk/+X/AQAAAAAAAADk/+b/AQAAAAAAAADk/+f/AQAAAAAAAADk/+j/AQAAAAAAAADk/+n/AQAAAAAAAADk/+r/AQAAAAAAAADk/+v/AQAAAAAAAADk/+z/AQAAAAAAAADk/+3/AQABAAEAAADk/+7/AQAAAAAAAADk/+//AQAAAAAAAADk//D/AQAAAAAAAADk//H/AQAAAAAAAADk//L/AQAAAAAAAADk//P/AQAAAAAAAADk//T/AQAAAAAAAADl/9n/AQAEAAMAAADl/9r/AQAAAAAAAADl/9v/AQAAAAAAAADl/9z/AQAAAAAAAADl/93/AQAAAAAAAADl/97/AQAAAAAAAADl/9//AQAAAAAAAADl/+D/AQAEAAMAAADl/+H/AQAAAAAAAADl/+L/AQAAAAAAAADl/+P/AQABAAEAAADl/+T/AQAAAAAAAADl/+X/AQAAAAAAAADl/+b/AQAAAAAAAADl/+f/AQAAAAAAAADl/+j/AQAAAAAAAADl/+n/AQAAAAAAAADl/+r/AQAAAAAAAADl/+v/AQAAAAAAAADl/+z/AQAAAAAAAADl/+3/AQAAAAAAAADl/+7/AQAAAAAAAADl/+//AQAAAAAAAADl//D/AQAAAAAAAADl//H/AQAAAAAAAADl//L/AQAAAAAAAADl//P/AQAAAAAAAADl//T/AQAAAAAAAADm/9n/AQAAAAAAAADm/9r/AQAAAAAAAADm/9v/AQAAAAAAAADm/9z/AQAAAAAAAADm/93/AQAAAAAAAADm/97/AQAAAAAAAADm/9//AQAAAAAAAADm/+D/AQAAAAAAAADm/+H/AQAAAAAAAADm/+L/AQAAAAAAAADm/+P/AQAAAAAAAADm/+T/AQAAAAAAAADm/+X/AQAAAAAAAADm/+b/AQAAAAAAAADm/+f/AQAAAAAAAADm/+j/AQAAAAAAAADm/+n/AQAAAAAAAADm/+r/AQAAAAAAAADm/+v/AQAAAAAAAADm/+z/AQAAAAAAAADm/+3/AQAAAAAAAADm/+7/AQAAAAAAAADm/+//AQAAAAAAAADm//D/AQAAAAAAAADm//H/AQAAAAAAAADm//L/AQAAAAAAAADm//P/AQAAAAAAAADm//T/AQAAAAAAAADj/9D/AQAAAAAAAADj/9H/AQAAAAAAAADj/9L/AQAAAAAAAADj/9P/AQAAAAAAAADj/9T/AQAAAAAAAADj/9X/AQAAAAAAAADj/9b/AQAAAAAAAADj/9f/AQAAAAAAAADj/9j/AQAAAAAAAADk/9D/AQAAAAAAAADk/9H/AQAAAAAAAADk/9L/AQAAAAAAAADk/9P/AQAAAAAAAADk/9T/AQAAAAAAAADk/9X/AQAAAAAAAADk/9b/AQAAAAAAAADk/9f/AQAAAAAAAADk/9j/AQAAAAAAAADl/9D/AQAAAAAAAADl/9H/AQAAAAAAAADl/9L/AQAAAAAAAADl/9P/AQAAAAAAAADl/9T/AQAAAAAAAADl/9X/AQAAAAAAAADl/9b/AQAAAAAAAADl/9f/AQAAAAAAAADl/9j/AQAAAAAAAADm/9D/AQAAAAAAAADm/9H/AQAAAAAAAADm/9L/AQAAAAAAAADm/9P/AQAAAAAAAADm/9T/AQAAAAAAAADm/9X/AQAAAAAAAADm/9b/AQAAAAAAAADm/9f/AQAAAAAAAADm/9j/AQAAAAAAAAA=")
+
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(85, 2496)
+
+[node name="Plant28" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(264, -1821)
+
+[node name="Plant32" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(-5, -2253)
+
+[node name="Plant29" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(-28, -1587)
+
+[node name="Plant31" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(434, -1702)
+
+[node name="Plant30" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(241, -2106)
+
+[node name="Plant33" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(138, -2308)
+
+[node name="Plant48" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(92, -1777)
+
+[node name="Plant47" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(109, -1759)
+
+[node name="Plant49" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(68, -1396)
+
+[node name="Plant50" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(46, -1435)
+
+[node name="Plant51" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(33, -1467)
+
+[node name="Plant55" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(49, -1505)
+
+[node name="Plant56" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(65, -1545)
+
+[node name="Plant57" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(-77, -2275)
+
+[node name="Plant52" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(9, -1438)
+
+[node name="Plant53" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(-2, -1410)
+
+[node name="Plant54" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(34, -1414)
+
+[node name="Plant34" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(120, -2339)
+
+[node name="Plant46" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(67, -1764)
+
+[node name="Plant35" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(96, -2304)
+
+[node name="Plant36" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(106, -2374)
+
+[node name="Plant37" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(78, -2400)
+
+[node name="Plant38" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(81, -2349)
+
+[node name="Plant39" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(458, -1494)
+
+[node name="Plant40" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(498, -1528)
+
+[node name="Plant45" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(492, -1504)
+
+[node name="Plant43" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(475, -1387)
+
+[node name="Plant41" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(523, -1481)
+
+[node name="Plant42" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(464, -1437)
+
+[node name="Plant44" parent="Props" instance=ExtResource("4_ehhpf")]
+position = Vector2(483, -1585)
+
+[node name="Tree374" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(394, -1807)
+
+[node name="Tree394" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(450, -2473)
+
+[node name="Tree310" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(272, -1770)
+
+[node name="Tree311" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-213, -2153)
+
+[node name="Tree312" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-272, -2305)
+
+[node name="Tree313" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-216, -2345)
+
+[node name="Tree314" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(168, -1754)
+
+[node name="Tree315" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-382, -1933)
+
+[node name="Tree316" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(32, -1802)
+
+[node name="Tree385" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(8, -1770)
+
+[node name="Tree318" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-72, -1633)
+
+[node name="Tree319" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-256, -2137)
+
+[node name="Tree320" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-220, -2467)
+
+[node name="Tree321" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(527, -1857)
+
+[node name="Tree322" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(561, -1925)
+
+[node name="Tree323" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(522, -2465)
+
+[node name="Tree324" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(240, -1754)
+
+[node name="Tree325" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(358, -1705)
+
+[node name="Tree326" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(312, -1746)
+
+[node name="Tree328" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(104, -2490)
+
+[node name="Tree499" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(598, -2216)
+
+[node name="Tree329" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-4, -2501)
+
+[node name="Tree330" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-68, -2493)
+
+[node name="Tree331" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-164, -2445)
+
+[node name="Tree350" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-176, -2401)
+
+[node name="Tree351" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(598, -2264)
+
+[node name="Tree352" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-140, -2493)
+
+[node name="Tree353" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(646, -2248)
+
+[node name="Tree354" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-264, -2201)
+
+[node name="Tree355" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(566, -2368)
+
+[node name="Tree356" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(69, -2482)
+
+[node name="Tree357" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(583, -2117)
+
+[node name="Tree358" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-208, -2073)
+
+[node name="Tree359" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-248, -2057)
+
+[node name="Tree360" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-200, -2001)
+
+[node name="Tree361" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-240, -1985)
+
+[node name="Tree368" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-208, -1566)
+
+[node name="Tree369" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-347, -1336)
+
+[node name="Tree370" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-40, -1794)
+
+[node name="Tree371" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-112, -1770)
+
+[node name="Tree372" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-232, -1673)
+
+[node name="Tree373" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(567, -2029)
+
+[node name="Tree375" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-224, -1601)
+
+[node name="Tree376" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-264, -1585)
+
+[node name="Tree377" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-224, -1817)
+
+[node name="Tree378" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-264, -1801)
+
+[node name="Tree379" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-216, -1745)
+
+[node name="Tree381" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-232, -1945)
+
+[node name="Tree382" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(187, -2468)
+
+[node name="Tree383" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-224, -1873)
+
+[node name="Tree384" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-264, -1857)
+
+[node name="Tree333" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(248, -1834)
+
+[node name="Tree334" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-112, -1689)
+
+[node name="Tree335" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-136, -1681)
+
+[node name="Tree336" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-120, -1761)
+
+[node name="Tree337" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-176, -1721)
+
+[node name="Tree338" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-160, -1801)
+
+[node name="Tree340" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-176, -1633)
+
+[node name="Tree341" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(566, -1774)
+
+[node name="Tree342" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(335, -2478)
+
+[node name="Tree343" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(295, -1875)
+
+[node name="Tree344" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(512, -1915)
+
+[node name="Tree495" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(407, -2470)
+
+[node name="Tree346" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(7, -2446)
+
+[node name="Tree347" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-208, -2241)
+
+[node name="Tree348" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(655, -2149)
+
+[node name="Tree349" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(133, -2482)
+
+[node name="Tree362" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(416, -1683)
+
+[node name="Tree363" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(344, -1834)
+
+[node name="Tree364" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(389, -1745)
+
+[node name="Tree365" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(585, -1849)
+
+[node name="Tree366" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(286, -2476)
+
+[node name="Tree152" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(602, -2425)
+
+[node name="Tree150" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(602, -2473)
+
+[node name="Tree419" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(184, -1818)
+
+[node name="Tree420" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-366, -1766)
+
+[node name="Tree496" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-263.99994, -2241.0002)
+rotation = -0.0308511
+
+[node name="Tree264" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(374, -2432)
+
+[node name="Tree268" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(231, -2477)
+
+[node name="Tree498" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-109, -2415)
+
+[node name="EnterExitArea2" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(-203, -2326)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea2"]
+position = Vector2(128, -32)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_b26wv")
+
+[node name="Tree" parent="Props/EnterExitArea2" instance=ExtResource("5_8g2sa")]
+position = Vector2(69, -7)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea2" instance=ExtResource("5_8g2sa")]
+position = Vector2(129, -46)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea2" instance=ExtResource("5_8g2sa")]
+position = Vector2(223, -53)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea2" instance=ExtResource("5_8g2sa")]
+position = Vector2(161, 17)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea2" instance=ExtResource("5_8g2sa")]
+position = Vector2(229, 21)
+collision = false
+
+[node name="EnterExitArea3" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(470, -1790)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea3"]
+position = Vector2(-1.52588e-05, -8)
+rotation = 2.87979
+shape = SubResource("CapsuleShape2D_8x3rt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Props/EnterExitArea3"]
+position = Vector2(27.999973, 107)
+rotation = 2.87979
+shape = SubResource("CapsuleShape2D_nm352")
+
+[node name="Tree" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(-40, -112)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(8, -48)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(32, 32)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(-32, 16)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(8, 88)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea3" instance=ExtResource("5_8g2sa")]
+position = Vector2(60, 119)
+collision = false
+
+[node name="EnterExitArea5" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(57, -2024)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea5"]
+position = Vector2(56, -144)
+rotation = 2.61799
+shape = SubResource("CapsuleShape2D_8x3rt")
+
+[node name="Tree" parent="Props/EnterExitArea5" instance=ExtResource("5_8g2sa")]
+position = Vector2(-8, -184)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea5" instance=ExtResource("5_8g2sa")]
+position = Vector2(48, -144)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea5" instance=ExtResource("5_8g2sa")]
+position = Vector2(104, -64)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea5" instance=ExtResource("5_8g2sa")]
+position = Vector2(80, -200)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea5" instance=ExtResource("5_8g2sa")]
+position = Vector2(88, -112)
+collision = false
+
+[node name="EnterExitArea6" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(237, -2189)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea6"]
+position = Vector2(56, -144)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_qnd1j")
+
+[node name="Tree" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(-8, -184)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(48, -144)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(-8, -112)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(80, -200)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(104, -112)
+collision = false
+
+[node name="Tree7" parent="Props/EnterExitArea6" instance=ExtResource("5_8g2sa")]
+position = Vector2(40, -104)
+collision = false
+
+[node name="EnterExitArea7" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(5, -1878)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea7"]
+position = Vector2(56, -144)
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_dc4yx")
+
+[node name="Tree" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -152)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(64, -112)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(56, -216)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -48)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(112, -160)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]
+position = Vector2(96, -32)
+collision = false
+
+[node name="EnterExitArea8" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(225, -1454)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea8"]
+position = Vector2(56, -144)
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_je3bq")
+
+[node name="Tree" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -152)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(64, -112)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(56, -216)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -48)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(112, -160)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea8" instance=ExtResource("5_8g2sa")]
+position = Vector2(96, -32)
+collision = false
+
+[node name="EnterExitArea10" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(-188, -1383)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea10"]
+position = Vector2(56, -144)
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_je3bq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Props/EnterExitArea10"]
+position = Vector2(49, -74)
+rotation = 1.8325958
+shape = SubResource("CapsuleShape2D_je3bq")
+
+[node name="Tree" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -152)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(64, -112)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(56, -216)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -48)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(112, -160)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(96, -32)
+collision = false
+
+[node name="Tree7" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(150, -17)
+collision = false
+
+[node name="Tree8" parent="Props/EnterExitArea10" instance=ExtResource("5_8g2sa")]
+position = Vector2(162, -67)
+collision = false
+
+[node name="EnterExitArea9" parent="Props" instance=ExtResource("7_ax3yf")]
+y_sort_enabled = true
+position = Vector2(67, -1322)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea9"]
+position = Vector2(56, -144)
+rotation = 4.18878
+shape = SubResource("CapsuleShape2D_yetf5")
+
+[node name="Tree" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(16, -152)
+collision = false
+
+[node name="Tree7" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(104, -224)
+collision = false
+
+[node name="Tree2" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(32, -72)
+collision = false
+
+[node name="Tree4" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(96, -184)
+collision = false
+
+[node name="Tree3" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(-40, -88)
+collision = false
+
+[node name="Tree5" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(112, -120)
+collision = false
+
+[node name="Tree6" parent="Props/EnterExitArea9" instance=ExtResource("5_8g2sa")]
+position = Vector2(176, -176)
+collision = false
+
+[node name="Tree73" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(159, -2227)
+
+[node name="Tree74" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(218, -2207)
+
+[node name="Tree76" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(222, -2156)
+
+[node name="Tree77" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(173, -2070)
+
+[node name="Tree78" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(221, -2092)
+
+[node name="Tree79" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(179, -2037)
+
+[node name="Tree80" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(176, -1930)
+
+[node name="Tree81" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(192, -1948)
+
+[node name="Tree82" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(209, -1948)
+
+[node name="Tree83" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(256, -2173)
+
+[node name="Tree85" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(156, -2056)
+
+[node name="Tree86" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(215, -2036)
+
+[node name="Tree87" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(187, -2005)
+
+[node name="Tree88" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(215, -2003)
+
+[node name="Tree89" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(180, -1892)
+
+[node name="Tree90" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(230, -1894)
+
+[node name="Tree91" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-67, -2207)
+
+[node name="Tree92" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-26, -2191)
+
+[node name="Tree93" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-73, -2141)
+
+[node name="Tree94" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-22, -2140)
+
+[node name="Tree95" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-71, -2054)
+
+[node name="Tree96" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-23, -2076)
+
+[node name="Tree97" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-65, -2021)
+
+[node name="Tree98" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-57, -1913)
+
+[node name="Tree99" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-52, -1932)
+
+[node name="Tree100" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-35, -1932)
+
+[node name="Tree101" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(12, -2157)
+
+[node name="Tree102" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-35, -2107)
+
+[node name="Tree103" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-57, -2047)
+
+[node name="Tree104" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-29, -2020)
+
+[node name="Tree105" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-57, -1990)
+
+[node name="Tree106" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-29, -2004)
+
+[node name="Tree107" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-64, -1876)
+
+[node name="Tree108" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-14, -1878)
+
+[node name="Tree110" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(379, -2063)
+
+[node name="Tree111" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(349, -1633)
+
+[node name="Tree112" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(400, -1632)
+
+[node name="Tree113" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(351, -1546)
+
+[node name="Tree114" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(399, -1568)
+
+[node name="Tree115" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(357, -1513)
+
+[node name="Tree116" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(322, -1402)
+
+[node name="Tree117" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(370, -1424)
+
+[node name="Tree118" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(387, -1424)
+
+[node name="Tree120" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(387, -1599)
+
+[node name="Tree121" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(334, -1532)
+
+[node name="Tree122" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(393, -1512)
+
+[node name="Tree123" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(339, -1481)
+
+[node name="Tree124" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(393, -1479)
+
+[node name="Tree125" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(320, -1346)
+
+[node name="Tree126" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(260, -1395)
+
+[node name="Tree127" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-63, -1724)
+
+[node name="Tree128" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-1, -1664)
+
+[node name="Tree129" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-48, -1614)
+
+[node name="Tree130" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(3, -1613)
+
+[node name="Tree131" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-46, -1527)
+
+[node name="Tree132" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(2, -1549)
+
+[node name="Tree133" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-332, -1503)
+
+[node name="Tree134" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-386, -1559)
+
+[node name="Tree135" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-437, -2012)
+
+[node name="Tree137" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(37, -1630)
+
+[node name="Tree138" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-10, -1580)
+
+[node name="Tree139" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-63, -1513)
+
+[node name="Tree140" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-4, -1493)
+
+[node name="Tree144" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(11, -1351)
+
+[node name="Tree55" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(572, -1732)
+
+[node name="Tree56" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(610, -1699)
+
+[node name="Tree57" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(563, -1649)
+
+[node name="Tree58" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(614, -1648)
+
+[node name="Tree59" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(565, -1562)
+
+[node name="Tree60" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(613, -1584)
+
+[node name="Tree61" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(579, -1522)
+
+[node name="Tree65" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(648, -1665)
+
+[node name="Tree66" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(601, -1615)
+
+[node name="Tree67" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(548, -1548)
+
+[node name="Tree68" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(607, -1528)
+
+[node name="Tree19" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-197, -1319)
+
+[node name="Tree20" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-138, -1299)
+
+[node name="Tree21" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-90, -1321)
+
+[node name="Tree22" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-39, -1320)
+
+[node name="Tree23" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(20, -1300)
+
+[node name="Tree24" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(68, -1322)
+
+[node name="Tree25" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(128, -1320)
+
+[node name="Tree26" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(187, -1300)
+
+[node name="Tree27" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(235, -1322)
+
+[node name="Tree28" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-159, -1285)
+
+[node name="Tree29" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-100, -1265)
+
+[node name="Tree30" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-52, -1287)
+
+[node name="Tree31" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(3, -1286)
+
+[node name="Tree32" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(62, -1266)
+
+[node name="Tree33" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(110, -1288)
+
+[node name="Tree34" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(164, -1286)
+
+[node name="Tree35" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(223, -1266)
+
+[node name="Tree36" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(271, -1288)
+
+[node name="Tree37" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(103, -1322)
+
+[node name="Tree38" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(162, -1302)
+
+[node name="Tree39" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(210, -1324)
+
+[node name="Tree40" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(261, -1323)
+
+[node name="Tree41" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(320, -1303)
+
+[node name="Tree42" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(368, -1325)
+
+[node name="Tree43" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(428, -1323)
+
+[node name="Tree44" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(534, -1285)
+
+[node name="Tree45" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(589, -1303)
+
+[node name="Tree46" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(141, -1288)
+
+[node name="Tree145" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(267, -2430)
+
+[node name="Tree146" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(341, -2408)
+
+[node name="Tree147" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-192, -2620)
+
+[node name="Tree149" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(205, -2641)
+
+[node name="Tree151" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(482, -2646)
+
+[node name="Tree153" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(396, -2325)
+
+[node name="Tree154" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(422, -2396)
+
+[node name="Tree155" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(493, -2360)
+
+[node name="Tree157" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(291, -2538)
+
+[node name="Tree159" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(461, -2279)
+
+[node name="Tree160" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(485, -2403)
+
+[node name="Tree161" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(516, -2312)
+
+[node name="Tree162" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(692, -2575)
+
+[node name="Tree163" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(540, -2215)
+
+[node name="Tree165" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(737, -2502)
+
+[node name="Tree166" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-342, -2434)
+
+[node name="Tree167" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(-374, -2354)
+
+[node name="Tree168" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-264, -2403)
+
+[node name="Tree172" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(-54, -2586)
+
+[node name="Tree173" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(71, -2606)
+
+[node name="Tree182" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(-45, -2440)
+
+[node name="Tree183" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(754, -2214)
+
+[node name="Tree184" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(699, -2370)
+
+[node name="Tree47" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(200, -1268)
+
+[node name="Tree48" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(248, -1290)
+
+[node name="Tree49" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(303, -1289)
+
+[node name="Tree50" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(362, -1269)
+
+[node name="Tree51" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(410, -1291)
+
+[node name="Tree52" parent="Props" instance=ExtResource("5_8g2sa")]
+position = Vector2(464, -1289)
+
+[node name="Tree53" parent="Props" instance=ExtResource("6_1cnbi")]
+position = Vector2(523, -1269)
+
+[node name="Tree54" parent="Props" instance=ExtResource("11_8txwn")]
+position = Vector2(571, -1291)
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Goblin10" parent="Enemies" instance=ExtResource("8_ghwdk")]
+position = Vector2(527, 344)
+hp = 4
+
+[node name="Goblin13" parent="Enemies" instance=ExtResource("8_ghwdk")]
+position = Vector2(-54, 600)
+hp = 4
+
+[node name="Goblin15" parent="Enemies" instance=ExtResource("8_ghwdk")]
+position = Vector2(202, 677)
+hp = 4
+
+[node name="Goblin14" parent="Enemies" instance=ExtResource("8_ghwdk")]
+position = Vector2(205, 808)
+hp = 4
+
+[node name="Goblin12" parent="Enemies" instance=ExtResource("8_ghwdk")]
+position = Vector2(363, 424)
+hp = 4
+
+[node name="LevelTransition3" parent="." instance=ExtResource("9_lu4uy")]
+position = Vector2(657, 1080)
+level = "uid://03jhlopvv66j"
+target_transition_area = "LevelTransition2"
+center_player = true
+size = 3
+side = 1
+
+[node name="LevelTransition4" parent="." instance=ExtResource("9_lu4uy")]
+position = Vector2(-107, 1052)
+level = "uid://ccjs8vvt5r2j0"
+target_transition_area = "LevelTransition2"
+center_player = true
+size = 4
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("10_icjuy")]
+position = Vector2(617, 1076)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.72156864, 0.7254902, 0.85490197, 1)
+
+[node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("12_8g2sa")]
+particle = NodePath("../Particles")
+color_rect = NodePath("../Parallax2D/ColorRect")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(100, -13)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("13_1cnbi")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 3
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+material = ExtResource("14_ax3yf")
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(1, 1, 1, 0)

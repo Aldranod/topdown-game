@@ -37,10 +37,9 @@ shape = SubResource("RectangleShape2D_8adpf")
 position = Vector2(-2, -36)
 shape = SubResource("CircleShape2D_a671x")
 
-[node name="ShadowSprite" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(0, 0, 0, 0.45882353)
+[node name="ShadowSprite2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.12941177)
 show_behind_parent = true
-position = Vector2(3, 25)
-scale = Vector2(3, 3)
+position = Vector2(0, 27)
+scale = Vector2(4, 4)
 texture = ExtResource("4_g2xs6")
