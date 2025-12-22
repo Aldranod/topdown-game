@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://2skrsr8v2bj3"]
+[gd_scene load_steps=55 format=4 uid="uid://2skrsr8v2bj3"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_xqm6i"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ij12k"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://phj3xxek733m" path="res://npc/patrol_location.tscn" id="13_hbp5h"]
 [ext_resource type="Script" uid="uid://fshksdm1ixai" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="16_r1rbg"]
 [ext_resource type="Script" uid="uid://c5uj5hel8n7vv" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="17_dy3m7"]
+[ext_resource type="PackedScene" uid="uid://x5ysqpmakmyg" path="res://Props/Plants/plant2.tscn" id="18_6mffx"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="24_sbjtb"]
 [ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="25_hpcnm"]
 [ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="26_gwigd"]
@@ -37,6 +38,7 @@
 [ext_resource type="Resource" uid="uid://cm23grefw5c0w" path="res://npc/00_npcs/Karick.tres" id="38_iwdc0"]
 [ext_resource type="Texture2D" uid="uid://31s0f1t0k3ly" path="res://Enemies/Goblin/goblin.png" id="38_xqm6i"]
 [ext_resource type="Resource" uid="uid://be6pgqh4u02ny" path="res://npc/00_npcs/Sol.tres" id="39_iwdc0"]
+[ext_resource type="PackedScene" uid="uid://0dsqevslveep" path="res://npc/npc2.tscn" id="40_rlbco"]
 [ext_resource type="PackedScene" uid="uid://d4hgaqdibwenn" path="res://GeneralNodes/SavePoint/save_point.tscn" id="40_te5nw"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="41_w8wur"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="43_vw5t6"]
@@ -116,20 +118,8 @@ position = Vector2(512, 184)
 [node name="Plant26" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(376, 272)
 
-[node name="Plant36" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(248, 560)
-
-[node name="Plant45" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(192, 544)
-
 [node name="Plant2" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(888, 488)
-
-[node name="Plant5" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(800, 680)
-
-[node name="Plant10" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(1328, 752)
 
 [node name="Plant11" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(1168, 216)
@@ -142,12 +132,6 @@ position = Vector2(1040, 248)
 
 [node name="Plant17" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(504, 296)
-
-[node name="Plant18" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(272, 336)
-
-[node name="Plant19" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(272, 336)
 
 [node name="Plant7" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(416, 600)
@@ -187,9 +171,6 @@ position = Vector2(-80, 1128)
 
 [node name="Plant16" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(1392, 488)
-
-[node name="Plant32" parent="Props" instance=ExtResource("24_sbjtb")]
-position = Vector2(896, 680)
 
 [node name="Plant49" parent="Props" instance=ExtResource("24_sbjtb")]
 position = Vector2(1072, 416)
@@ -2028,6 +2009,60 @@ frame = 4
 position = Vector2(324.34656, -77.9227)
 item_data = ExtResource("36_240ic")
 
+[node name="Plant46" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(1312, 736)
+
+[node name="Plant47" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(1320, 752)
+
+[node name="Plant48" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(1328, 744)
+
+[node name="Plant50" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(1328, 752)
+
+[node name="Plant57" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(880, 680)
+
+[node name="Plant58" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(888, 672)
+
+[node name="Plant59" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(896, 680)
+
+[node name="Plant70" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(936, 496)
+
+[node name="Plant71" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(944, 488)
+
+[node name="Plant72" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(952, 496)
+
+[node name="Plant73" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(784, 680)
+
+[node name="Plant74" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(792, 672)
+
+[node name="Plant75" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(800, 680)
+
+[node name="Plant5" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(208, 544)
+
+[node name="Plant10" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(200, 540.0132)
+
+[node name="Plant32" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(240, 552)
+
+[node name="Plant36" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(280, 320)
+
+[node name="Plant45" parent="Props" instance=ExtResource("18_6mffx")]
+position = Vector2(360, 232)
+
 [node name="NPCs" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -2342,79 +2377,76 @@ text = "Move on soldier! Looks like its going to rain soon and I don't want to s
 npc_info = ExtResource("38_iwdc0")
 metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
-[node name="Soldier3" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("7_ugfek")]
-modulate = Color(0.560784, 0.815686, 0.737255, 1)
-position = Vector2(1232, 528)
+[node name="NPC2" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("40_rlbco")]
+position = Vector2(1176, 544)
 npc_resource = ExtResource("39_iwdc0")
 
-[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/Soldier3" instance=ExtResource("9_stv3e")]
+[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/NPC2" instance=ExtResource("9_stv3e")]
 
-[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/Soldier3/DialogInteraction"]
+[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/NPC2/DialogInteraction"]
 script = ExtResource("10_rlbco")
 text = "I hope they have Gold Ale or at least Province Wine, in that courier station!"
 npc_info = ExtResource("39_iwdc0")
 metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
-[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/Soldier3" instance=ExtResource("12_lav2n")]
+[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/NPC2" instance=ExtResource("12_lav2n")]
 
-[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/Soldier3/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/NPC2/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 0, 0, 1)
 wait_time = 5.0
 
-[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/Soldier3/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/NPC2/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(40, 64)
 wait_time = 5.0
 
-[node name="Soldier2" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("7_ugfek")]
-modulate = Color(0.560784, 0.815686, 0.737255, 1)
-position = Vector2(1208, 568)
-npc_resource = ExtResource("38_iwdc0")
+[node name="NPC3" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("40_rlbco")]
+position = Vector2(1176, 600)
+npc_resource = ExtResource("36_t44me")
 
-[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/Soldier2" instance=ExtResource("9_stv3e")]
+[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/NPC3" instance=ExtResource("9_stv3e")]
 
-[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/Soldier2/DialogInteraction"]
+[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/NPC3/DialogInteraction"]
 script = ExtResource("10_rlbco")
 text = "Strange that we've meet nobody since entering old province path"
 npc_info = ExtResource("38_iwdc0")
 metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
-[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/Soldier2" instance=ExtResource("12_lav2n")]
+[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/NPC3" instance=ExtResource("12_lav2n")]
 
-[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/Soldier2/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/NPC3/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 0, 0, 1)
 wait_time = 5.0
 
-[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/Soldier2/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/NPC3/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(152, 24)
 wait_time = 5.0
 
-[node name="Soldier1" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("7_ugfek")]
-modulate = Color(0.560245, 0.816406, 0.735775, 1)
-position = Vector2(1176, 552)
-npc_resource = ExtResource("36_t44me")
+[node name="NPC4" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("40_rlbco")]
+position = Vector2(1152, 624)
+npc_resource = ExtResource("38_iwdc0")
 
-[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/Soldier1" instance=ExtResource("9_stv3e")]
+[node name="DialogInteraction" parent="NPCs/QuestActivatedSwitch/NPC4" instance=ExtResource("9_stv3e")]
 
-[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/Soldier1/DialogInteraction"]
+[node name="DialogText" type="Node" parent="NPCs/QuestActivatedSwitch/NPC4/DialogInteraction"]
 script = ExtResource("10_rlbco")
 text = "I can't believe we're almost home after all of this shit."
 npc_info = ExtResource("36_t44me")
 metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
-[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/Soldier1" instance=ExtResource("12_lav2n")]
+[node name="NpcBehaviorPatrol" parent="NPCs/QuestActivatedSwitch/NPC4" instance=ExtResource("12_lav2n")]
 
-[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/Soldier1/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation" parent="NPCs/QuestActivatedSwitch/NPC4/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 0, 0, 1)
 wait_time = 2.0
 
-[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/Soldier1/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
+[node name="PatrolLocation2" parent="NPCs/QuestActivatedSwitch/NPC4/NpcBehaviorPatrol" instance=ExtResource("13_hbp5h")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(144, 72)
 wait_time = 5.0
 
-[node name="NpcWanderBehavior" parent="NPCs/QuestActivatedSwitch/Soldier1" instance=ExtResource("27_whcxt")]
+[node name="NpcWanderBehavior" parent="NPCs/QuestActivatedSwitch/NPC4" instance=ExtResource("27_whcxt")]
 
 [node name="LevelTransition2" parent="." instance=ExtResource("6_ij12k")]
 position = Vector2(1144, 360)

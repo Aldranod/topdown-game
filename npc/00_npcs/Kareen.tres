@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://2j74a6dyhhel" path="res://npc/sprites/portraits/npc_portrait_02.png" id="1_slqis"]
 [ext_resource type="Script" uid="uid://cnu3pauuaiagc" path="res://npc/scripts/npc_resource.gd" id="2_673j4"]
-[ext_resource type="Texture2D" uid="uid://b7yh4vrwwmew0" path="res://npc/sprites/npc_sprite_02.png" id="3_cpwfv"]
+[ext_resource type="Texture2D" uid="uid://bh61ygosqtksy" path="res://npc/sprites/soldier.png" id="3_slqis"]
 
 [resource]
 script = ExtResource("2_673j4")
 npc_name = "pvt. Kareen"
-sprite = ExtResource("3_cpwfv")
+sprite = ExtResource("3_slqis")
 portrait = ExtResource("1_slqis")
 dialog_audio_pitch = 1.16
 metadata/_custom_type_script = "uid://cnu3pauuaiagc"

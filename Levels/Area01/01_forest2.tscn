@@ -189,12 +189,12 @@ position = Vector2(-88, 800)
 position = Vector2(464, 800)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("23_n5mpc")]
-position = Vector2(904, 280)
+position = Vector2(901.959, 280)
 item_data = ExtResource("24_ce4hh")
 respawnable = false
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("23_n5mpc")]
-position = Vector2(470.35107, 162.83615)
+position = Vector2(469.9765, 162.861)
 item_data = ExtResource("24_ce4hh")
 respawnable = false
 
@@ -1031,8 +1031,8 @@ position = Vector2(1512, 760)
 
 [node name="LevelTransition2" parent="." instance=ExtResource("6_52met")]
 position = Vector2(1968, 576)
-level = "uid://03jhlopvv66j"
-target_transition_area = "LevelTransition2"
+level = "uid://b58lmqkilmjc2"
+target_transition_area = "LevelTransition4"
 size = 4
 side = 1
 

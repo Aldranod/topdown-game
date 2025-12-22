@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=43 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bb3jg2dmd2khe" path="res://Levels/level_transition_interact.tscn" id="8_1vqeb"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="11_q1nu6"]
 [ext_resource type="PackedScene" uid="uid://dhs62ktwdql3w" path="res://GeneralNodes/TriggerArea/TriggerArea.tscn" id="13_uv20n"]
+[ext_resource type="PackedScene" uid="uid://x5ysqpmakmyg" path="res://Props/Plants/plant2.tscn" id="14_yxt3t"]
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="15_ixvpc"]
 [ext_resource type="Resource" uid="uid://nha0q15dx62x" path="res://quests/check_courier_station.tres" id="16_0dlo4"]
 [ext_resource type="Texture2D" uid="uid://31s0f1t0k3ly" path="res://Enemies/Goblin/goblin.png" id="16_043pa"]
@@ -1391,11 +1392,38 @@ position = Vector2(4368, -688)
 [node name="Tree215" parent="Props" instance=ExtResource("18_oter3")]
 position = Vector2(3480, -120)
 
+[node name="Plant26" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1736, -200)
+
+[node name="Plant27" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1728, -80)
+
+[node name="Plant28" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1472, -80)
+
+[node name="Plant29" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1416, -216)
+
+[node name="Plant30" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1408, -208)
+
+[node name="Plant31" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1744, -208)
+
 [node name="Tree214" parent="Props" instance=ExtResource("18_oter3")]
 position = Vector2(3952, -224)
 
 [node name="Tree216" parent="Props" instance=ExtResource("18_oter3")]
 position = Vector2(3560, -144)
+
+[node name="Plant23" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1664, -520)
+
+[node name="Plant36" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1648, -512)
+
+[node name="Plant37" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(1659.2029, -510.1014)
 
 [node name="Plant2" parent="Props" instance=ExtResource("6_yxt3t")]
 position = Vector2(2600, -568)
@@ -1408,9 +1436,6 @@ position = Vector2(2608, -584)
 
 [node name="Plant3" parent="Props" instance=ExtResource("6_yxt3t")]
 position = Vector2(2232, -448)
-
-[node name="Plant10" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(2120, -536)
 
 [node name="Plant14" parent="Props" instance=ExtResource("6_yxt3t")]
 position = Vector2(1280, -656)
@@ -1430,35 +1455,8 @@ position = Vector2(1616, -632)
 [node name="Plant22" parent="Props" instance=ExtResource("6_yxt3t")]
 position = Vector2(1608, -640)
 
-[node name="Plant23" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1656, -496)
-
 [node name="Plant24" parent="Props" instance=ExtResource("6_yxt3t")]
 position = Vector2(1264, -336)
-
-[node name="Plant26" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1728, -72)
-
-[node name="Plant31" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1472, -64)
-
-[node name="Plant32" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1472, -64)
-
-[node name="Plant27" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1440, -208)
-
-[node name="Plant28" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1712, -208)
-
-[node name="Plant29" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1736, -208)
-
-[node name="Plant30" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(1736, -208)
-
-[node name="Plant11" parent="Props" instance=ExtResource("6_yxt3t")]
-position = Vector2(2128, -552)
 
 [node name="Secret" type="Node2D" parent="Props"]
 y_sort_enabled = true
@@ -1522,8 +1520,41 @@ vframes = 4
 frame = 4
 
 [node name="ItemPickup" parent="Props/Secret" instance=ExtResource("17_yxt3t")]
-position = Vector2(-967.8706, -374.61865)
+position = Vector2(-969.87036, -375.61847)
 item_data = ExtResource("18_a8r62")
+
+[node name="Plant46" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant47" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2130.3464, -552)
+
+[node name="Plant48" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant58" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant59" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant60" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant70" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant71" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -600)
+
+[node name="Plant72" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -552)
+
+[node name="Plant73" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2114.3464, -584)
+
+[node name="Plant10" parent="Props" instance=ExtResource("14_yxt3t")]
+position = Vector2(2104, -572.0787)
 
 [node name="DialogInteraction" parent="." instance=ExtResource("15_ixvpc")]
 position = Vector2(80, -208)

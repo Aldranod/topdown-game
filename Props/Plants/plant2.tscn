@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://x5ysqpmakmyg"]
+
+[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="4_tplw6"]
+[ext_resource type="Texture2D" uid="uid://c1oskljalptxw" path="res://Tile Maps/Sprites/forgotten_forest_example_tileset.png" id="5_w0nqq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qoe2"]
+shader = ExtResource("4_tplw6")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ev3o"]
+atlas = ExtResource("5_w0nqq")
+region = Rect2(512, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0nqq"]
+atlas = ExtResource("5_w0nqq")
+region = Rect2(544, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eehsv"]
+atlas = ExtResource("5_w0nqq")
+region = Rect2(576, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ixv"]
+atlas = ExtResource("5_w0nqq")
+region = Rect2(608, 224, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tplw6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ev3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0nqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eehsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ixv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eehsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0nqq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djs60"]
+size = Vector2(16, 7.5)
+
+[node name="Plant2" type="Node2D"]
+modulate = Color(0.8359375, 0.8359375, 0.8359375, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.9165642, 0.93359375, 0.79950064, 1)
+material = SubResource("ShaderMaterial_8qoe2")
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_tplw6")
+autoplay = "default"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -9)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 12.75)
+shape = SubResource("RectangleShape2D_djs60")
+disabled = true

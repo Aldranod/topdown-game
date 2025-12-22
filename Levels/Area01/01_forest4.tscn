@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=4 uid="uid://dk1fejudai8ki"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_dc4yx"]
-[ext_resource type="AudioStream" uid="uid://cmk3h77kvk7f2" path="res://Levels/Music/example_music_02.ogg" id="2_2by5g"]
+[ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_b26wv"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="4_b26wv"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="5_nm352"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="6_qnd1j"]
@@ -49,7 +49,7 @@ height = 304.0
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_dc4yx")
-music = ExtResource("2_2by5g")
+music = ExtResource("2_b26wv")
 weather_active = true
 weather_layer_1 = 2
 
@@ -602,7 +602,7 @@ collision = false
 y_sort_enabled = true
 
 [node name="Goblin10" parent="Enemies" instance=ExtResource("13_7qfnj")]
-position = Vector2(144, 384)
+position = Vector2(-160, 296)
 hp = 4
 
 [node name="Goblin11" parent="Enemies" instance=ExtResource("13_7qfnj")]

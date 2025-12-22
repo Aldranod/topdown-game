@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://b58lmqkilmjc2"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_mmrm0"]
-[ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_8txwn"]
+[ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ax3yf"]
 [ext_resource type="PackedScene" uid="uid://bb8dgsbakkvln" path="res://Tile Maps/grass-tiles-01.tscn" id="3_tiv40"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="4_ehhpf"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="5_8g2sa"]
@@ -74,7 +74,7 @@ light_mode = 1
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_mmrm0")
-music = ExtResource("2_8txwn")
+music = ExtResource("2_ax3yf")
 weather_active = true
 weather_layer_1 = 2
 weather_layer_2 = 4

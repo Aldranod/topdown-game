@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://drjcnct2wfn1p"]
+[gd_scene load_steps=40 format=4 uid="uid://drjcnct2wfn1p"]
 
 [ext_resource type="Script" uid="uid://dsct6uyutitay" path="res://Levels/Area01/01_forest_cutscene.gd" id="1_vetuc"]
 [ext_resource type="AudioStream" uid="uid://cmk3h77kvk7f2" path="res://Levels/Music/example_music_02.ogg" id="2_v5rxi"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="28_hyn62"]
 [ext_resource type="Texture2D" uid="uid://31s0f1t0k3ly" path="res://Enemies/Goblin/goblin.png" id="29_aulhg"]
 [ext_resource type="Resource" uid="uid://dphrny44nvo2e" path="res://items/potion.tres" id="30_mk7jo"]
+[ext_resource type="PackedScene" uid="uid://x5ysqpmakmyg" path="res://Props/Plants/plant2.tscn" id="31_hyn62"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="31_jug0s"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="33_t1sun"]
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="34_74rmx"]
@@ -2251,6 +2252,45 @@ frame = 4
 [node name="ItemPickup" parent="Props/Secret" instance=ExtResource("25_u178v")]
 position = Vector2(324.34668, -77.92273)
 item_data = ExtResource("30_mk7jo")
+
+[node name="Plant46" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(1312, 736)
+
+[node name="Plant47" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(1320, 752)
+
+[node name="Plant48" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(1328, 744)
+
+[node name="Plant50" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(1328, 752)
+
+[node name="Plant57" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(880, 680)
+
+[node name="Plant58" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(888, 672)
+
+[node name="Plant59" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(896, 680)
+
+[node name="Plant70" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(936, 496)
+
+[node name="Plant71" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(944, 488)
+
+[node name="Plant72" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(952, 496)
+
+[node name="Plant73" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(784, 680)
+
+[node name="Plant74" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(792, 672)
+
+[node name="Plant75" parent="Props" instance=ExtResource("31_hyn62")]
+position = Vector2(800, 680)
 
 [node name="Leafs" parent="." instance=ExtResource("31_jug0s")]
 position = Vector2(-728, -592)

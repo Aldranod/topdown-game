@@ -119,16 +119,15 @@ region_rect = Rect2(0, 0, 100, 136)
 script = ExtResource("4_qetsp")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-43, 0)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(46, 10)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_a671x")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(44, -11)
+position = Vector2(-1, -12)
 shape = SubResource("CircleShape2D_a671x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
