@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://b58lmqkilmjc2"]
+[gd_scene load_steps=28 format=4 uid="uid://b58lmqkilmjc2"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_mmrm0"]
 [ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_8txwn"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="12_8g2sa"]
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="13_1cnbi"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="14_ax3yf"]
+[ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="15_1cnbi"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="16_ax3yf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26wv"]
 radius = 72.0
@@ -42,6 +44,33 @@ height = 304.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yetf5"]
 radius = 64.0
 height = 304.0
+
+[sub_resource type="Gradient" id="Gradient_ax3yf"]
+offsets = PackedFloat32Array(0, 0.14333333, 0.68666667, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bspo"]
+gradient = SubResource("Gradient_ax3yf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghwdk"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(650, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1400, 200, 1)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 1.1999999
+color_ramp = SubResource("GradientTexture1D_3bspo")
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ghwdk"]
+blend_mode = 1
+light_mode = 1
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_mmrm0")
@@ -1134,3 +1163,39 @@ material = ExtResource("14_ax3yf")
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(1, 1, 1, 0)
+
+[node name="Leafs3" parent="." instance=ExtResource("15_1cnbi")]
+position = Vector2(-1359, 236)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_ghwdk")
+
+[node name="Leafs4" parent="." instance=ExtResource("15_1cnbi")]
+position = Vector2(-1359, 685)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_ghwdk")
+
+[node name="Leafs5" parent="." instance=ExtResource("15_1cnbi")]
+position = Vector2(-1359, 1068)
+visibility_rect = Rect2(-5000, -200, 27000, 400)
+process_material = SubResource("ParticleProcessMaterial_ghwdk")
+
+[node name="LightRay" type="Sprite2D" parent="."]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_ghwdk")
+position = Vector2(-219.00002, 892.99994)
+rotation = -0.261799
+scale = Vector2(0.5469133, 0.55697346)
+texture = ExtResource("16_ax3yf")
+offset = Vector2(0, 256)
+
+[node name="LightRay2" type="Sprite2D" parent="."]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_ghwdk")
+position = Vector2(715.99994, 991)
+rotation = 0.2617994
+scale = Vector2(0.29948592, 0.30984727)
+skew = 0.009113789
+texture = ExtResource("16_ax3yf")
+offset = Vector2(0, 256)

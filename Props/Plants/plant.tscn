@@ -91,10 +91,12 @@ _data = {
 size = Vector2(31, 18)
 
 [node name="Plant" type="Node2D"]
+modulate = Color(0.8359375, 0.8359375, 0.8359375, 1)
 script = ExtResource("1_djs60")
 drops = Array[ExtResource("2_k6e5a")]([SubResource("Resource_gt7ev")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.9165642, 0.93359375, 0.79950064, 1)
 material = SubResource("ShaderMaterial_8qoe2")
 position = Vector2(0, -9)
 texture = ExtResource("1_opo5d")

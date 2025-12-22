@@ -128,7 +128,7 @@ position = Vector2(46, 10)
 shape = SubResource("RectangleShape2D_a671x")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(44, -18)
+position = Vector2(44, -11)
 shape = SubResource("CircleShape2D_a671x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
