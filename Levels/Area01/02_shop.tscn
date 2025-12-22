@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cbtvh4md226dg"]
+[gd_scene load_steps=25 format=4 uid="uid://cbtvh4md226dg"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_7727t"]
 [ext_resource type="AudioStream" uid="uid://cmk3h77kvk7f2" path="res://Levels/Music/example_music_02.ogg" id="2_qkluu"]
@@ -15,7 +15,52 @@
 [ext_resource type="PackedScene" uid="uid://bfv1mqfl26ouj" path="res://GeneralNodes/TutorialHint/tutorial_hint.tscn" id="13_24ur4"]
 [ext_resource type="PackedScene" uid="uid://rro2nnmqmcql" path="res://items/notes/note.tscn" id="15_qkluu"]
 [ext_resource type="Resource" uid="uid://s2mcg5pdalej" path="res://items/notes/courier_outpost_note.tres" id="16_ena7o"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="17_ena7o"]
 [ext_resource type="PackedScene" uid="uid://dsqvx0e8msa5u" path="res://Props/pot/Pot.tscn" id="22_mhjp3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hqw0x"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ena7o"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_hqw0x"]
+offsets = PackedFloat32Array(0, 0.99126637)
+colors = PackedColorArray(0.48320764, 0.48320764, 0.48320764, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7qqfa"]
+gradient = SubResource("Gradient_hqw0x")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_offyj"]
+offsets = PackedFloat32Array(0, 0.34594595, 0.7135135, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.51891893, 0.51891893, 0.51891893, 1, 0.79325444, 0.79325444, 0.79325444, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_swmht"]
+gradient = SubResource("Gradient_offyj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7qqfa"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 35, 1)
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.75
+scale_max = 1.25
+color_ramp = SubResource("GradientTexture1D_swmht")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.089999974
+turbulence_enabled = true
+turbulence_influence_max = 0.19600001
 
 [node name="02" type="Node2D"]
 script = ExtResource("1_7727t")
@@ -120,5 +165,26 @@ description = "Press \"E\" to read a note."
 target_nodes = Array[NodePath]([NodePath("../Note")])
 action_signal_name = "player_interacted"
 pause_menu_signal = true
+
+[node name="LightRay" type="Sprite2D" parent="."]
+modulate = Color(0.40784314, 0.42352942, 0.34509805, 0.95686275)
+self_modulate = Color(1, 1, 1, 0.6431373)
+z_index = 10
+material = SubResource("CanvasItemMaterial_hqw0x")
+position = Vector2(127.5, 67.00001)
+scale = Vector2(0.22265624, 0.2101021)
+texture = ExtResource("17_ena7o")
+offset = Vector2(0, 5)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ena7o")
+position = Vector2(127, 71)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_7qqfa")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_7qqfa")
 
 [connection signal="enetered_from_here" from="LevelTransition" to="LevelTransition/QuestActivatedSwitch/QuestAdvanceTrigger" method="advance_quest"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://lao8ddtqclmu"]
+[gd_scene load_steps=26 format=4 uid="uid://lao8ddtqclmu"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_4t6jc"]
-[ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="2_ndkwi"]
+[ext_resource type="AudioStream" uid="uid://cmk3h77kvk7f2" path="res://Levels/Music/example_music_02.ogg" id="2_guhsm"]
 [ext_resource type="PackedScene" uid="uid://65ltrbv0lnuk" path="res://Tile Maps/Sprites/shop_tilemap_layer.tscn" id="3_ea5hw"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="4_cmyxy"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="5_guhsm"]
@@ -16,13 +16,58 @@
 [ext_resource type="Resource" uid="uid://dehbl6u18edve" path="res://items/w_katana.tres" id="12_86l8q"]
 [ext_resource type="PackedScene" uid="uid://dsqvx0e8msa5u" path="res://Props/pot/Pot.tscn" id="13_jphry"]
 [ext_resource type="PackedScene" uid="uid://dhs62ktwdql3w" path="res://GeneralNodes/TriggerArea/TriggerArea.tscn" id="14_cmyxy"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="17_guhsm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_guhsm"]
 radius = 184.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mpcho"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_guhsm"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_mpcho"]
+offsets = PackedFloat32Array(0, 0.99126637)
+colors = PackedColorArray(0.48320764, 0.48320764, 0.48320764, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wglf1"]
+gradient = SubResource("Gradient_mpcho")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_67vsg"]
+offsets = PackedFloat32Array(0, 0.34594595, 0.7135135, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.51891893, 0.51891893, 0.51891893, 1, 0.79325444, 0.79325444, 0.79325444, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jdivw"]
+gradient = SubResource("Gradient_67vsg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_emkia"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 35, 1)
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.75
+scale_max = 1.25
+color_ramp = SubResource("GradientTexture1D_jdivw")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.089999974
+turbulence_enabled = true
+turbulence_influence_max = 0.19600001
+
 [node name="02" type="Node2D"]
 script = ExtResource("1_4t6jc")
-music = ExtResource("2_ndkwi")
+music = ExtResource("2_guhsm")
 
 [node name="ShopTilemapLayer" parent="." instance=ExtResource("3_ea5hw")]
 z_index = -2
@@ -68,3 +113,43 @@ settings_summary = "UPDATE QUEST:
 Quest: Kill greenskins
 Step: 2 - talk to eban
 Complete: true"
+
+[node name="LightRay" type="Sprite2D" parent="."]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_mpcho")
+position = Vector2(128, 67.00001)
+scale = Vector2(0.20312499, 0.2101021)
+texture = ExtResource("17_guhsm")
+offset = Vector2(0, 5)
+
+[node name="LightRay2" type="Sprite2D" parent="."]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_mpcho")
+position = Vector2(224, 64.00001)
+scale = Vector2(0.20312499, 0.2101021)
+texture = ExtResource("17_guhsm")
+offset = Vector2(0, 5)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_guhsm")
+position = Vector2(127, 71)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_wglf1")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_emkia")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_guhsm")
+position = Vector2(224, 72)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_wglf1")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_emkia")
