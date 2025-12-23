@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://2skrsr8v2bj3"]
+[gd_scene load_steps=56 format=4 uid="uid://2skrsr8v2bj3"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_xqm6i"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ij12k"]
@@ -39,8 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://31s0f1t0k3ly" path="res://Enemies/Goblin/goblin.png" id="38_xqm6i"]
 [ext_resource type="Resource" uid="uid://be6pgqh4u02ny" path="res://npc/00_npcs/Sol.tres" id="39_iwdc0"]
 [ext_resource type="PackedScene" uid="uid://0dsqevslveep" path="res://npc/npc2.tscn" id="40_rlbco"]
-[ext_resource type="PackedScene" uid="uid://d4hgaqdibwenn" path="res://GeneralNodes/SavePoint/save_point.tscn" id="40_te5nw"]
-[ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="41_w8wur"]
+[ext_resource type="Script" uid="uid://cg06ea0pdepv" path="res://Interactables/dialog/scripts/cutscene_action_camera.gd" id="40_stv3e"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="43_vw5t6"]
 [ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="44_0rt6k"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="44_ugfek"]
@@ -48,6 +47,7 @@
 [ext_resource type="Script" uid="uid://b0tksxbpaphu2" path="res://Levels/Area01/listener.gd" id="45_ij12k"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="46_stv3e"]
 [ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="46_ugfek"]
+[ext_resource type="PackedScene" uid="uid://dhs62ktwdql3w" path="res://GeneralNodes/TriggerArea/TriggerArea.tscn" id="47_6mffx"]
 
 [sub_resource type="Animation" id="Animation_qseal"]
 length = 0.001
@@ -70,6 +70,9 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xqm6i"]
 radius = 84.0
 height = 610.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stv3e"]
+radius = 96.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ugfek"]
 blend_mode = 1
@@ -95,9 +98,6 @@ size = 5
 position = Vector2(632, 368)
 description = "Press \"ctrl\" or [img={20}x{20}]res://GeneralNodes/TutorialHint/A.png[/img] to attack"
 target_nodes = Array[NodePath]([NodePath("../Props/Plant38"), NodePath("../Props/Plant39"), NodePath("../Props/Plant42"), NodePath("../Props/Plant41")])
-
-[node name="SavePoint" parent="." instance=ExtResource("40_te5nw")]
-position = Vector2(-904, 496)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -2076,7 +2076,6 @@ position = Vector2(1200, 200)
 y_sort_enabled = true
 
 [node name="Thaaw" parent="NPCs" instance=ExtResource("7_ugfek")]
-z_index = -1
 position = Vector2(1147.4988, 442.9166)
 npc_resource = ExtResource("8_6mffx")
 
@@ -2474,6 +2473,74 @@ Quest: Check Courier Station
 Checking if player has completed step: find the courier station"
 metadata/_custom_type_script = "uid://banrw54ry8ssi"
 
+[node name="TriggerArea" parent="QuestActivatedSwitch" instance=ExtResource("47_6mffx")]
+position = Vector2(856, 560)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestActivatedSwitch/TriggerArea"]
+position = Vector2(24, 24)
+shape = SubResource("CircleShape2D_stv3e")
+
+[node name="DialogInteraction" parent="QuestActivatedSwitch/TriggerArea" instance=ExtResource("9_stv3e")]
+visible = false
+
+[node name="DialogCutscene" type="Node" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction"]
+script = ExtResource("30_vw5t6")
+metadata/_custom_type_script = "uid://bqyb0s0d404xv"
+
+[node name="CutsceneActionCamera" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene"]
+position = Vector2(992, 696)
+script = ExtResource("40_stv3e")
+move_duration = 5.0
+move_speed = 59.0
+metadata/_custom_type_script = "uid://cg06ea0pdepv"
+
+[node name="CutsceneActionMove" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" node_paths=PackedStringArray("object_to_move")]
+position = Vector2(1144, 496)
+script = ExtResource("31_wcnso")
+timing_method = 1
+object_to_move = NodePath("../../../../../NPCs/Thaaw")
+easing_method = 0
+move_speed = 80.0
+metadata/_custom_type_script = "uid://bx24vr7ah41at"
+
+[node name="CutsceneActionMove2" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" node_paths=PackedStringArray("object_to_move")]
+position = Vector2(1136, 568)
+script = ExtResource("31_wcnso")
+timing_method = 1
+object_to_move = NodePath("../../../../../NPCs/Thaaw")
+move_speed = 80.0
+metadata/_custom_type_script = "uid://bx24vr7ah41at"
+
+[node name="CutsceneActionMove3" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" node_paths=PackedStringArray("object_to_move")]
+position = Vector2(1112, 616)
+script = ExtResource("31_wcnso")
+timing_method = 1
+object_to_move = NodePath("../../../../../NPCs/Thaaw")
+move_speed = 80.0
+metadata/_custom_type_script = "uid://bx24vr7ah41at"
+
+[node name="CutsceneActionMove4" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" node_paths=PackedStringArray("object_to_move")]
+position = Vector2(1032, 640)
+script = ExtResource("31_wcnso")
+timing_method = 1
+object_to_move = NodePath("../../../../../NPCs/Thaaw")
+move_speed = 80.0
+metadata/_custom_type_script = "uid://bx24vr7ah41at"
+
+[node name="CutsceneActionMove5" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" node_paths=PackedStringArray("object_to_move")]
+position = Vector2(976, 648)
+script = ExtResource("31_wcnso")
+timing_method = 1
+object_to_move = NodePath("../../../../../NPCs/Thaaw")
+move_speed = 80.0
+metadata/_custom_type_script = "uid://bx24vr7ah41at"
+
+[node name="DialogText2" type="Node" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction"]
+script = ExtResource("10_rlbco")
+text = "Gods! What happened !?"
+npc_info = ExtResource("29_iwdc0")
+metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
+
 [node name="Sprite2Dx" type="Sprite2D" parent="QuestActivatedSwitch"]
 z_index = -2
 position = Vector2(1352.0001, 584.00006)
@@ -2629,20 +2696,11 @@ hframes = 8
 vframes = 3
 frame = 18
 
-[node name="TutorialHintSave" parent="." instance=ExtResource("37_vjfvh")]
-position = Vector2(-744, 568)
-description = "Press \"E\" or [img={20}x{20}]res://GeneralNodes/TutorialHint/Yyellow.png[/img] to save the game"
-target_nodes = Array[NodePath]([NodePath("../SavePoint")])
-action_signal_name = "bonfire_used"
-
 [node name="TutorialHintSave2" parent="." instance=ExtResource("37_vjfvh")]
 position = Vector2(1176, 560)
 description = "Press \"W,S,A,D\" to move, press \"E\" to interact."
-target_nodes = Array[NodePath]([NodePath("../SavePoint")])
+target_nodes = Array[NodePath]([NodePath("")])
 action_signal_name = "bonfire_used"
-
-[node name="Goblin" parent="." instance=ExtResource("41_w8wur")]
-position = Vector2(-624, 448)
 
 [node name="Leafs" parent="." instance=ExtResource("43_vw5t6")]
 position = Vector2(408, 352)
@@ -2694,4 +2752,5 @@ texture = ExtResource("46_ugfek")
 offset = Vector2(0, 256)
 
 [connection signal="finished" from="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction" to="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction/DialogCutscene" method="play"]
+[connection signal="player_entered" from="QuestActivatedSwitch/TriggerArea" to="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" method="play"]
 [connection signal="inv_open" from="listener" to="Area2D2" method="_on_action_performed"]
