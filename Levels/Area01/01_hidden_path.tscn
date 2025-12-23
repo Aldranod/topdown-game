@@ -35,7 +35,7 @@ height = 271.529
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc4yx"]
 radius = 64.0
-height = 304.0
+height = 362.16272
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_je3bq"]
 radius = 64.0
@@ -553,8 +553,8 @@ y_sort_enabled = true
 position = Vector2(5, -1878)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/EnterExitArea7"]
-position = Vector2(56, -144)
-rotation = 3.14159
+position = Vector2(81.00006, -120)
+rotation = 2.8797934
 shape = SubResource("CapsuleShape2D_dc4yx")
 
 [node name="Tree" parent="Props/EnterExitArea7" instance=ExtResource("5_8g2sa")]

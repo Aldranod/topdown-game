@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bj7igp5k6r3sy"]
+[gd_scene load_steps=19 format=4 uid="uid://bj7igp5k6r3sy"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_ih5cr"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rbbpx"]
@@ -10,6 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://c8xmjm2nd64cw" path="res://Tile Maps/dungeon_small.tscn" id="10_4y8v6"]
 [ext_resource type="PackedScene" uid="uid://cmtv281o7w0ch" path="res://Interactables/Dungeon/barred_door.tscn" id="10_kyw00"]
 [ext_resource type="PackedScene" uid="uid://c3sm25e1issmv" path="res://Interactables/Dungeon/pushable_statue.tscn" id="11_55bac"]
+[ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="11_ih5cr"]
+[ext_resource type="PackedScene" uid="uid://51holitkfpng" path="res://Enemies/Orc/Orc.tscn" id="12_rbbpx"]
+[ext_resource type="PackedScene" uid="uid://dm0xqp572cxo5" path="res://Enemies/ArmoredGoblin/ArmoredGoblin.tscn" id="13_yfe46"]
+[ext_resource type="Script" uid="uid://banrw54ry8ssi" path="res://quests/utility_nodes/quest_activated_switch.gd" id="14_n2nyg"]
+[ext_resource type="Resource" uid="uid://ditbdn2uxoskb" path="res://quests/abandoned_temple.tres" id="15_bkm0i"]
+[ext_resource type="PackedScene" uid="uid://dhs62ktwdql3w" path="res://GeneralNodes/TriggerArea/TriggerArea.tscn" id="16_5qspd"]
+[ext_resource type="Script" uid="uid://dqo11wbbbowm3" path="res://quests/utility_nodes/quest_advance_trigger.gd" id="17_kyw00"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55bac"]
+radius = 64.0
 
 [node name="01" type="Node2D"]
 script = ExtResource("1_ih5cr")
@@ -20,6 +30,7 @@ darkness = true
 tile_map_data = PackedByteArray("AAByAPn/AQBSAAsAAAByAPr/AQBSAAwAAAByAPv/AQBSAA0AAAByAPz/AQBSAA4AAAByAP3/AQBSAA8AAAByAP7/AQBSABAAAAByAP//AQBSABEAAAByAAAAAQBSABIAAAByAAEAAQBSABMAAAByAAIAAQBSABQAAAByAAMAAQBSABUAAAByAAQAAQBSABYAAAByAAUAAQBSABcAAAByAAYAAQBSABgAAAByAAcAAQBSABkAAAByAAgAAQBSABoAAABzAPn/AQBTAAsAAABzAPr/AQBTAAwAAABzAPv/AQBTAA0AAABzAPz/AQBTAA4AAABzAP3/AQBTAA8AAABzAP7/AQBTABAAAABzAP//AQBTABEAAABzAAAAAQBTABIAAABzAAEAAQBTABMAAABzAAIAAQBTABQAAABzAAMAAQBTABUAAABzAAQAAQBTABYAAABzAAUAAQBTABcAAABzAAYAAQBTABgAAABzAAcAAQBTABkAAABzAAgAAQBTABoAAAB0APn/AQBUAAsAAAB0APr/AQBUAAwAAAB0APv/AQBUAA0AAAB0APz/AQBUAA4AAAB0AP3/AQBUAA8AAAB0AP7/AQBUABAAAAB0AP//AQBUABEAAAB0AAAAAQBUABIAAAB0AAEAAQBUABMAAAB0AAIAAQBUABQAAAB0AAMAAQBUABUAAAB0AAQAAQBUABYAAAB0AAUAAQBUABcAAAB0AAYAAQBUABgAAAB0AAcAAQBUABkAAAB0AAgAAQBUABoAAAB1APn/AQBVAAsAAAB1APr/AQBVAAwAAAB1APv/AQBVAA0AAAB1APz/AQBVAA4AAAB1AP3/AQBVAA8AAAB1AP7/AQBVABAAAAB1AP//AQBVABEAAAB1AAAAAQBVABIAAAB1AAEAAQBVABMAAAB1AAIAAQBVABQAAAB1AAMAAQBVABUAAAB1AAQAAQBVABYAAAB1AAUAAQBVABcAAAB1AAYAAQBVABgAAAB1AAcAAQBVABkAAAB1AAgAAQBVABoAAAB2APn/AQBWAAsAAAB2APr/AQBWAAwAAAB2APv/AQBWAA0AAAB2APz/AQBWAA4AAAB2AP3/AQBWAA8AAAB2AP7/AQBWABAAAAB2AP//AQBWABEAAAB2AAAAAQBWABIAAAB2AAEAAQBWABMAAAB2AAIAAQBWABQAAAB2AAMAAQBWABUAAAB2AAQAAQBWABYAAAB2AAUAAQBWABcAAAB2AAYAAQBWABgAAAB2AAcAAQBWABkAAAB2AAgAAQBWABoAAAB3APn/AQBXAAsAAAB3APr/AQBXAAwAAAB3APv/AQBXAA0AAAB3APz/AQBXAA4AAAB3AP3/AQBXAA8AAAB3AP7/AQBXABAAAAB3AP//AQBXABEAAAB3AAAAAQBXABIAAAB3AAEAAQBXABMAAAB3AAIAAQBXABQAAAB3AAMAAQBXABUAAAB3AAQAAQBXABYAAAB3AAUAAQBXABcAAAB3AAYAAQBXABgAAAB3AAcAAQBXABkAAAB3AAgAAQBXABoAAAB4APn/AQBYAAsAAAB4APr/AQBYAAwAAAB4APv/AQBYAA0AAAB4APz/AQBYAA4AAAB4AP3/AQBYAA8AAAB4AP7/AQBYABAAAAB4AP//AQBYABEAAAB4AAAAAQBYABIAAAB4AAEAAQBYABMAAAB4AAIAAQBYABQAAAB4AAMAAQBYABUAAAB4AAQAAQBYABYAAAB4AAUAAQBYABcAAAB4AAYAAQBYABgAAAB4AAcAAQBYABkAAAB4AAgAAQBYABoAAAB5APn/AQBZAAsAAAB5APr/AQBZAAwAAAB5APv/AQBZAA0AAAB5APz/AQBZAA4AAAB5AP3/AQBZAA8AAAB5AP7/AQBZABAAAAB5AP//AQBZABEAAAB5AAAAAQBZABIAAAB5AAEAAQBZABMAAAB5AAIAAQBZABQAAAB5AAMAAQBZABUAAAB5AAQAAQBZABYAAAB5AAUAAQBZABcAAAB5AAYAAQBZABgAAAB5AAcAAQBZABkAAAB5AAgAAQBZABoAAAB6APn/AQBaAAsAAAB6APr/AQBaAAwAAAB6APv/AQBaAA0AAAB6APz/AQBaAA4AAAB6AP3/AQBaAA8AAAB6AP7/AQBaABAAAAB6AP//AQBaABEAAAB6AAAAAQBaABIAAAB6AAEAAQBaABMAAAB6AAIAAQBaABQAAAB6AAMAAQBaABUAAAB6AAQAAQBaABYAAAB6AAUAAQBaABcAAAB6AAYAAQBaABgAAAB6AAcAAQBaABkAAAB6AAgAAQBaABoAAAB7APn/AQBbAAsAAAB7APr/AQBbAAwAAAB7APv/AQBbAA0AAAB7APz/AQBbAA4AAAB7AP3/AQBbAA8AAAB7AP7/AQBbABAAAAB7AP//AQBbABEAAAB7AAAAAQBbABIAAAB7AAEAAQBbABMAAAB7AAIAAQBbABQAAAB7AAMAAQBbABUAAAB7AAQAAQBbABYAAAB7AAUAAQBbABcAAAB7AAYAAQBbABgAAAB7AAcAAQBbABkAAAB7AAgAAQBbABoAAAB8APn/AQBcAAsAAAB8APr/AQBcAAwAAAB8APv/AQBcAA0AAAB8APz/AQBcAA4AAAB8AP3/AQBcAA8AAAB8AP7/AQBcABAAAAB8AP//AQBcABEAAAB8AAAAAQBcABIAAAB8AAEAAQBcABMAAAB8AAIAAQBcABQAAAB8AAMAAQBcABUAAAB8AAQAAQBcABYAAAB8AAUAAQBcABcAAAB8AAYAAQBcABgAAAB8AAcAAQBcABkAAAB8AAgAAQBcABoAAAB9APn/AQBdAAsAAAB9APr/AQBdAAwAAAB9APv/AQBdAA0AAAB9APz/AQBdAA4AAAB9AP3/AQBdAA8AAAB9AP7/AQBdABAAAAB9AP//AQBdABEAAAB9AAAAAQBdABIAAAB9AAEAAQBdABMAAAB9AAIAAQBdABQAAAB9AAMAAQBdABUAAAB9AAQAAQBdABYAAAB9AAUAAQBdABcAAAB9AAYAAQBdABgAAAB9AAcAAQBdABkAAAB9AAgAAQBdABoAAAB+APn/AQBeAAsAAAB+APr/AQBeAAwAAAB+APv/AQBeAA0AAAB+APz/AQBeAA4AAAB+AP3/AQBeAA8AAAB+AP7/AQBeABAAAAB+AP//AQBeABEAAAB+AAAAAQBeABIAAAB+AAEAAQBeABMAAAB+AAIAAQBeABQAAAB+AAMAAQBeABUAAAB+AAQAAQBeABYAAAB+AAUAAQBeABcAAAB+AAYAAQBeABgAAAB+AAcAAQBeABkAAAB+AAgAAQBeABoAAAB/APn/AQBfAAsAAAB/APr/AQBfAAwAAAB/APv/AQBfAA0AAAB/APz/AQBfAA4AAAB/AP3/AQBfAA8AAAB/AP7/AQBfABAAAAB/AP//AQBfABEAAAB/AAAAAQBfABIAAAB/AAEAAQBfABMAAAB/AAIAAQBfABQAAAB/AAMAAQBfABUAAAB/AAQAAQBfABYAAAB/AAUAAQBfABcAAAB/AAYAAQBfABgAAAB/AAcAAQBfABkAAAB/AAgAAQBfABoAAACAAPn/AQBgAAsAAACAAPr/AQBgAAwAAACAAPv/AQBgAA0AAACAAPz/AQBgAA4AAACAAP3/AQBgAA8AAACAAP7/AQBgABAAAACAAP//AQBgABEAAACAAAAAAQBgABIAAACAAAEAAQBgABMAAACAAAIAAQBgABQAAACAAAMAAQBgABUAAACAAAQAAQBgABYAAACAAAUAAQBgABcAAACAAAYAAQBgABgAAACAAAcAAQBgABkAAACAAAgAAQBgABoAAACBAPn/AQBhAAsAAACBAPr/AQBhAAwAAACBAPv/AQBhAA0AAACBAPz/AQBhAA4AAACBAP3/AQBhAA8AAACBAP7/AQBhABAAAACBAP//AQBhABEAAACBAAAAAQBhABIAAACBAAEAAQBhABMAAACBAAIAAQBhABQAAACBAAMAAQBhABUAAACBAAQAAQBhABYAAACBAAUAAQBhABcAAACBAAYAAQBhABgAAACBAAcAAQBhABkAAACBAAgAAQBhABoAAACCAPn/AQBiAAsAAACCAPr/AQBiAAwAAACCAPv/AQBiAA0AAACCAPz/AQBiAA4AAACCAP3/AQBiAA8AAACCAP7/AQBiABAAAACCAP//AQBiABEAAACCAAAAAQBiABIAAACCAAEAAQBiABMAAACCAAIAAQBiABQAAACCAAMAAQBiABUAAACCAAQAAQBiABYAAACCAAUAAQBiABcAAACCAAYAAQBiABgAAACCAAcAAQBiABkAAACCAAgAAQBiABoAAACDAPn/AQBjAAsAAACDAPr/AQBjAAwAAACDAPv/AQBjAA0AAACDAPz/AQBjAA4AAACDAP3/AQBjAA8AAACDAP7/AQBjABAAAACDAP//AQBjABEAAACDAAAAAQBjABIAAACDAAEAAQBjABMAAACDAAIAAQBjABQAAACDAAMAAQBjABUAAACDAAQAAQBjABYAAACDAAUAAQBjABcAAACDAAYAAQBjABgAAACDAAcAAQBjABkAAACDAAgAAQBjABoAAACEAPn/AQBkAAsAAACEAPr/AQBkAAwAAACEAPv/AQBkAA0AAACEAPz/AQBkAA4AAACEAP3/AQBkAA8AAACEAP7/AQBkABAAAACEAP//AQBkABEAAACEAAAAAQBkABIAAACEAAEAAQBkABMAAACEAAIAAQBkABQAAACEAAMAAQBkABUAAACEAAQAAQBkABYAAACEAAUAAQBkABcAAACEAAYAAQBkABgAAACEAAcAAQBkABkAAACEAAgAAQBkABoAAACFAPn/AQBlAAsAAACFAPr/AQBlAAwAAACFAPv/AQBlAA0AAACFAPz/AQBlAA4AAACFAP3/AQBlAA8AAACFAP7/AQBlABAAAACFAP//AQBlABEAAACFAAAAAQBlABIAAACFAAEAAQBlABMAAACFAAIAAQBlABQAAACFAAMAAQBlABUAAACFAAQAAQBlABYAAACFAAUAAQBlABcAAACFAAYAAQBlABgAAACFAAcAAQBlABkAAACFAAgAAQBlABoAAACGAPn/AQBmAAsAAACGAPr/AQBmAAwAAACGAPv/AQBmAA0AAACGAPz/AQBmAA4AAACGAP3/AQBmAA8AAACGAP7/AQBmABAAAACGAP//AQBmABEAAACGAAAAAQBmABIAAACGAAEAAQBmABMAAACGAAIAAQBmABQAAACGAAMAAQBmABUAAACGAAQAAQBmABYAAACGAAUAAQBmABcAAACGAAYAAQBmABgAAACGAAcAAQBmABkAAACGAAgAAQBmABoAAACHAPn/AQBnAAsAAACHAPr/AQBnAAwAAACHAPv/AQBnAA0AAACHAPz/AQBnAA4AAACHAP3/AQBnAA8AAACHAP7/AQBnABAAAACHAP//AQBnABEAAACHAAAAAQBnABIAAACHAAEAAQBnABMAAACHAAIAAQBnABQAAACHAAMAAQBnABUAAACHAAQAAQBnABYAAACHAAUAAQBnABcAAACHAAYAAQBnABgAAACHAAcAAQBnABkAAACHAAgAAQBnABoAAACIAPn/AQBoAAsAAACIAPr/AQBoAAwAAACIAPv/AQBoAA0AAACIAPz/AQBoAA4AAACIAP3/AQBoAA8AAACIAP7/AQBoABAAAACIAP//AQBoABEAAACIAAAAAQBoABIAAACIAAEAAQBoABMAAACIAAIAAQBoABQAAACIAAMAAQBoABUAAACIAAQAAQBoABYAAACIAAUAAQBoABcAAACIAAYAAQBoABgAAACIAAcAAQBoABkAAACIAAgAAQBoABoAAACJAPn/AQBpAAsAAACJAPr/AQBpAAwAAACJAPv/AQBpAA0AAACJAPz/AQBpAA4AAACJAP3/AQBpAA8AAACJAP7/AQBpABAAAACJAP//AQBpABEAAACJAAAAAQBpABIAAACJAAEAAQBpABMAAACJAAIAAQBpABQAAACJAAMAAQBpABUAAACJAAQAAQBpABYAAACJAAUAAQBpABcAAACJAAYAAQBpABgAAACJAAcAAQBpABkAAACJAAgAAQBpABoAAACKAPn/AQBqAAsAAACKAPr/AQBqAAwAAACKAPv/AQBqAA0AAACKAPz/AQBqAA4AAACKAP3/AQBqAA8AAACKAP7/AQBqABAAAACKAP//AQBqABEAAACKAAAAAQBqABIAAACKAAEAAQBqABMAAACKAAIAAQBqABQAAACKAAMAAQBqABUAAACKAAQAAQBqABYAAACKAAUAAQBqABcAAACKAAYAAQBqABgAAACKAAcAAQBqABkAAACKAAgAAQBqABoAAACLAPn/AQBrAAsAAACLAPr/AQBrAAwAAACLAPv/AQBrAA0AAACLAPz/AQBrAA4AAACLAP3/AQBrAA8AAACLAP7/AQBrABAAAACLAP//AQBrABEAAACLAAAAAQBrABIAAACLAAEAAQBrABMAAACLAAIAAQBrABQAAACLAAMAAQBrABUAAACLAAQAAQBrABYAAACLAAUAAQBrABcAAACLAAYAAQBrABgAAACLAAcAAQBrABkAAACLAAgAAQBrABoAAACMAPn/AQBsAAsAAACMAPr/AQBsAAwAAACMAPv/AQBsAA0AAACMAPz/AQBsAA4AAACMAP3/AQBsAA8AAACMAP7/AQBsABAAAACMAP//AQBsABEAAACMAAAAAQBsABIAAACMAAEAAQBsABMAAACMAAIAAQBsABQAAACMAAMAAQBsABUAAACMAAQAAQBsABYAAACMAAUAAQBsABcAAACMAAYAAQBsABgAAACMAAcAAQBsABkAAACMAAgAAQBsABoAAACNAPn/AQBtAAsAAACNAPr/AQBtAAwAAACNAPv/AQBtAA0AAACNAPz/AQBtAA4AAACNAP3/AQBtAA8AAACNAP7/AQBtABAAAACNAP//AQBtABEAAACNAAAAAQBtABIAAACNAAEAAQBtABMAAACNAAIAAQBtABQAAACNAAMAAQBtABUAAACNAAQAAQBtABYAAACNAAUAAQBtABcAAACNAAYAAQBtABgAAACNAAcAAQBtABkAAACNAAgAAQBtABoAAAA=")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0351563, 0.0351563, 0.0351563, 1)
 
 [node name="dungeon-tiles-01" parent="." instance=ExtResource("3_yfe46")]
@@ -54,7 +65,210 @@ persistent = true
 persistent_location = Vector2(191, 114)
 
 [node name="TorchDungeon" parent="." instance=ExtResource("9_mugp8")]
-position = Vector2(128, 176)
+position = Vector2(136, 168)
+
+[node name="PointLight2D" parent="TorchDungeon" index="3"]
+energy = 1.68
+texture_scale = 1.3
+
+[node name="TorchDungeon2" parent="." instance=ExtResource("9_mugp8")]
+position = Vector2(376, 168)
+
+[node name="PointLight2D" parent="TorchDungeon2" index="3"]
+energy = 1.68
+texture_scale = 1.3
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Goblin" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1104, -2168)
+
+[node name="Goblin12" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1008, -2120)
+
+[node name="Goblin6" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-896, -2064)
+
+[node name="Goblin7" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1384, -2064)
+
+[node name="Goblin8" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1168, -2152)
+
+[node name="Goblin20" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1184, -2120)
+
+[node name="Goblin23" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1152, -2088)
+
+[node name="Goblin9" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1320, -2152)
+
+[node name="Goblin15" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1288, -2120)
+
+[node name="Goblin10" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1008, -2184)
+
+[node name="Goblin19" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1048, -2152)
+
+[node name="Goblin18" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-952, -2160)
+
+[node name="Goblin14" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-936, -2040)
+
+[node name="Goblin11" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1248, -2112)
+
+[node name="Goblin16" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1312, -2064)
+
+[node name="Goblin21" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1256, -2064)
+
+[node name="Goblin2" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1224, -2168)
+
+[node name="Goblin17" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1376, -2144)
+
+[node name="Goblin3" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1352, -2104)
+
+[node name="Goblin4" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-944, -2096)
+
+[node name="Goblin5" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1064, -2088)
+
+[node name="Goblin22" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-984, -2064)
+
+[node name="Goblin13" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1112, -2112)
+
+[node name="Goblin24" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1104, -2328)
+
+[node name="Goblin25" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1008, -2280)
+
+[node name="Goblin26" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-896, -2224)
+
+[node name="Goblin27" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1384, -2224)
+
+[node name="Goblin28" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1168, -2312)
+
+[node name="Goblin29" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1184, -2280)
+
+[node name="Goblin30" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1152, -2248)
+
+[node name="Goblin31" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1320, -2312)
+
+[node name="Goblin32" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1288, -2280)
+
+[node name="Goblin33" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(-1008, -2344)
+
+[node name="Goblin34" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1064, -1848)
+
+[node name="Goblin35" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1160, -1856)
+
+[node name="Goblin36" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1176, -1736)
+
+[node name="Goblin37" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(864, -1808)
+
+[node name="Goblin38" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(800, -1760)
+
+[node name="Goblin39" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(856, -1760)
+
+[node name="Goblin40" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(888, -1864)
+
+[node name="Goblin41" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(736, -1840)
+
+[node name="Goblin42" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(760, -1800)
+
+[node name="Goblin43" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1168, -1792)
+
+[node name="Goblin44" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1048, -1784)
+
+[node name="Goblin45" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1128, -1760)
+
+[node name="Goblin46" parent="Enemies" instance=ExtResource("11_ih5cr")]
+position = Vector2(1000, -1808)
+
+[node name="Orc" parent="Enemies" instance=ExtResource("12_rbbpx")]
+position = Vector2(1520, -1856)
+
+[node name="ArmoredGoblin" parent="Enemies" instance=ExtResource("13_yfe46")]
+position = Vector2(2952, -2088)
+
+[node name="ArmoredGoblin2" parent="Enemies" instance=ExtResource("13_yfe46")]
+position = Vector2(2736, -2008)
+
+[node name="ArmoredGoblin3" parent="Enemies" instance=ExtResource("13_yfe46")]
+position = Vector2(3224, -2024)
+
+[node name="ArmoredGoblin4" parent="Enemies" instance=ExtResource("13_yfe46")]
+position = Vector2(3096, -2120)
+
+[node name="ArmoredGoblin5" parent="Enemies" instance=ExtResource("13_yfe46")]
+position = Vector2(2800, -2128)
+
+[node name="QuestActivatedSwitch2" type="Node2D" parent="."]
+script = ExtResource("14_n2nyg")
+check_type = 2
+react_to_global_signal = true
+linked_quest = ExtResource("15_bkm0i")
+quest_step = 1
+settings_summary = "UPDATE QUEST:
+Quest: Abandoned Temple
+Checking if player is on step: find abandoned temple"
+metadata/_custom_type_script = "uid://banrw54ry8ssi"
+
+[node name="TriggerArea2" parent="QuestActivatedSwitch2" instance=ExtResource("16_5qspd")]
+position = Vector2(248, 168)
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuestActivatedSwitch2/TriggerArea2"]
+position = Vector2(8, 8)
+shape = SubResource("CircleShape2D_55bac")
+
+[node name="QuestAdvanceTrigger" type="Node2D" parent="QuestActivatedSwitch2/TriggerArea2"]
+script = ExtResource("17_kyw00")
+signal_name = "player_entered"
+linked_quest = ExtResource("15_bkm0i")
+quest_step = 1
+settings_summary = "UPDATE QUEST:
+Quest: Abandoned Temple
+Step: 1 - find abandoned temple
+Complete: false"
+metadata/_custom_type_script = "uid://dqo11wbbbowm3"
 
 [connection signal="activated" from="PressurePlate" to="BarredDoor" method="open_door"]
 [connection signal="deactivated" from="PressurePlate" to="BarredDoor" method="close_door"]
+
+[editable path="TorchDungeon"]
+[editable path="TorchDungeon2"]

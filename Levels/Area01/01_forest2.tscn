@@ -108,7 +108,7 @@ position = Vector2(1136, 8)
 position = Vector2(1048, 16)
 
 [node name="Plant29" parent="Props" instance=ExtResource("21_wt8t4")]
-position = Vector2(960, 16)
+position = Vector2(960, 24)
 
 [node name="Plant33" parent="Props" instance=ExtResource("21_wt8t4")]
 position = Vector2(960, 112)

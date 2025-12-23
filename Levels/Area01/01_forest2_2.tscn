@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ba2fjdmwuhyta"]
+[gd_scene load_steps=22 format=4 uid="uid://ba2fjdmwuhyta"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_ifayf"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_xsj10"]
@@ -18,6 +18,7 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="16_xsj10"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="17_bah24"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="18_xsj10"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="19_bah24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d2vj"]
 size = Vector2(304, 88)
@@ -114,7 +115,7 @@ item_count = 3
 respawnable = false
 
 [node name="ItemPickup4" parent="Props" instance=ExtResource("8_okpif")]
-position = Vector2(297.07034, -597.89465)
+position = Vector2(295.95245, -598.9336)
 item_data = ExtResource("9_2j0ch")
 respawnable = false
 
@@ -1076,3 +1077,27 @@ position = Vector2(1800, 552)
 
 [node name="Leafs3" parent="." instance=ExtResource("18_xsj10")]
 position = Vector2(304, 808)
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(2088.0002, 104.00008)
+rotation = 1.047196
+scale = Vector2(0.6806122, 0.8352392)
+texture = ExtResource("19_bah24")
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(-128, 256)
+rotation = -0.78539705
+scale = Vector2(0.9580084, 0.8352392)
+texture = ExtResource("19_bah24")
+
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(-143.99998, 816)
+rotation = -0.78539705
+scale = Vector2(0.9580084, 0.8352392)
+texture = ExtResource("19_bah24")
+
+[node name="PointLight2D7" type="PointLight2D" parent="."]
+position = Vector2(384, 1503.9999)
+rotation = -3.1415882
+scale = Vector2(0.9580084, 0.8352392)
+texture = ExtResource("19_bah24")

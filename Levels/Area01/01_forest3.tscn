@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://delb33wkyd1ot"]
+[gd_scene load_steps=27 format=4 uid="uid://delb33wkyd1ot"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_1isia"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_p87ns"]
@@ -21,6 +21,7 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="20_q43gn"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="21_j8rob"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="21_p87ns"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="22_q43gn"]
 
 [sub_resource type="Resource" id="Resource_yynal"]
 script = ExtResource("10_4trk6")
@@ -481,5 +482,11 @@ position = Vector2(358, 145)
 
 [node name="Leafs2" parent="." instance=ExtResource("21_p87ns")]
 position = Vector2(539, 612)
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-125.000015, 293.00003)
+rotation = -1.047196
+scale = Vector2(0.6806122, 0.8352392)
+texture = ExtResource("22_q43gn")
 
 [editable path="Enemies/Orc2"]

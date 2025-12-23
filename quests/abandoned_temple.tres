@@ -19,9 +19,9 @@ metadata/_custom_type_script = "uid://dbyrfay6we700"
 
 [resource]
 script = ExtResource("4_eeu2l")
-title = "Abandoned temple"
-description = "Somewhere in this forest lies Abandoned temple. Maybe there is a way to Daingne-Bean through it?"
-steps = Array[String](["Find Abandoned temple", "Examine Abandoned temple"])
+title = "Abandoned Temple"
+description = "Somewhere in this forest lies Abandoned Temple. Maybe there is a way to Daingne-Bean through it?"
+steps = Array[String](["Find Abandoned Temple", "Examine Abandoned Temple"])
 reward_xp = 50
 reward_items = Array[ExtResource("1_1a5qb")]([SubResource("Resource_18kc5"), SubResource("Resource_clh5w")])
 metadata/_custom_type_script = "uid://7ba1efrybphi"

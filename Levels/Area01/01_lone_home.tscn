@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://durt3f5pildyb"]
+[gd_scene load_steps=29 format=4 uid="uid://durt3f5pildyb"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_7y3vb"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_lc8n7"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="19_4336f"]
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="20_suanp"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="21_chx4c"]
+[ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="22_suanp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olm4v"]
 size = Vector2(2072, 66)
@@ -695,3 +696,9 @@ material = ExtResource("21_chx4c")
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(1, 1, 1, 0)
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(1912.0001, 160)
+rotation = 0.261799
+scale = Vector2(0.6806122, 0.8352392)
+texture = ExtResource("22_suanp")
