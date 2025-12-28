@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://2skrsr8v2bj3"]
+[gd_scene load_steps=62 format=4 uid="uid://2skrsr8v2bj3"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_xqm6i"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ij12k"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://b0p20sqekaail" path="res://npc/npc_behavior_wander.tscn" id="27_whcxt"]
 [ext_resource type="Resource" uid="uid://cj461s0gfhn2g" path="res://items/ability_bomb.tres" id="28_kvwu0"]
 [ext_resource type="Resource" uid="uid://cggy6yuevygk6" path="res://npc/00_npcs/00_hero.tres" id="29_iwdc0"]
+[ext_resource type="Script" uid="uid://cdaliyeb1d5k4" path="res://Interactables/dialog/scripts/cutscene_action_music.gd" id="29_rlbco"]
 [ext_resource type="Script" uid="uid://bqyb0s0d404xv" path="res://Interactables/dialog/scripts/dialog_cutscene.gd" id="30_vw5t6"]
 [ext_resource type="Script" uid="uid://bx24vr7ah41at" path="res://Interactables/dialog/scripts/cutscene_action_move.gd" id="31_wcnso"]
 [ext_resource type="Script" uid="uid://dqo11wbbbowm3" path="res://quests/utility_nodes/quest_advance_trigger.gd" id="32_wcnso"]
@@ -40,6 +41,7 @@
 [ext_resource type="Resource" uid="uid://be6pgqh4u02ny" path="res://npc/00_npcs/Sol.tres" id="39_iwdc0"]
 [ext_resource type="PackedScene" uid="uid://0dsqevslveep" path="res://npc/npc2.tscn" id="40_rlbco"]
 [ext_resource type="Script" uid="uid://cg06ea0pdepv" path="res://Interactables/dialog/scripts/cutscene_action_camera.gd" id="40_stv3e"]
+[ext_resource type="AudioStream" uid="uid://bdq8vl4d8p62d" path="res://Levels/Music/example_music_01.ogg" id="41_u7eyc"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="43_vw5t6"]
 [ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="44_0rt6k"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="44_ugfek"]
@@ -78,10 +80,40 @@ radius = 96.0
 blend_mode = 1
 light_mode = 1
 
+[sub_resource type="Curve" id="Curve_u7eyc"]
+_data = [Vector2(0, 0.078651786), 0.0, 0.0, 0, 0, Vector2(0.50710905, 0.7415731), 0.0, 0.0, 0, 0, Vector2(0.99052143, 0.04494381), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lav2n"]
+curve = SubResource("Curve_u7eyc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hbp5h"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(150, 80, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 500, 0)
+alpha_curve = SubResource("CurveTexture_lav2n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u7eyc"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 80, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 500, 0)
+alpha_curve = SubResource("CurveTexture_lav2n")
+
 [node name="01_forest1" type="Node2D"]
 script = ExtResource("1_xqm6i")
 music = ExtResource("2_ij12k")
 weather_active = true
+weather_layer_1 = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.72156864, 0.7254902, 0.85490197, 1)
@@ -2456,6 +2488,12 @@ wait_time = 5.0
 
 [node name="NpcWanderBehavior" parent="NPCs/QuestActivatedSwitch/NPC4" instance=ExtResource("27_whcxt")]
 
+[node name="TutorialHintSave2" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("37_vjfvh")]
+position = Vector2(1176, 560)
+description = "Press \"W,S,A,D\" to move, press \"E\" to interact."
+target_nodes = Array[NodePath]([NodePath("")])
+action_signal_name = "bonfire_used"
+
 [node name="LevelTransition2" parent="." instance=ExtResource("6_ij12k")]
 position = Vector2(1144, 360)
 level = "uid://2skrsr8v2bj3"
@@ -2474,7 +2512,7 @@ Checking if player has completed step: find the courier station"
 metadata/_custom_type_script = "uid://banrw54ry8ssi"
 
 [node name="TriggerArea" parent="QuestActivatedSwitch" instance=ExtResource("47_6mffx")]
-position = Vector2(856, 560)
+position = Vector2(872, 584)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestActivatedSwitch/TriggerArea"]
 position = Vector2(24, 24)
@@ -2487,8 +2525,13 @@ visible = false
 script = ExtResource("30_vw5t6")
 metadata/_custom_type_script = "uid://bqyb0s0d404xv"
 
+[node name="CutsceneActionMusic" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene"]
+script = ExtResource("29_rlbco")
+track = ExtResource("41_u7eyc")
+metadata/_custom_type_script = "uid://cdaliyeb1d5k4"
+
 [node name="CutsceneActionCamera" type="Node2D" parent="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene"]
-position = Vector2(992, 696)
+position = Vector2(1088, 696)
 script = ExtResource("40_stv3e")
 move_duration = 5.0
 move_speed = 59.0
@@ -2696,12 +2739,6 @@ hframes = 8
 vframes = 3
 frame = 18
 
-[node name="TutorialHintSave2" parent="." instance=ExtResource("37_vjfvh")]
-position = Vector2(1176, 560)
-description = "Press \"W,S,A,D\" to move, press \"E\" to interact."
-target_nodes = Array[NodePath]([NodePath("")])
-action_signal_name = "bonfire_used"
-
 [node name="Leafs" parent="." instance=ExtResource("43_vw5t6")]
 position = Vector2(408, 352)
 
@@ -2750,6 +2787,108 @@ rotation = -0.261799
 scale = Vector2(0.5469133, 0.55697346)
 texture = ExtResource("46_ugfek")
 offset = Vector2(0, 256)
+
+[node name="Splash" type="GPUParticles2D" parent="."]
+position = Vector2(224, 440)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_hbp5h")
+
+[node name="Splash13" type="GPUParticles2D" parent="."]
+position = Vector2(1160, 440)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_hbp5h")
+
+[node name="Splash14" type="GPUParticles2D" parent="."]
+position = Vector2(1184, 312)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_hbp5h")
+
+[node name="Splash15" type="GPUParticles2D" parent="."]
+position = Vector2(1192, 664)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_hbp5h")
+
+[node name="Splash16" type="GPUParticles2D" parent="."]
+position = Vector2(1320, 600)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_hbp5h")
+
+[node name="Splash2" type="GPUParticles2D" parent="."]
+position = Vector2(336, 424)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash3" type="GPUParticles2D" parent="."]
+position = Vector2(424, 720)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash4" type="GPUParticles2D" parent="."]
+position = Vector2(400, 592)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash17" type="GPUParticles2D" parent="."]
+position = Vector2(1192, 776)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash5" type="GPUParticles2D" parent="."]
+position = Vector2(480, 352)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash6" type="GPUParticles2D" parent="."]
+position = Vector2(352, 264)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash7" type="GPUParticles2D" parent="."]
+position = Vector2(632, 416)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash8" type="GPUParticles2D" parent="."]
+position = Vector2(736, 488)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash9" type="GPUParticles2D" parent="."]
+position = Vector2(848, 600)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash10" type="GPUParticles2D" parent="."]
+position = Vector2(968, 600)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash11" type="GPUParticles2D" parent="."]
+position = Vector2(1048, 656)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
+
+[node name="Splash12" type="GPUParticles2D" parent="."]
+position = Vector2(1168, 648)
+amount = 25
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_u7eyc")
 
 [connection signal="finished" from="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction" to="NPCs/Thaaw/QuestActivatedSwitch2/DialogInteraction/DialogCutscene" method="play"]
 [connection signal="player_entered" from="QuestActivatedSwitch/TriggerArea" to="QuestActivatedSwitch/TriggerArea/DialogInteraction/DialogCutscene" method="play"]
