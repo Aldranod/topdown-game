@@ -12,7 +12,7 @@ extends Area2D
 # The name of the signal to listen for on each target node.
 @export var action_signal_name: String = "plant_destroyed"
 @export var pause_menu_signal : bool = false
-@export var player_signal : bool = false
+@export var global_signal : bool = false
 
 func _ready() -> void:
 	persistent_data_handler.get_value()
@@ -24,8 +24,9 @@ func _ready() -> void:
 	self.body_exited.connect(_on_body_exited)
 	if pause_menu_signal:
 		PauseMenu.shown.connect(_on_action_performed)
-	if player_signal:
-		PlayerManager.player.connect(action_signal_name, _on_action_performed)	
+	if global_signal:
+		Messages.connect(action_signal_name, _on_action_performed)
+		#PlayerManager.player.connect(action_signal_name, _on_action_performed)	
 	# Loop through every NodePath assigned in the editor.
 	for node_path in target_nodes:
 		if node_path.is_empty():

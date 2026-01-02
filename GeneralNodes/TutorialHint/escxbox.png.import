@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqrm5skt68mhp"
-path="res://.godot/imported/A.png-8905c26d23b925613e682369f08ccc40.ctex"
+uid="uid://biwcge443788i"
+path="res://.godot/imported/escxbox.png-85acc164f7fc9549460bce7c27e4999e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GeneralNodes/TutorialHint/A.png"
-dest_files=["res://.godot/imported/A.png-8905c26d23b925613e682369f08ccc40.ctex"]
+source_file="res://GeneralNodes/TutorialHint/escxbox.png"
+dest_files=["res://.godot/imported/escxbox.png-85acc164f7fc9549460bce7c27e4999e.ctex"]
 
 [params]
 

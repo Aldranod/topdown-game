@@ -8,7 +8,6 @@ class_name SavePoint extends Node2D
 @onready var point_light_2d: PointLight2D = $PointLight2D
 var bonfire_lit : bool = false
 var particles : ParticleProcessMaterial
-#signal bonfire_used
 
 func _ready() -> void:
 	set_bonfire_state()
@@ -32,7 +31,7 @@ func _on_area_exit( _a : Area2D) -> void:
 	pass
 	
 func save() -> void:
-	#bonfire_used.emit()
+	Messages.bonfire_used.emit()
 	label_animation_player.play("saved")
 	label_animation_player.seek(0)
 	if not bonfire_lit:

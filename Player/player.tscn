@@ -2324,7 +2324,7 @@ script = ExtResource("4_gwnis")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_k53q1")
-move_speed = 400.0
+move_speed = 120.0
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_fhl08")

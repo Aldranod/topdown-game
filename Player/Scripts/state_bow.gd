@@ -17,7 +17,7 @@ func Enter() -> void:
 	var arrow : Arrow = ARROW.instantiate()
 	player.add_sibling(arrow)
 	if direction == Vector2.UP:
-		arrow.global_position = player.global_position + (direction * 34)
+		arrow.global_position = player.global_position + (direction * 44)
 	else:
 		arrow.global_position = player.global_position + (direction * 28)
 	arrow.fire(direction)

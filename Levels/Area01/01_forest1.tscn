@@ -128,7 +128,7 @@ size = 5
 
 [node name="TutorialHint2" parent="." instance=ExtResource("37_vjfvh")]
 position = Vector2(632, 368)
-description = "Press \"ctrl\" or [img={20}x{20}]res://GeneralNodes/TutorialHint/A.png[/img] to attack"
+description = "Press [img={20}x{20}]res://GeneralNodes/TutorialHint/ctrl.png[/img] or [img={20}x{20}]res://GeneralNodes/TutorialHint/A.png[/img] to attack"
 target_nodes = Array[NodePath]([NodePath("../Props/Plant38"), NodePath("../Props/Plant39"), NodePath("../Props/Plant42"), NodePath("../Props/Plant41")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -2490,7 +2490,7 @@ wait_time = 5.0
 
 [node name="TutorialHintSave2" parent="NPCs/QuestActivatedSwitch" instance=ExtResource("37_vjfvh")]
 position = Vector2(1176, 560)
-description = "Press \"W,S,A,D\" to move, press \"E\" to interact."
+description = "Press [img={20}x{20}]res://GeneralNodes/TutorialHint/E.png[/img] or [img={20}x{20}]res://GeneralNodes/TutorialHint/X.png[/img] to interact."
 target_nodes = Array[NodePath]([NodePath("")])
 action_signal_name = "bonfire_used"
 
@@ -2770,7 +2770,7 @@ respawnable = false
 
 [node name="Area2D2" parent="." instance=ExtResource("37_vjfvh")]
 position = Vector2(400, 808)
-description = "Press \"ESC\" to open your equipment."
+description = "Press [img={20}x{20}]res://GeneralNodes/TutorialHint/esc.png[/img] or [img={20}x{20}]res://GeneralNodes/TutorialHint/escxbox.png[/img] to open your equipment."
 action_signal_name = ""
 pause_menu_signal = true
 
