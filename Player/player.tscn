@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=122 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -45,6 +45,8 @@
 [ext_resource type="AudioStream" uid="uid://ckj2rakdomw1" path="res://Player/Audio/grapple_chain.wav" id="41_dy65m"]
 [ext_resource type="PackedScene" uid="uid://dgscudnwe6np7" path="res://GeneralNodes/rain_particles.tscn" id="43_ie76m"]
 [ext_resource type="Script" uid="uid://cq1mj8lvdhh4" path="res://Props/torches/torch_light_flicker.gd" id="45_maysp"]
+[ext_resource type="Texture2D" uid="uid://qapvw8d7terh" path="res://Player/Sprites/input_icons.png" id="46_1l10g"]
+[ext_resource type="Script" uid="uid://cu7m70u1tcf6v" path="res://Player/Scripts/input_hints.gd" id="46_6rl0i"]
 
 [sub_resource type="Gradient" id="Gradient_bqv45"]
 offsets = PackedFloat32Array(0.119469, 0.300885, 0.619469, 0.867257, 1)
@@ -2511,5 +2513,14 @@ one_shot = true
 [node name="GPUParticles2D2" parent="." instance=ExtResource("43_ie76m")]
 z_index = 4
 emitting = false
+
+[node name="InputHints" type="Node2D" parent="."]
+position = Vector2(0, -56)
+script = ExtResource("46_6rl0i")
+
+[node name="Sprite2D" type="Sprite2D" parent="InputHints"]
+texture = ExtResource("46_1l10g")
+hframes = 18
+frame = 14
 
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://cig22x276n8km"]
+
+[ext_resource type="Texture2D" uid="uid://b40cf01pbj2l5" path="res://Props/torches/torch2.png" id="1_623ec"]
+[ext_resource type="Script" uid="uid://cq1mj8lvdhh4" path="res://Props/torches/torch_light_flicker.gd" id="2_34did"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bqv45"]
+radius = 7.999942
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_bqv45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rwsb4"]
+resource_name = "default"
+length = 0.53
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6cqi"]
+_data = {
+&"RESET": SubResource("Animation_bqv45"),
+&"default": SubResource("Animation_rwsb4")
+}
+
+[sub_resource type="Gradient" id="Gradient_bqv45"]
+offsets = PackedFloat32Array(0.119469, 0.300885, 0.619469, 0.867257, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.733333, 0, 1, 1, 0.38809, 0.130318, 1, 0.433594, 0.0884552, 0.0560639, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bqv45"]
+gradient = SubResource("Gradient_bqv45")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bqv45"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_k6cqi"]
+offsets = PackedFloat32Array(0.00606061, 0.339394, 0.484848, 1)
+colors = PackedColorArray(1, 0.94902, 0.533333, 1, 1, 0.690196, 0, 1, 1, 0.811765, 0, 1, 0.521569, 0.0588235, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3l6lf"]
+gradient = SubResource("Gradient_k6cqi")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bqv45"]
+particle_flag_disable_z = true
+direction = Vector3(0, -20, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_3l6lf")
+turbulence_enabled = true
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = -20.0
+turbulence_initial_displacement_max = 20.0
+
+[node name="WallTorch" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -26)
+texture = ExtResource("1_623ec")
+hframes = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -24)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 3.1415927
+shape = SubResource("CapsuleShape2D_bqv45")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k6cqi")
+}
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -25)
+texture = SubResource("GradientTexture2D_bqv45")
+script = ExtResource("2_34did")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_bqv45")
+position = Vector2(0, -20)
+amount = 3
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_bqv45")
