@@ -3,6 +3,7 @@ class_name State_SecondAttack extends State
 var direction : Vector2
 var attacking : bool = false
 @export var knockback_speed : float = 80.0
+@export var charge_speed : float = 150.0
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
@@ -18,6 +19,7 @@ func Enter() -> void:
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack2")
 	attack_anim.play("attack2_" + player.AnimDirection())
+	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound
@@ -35,6 +37,7 @@ func Exit() -> void:
 	hurt_box.did_damage.disconnect(_on_hit_landed)
 	attacking = false
 	hurt_box.monitoring = false
+	#await get_tree().create_timer(1).timeout
 	await get_tree().process_frame
 	pass
 	

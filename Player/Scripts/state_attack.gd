@@ -4,6 +4,7 @@ var direction : Vector2
 
 var attacking : bool = false
 @export var knockback_speed : float = 0.0
+@export var charge_speed : float = 0.0
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
@@ -19,6 +20,7 @@ func Enter() -> void:
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack")
 	attack_anim.play("attack_" + player.AnimDirection())
+	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound
@@ -64,5 +66,5 @@ func _on_hit_landed() -> void:
 	if player.cardinal_direction == Vector2.DOWN:
 		player.velocity = -direction * -knockback_speed
 	else:
-		player.velocity = direction * -knockback_speed	
+		player.velocity = direction * -knockback_speed
 	pass

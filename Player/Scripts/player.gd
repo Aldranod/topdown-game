@@ -30,6 +30,7 @@ var arrow_count : int = 1 : set = _set_arrow_count
 var bomb_count : int = 1 : set = _set_bomb_count
 
 var combo_window_open : bool = false
+var attack_window_open : bool = false
 
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -43,7 +44,7 @@ var combo_window_open : bool = false
 @onready var carry: State_Carry = $StateMachine/Carry
 @onready var player_abilities: PlayerAbilities = $Abilities
 @onready var combo_timer: Timer = $ComboTimer
-@onready var rain: GPUParticles2D = $GPUParticles2D2
+@onready var attack_timer: Timer = $AttackTimer
 
 func _ready():
 	PlayerManager.player = self
