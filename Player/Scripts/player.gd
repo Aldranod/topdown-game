@@ -5,7 +5,6 @@ signal player_damaged( hurt_box : HurtBox)
 signal player_dashing
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
-
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
@@ -23,14 +22,14 @@ var attack : int =1 :
 var defense : int = 1
 var defense_bonus: int = 0
 
-var dash_cooldown_duration: float = 2.5
+var dash_cooldown_duration: float = 1.5
 var dash_cooldown_timer: float = 0.0 
 
 var arrow_count : int = 1 : set = _set_arrow_count
 var bomb_count : int = 1 : set = _set_bomb_count
 
 var combo_window_open : bool = false
-var attack_window_open : bool = false
+var attack_window_open : bool = true
 
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -170,6 +169,18 @@ func can_dash() -> bool:
 func start_dash_cooldown() -> void:
 	dash_cooldown_timer = dash_cooldown_duration
 	pass
+
+func _on_attack_timer_timeout() ->void:
+	attack_window_open = true
+	pass
+
+func start_attack() ->void:
+	if not attack_timer.is_stopped():
+		attack_window_open = false
+		return
+	attack_timer.start()
+	attack_window_open = false
+	pass	
 
 func _on_combo_timer_timeout() ->void:
 	combo_window_open = false

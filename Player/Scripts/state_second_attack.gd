@@ -16,9 +16,12 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
+	player.start_attack()
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack2")
-	attack_anim.play("attack2_" + player.AnimDirection())
+	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN:
+		#$"../../Sprite2D".scale.x = -1
+	#attack_anim.play("attack2_" + player.AnimDirection())
 	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
@@ -32,6 +35,8 @@ func Enter() -> void:
 	pass
 	
 func Exit() -> void:
+	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN or player.cardinal_direction == Vector2.RIGHT:
+		#$"../../Sprite2D".scale.x = 1
 	PlayerManager.player.combo_window_open = false
 	animation_player.animation_finished.disconnect(EndAttack)
 	hurt_box.did_damage.disconnect(_on_hit_landed)

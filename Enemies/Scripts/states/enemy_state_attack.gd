@@ -52,5 +52,7 @@ func attack_select() -> void:
 		if rand == 0:
 			anim_name = "attack"
 		else:
-			anim_name = "attack2"	
+			anim_name = "attack2"
+	else:
+		anim_name = "attack"			
 	pass

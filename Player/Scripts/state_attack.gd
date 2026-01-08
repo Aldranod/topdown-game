@@ -17,6 +17,7 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
+	player.start_combo()
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack")
 	attack_anim.play("attack_" + player.AnimDirection())

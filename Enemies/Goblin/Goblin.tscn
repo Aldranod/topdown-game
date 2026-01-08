@@ -1077,7 +1077,7 @@ drops = Array[ExtResource("13_ys2o2")]([SubResource("Resource_yynal"), SubResour
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state")]
 script = ExtResource("16_mvdyt")
 anim_name = "chase"
-chase_speed = 60.0
+chase_speed = 100.0
 turn_rate = 0.5
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
@@ -1085,6 +1085,7 @@ idle_state = NodePath("../Idle")
 
 [node name="Attack" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("17_0ge8g")
+attack_cooldown = 0.1
 idle_state = NodePath("../Idle")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -31,8 +31,8 @@ func HandleInput( _event: InputEvent) -> State:
 	if _event.is_action_pressed("attack"):
 		if PlayerManager.player.combo_window_open:
 			return second_attack
-		else:	
-			return attack
+		if PlayerManager.player.attack_window_open:
+			return attack	
 	elif _event.is_action_pressed("interact"):
 		PlayerManager.interact()
 	elif _event.is_action_pressed("dash"):
