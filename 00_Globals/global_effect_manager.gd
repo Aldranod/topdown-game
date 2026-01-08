@@ -2,6 +2,7 @@ extends Node
 
 const DAMAGE_TEXT = preload("res://00_Globals/global_effects/damage_text.tscn")
 const HITSPARK : PackedScene = preload("res://00_Globals/global_effects/hitspark.tscn")
+const DUST = preload("res://00_Globals/global_effects/dust.tscn")
 
 func damage_text(_damage : int, _pos : Vector2) -> void:
 	var _t : DamageText = DAMAGE_TEXT.instantiate()
@@ -14,6 +15,14 @@ func frame_freeze(timescale : float, duration: float) -> void:
 	Engine.time_scale = timescale
 	await get_tree().create_timer(duration * timescale).timeout
 	Engine.time_scale = 1.0
+	pass
+
+func emit_dust() -> void:
+	var _d = DUST.instantiate()
+	_d.global_position = PlayerManager.player.position + Vector2(0,-5)
+	get_tree().current_scene.add_child(_d)
+	var anim_name : String = "default"
+	_d.play_animation(anim_name)
 	pass
 
 func set_hitspark(target : String, _pos : Vector2, _boss : bool = false, _dir : Vector2 = Vector2.ZERO, ) -> void:

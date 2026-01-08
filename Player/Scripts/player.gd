@@ -31,6 +31,8 @@ var bomb_count : int = 1 : set = _set_bomb_count
 var combo_window_open : bool = false
 var attack_window_open : bool = true
 
+var distance_in_pixel : float
+
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
@@ -66,7 +68,13 @@ func _process(_delta):
 	pass	
 	
 func _physics_process(_delta):
+	var initial_position = global_position
 	move_and_slide()
+	distance_in_pixel += global_position.distance_to(initial_position)
+	
+	if distance_in_pixel >= 64:
+		distance_in_pixel -= 64
+		EffectManager.emit_dust()	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
