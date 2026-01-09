@@ -395,6 +395,9 @@ hp = 4
 position = Vector2(-512, 984)
 hp = 4
 
+[node name="Orc" parent="Enemies" instance=ExtResource("15_vfm8y")]
+position = Vector2(-609, 458)
+
 [node name="LevelTransition3" parent="." instance=ExtResource("10_5duvv")]
 position = Vector2(-48, 704)
 level = "uid://dk1fejudai8ki"
@@ -438,10 +441,6 @@ material = ExtResource("14_rfycy")
 offset_right = 480.0
 offset_bottom = 270.0
 color = Color(1, 1, 1, 0)
-
-[node name="Orc3" parent="." instance=ExtResource("15_vfm8y")]
-position = Vector2(-904, 328)
-attack_range = 40.0
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
 position = Vector2(32, 272)

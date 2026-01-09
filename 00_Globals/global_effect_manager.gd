@@ -19,7 +19,7 @@ func frame_freeze(timescale : float, duration: float) -> void:
 
 func emit_dust() -> void:
 	var _d = DUST.instantiate()
-	_d.global_position = PlayerManager.player.position + Vector2(0,-5)
+	_d.global_position = PlayerManager.player.position + Vector2(0,0)
 	get_tree().current_scene.add_child(_d)
 	var anim_name : String = "default"
 	_d.play_animation(anim_name)

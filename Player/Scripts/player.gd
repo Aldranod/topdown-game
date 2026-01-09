@@ -33,6 +33,8 @@ var attack_window_open : bool = true
 
 var distance_in_pixel : float
 
+var initial_position
+
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
@@ -68,13 +70,9 @@ func _process(_delta):
 	pass	
 	
 func _physics_process(_delta):
-	var initial_position = global_position
+	initial_position = global_position
 	move_and_slide()
-	distance_in_pixel += global_position.distance_to(initial_position)
-	
-	if distance_in_pixel >= 64:
-		distance_in_pixel -= 64
-		EffectManager.emit_dust()	
+	dust_emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
@@ -207,3 +205,11 @@ func player_camera_switch() -> void:
 
 func player_light_switch(value: bool) -> void:	
 	$PointLight2D.visible = value
+
+func dust_emit() -> void:
+	distance_in_pixel += global_position.distance_to(initial_position)
+	
+	if distance_in_pixel >= 68:
+		distance_in_pixel -= 68
+		EffectManager.emit_dust()	
+	pass	
