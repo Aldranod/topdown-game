@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bil173ofqnh1x"]
+[gd_scene load_steps=19 format=4 uid="uid://bil173ofqnh1x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_umtxh"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_th4tt"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="9_odo5p"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="10_5duvv"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="11_4jrlk"]
+[ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="11_yofaq"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="12_bqdek"]
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="13_a5yc2"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="14_rfycy"]
@@ -210,6 +211,7 @@ position = Vector2(40, -104)
 collision = false
 
 [node name="Tree" parent="Props" instance=ExtResource("5_l11jw")]
+z_index = 1
 position = Vector2(-1320, -1040)
 
 [node name="Tree5" parent="Props" instance=ExtResource("5_l11jw")]
@@ -396,7 +398,13 @@ position = Vector2(-512, 984)
 hp = 4
 
 [node name="Orc" parent="Enemies" instance=ExtResource("15_vfm8y")]
-position = Vector2(-609, 458)
+position = Vector2(207, 446)
+
+[node name="Goblin" parent="Enemies" instance=ExtResource("11_yofaq")]
+position = Vector2(-518, 489)
+
+[node name="GoblinAmbush" parent="Enemies" instance=ExtResource("11_yofaq")]
+position = Vector2(-346, 494)
 
 [node name="LevelTransition3" parent="." instance=ExtResource("10_5duvv")]
 position = Vector2(-48, 704)
@@ -415,7 +423,7 @@ size = 4
 side = 1
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("11_4jrlk")]
-position = Vector2(-416, 520)
+position = Vector2(-250, 205)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.72156864, 0.7254902, 0.85490197, 1)

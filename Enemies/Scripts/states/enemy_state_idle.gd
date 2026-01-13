@@ -7,6 +7,7 @@ class_name EnemyStateIdle extends EnemyState
 @export var state_duration_max : float = 1.5
 @export var after_idle_state : EnemyState
 @export var chase_state: EnemyStateChase # Add an export for the chase state
+@export var ambush: bool = false
 
 var _timer : float = 0.0
 
@@ -15,6 +16,7 @@ var _timer : float = 0.0
 @onready var vision_area: VisionArea = $"../../VisionArea"
 @onready var line_of_sight_ray: RayCast2D = $"../../LineOfSightRay"
 @onready var attack_state: EnemyStateAttack = $"../Attack"
+@onready var idle: EnemyStateIdle = $"."
 
 func init() -> void:
 	pass
@@ -49,8 +51,10 @@ func process( _delta: float ) -> EnemyState:
 
 	# If we don't have line of sight, just continue with the normal idle timer.
 	_timer -= _delta
-	if _timer <= 0:
+	if _timer <= 0 and not ambush:
 		return after_idle_state
+	else:
+		return idle	
 	return null
 
 func physics( _delta: float ) -> EnemyState:
