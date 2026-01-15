@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://b58lmqkilmjc2"]
+[gd_scene load_steps=29 format=4 uid="uid://b58lmqkilmjc2"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_mmrm0"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ax3yf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="7_ax3yf"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="8_ghwdk"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="9_lu4uy"]
+[ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="10_ghwdk"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="10_icjuy"]
 [ext_resource type="PackedScene" uid="uid://d3pt5h60ltre7" path="res://Props/Plants/Tree3.tscn" id="11_8txwn"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="12_8g2sa"]
@@ -1102,25 +1103,21 @@ position = Vector2(571, -1291)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Goblin10" parent="Enemies" instance=ExtResource("8_ghwdk")]
-position = Vector2(527, 344)
-hp = 4
-
 [node name="Goblin13" parent="Enemies" instance=ExtResource("8_ghwdk")]
 position = Vector2(-54, 600)
 hp = 4
 
-[node name="Goblin15" parent="Enemies" instance=ExtResource("8_ghwdk")]
-position = Vector2(202, 677)
-hp = 4
+[node name="GoblinAmbush" parent="Enemies" instance=ExtResource("10_ghwdk")]
+position = Vector2(322, 530)
 
-[node name="Goblin14" parent="Enemies" instance=ExtResource("8_ghwdk")]
-position = Vector2(205, 808)
-hp = 4
+[node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("10_ghwdk")]
+position = Vector2(645, 370)
 
-[node name="Goblin12" parent="Enemies" instance=ExtResource("8_ghwdk")]
-position = Vector2(363, 424)
-hp = 4
+[node name="GoblinAmbush3" parent="Enemies" instance=ExtResource("10_ghwdk")]
+position = Vector2(143, 683)
+
+[node name="GoblinAmbush4" parent="Enemies" instance=ExtResource("10_ghwdk")]
+position = Vector2(142, 821)
 
 [node name="LevelTransition3" parent="." instance=ExtResource("9_lu4uy")]
 position = Vector2(657, 1080)

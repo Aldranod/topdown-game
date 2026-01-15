@@ -9,6 +9,7 @@ var _direction :  Vector2
 @export_category("AI")
 
 @export var idle_state : EnemyState
+@onready var chase_state: EnemyStateChase = $"../Chase"
 
 func init() -> void:
 	pass
@@ -16,6 +17,7 @@ func init() -> void:
 func enter() -> void:
 	#if attack_hurt_box:
 		#attack_hurt_box.monitoring = true
+	$"../..".set_collision_mask_value(5, true) 	
 	_animation_finished = false
 	enemy.velocity = Vector2.ZERO
 	_direction = enemy.global_position.direction_to(PlayerManager.player.global_position)
@@ -36,7 +38,7 @@ func process( _delta: float ) -> EnemyState:
 	if PlayerManager.player.hp <= 0:
 		return idle_state
 	if _animation_finished == true:
-		return idle_state
+		return chase_state
 	return null
 
 func physics( _delta: float ) -> EnemyState:

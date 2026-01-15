@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://delb33wkyd1ot"]
+[gd_scene load_steps=20 format=4 uid="uid://delb33wkyd1ot"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_1isia"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_p87ns"]
@@ -6,13 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="6_q43gn"]
 [ext_resource type="PackedScene" uid="uid://d3pt5h60ltre7" path="res://Props/Plants/Tree3.tscn" id="8_ara22"]
 [ext_resource type="PackedScene" uid="uid://blmuv7dk7ny5" path="res://Props/Plants/plant.tscn" id="8_gh1bc"]
-[ext_resource type="Script" uid="uid://c5sraeeen4dul" path="res://Enemies/Scripts/drop_data.gd" id="10_4trk6"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="11_ls81i"]
-[ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="11_nrifg"]
-[ext_resource type="Resource" uid="uid://dh7avm20vuttc" path="res://items/gem.tres" id="12_dpmxw"]
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="12_kegpd"]
 [ext_resource type="Texture2D" uid="uid://bh61ygosqtksy" path="res://npc/sprites/soldier.png" id="12_ysgi6"]
-[ext_resource type="Resource" uid="uid://dj1cs88hk13yv" path="res://items/hunters_key.tres" id="13_p87ns"]
 [ext_resource type="Texture2D" uid="uid://cv3vdhr7ikmpp" path="res://Props/Sprites/cage.png" id="13_ysgi6"]
 [ext_resource type="PackedScene" uid="uid://51holitkfpng" path="res://Enemies/Orc/Orc.tscn" id="14_h3c8o"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="16_7tq58"]
@@ -22,24 +18,6 @@
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="21_j8rob"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="21_p87ns"]
 [ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="22_q43gn"]
-
-[sub_resource type="Resource" id="Resource_yynal"]
-script = ExtResource("10_4trk6")
-item = ExtResource("11_nrifg")
-probability = 33.0
-metadata/_custom_type_script = "uid://c5sraeeen4dul"
-
-[sub_resource type="Resource" id="Resource_67htc"]
-script = ExtResource("10_4trk6")
-item = ExtResource("12_dpmxw")
-probability = 49.0
-max_amount = 3
-metadata/_custom_type_script = "uid://c5sraeeen4dul"
-
-[sub_resource type="Resource" id="Resource_q43gn"]
-script = ExtResource("10_4trk6")
-item = ExtResource("13_p87ns")
-metadata/_custom_type_script = "uid://c5sraeeen4dul"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ysgi6"]
 radius = 24.0
@@ -407,20 +385,14 @@ position = Vector2(2464, -1455)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Orc2" parent="Enemies" instance=ExtResource("14_h3c8o")]
-position = Vector2(973, 274)
-respawnable = false
-attack_range = 40.0
-
-[node name="Destroy" parent="Enemies/Orc2/EnemyStateMachine" index="3"]
-drops = Array[ExtResource("10_4trk6")]([SubResource("Resource_yynal"), SubResource("Resource_67htc"), SubResource("Resource_q43gn")])
-
-[node name="Orc4" parent="Enemies" instance=ExtResource("14_h3c8o")]
-position = Vector2(638, 332)
-attack_range = 40.0
-
 [node name="ArmoredGoblin" parent="Enemies" instance=ExtResource("17_dv4f3")]
 position = Vector2(737, 237)
+
+[node name="Orc" parent="Enemies" instance=ExtResource("14_h3c8o")]
+position = Vector2(523, 302)
+
+[node name="Orc2" parent="Enemies" instance=ExtResource("14_h3c8o")]
+position = Vector2(761, 446)
 
 [node name="LevelTransition2" parent="." instance=ExtResource("16_7tq58")]
 position = Vector2(16, 328)
@@ -488,5 +460,3 @@ position = Vector2(-125.000015, 293.00003)
 rotation = -1.047196
 scale = Vector2(0.6806122, 0.8352392)
 texture = ExtResource("22_q43gn")
-
-[editable path="Enemies/Orc2"]

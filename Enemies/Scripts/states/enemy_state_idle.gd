@@ -33,7 +33,9 @@ func exit() -> void:
 func process( _delta: float ) -> EnemyState:
 	if PlayerManager.player.hp > 0:
 		if enemy._in_attack_range():
-			return 	attack_state
+			#$"../..".set_collision_mask_value(5, true)
+			ambush = false
+			return attack_state
 		# --- NEW LINE OF SIGHT LOGIC ---
 		# First, do a cheap check to see if the player is even nearby.
 		if vision_area:
@@ -46,14 +48,16 @@ func process( _delta: float ) -> EnemyState:
 				
 				# If the first thing we see is the player, start chasing!
 				if is_instance_valid(collider) and collider.is_in_group("player"):
-					if chase_state: 
+					if chase_state:
+						#$"../..".set_collision_mask_value(5, true)
+						ambush = false 
 						return chase_state
 
 	# If we don't have line of sight, just continue with the normal idle timer.
 	_timer -= _delta
 	if _timer <= 0 and not ambush:
 		return after_idle_state
-	else:
+	else:	
 		return idle	
 	return null
 

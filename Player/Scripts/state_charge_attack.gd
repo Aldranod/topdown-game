@@ -28,7 +28,7 @@ func Enter() -> void:
 	timer = charge_duration
 	is_attacking = false
 	walking = false
-	charge_hurt_box.monitoring = true
+	#charge_hurt_box.monitoring = true
 	gpu_particles_2d.emitting = true
 	gpu_particles_2d.amount = 4
 	gpu_particles_2d.explosiveness = 0

@@ -740,8 +740,7 @@ offset_bottom = 270.0
 color = Color(1, 1, 1, 0)
 
 [node name="Orc3" parent="." instance=ExtResource("14_b26wv")]
-position = Vector2(344, 320)
-attack_range = 40.0
+position = Vector2(328, 328)
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
 position = Vector2(736, 255.99998)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=44 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://d2gvr7ux81oks" path="res://GeneralNodes/TriggerArea/SecretArea.tscn" id="22_lyhnx"]
 [ext_resource type="PackedScene" uid="uid://dfao1r52i6rrt" path="res://quests/utility_nodes/quest_activated_switch.tscn" id="23_oter3"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="26_4nciu"]
+[ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="26_a8r62"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="27_a4n88"]
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="28_q1fhw"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="29_buffn"]
@@ -1578,23 +1579,8 @@ Quest: Check Courier Station
 Checking if player has completed step: find the courier station"
 metadata/_custom_type_script = "uid://banrw54ry8ssi"
 
-[node name="Goblin2" parent="QuestActivatedSwitch" instance=ExtResource("11_q1nu6")]
-position = Vector2(-648, 184)
-hp = 4
-respawnable = false
-
 [node name="Goblin3" parent="QuestActivatedSwitch" instance=ExtResource("11_q1nu6")]
 position = Vector2(80, 48)
-hp = 4
-respawnable = false
-
-[node name="Goblin4" parent="QuestActivatedSwitch" instance=ExtResource("11_q1nu6")]
-position = Vector2(624, 504)
-hp = 4
-respawnable = false
-
-[node name="Goblin" parent="QuestActivatedSwitch" instance=ExtResource("11_q1nu6")]
-position = Vector2(-240, 384)
 hp = 4
 respawnable = false
 
@@ -1604,6 +1590,21 @@ priority = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuestActivatedSwitch/TriggerArea2"]
 shape = SubResource("CircleShape2D_copt3")
+
+[node name="GoblinAmbush" parent="QuestActivatedSwitch" instance=ExtResource("26_a8r62")]
+position = Vector2(1192, 264)
+
+[node name="GoblinAmbush2" parent="QuestActivatedSwitch" instance=ExtResource("26_a8r62")]
+position = Vector2(1264, 64)
+
+[node name="GoblinAmbush3" parent="QuestActivatedSwitch" instance=ExtResource("26_a8r62")]
+position = Vector2(-848, 192)
+
+[node name="GoblinAmbush4" parent="QuestActivatedSwitch" instance=ExtResource("26_a8r62")]
+position = Vector2(-256, 456)
+
+[node name="GoblinAmbush5" parent="QuestActivatedSwitch" instance=ExtResource("26_a8r62")]
+position = Vector2(560, 528)
 
 [node name="TutorialHint" parent="." instance=ExtResource("21_rw508")]
 position = Vector2(368, 136)

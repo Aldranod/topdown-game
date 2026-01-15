@@ -45,5 +45,5 @@ target_position = Vector2(0, -20)
 collision_mask = 272
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.4
 autostart = true

@@ -1079,9 +1079,10 @@ drops = Array[ExtResource("13_f5b8q")]([SubResource("Resource_yynal"), SubResour
 script = ExtResource("16_lpt1n")
 anim_name = "chase"
 chase_speed = 100.0
-turn_rate = 0.5
+turn_rate = 0.1
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
+state_aggro_duration = 6.0
 idle_state = NodePath("../Idle")
 
 [node name="Attack" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state")]
@@ -1104,12 +1105,11 @@ libraries = {
 }
 
 [node name="VisionArea" parent="." instance=ExtResource("19_am20u")]
-visible = false
 position = Vector2(1, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
 position = Vector2(0, 4)
-polygon = PackedVector2Array(-112, -96, -2, -146, 136, -85, 196, -5, 295, 145, 102, 209, 0, 228, -121, 203, -278, 143, -194, -5)
+polygon = PackedVector2Array(-123, -186, -1, -207, 159, -188, 284, -84, 295, 145, 102, 209, 0, 228, -121, 203, -278, 143, -277, -88)
 
 [node name="PersistentDataHandler" parent="." instance=ExtResource("20_6hdgh")]
 
