@@ -72,11 +72,5 @@ func EndAttack( _newAnimName : String) -> void:
 	attacking = false
 	
 func _on_hit_landed() -> void:
-	print("2ND ATTACK DMG!")
-	direction = player.global_position.direction_to( hurt_box.global_position)
-	if player.cardinal_direction == Vector2.DOWN:
-		player.velocity = -direction * -knockback_speed
-	else:
-		player.velocity = direction * -knockback_speed	
-	pass
-	
+	var knockback_direction = direction if player.cardinal_direction != Vector2.DOWN else -direction
+	player.velocity = knockback_direction * knockback_speed
