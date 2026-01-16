@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=119 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -47,7 +47,6 @@
 [ext_resource type="Script" uid="uid://cq1mj8lvdhh4" path="res://Props/torches/torch_light_flicker.gd" id="45_maysp"]
 [ext_resource type="Texture2D" uid="uid://qapvw8d7terh" path="res://Player/Sprites/input_icons.png" id="46_1l10g"]
 [ext_resource type="Script" uid="uid://cu7m70u1tcf6v" path="res://Player/Scripts/input_hints.gd" id="46_6rl0i"]
-[ext_resource type="Shader" uid="uid://3vb8ti2w7ivd" path="res://Player/player.gdshader" id="48_7x5p2"]
 
 [sub_resource type="Gradient" id="Gradient_bqv45"]
 offsets = PackedFloat32Array(0.119469, 0.300885, 0.619469, 0.867257, 1)
@@ -1806,12 +1805,6 @@ _data = {
 &"walk_up": SubResource("Animation_fhl08")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6eb1q"]
-shader = ExtResource("48_7x5p2")
-shader_parameter/vignette_intensity = 1.0
-shader_parameter/vignette_opacity = 0.5050000239875
-shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkpta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pisgm"]
@@ -2239,7 +2232,6 @@ script = ExtResource("31_dy65m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-z_index = 5
 process_callback = 0
 limit_left = 0
 limit_top = 0
@@ -2256,18 +2248,10 @@ drag_right_margin = 0.0
 drag_bottom_margin = 0.0
 editor_draw_limits = true
 script = ExtResource("11_5htga")
-zooom = Vector2(0.8, 0.8)
+zooom = Vector2(0.65, 0.65)
 shake_power = 0.4
 shake_max_offset = 4.0
 shake_decay = 1.5
-
-[node name="ColorRect" type="ColorRect" parent="Camera2D"]
-material = SubResource("ShaderMaterial_6eb1q")
-offset_left = -582.0
-offset_top = -345.0
-offset_right = 583.0
-offset_bottom = 348.0
-color = Color(0, 0, 0, 1)
 
 [node name="Audio" type="Node2D" parent="."]
 

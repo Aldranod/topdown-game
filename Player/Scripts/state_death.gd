@@ -8,6 +8,7 @@ func init() -> void:
 	pass	
 	
 func Enter() -> void:
+	player.set_collision_mask_value(9, false)	
 	player.animation_player.play("death")
 	audio.stream = exhaust_audio
 	audio.play()

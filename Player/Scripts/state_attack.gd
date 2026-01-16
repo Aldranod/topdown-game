@@ -14,6 +14,7 @@ var attacking : bool = false
 @onready var walk: State = $"../Walk"	
 @onready var idle: State = $"../Idle"
 @onready var charge_attack: State = $"../ChargeAttack"
+@onready var dash: State_Dash = $"../Dash"
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
@@ -54,6 +55,10 @@ func Physics(_delta: float) -> State:
 	return null	
 
 func HandleInput(_event: InputEvent) -> State:
+	if _event. is_action_pressed("dash"):
+		if player.can_dash():
+			player.start_dash_cooldown()
+			return dash  # Cancel attack and dash instead
 	return null						
 
 func EndAttack( _newAnimName : String) -> void:
