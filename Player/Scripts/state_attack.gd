@@ -21,7 +21,7 @@ func Enter() -> void:
 	player.start_combo()
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack")
-	attack_anim.play("attack_" + player.AnimDirection())
+	#attack_anim.play("attack_" + player.AnimDirection())
 	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)

@@ -757,7 +757,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_00tjw"]
 resource_name = "attack_up"
-length = 0.4
+length = 0.3
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -766,10 +766,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0999, 0.15, 0.2, 0.25, 0.35),
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [24, 25, 25, 25, 25, 26]
+"values": [125, 102, 103, 126, 127, 106]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -778,10 +778,10 @@ tracks/1/path = NodePath("Sprite2D/AttackHurtBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -16)]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 5), Vector2(3, -10), Vector2(-6, -2), Vector2(0, 5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -790,10 +790,34 @@ tracks/2/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15),
+"times": PackedFloat32Array(0, 0.1, 0.24),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/AttackHurtBox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/AttackHurtBox:skew")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0.0, -0.2792526803190927, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_maysp"]
@@ -2431,6 +2455,7 @@ decelerate_speed = 5.5
 
 [node name="ThirdAttack" type="Node" parent="StateMachine"]
 script = ExtResource("16_6eb1q")
+attack_sound = ExtResource("8_od3ui")
 
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("11_dkpta")
