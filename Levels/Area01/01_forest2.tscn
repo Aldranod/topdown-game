@@ -69,7 +69,7 @@ light_mode = 1
 script = ExtResource("1_tx3e1")
 music = ExtResource("2_il6ma")
 weather_active = true
-weather_layer_1 = 1
+weather_layer_1 = 2
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("3_6aqf7")]
 z_index = -2

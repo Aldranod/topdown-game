@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const FRAME_COUNT :int= 128
+const FRAME_COUNT :int= 144
 
 @onready var weapon_below: Sprite2D = $Sprite2D_Weapon_Below
 @onready var weapon_above: Sprite2D = $Sprite2D_Weapon_Above

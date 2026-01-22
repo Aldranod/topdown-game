@@ -1,4 +1,4 @@
-class_name State_SecondAttack extends State
+class_name State_ThirdAttack extends State
 
 var direction : Vector2
 var attacking : bool = false
@@ -18,10 +18,8 @@ var attacking : bool = false
 
 func Enter() -> void:
 	player.start_attack()
-	player.start_third_attack_window()
-	#PlayerManager.player.combo_window_open = false
 	hurt_box.attack_type = "sword"
-	player.UpdateAnimation("attack3")
+	player.UpdateAnimation("attack2")
 	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN:
 		#$"../../Sprite2D".scale.x = -1
 	#attack_anim.play("attack2_" + player.AnimDirection())
@@ -40,7 +38,9 @@ func Enter() -> void:
 func Exit() -> void:
 	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN or player.cardinal_direction == Vector2.RIGHT:
 		#$"../../Sprite2D".scale.x = 1
-	#PlayerManager.player.combo_window_open = false
+	#player.attack_window_open = true
+	player.combo_window_open = false
+	player.third_attack_window_open = false 
 	animation_player.animation_finished.disconnect(EndAttack)
 	hurt_box.did_damage.disconnect(_on_hit_landed)
 	attacking = false

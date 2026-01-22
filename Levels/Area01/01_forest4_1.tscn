@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bil173ofqnh1x"]
+[gd_scene load_steps=24 format=4 uid="uid://bil173ofqnh1x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_umtxh"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_th4tt"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://bw415lp4tqari" path="res://items/ability_boomerang.tres" id="18_44xel"]
 
 [sub_resource type="Gradient" id="Gradient_w83a4"]
+offsets = PackedFloat32Array(0, 0.83243245)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yofaq"]
@@ -28,30 +29,12 @@ gradient = SubResource("Gradient_w83a4")
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_umtxh"]
 gradient = SubResource("Gradient_w83a4")
 fill_from = Vector2(0, 0.012820513)
-fill_to = Vector2(0, 0.97863245)
+fill_to = Vector2(0, 0.82051283)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_etvu0"]
 gradient = SubResource("Gradient_w83a4")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.53846157, 0.6752137)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_44xel"]
-gradient = SubResource("Gradient_w83a4")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.52136755, 0.3888889)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_th4tt"]
-gradient = SubResource("Gradient_w83a4")
-fill_to = Vector2(0.5, 0.4871795)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_meju0"]
-gradient = SubResource("Gradient_w83a4")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.74358976, 0.14957266)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_j6465"]
-gradient = SubResource("Gradient_w83a4")
-fill_to = Vector2(0.74358976, 0.82905984)
+fill_from = Vector2(0, 0.96581197)
+fill_to = Vector2(0.65384614, 0.48290598)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnd1j"]
 radius = 96.0
@@ -65,20 +48,20 @@ weather_layer_1 = 2
 
 [node name="MarginLeft" type="Sprite2D" parent="."]
 z_index = 50
-position = Vector2(-131, 595)
-scale = Vector2(3.8437502, 18.96875)
+position = Vector2(-145.75, 595)
+scale = Vector2(0.6328125, 18.96875)
 texture = SubResource("GradientTexture2D_yofaq")
 
 [node name="MarginTop" type="Sprite2D" parent="."]
 z_index = 50
-position = Vector2(287.00003, 19)
-scale = Vector2(19.34375, 0.91406286)
+position = Vector2(287.00003, 8.874994)
+scale = Vector2(19.34375, 0.5976564)
 texture = SubResource("GradientTexture2D_umtxh")
 
 [node name="MarginBottom" type="Sprite2D" parent="."]
 z_index = 50
-position = Vector2(288.49997, 1183)
-scale = Vector2(17.015625, -0.914)
+position = Vector2(288.49997, 1183.1239)
+scale = Vector2(17.015625, -0.91012585)
 texture = SubResource("GradientTexture2D_umtxh")
 
 [node name="MarginRight" type="Sprite2D" parent="."]
@@ -86,36 +69,6 @@ z_index = 50
 position = Vector2(803.00006, 990)
 scale = Vector2(-0.9668392, 6.923495)
 texture = SubResource("GradientTexture2D_etvu0")
-
-[node name="MarginRight2" type="Sprite2D" parent="."]
-z_index = 50
-position = Vector2(814, 450.99997)
-scale = Vector2(-0.8328635, 1.5696145)
-texture = SubResource("GradientTexture2D_44xel")
-
-[node name="MarginRight6" type="Sprite2D" parent="."]
-z_index = 50
-position = Vector2(814, 551)
-scale = Vector2(-0.833, -1.57)
-texture = SubResource("GradientTexture2D_44xel")
-
-[node name="MarginRight3" type="Sprite2D" parent="."]
-z_index = 50
-position = Vector2(806, 78)
-scale = Vector2(-0.8328635, 2.4828804)
-texture = SubResource("GradientTexture2D_th4tt")
-
-[node name="MarginRight4" type="Sprite2D" parent="."]
-z_index = 50
-position = Vector2(823, 187)
-scale = Vector2(-0.8328635, 0.7375676)
-texture = SubResource("GradientTexture2D_meju0")
-
-[node name="MarginRight5" type="Sprite2D" parent="."]
-z_index = 50
-position = Vector2(823, 233)
-scale = Vector2(-0.8328635, 0.7375676)
-texture = SubResource("GradientTexture2D_j6465")
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("3_meju0")]
 z_index = -2
@@ -709,39 +662,38 @@ position = Vector2(-1240, -608)
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(796, 0)
 
 [node name="Goblin10" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-376, 976)
-hp = 4
+position = Vector2(415, 976)
+hp = 7
 
 [node name="Goblin12" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-384, 896)
-hp = 4
+position = Vector2(407, 896)
+hp = 7
 
 [node name="Goblin13" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-512, 912)
-hp = 4
+position = Vector2(279, 912)
+hp = 7
 
 [node name="Goblin14" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-416, 1024)
-hp = 4
+position = Vector2(375, 1024)
+hp = 5
 
 [node name="Goblin11" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-480, 1016)
-hp = 4
+position = Vector2(311, 1016)
+hp = 5
 
 [node name="Goblin15" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(-512, 984)
-hp = 4
+position = Vector2(279, 984)
+hp = 5
 
 [node name="GoblinAmbush" parent="Enemies" instance=ExtResource("11_yofaq")]
 y_sort_enabled = true
-position = Vector2(-308, 577)
+position = Vector2(483, 577)
 
 [node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("11_yofaq")]
 y_sort_enabled = true
-position = Vector2(-515, 489)
+position = Vector2(276, 489)
 
 [node name="LevelTransition3" parent="." instance=ExtResource("10_5duvv")]
 position = Vector2(812, 704)
@@ -763,6 +715,7 @@ side = 1
 position = Vector2(182, 610)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_index = 9
 position = Vector2(796, 0)
 color = Color(0.72156864, 0.7254902, 0.85490197, 1)
 
@@ -778,9 +731,8 @@ process_material = ExtResource("13_a5yc2")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(1.2, 1)
-scroll_offset = Vector2(-68, -168)
 repeat_size = Vector2(480, 270)
-repeat_times = 3
+repeat_times = 24
 
 [node name="ColorRect" type="ColorRect" parent="Parallax2D"]
 material = ExtResource("14_rfycy")
@@ -788,6 +740,7 @@ offset_left = 111.0
 offset_top = -199.0
 offset_right = 591.0
 offset_bottom = 71.0
+size_flags_horizontal = 4
 color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 

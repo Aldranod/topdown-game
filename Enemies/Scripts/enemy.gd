@@ -24,6 +24,9 @@ var sprite_x_scale : float = 1
 @onready var state_machine : EnemyStateMachine = $EnemyStateMachine
 @onready var persistent_data_handler: PersistentDataHandler = $PersistentDataHandler
 
+var distance_in_pixel : float
+var initial_position
+
 func _ready():
 	sprite_x_scale = sprite.scale.x
 	if not respawnable:
@@ -39,8 +42,10 @@ func _process(_delta):
 	pass	
 
 func _physics_process(_delta):
+	initial_position = global_position
 	move_and_slide()
-	
+	dust_emit()
+
 func set_direction( _new_direction : Vector2) -> bool:
 	direction = _new_direction
 	if direction == Vector2.ZERO:
@@ -89,3 +94,10 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 		
 func _in_attack_range() -> bool:
 	return is_instance_valid(PlayerManager.player) and global_position.distance_to(PlayerManager.player.position) <= attack_range		
+
+func dust_emit() -> void:
+	distance_in_pixel += global_position.distance_to(initial_position)
+	if distance_in_pixel >= 68:
+		distance_in_pixel -= 68
+		EffectManager.emit_dust(self)
+	pass

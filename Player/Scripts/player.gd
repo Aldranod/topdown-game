@@ -4,7 +4,7 @@ signal DirectionChanged( new_direction: Vector2)
 signal player_damaged( hurt_box : HurtBox)
 signal player_dashing
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
-
+var stick_intensity:  float = 0.0  # 0.0 to 1.0
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
 
@@ -30,9 +30,9 @@ var bomb_count : int = 1 : set = _set_bomb_count
 
 var combo_window_open : bool = false
 var attack_window_open : bool = true
+var third_attack_window_open : bool = false
 
 var distance_in_pixel : float
-
 var initial_position
 
 @onready var camera_2d: PlayerCamera = $Camera2D
@@ -48,6 +48,7 @@ var initial_position
 @onready var player_abilities: PlayerAbilities = $Abilities
 @onready var combo_timer: Timer = $ComboTimer
 @onready var attack_timer: Timer = $AttackTimer
+@onready var third_attack_timer: Timer = $ThirdAttackTimer
 
 func _ready():
 	PlayerManager.player = self
@@ -64,6 +65,15 @@ func _process(_delta):
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
 	).normalized()
+	
+	# Calculate stick intensity (how far the stick is pushed)
+	var raw_input = Vector2(
+		Input.get_axis("left", "right"),
+		Input.get_axis("up", "down")
+	)
+	stick_intensity = raw_input.length()  # Returns 0.0 to ~1.414
+	stick_intensity = clamp(stick_intensity, 0.0, 1.0)  # Clamp to 0-1
+	
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= _delta
 	PlayerHud.update_dash_cooldown(dash_cooldown_timer, dash_cooldown_duration)
@@ -200,6 +210,17 @@ func start_combo() ->void:
 	combo_window_open = true
 	pass					
 
+func _on_third_attack_timer_timeout() -> void:
+	third_attack_window_open = false
+
+# Call this from the Second Attack animation
+func start_third_attack_window() -> void:
+	if not third_attack_timer.is_stopped():
+		third_attack_window_open = true
+		return
+	third_attack_timer.start()
+	third_attack_window_open = true
+
 func player_camera_switch() -> void:
 	camera_2d.make_current()
 
@@ -208,8 +229,7 @@ func player_light_switch(value: bool) -> void:
 
 func dust_emit() -> void:
 	distance_in_pixel += global_position.distance_to(initial_position)
-	
 	if distance_in_pixel >= 68:
 		distance_in_pixel -= 68
-		EffectManager.emit_dust()	
+		EffectManager.emit_dust(PlayerManager.player)	
 	pass	
