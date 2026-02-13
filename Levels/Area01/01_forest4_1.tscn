@@ -691,6 +691,18 @@ hp = 5
 y_sort_enabled = true
 position = Vector2(483, 577)
 
+[node name="GoblinAmbush3" parent="Enemies" instance=ExtResource("11_yofaq")]
+y_sort_enabled = true
+position = Vector2(568, 446)
+
+[node name="GoblinAmbush4" parent="Enemies" instance=ExtResource("11_yofaq")]
+y_sort_enabled = true
+position = Vector2(526, 509)
+
+[node name="GoblinAmbush5" parent="Enemies" instance=ExtResource("11_yofaq")]
+y_sort_enabled = true
+position = Vector2(451, 641)
+
 [node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("11_yofaq")]
 y_sort_enabled = true
 position = Vector2(276, 489)
