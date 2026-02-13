@@ -1105,6 +1105,7 @@ libraries = {
 }
 
 [node name="VisionArea" parent="." instance=ExtResource("19_am20u")]
+modulate = Color(1, 1, 1, 0.23921569)
 position = Vector2(1, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
