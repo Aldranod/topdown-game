@@ -3,6 +3,7 @@ extends Node
 const DAMAGE_TEXT = preload("res://00_Globals/global_effects/damage_text.tscn")
 const HITSPARK : PackedScene = preload("res://00_Globals/global_effects/hitspark.tscn")
 const DUST = preload("res://00_Globals/global_effects/dust.tscn")
+const HIT_PARTICLES = preload("res://00_Globals/global_effects/hit_particles.tscn")
 
 func damage_text(_damage : int, _pos : Vector2) -> void:
 	var _t : DamageText = DAMAGE_TEXT.instantiate()
@@ -25,13 +26,17 @@ func emit_dust( node: Node2D) -> void:
 	_d.play_animation(anim_name)
 	pass
 
-func hit_particles(pos: Vector2, dir: Vector2, texture: Texture2D, color:Color, amount:int) -> void:
+func hit_particles( pos: Vector2, dir: Vector2, settings : HitParticleSettings ) -> void:
+	var p : HitParticles = HIT_PARTICLES.instantiate()
+	p.global_position = pos
+	add_child(p)
+	p.start( dir, settings)
 	pass
 
 func set_hitspark(target : String, _pos : Vector2, _boss : bool = false, _dir : Vector2 = Vector2.ZERO, ) -> void:
 	var hitspark = HITSPARK.instantiate()
 	hitspark.global_position = _pos
-	get_tree().current_scene.add_child(hitspark)
+	add_child(hitspark)
 	var anim_name : String = "default"
 	var player = PlayerManager.player
 	if target == "enemy":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=129 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://dp50tywcua33v" path="res://Player/Scripts/abilities/abilities.gd" id="17_pisgm"]
 [ext_resource type="AudioStream" uid="uid://bvwkxuws1tigy" path="res://Player/Audio/huwh.wav" id="17_qemgg"]
 [ext_resource type="PackedScene" uid="uid://cb3vxjgkh4j8f" path="res://GeneralNodes/ItemMagnet/item_magnet.tscn" id="18_b1ygp"]
+[ext_resource type="Script" uid="uid://lm43gaq2wrjq" path="res://00_Globals/global_effects/hit_particles_settings.gd" id="18_wvbyc"]
 [ext_resource type="AudioStream" uid="uid://dupyox7m2qyqd" path="res://Player/Audio/throw.wav" id="19_8viyr"]
 [ext_resource type="Script" uid="uid://c8krlodxx6vci" path="res://Player/Scripts/state_death.gd" id="20_76lrf"]
 [ext_resource type="AudioStream" uid="uid://bdb5fip74t2px" path="res://Player/Audio/exhausted.wav" id="21_efx54"]
@@ -2320,6 +2321,12 @@ _data = {
 &"walk_up": SubResource("Animation_fhl08")
 }
 
+[sub_resource type="Resource" id="Resource_gvnt1"]
+script = ExtResource("18_wvbyc")
+count = 50
+color = Color(0.64453125, 0.14440164, 0.413221, 1)
+metadata/_custom_type_script = "uid://lm43gaq2wrjq"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkpta"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pisgm"]
@@ -2712,6 +2719,7 @@ attack_sound = ExtResource("8_od3ui")
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("11_dkpta")
 knockback_speed = 300.0
+particle_settings = SubResource("Resource_gvnt1")
 
 [node name="ChargeAttack" type="Node" parent="StateMachine"]
 script = ExtResource("12_o28un")
