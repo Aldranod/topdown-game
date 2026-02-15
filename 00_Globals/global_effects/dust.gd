@@ -7,8 +7,7 @@ func play_animation(anim_name : String) -> void:
 		animation_player.play(anim_name)
 	else:
 		animation_player.play("default")
-	animation_player.animation_finished.connect(_on_anim_finished)		
-	pass
-
-func _on_anim_finished(_anim_name) -> void:
+	await animation_player.animation_finished
 	queue_free()
+	pass
+	
