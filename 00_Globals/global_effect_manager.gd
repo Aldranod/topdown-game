@@ -25,6 +25,9 @@ func emit_dust( node: Node2D) -> void:
 	_d.play_animation(anim_name)
 	pass
 
+func hit_particles(pos: Vector2, dir: Vector2, texture: Texture2D, color:Color, amount:int) -> void:
+	pass
+
 func set_hitspark(target : String, _pos : Vector2, _boss : bool = false, _dir : Vector2 = Vector2.ZERO, ) -> void:
 	var hitspark = HITSPARK.instantiate()
 	hitspark.global_position = _pos

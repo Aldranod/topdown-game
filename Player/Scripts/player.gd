@@ -61,6 +61,8 @@ func _ready():
 	pass
 	
 func _process(_delta):
+	
+	dust_emit()
 	direction = Vector2(
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
@@ -82,7 +84,6 @@ func _process(_delta):
 func _physics_process(_delta):
 	initial_position = global_position
 	move_and_slide()
-	dust_emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("test"):
