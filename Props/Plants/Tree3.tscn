@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3pt5h60ltre7"]
+[gd_scene load_steps=18 format=3 uid="uid://d3pt5h60ltre7"]
 
 [ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_1hi0e"]
 [ext_resource type="Resource" uid="uid://bylt5tjjtj4cx" path="res://00_Globals/global_effects/hit_particle_settings/tree_particles.tres" id="2_l0jnn"]
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_qlplb"]
 [ext_resource type="Texture2D" uid="uid://j428iomk435y" path="res://Props/Sprites/tree_1.png" id="3_l0jnn"]
+[ext_resource type="Resource" uid="uid://blga4ogm8laab" path="res://00_Globals/global_effects/hit_particle_settings/leaf_particles.tres" id="3_s73q3"]
 [ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_s73q3"]
 [ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_lq8hr"]
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="6_qlplb"]
@@ -14,6 +15,9 @@ shader = ExtResource("2_qlplb")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l0jnn"]
 radius = 14.0
 height = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0jnn"]
+radius = 42.107006
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
 size = Vector2(32, 101.5)
@@ -114,6 +118,7 @@ _data = {
 [node name="Tree3" type="Node2D" groups=["hidable"]]
 script = ExtResource("1_1hi0e")
 particle_settings = ExtResource("2_l0jnn")
+particle_settings_leaf = ExtResource("3_s73q3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -130,6 +135,12 @@ position = Vector2(2, 31)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_l0jnn")
+
+[node name="HitBox2" parent="." instance=ExtResource("6_qlplb")]
+position = Vector2(0, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox2"]
+shape = SubResource("CircleShape2D_l0jnn")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-43, 0)
