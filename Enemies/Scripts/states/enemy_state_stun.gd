@@ -3,9 +3,10 @@ class_name EnemyStateStun extends EnemyState
 @export var anim_name : String = "stun"
 @export var knockback_speed : float = 0.0
 @export var decelerate_speed : float = 5.0
-
+@export var particle_settings : HitParticleSettings
 @export_category("AI")
 @export var next_state : EnemyState
+
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -22,6 +23,7 @@ func enter() -> void:
 	enemy.set_direction(_direction)
 	enemy.velocity = _direction * -knockback_speed
 	enemy.update_animation(anim_name)
+	EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,particle_settings)
 	enemy.animation_player.animation_finished.connect( _on_animation_finished)
 	pass
 	

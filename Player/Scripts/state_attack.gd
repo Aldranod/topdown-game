@@ -35,6 +35,7 @@ func Enter() -> void:
 	pass
 	
 func Exit() -> void:
+	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	animation_player.animation_finished.disconnect(EndAttack)
 	hurt_box.did_damage.disconnect(_on_hit_landed)
 	attacking = false

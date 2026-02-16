@@ -16,15 +16,16 @@ emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 spread = 90.0
 initial_velocity_min = 75.0
-initial_velocity_max = 150.0
+initial_velocity_max = 100.0
 gravity = Vector3(0, 200, 0)
 alpha_curve = SubResource("CurveTexture_1f1bj")
 
 [node name="HitParticles" type="GPUParticles2D"]
 z_index = 2
 emitting = false
+lifetime = 0.5
 one_shot = true
-explosiveness = 0.9
+explosiveness = 0.8
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_hs8h0")
 script = ExtResource("1_gqpc4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://ca3g6qw0kscv1"]
+[gd_scene load_steps=52 format=3 uid="uid://ca3g6qw0kscv1"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_f3wku"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_lvhkj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://jimj23teb5iy" path="res://Enemies/Scripts/states/enemy_state_wander.gd" id="10_l6iyu"]
 [ext_resource type="Script" uid="uid://bmya6blf133q0" path="res://Enemies/Scripts/states/enemy_state_stun.gd" id="11_a1tsi"]
 [ext_resource type="Script" uid="uid://m5a15tuova7g" path="res://Enemies/Scripts/states/enemy_state_destroyed.gd" id="12_ad7vh"]
+[ext_resource type="Resource" uid="uid://buwbann6wdy5k" path="res://00_Globals/global_effects/hit_particle_settings/goblin_blood_particles.tres" id="12_pcgih"]
 [ext_resource type="Script" uid="uid://c5sraeeen4dul" path="res://Enemies/Scripts/drop_data.gd" id="13_ys2o2"]
 [ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="14_t3vbn"]
 [ext_resource type="Resource" uid="uid://dh7avm20vuttc" path="res://items/gem.tres" id="15_j3imk"]
@@ -1068,6 +1069,7 @@ chase_state = NodePath("../Chase")
 script = ExtResource("11_a1tsi")
 knockback_speed = 250.0
 decelerate_speed = 10.0
+particle_settings = ExtResource("12_pcgih")
 next_state = NodePath("../Chase")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]

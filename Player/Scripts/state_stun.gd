@@ -20,7 +20,7 @@ func Enter() -> void:
 	player.animation_player.animation_finished.connect( _animation_finished)
 	direction = player.global_position.direction_to( hurt_box.global_position)
 	EffectManager.set_hitspark("player",player.global_position,false, direction)
-	EffectManager.hit_particles(player.global_position,Vector2(1,0),particle_settings)
+	EffectManager.hit_particles(player.global_position + Vector2(0,-20),-direction,particle_settings)
 	PlayerManager.shake_camera(hurt_box.damage)
 	EffectManager.frame_freeze(0.1,0.26)
 	player.velocity = direction * -knockback_speed
