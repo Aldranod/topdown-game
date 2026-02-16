@@ -11,6 +11,7 @@ var next_state : State = null
 var effect_timer : float = 0
 	
 func Enter() -> void:
+	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.invulnerable = true
 	player.set_collision_mask_value(9, false)	
 	player.UpdateAnimation("dash")

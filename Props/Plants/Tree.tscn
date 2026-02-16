@@ -1,13 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://d388ot7vwnh0y"]
+[gd_scene load_steps=16 format=3 uid="uid://d388ot7vwnh0y"]
 
 [ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_a671x"]
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_hyh2h"]
+[ext_resource type="Resource" uid="uid://bylt5tjjtj4cx" path="res://00_Globals/global_effects/hit_particle_settings/tree_particles.tres" id="2_xww1j"]
 [ext_resource type="Texture2D" uid="uid://r0q5lbcefr02" path="res://Props/Sprites/tree_3.png" id="3_i0y2m"]
 [ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_qetsp"]
 [ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_i0y2m"]
+[ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="6_a68sy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qetsp"]
 shader = ExtResource("2_hyh2h")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xww1j"]
+radius = 14.0
+height = 58.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
 size = Vector2(32, 101.5)
@@ -107,6 +113,7 @@ _data = {
 
 [node name="Tree" type="Node2D" groups=["hidable"]]
 script = ExtResource("1_a671x")
+particle_settings = ExtResource("2_xww1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -117,6 +124,12 @@ offset = Vector2(45, 0)
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 136)
 script = ExtResource("4_qetsp")
+
+[node name="HitBox" parent="." instance=ExtResource("6_a68sy")]
+position = Vector2(0, 31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_xww1j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16

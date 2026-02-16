@@ -250,10 +250,6 @@ collision = false
 position = Vector2(48, -144)
 collision = false
 
-[node name="Tree3" parent="Props/EnterExitArea6" instance=ExtResource("5_l11jw")]
-position = Vector2(-8, -112)
-collision = false
-
 [node name="Tree5" parent="Props/EnterExitArea6" instance=ExtResource("5_l11jw")]
 position = Vector2(80, -200)
 collision = false
