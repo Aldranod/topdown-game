@@ -16,8 +16,9 @@ shader = ExtResource("2_hyh2h")
 radius = 14.0
 height = 58.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xww1j"]
-radius = 42.107006
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8l553"]
+radius = 22.0
+height = 88.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
 size = Vector2(32, 101.5)
@@ -140,7 +141,9 @@ shape = SubResource("CapsuleShape2D_xww1j")
 position = Vector2(0, -19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox2"]
-shape = SubResource("CircleShape2D_xww1j")
+position = Vector2(0, 12)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_8l553")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 16

@@ -5,6 +5,7 @@ const PICKUP = preload("res://items/item_pickup/item_pickup.tscn")
 @export var anim_name : String = "destroy"
 @export var knockback_speed : float = 200.0
 @export var decelerate_speed : float = 10.0
+@export var particle_settings : HitParticleSettings
 
 @export_category("AI")
 
@@ -13,6 +14,7 @@ const PICKUP = preload("res://items/item_pickup/item_pickup.tscn")
 
 var _damage_position : Vector2
 var _direction : Vector2
+
 
 func init() -> void:
 	enemy.enemy_destroyed.connect( _on_enemy_destroyed)
@@ -25,6 +27,7 @@ func enter() -> void:
 	enemy.set_direction(_direction)
 	enemy.velocity = _direction * -knockback_speed
 	enemy.update_animation(anim_name)
+	EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,particle_settings)
 	enemy.animation_player.animation_finished.connect( _on_animation_finished)
 	disable_hurt_box()
 	drop_items()

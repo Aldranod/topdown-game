@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ddtpyf5ghl5ww"]
+[gd_scene load_steps=60 format=3 uid="uid://ddtpyf5ghl5ww"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_uvm47"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_locsy"]
@@ -20,7 +20,14 @@
 [ext_resource type="Script" uid="uid://cyil36i3fmjtj" path="res://Enemies/Scripts/states/enemy_state_attack.gd" id="17_f2076"]
 [ext_resource type="Texture2D" uid="uid://ngpve6krp6jq" path="res://Enemies/Slime/DestroySmoke.png" id="18_yhdue"]
 [ext_resource type="PackedScene" uid="uid://sfksfyhertl4" path="res://Enemies/vision_area.tscn" id="19_am20u"]
+[ext_resource type="Script" uid="uid://duhigatkcswte" path="res://Enemies/Scripts/states/enemy_state_flee.gd" id="19_dnede"]
 [ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="20_6hdgh"]
+[ext_resource type="Texture2D" uid="uid://d05bq88j3rak0" path="res://Enemies/fear_indicator1.png" id="23_yam40"]
+[ext_resource type="Texture2D" uid="uid://ixnmlhreje2i" path="res://Enemies/fear_indicator2.png" id="24_lfmip"]
+[ext_resource type="Texture2D" uid="uid://c2l56pjtyv05x" path="res://Enemies/fear_indicator3.png" id="25_igrnt"]
+[ext_resource type="Texture2D" uid="uid://bpyq4a53hd78u" path="res://Enemies/fear_indicator4.png" id="26_f5b8q"]
+[ext_resource type="Texture2D" uid="uid://6vesfl0sgb8v" path="res://Enemies/fear_indicator5.png" id="27_ccsl1"]
+[ext_resource type="Texture2D" uid="uid://bt300tsyif8v" path="res://Enemies/fear_indicator6.png" id="28_qkyx1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjr0p"]
 radius = 13.0
@@ -997,6 +1004,32 @@ _data = {
 &"destroy": SubResource("Animation_vjyi2")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpt1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_yam40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_lfmip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_igrnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_f5b8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ccsl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_qkyx1")
+}],
+"loop": true,
+"name": &"fear",
+"speed": 5.0
+}]
+
 [node name="GoblinAmbush" type="CharacterBody2D"]
 collision_layer = 256
 collision_mask = 64
@@ -1066,12 +1099,13 @@ state_cycles_max = 2
 next_state = NodePath("../Idle")
 chase_state = NodePath("../Chase")
 
-[node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state", "flee_state")]
 script = ExtResource("11_lfmip")
 knockback_speed = 250.0
 decelerate_speed = 10.0
 particle_settings = ExtResource("12_locsy")
 next_state = NodePath("../Chase")
+flee_state = NodePath("../Flee")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("12_igrnt")
@@ -1091,6 +1125,13 @@ idle_state = NodePath("../Idle")
 script = ExtResource("17_f2076")
 attack_cooldown = 0.1
 idle_state = NodePath("../Idle")
+
+[node name="Flee" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "chase_state")]
+script = ExtResource("19_dnede")
+flee_speed = 80.0
+vision_area = NodePath("../../VisionArea")
+flee_duration = 4.0
+chase_state = NodePath("../Chase")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
@@ -1121,3 +1162,11 @@ collision_mask = 25
 
 [node name="ChargeRay" type="RayCast2D" parent="."]
 collision_mask = 24
+
+[node name="IndicatorSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 3
+position = Vector2(0, -38)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_lpt1n")
+animation = &"fear"

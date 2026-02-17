@@ -666,8 +666,8 @@ position = Vector2(415, 976)
 hp = 7
 
 [node name="Goblin12" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(407, 896)
-hp = 7
+position = Vector2(629, 148)
+hp = 8
 
 [node name="Goblin13" parent="Enemies" instance=ExtResource("9_odo5p")]
 position = Vector2(279, 912)
@@ -685,25 +685,9 @@ hp = 5
 position = Vector2(279, 984)
 hp = 5
 
-[node name="GoblinAmbush" parent="Enemies" instance=ExtResource("11_yofaq")]
-y_sort_enabled = true
-position = Vector2(483, 577)
-
-[node name="GoblinAmbush3" parent="Enemies" instance=ExtResource("11_yofaq")]
-y_sort_enabled = true
-position = Vector2(568, 446)
-
-[node name="GoblinAmbush4" parent="Enemies" instance=ExtResource("11_yofaq")]
-y_sort_enabled = true
-position = Vector2(526, 509)
-
-[node name="GoblinAmbush5" parent="Enemies" instance=ExtResource("11_yofaq")]
-y_sort_enabled = true
-position = Vector2(451, 641)
-
 [node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("11_yofaq")]
 y_sort_enabled = true
-position = Vector2(276, 489)
+position = Vector2(612, 859)
 
 [node name="LevelTransition3" parent="." instance=ExtResource("10_5duvv")]
 position = Vector2(812, 704)

@@ -37,6 +37,7 @@ func TakeDamage( _damage : HurtBox ) -> void:
 func TakeDamage2( _damage : HurtBox ) -> void:
 	if visible:		
 		var _direction = global_position.direction_to(_damage.global_position)
-		var pos = $HitBox2.global_position.distance_to(_damage.global_position)
-		EffectManager.hit_particles($HitBox2.global_position,-_direction,particle_settings_leaf)
+		var offset_distance = 20.0  # Small distance offset
+		var particle_position = _damage.global_position + (-_direction * offset_distance)
+		EffectManager.hit_particles(particle_position,-_direction,particle_settings_leaf)
 	pass	
