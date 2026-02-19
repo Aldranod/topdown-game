@@ -33,7 +33,7 @@ var attack_window_open : bool = true
 var third_attack_window_open : bool = false
 
 var distance_in_pixel : float
-var initial_position : Vector2 = Vector2.ZERO
+var initial_position
 
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -229,9 +229,8 @@ func player_light_switch(value: bool) -> void:
 	$PointLight2D.visible = value
 
 func dust_emit() -> void:
-	if PlayerManager.player:
-		distance_in_pixel += global_position.distance_to(initial_position)
-		if distance_in_pixel >= 68:
-			distance_in_pixel -= 68
-			EffectManager.emit_dust(PlayerManager.player)	
+	distance_in_pixel += global_position.distance_to(initial_position)
+	if distance_in_pixel >= 68:
+		distance_in_pixel -= 68
+		EffectManager.emit_dust(PlayerManager.player)	
 	pass	
