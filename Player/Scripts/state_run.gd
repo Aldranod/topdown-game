@@ -40,12 +40,13 @@ func Physics(_delta: float) -> State:
 
 func HandleInput(_event: InputEvent) -> State:
 	if _event. is_action_pressed("attack"):
-		if PlayerManager.player.third_attack_window_open:
-			return third_attack
-		if PlayerManager.player.combo_window_open:
-			return second_attack
-		if PlayerManager.player.attack_window_open:
-			return attack
+		return attack
+		#if PlayerManager.player.third_attack_window_open:
+			#return third_attack
+		#if PlayerManager.player.combo_window_open:
+			#return second_attack
+		#if PlayerManager.player.attack_window_open:
+			#return attack
 	elif _event.is_action_pressed("interact"):
 		PlayerManager.interact()
 	elif _event.is_action_pressed("dash"):

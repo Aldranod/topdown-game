@@ -22,7 +22,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	enemy.invulnerable = true
+	#enemy.invulnerable = true
 	_animation_finished = false
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.set_direction(_direction)
@@ -33,7 +33,7 @@ func enter() -> void:
 	pass
 	
 func exit() -> void:
-	enemy.invulnerable = false
+	#enemy.invulnerable = false
 	enemy.animation_player.animation_finished.disconnect( _on_animation_finished)
 	pass
 	
@@ -41,7 +41,8 @@ func process( _delta: float ) -> EnemyState:
 	if _animation_finished == true:
 		# Check if enemy should flee based on health
 		var health_ratio = float(enemy.hp) / float(_initial_hp)
-		if health_ratio <= flee_health_threshold and flee_state:
+		var random = randi_range(0,1)
+		if health_ratio <= flee_health_threshold and flee_state and random > 0:
 			return flee_state
 		return next_state
 	enemy.velocity -= enemy.velocity * decelerate_speed * _delta	
