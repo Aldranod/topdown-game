@@ -11,6 +11,7 @@ var move_dir : Vector2 = Vector2.RIGHT
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
+	rotate_nodes()
 	hurt_box.did_damage.connect( _on_did_damage)
 	get_tree().create_timer( 10).timeout.connect( _on_timeout)
 	if fire_audio:
@@ -25,13 +26,24 @@ func _process(delta: float) -> void:
 func fire( fire_dir: Vector2 ) -> void:
 	move_dir = fire_dir
 	rotate_nodes()
+	show()
 	pass	
 
 func rotate_nodes() -> void:
-	var angle : float = move_dir.angle()
-	sprite_2d.rotation = angle
-	sprite_2d_2.rotation = angle
-	hurt_box.rotation = angle
+	#var angle : float = move_dir.angle()
+	#sprite_2d.rotation = angle
+	#sprite_2d_2.rotation = angle
+	#hurt_box.rotation = angle
+	
+	var s1 = get_node_or_null("Sprite2D")
+	var s2 = get_node_or_null("Sprite2D2")
+	var hb = get_node_or_null("HurtBox")
+	
+	var angle = move_dir.angle()
+	
+	if s1: s1.rotation = angle
+	if s2: s2.rotation = angle
+	if hb: hb.rotation = angle
 	pass		
 		
 func _on_did_damage() -> void:

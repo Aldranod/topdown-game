@@ -161,5 +161,7 @@ func _shoot() -> void:
 	var direction = enemy.global_position.direction_to(enemy.player.global_position)
 	var arrow : Arrow = ARROW.instantiate()
 	arrow.global_position = enemy.global_position + (direction * 44)
-	enemy.add_sibling(arrow)
 	arrow.fire(direction)
+	enemy.add_sibling(arrow)
+	
+	

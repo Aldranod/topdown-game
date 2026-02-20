@@ -2,7 +2,6 @@
 class_name EnemyStateFlee extends EnemyState
 
 const PATHFINDER : PackedScene = preload("res://Enemies/pathfinder.tscn")
-
 @export var anim_name : String = "walk"
 @export var flee_speed : float = 60.0
 @export var turn_rate: float = 0.25
@@ -20,8 +19,9 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	$"../../IndicatorSprite2D".visible = true
-	$"../../IndicatorSprite2D".play("fear")
+	if not enemy.can_shoot:	
+		$"../../IndicatorSprite2D".visible = true
+		$"../../IndicatorSprite2D".play("fear")
 	$"../..".set_collision_mask_value(5, true)
 	pathfinder = PATHFINDER.instantiate() as Pathfinder
 	enemy.add_child(pathfinder)
@@ -30,7 +30,8 @@ func enter() -> void:
 	pass
 	
 func exit() -> void:
-	$"../../IndicatorSprite2D".visible = false
+	if not enemy.can_shoot:
+		$"../../IndicatorSprite2D".visible = false
 	if is_instance_valid(pathfinder):
 		pathfinder.queue_free()
 	pass

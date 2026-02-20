@@ -1,14 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://v3xwh0qtjood"]
+[gd_scene load_steps=54 format=3 uid="uid://v3xwh0qtjood"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_c7k5x"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_mra66"]
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="3_i4smm"]
-[ext_resource type="Texture2D" uid="uid://d05bq88j3rak0" path="res://Enemies/fear_indicator1.png" id="4_t7lp7"]
-[ext_resource type="Texture2D" uid="uid://ixnmlhreje2i" path="res://Enemies/fear_indicator2.png" id="5_soy1s"]
-[ext_resource type="Texture2D" uid="uid://c2l56pjtyv05x" path="res://Enemies/fear_indicator3.png" id="6_0may5"]
-[ext_resource type="Texture2D" uid="uid://bpyq4a53hd78u" path="res://Enemies/fear_indicator4.png" id="7_qdb0u"]
-[ext_resource type="Texture2D" uid="uid://6vesfl0sgb8v" path="res://Enemies/fear_indicator5.png" id="8_gcxnk"]
-[ext_resource type="Texture2D" uid="uid://bt300tsyif8v" path="res://Enemies/fear_indicator6.png" id="9_4q251"]
 [ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="10_rwvmi"]
 [ext_resource type="Texture2D" uid="uid://caqh0nv2jm0gs" path="res://Enemies/Goblin/goblin2.png" id="11_hj6h4"]
 [ext_resource type="AudioStream" uid="uid://bgb7ybbrjwida" path="res://Enemies/Slime/hit_01.wav" id="12_kyw0f"]
@@ -32,32 +26,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjr0p"]
 radius = 13.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_nliit"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_t7lp7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_soy1s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_0may5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_qdb0u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_gcxnk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_4q251")
-}],
-"loop": true,
-"name": &"fear",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oij8y"]
 radius = 7.0
@@ -1054,15 +1022,6 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_fjr0p")
 debug_color = Color(0.825957, 0.0595487, 0.227189, 0.42)
 
-[node name="IndicatorSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 3
-position = Vector2(0, -38)
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_nliit")
-animation = &"fear"
-frame_progress = 0.16548347
-
 [node name="ShadowSprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.691)
 scale = Vector2(0.75, 0.75)
@@ -1147,6 +1106,7 @@ chase_state = NodePath("../Chase")
 [node name="Shoot" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("26_02oyd")
 shoot_range = 250.0
+runaway_range = 100.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
