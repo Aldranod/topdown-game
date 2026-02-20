@@ -51,6 +51,8 @@ func process( _delta: float ) -> EnemyState:
 		#return idle_state
 		if enemy._in_attack_range():
 			return attack_state
+		if enemy.can_shoot:
+			return idle_state	
 		# --- THE NEW, CORRECT LOGIC ---
 
 		# First, we do a cheap check to see if the player is still in our general area.

@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	position += move_dir * delta * move_speed
 	pass
 	
-func fire( fire_dir : Vector2) -> void:
+func fire( fire_dir: Vector2 ) -> void:
 	move_dir = fire_dir
 	rotate_nodes()
 	pass	

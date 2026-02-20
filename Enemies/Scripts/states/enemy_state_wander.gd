@@ -9,6 +9,7 @@ class_name EnemyStateWander extends EnemyState
 @export var state_cycles_max : int = 3
 @export var next_state : EnemyState
 @export var chase_state: EnemyStateChase # Add an export for the chase state
+@export var shoot_state: EnemyStateShoot
 
 @onready var vision_area: VisionArea = $"../../VisionArea"
 @onready var line_of_sight_ray: RayCast2D = $"../../LineOfSightRay"
@@ -40,6 +41,8 @@ func process( _delta: float ) -> EnemyState:
 		# First, do a cheap check to see if the player is even nearby.
 		if vision_area:
 			if vision_area.get_overlapping_bodies().has(enemy.player):
+				if enemy.can_shoot :
+						return shoot_state
 				# If they are, do the expensive raycast check.
 				line_of_sight_ray.target_position = enemy.to_local(enemy.player.global_position)
 				line_of_sight_ray.force_raycast_update()
@@ -48,7 +51,10 @@ func process( _delta: float ) -> EnemyState:
 				
 				# If the first thing we see is the player, start chasing!
 				if is_instance_valid(collider) and collider.is_in_group("player"):
-					return chase_state
+					if enemy.can_shoot :
+						return shoot_state
+					else:	
+						return chase_state
 
 	# If we don't have line of sight, just continue with the normal idle timer.
 	_timer -= _delta

@@ -22,7 +22,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	enemy.invulnerable = true
+	#enemy.invulnerable = true
 	_animation_finished = false
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.set_direction(_direction)
@@ -33,7 +33,7 @@ func enter() -> void:
 	pass
 	
 func exit() -> void:
-	enemy.invulnerable = false
+	#enemy.invulnerable = false
 	enemy.animation_player.animation_finished.disconnect( _on_animation_finished)
 	pass
 	

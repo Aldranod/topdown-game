@@ -10,6 +10,7 @@ const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 @export var xp_reward : int = 1 
 @export var respawnable : bool = true
 @export var attack_range : float = 24.0
+@export var can_shoot : bool = false
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO

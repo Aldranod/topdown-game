@@ -39,9 +39,12 @@ func process( _delta: float ) -> EnemyState:
 	# Decrement the flee timer
 	_flee_timer -= _delta
 	
-	# If flee duration is over, return to chase
+	# If flee duration is over, return to chase or shoot
 	if _flee_timer <= 0.0:
-		return chase_state
+		if enemy.can_shoot:
+			return $"../Idle"
+		else:	
+			return chase_state
 	
 	# Calculate flee direction (opposite of player direction)
 	var player_direction = enemy.global_position.direction_to(enemy.player.global_position)

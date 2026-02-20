@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bil173ofqnh1x"]
+[gd_scene load_steps=28 format=4 uid="uid://bil173ofqnh1x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_umtxh"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_th4tt"]
@@ -18,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="16_chx6k"]
 [ext_resource type="PackedScene" uid="uid://rka0fnqpei3e" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="17_etvu0"]
 [ext_resource type="Resource" uid="uid://bw415lp4tqari" path="res://items/ability_boomerang.tres" id="18_44xel"]
-[ext_resource type="Resource" uid="uid://dehbl6u18edve" path="res://items/w_katana.tres" id="19_44xel"]
+[ext_resource type="Resource" uid="uid://cc2djwha0ulcu" path="res://items/arrow.tres" id="19_th4tt"]
 [ext_resource type="Resource" uid="uid://ouvi02c4yox5" path="res://items/ability_arrow.tres" id="20_umtxh"]
+[ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="21_meju0"]
+[ext_resource type="PackedScene" uid="uid://v3xwh0qtjood" path="res://Enemies/ShootingEnemy/GoblinArcher.tscn" id="21_th4tt"]
 
 [sub_resource type="Gradient" id="Gradient_w83a4"]
 offsets = PackedFloat32Array(0, 0.83243245)
@@ -666,7 +668,7 @@ position = Vector2(415, 976)
 hp = 7
 
 [node name="Goblin12" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(629, 148)
+position = Vector2(361, 439)
 hp = 8
 
 [node name="Goblin13" parent="Enemies" instance=ExtResource("9_odo5p")]
@@ -767,10 +769,20 @@ side = 1
 position = Vector2(212, 230)
 item_data = ExtResource("18_44xel")
 
-[node name="Treasure-chest2" parent="." instance=ExtResource("17_etvu0")]
-position = Vector2(276, 176)
-item_data = ExtResource("19_44xel")
-
 [node name="Treasure-chest3" parent="." instance=ExtResource("17_etvu0")]
-position = Vector2(162, 190)
+position = Vector2(155, 531)
 item_data = ExtResource("20_umtxh")
+
+[node name="GoblinArcher" parent="." instance=ExtResource("21_th4tt")]
+position = Vector2(463, 198)
+
+[node name="GoblinArcher2" parent="." instance=ExtResource("21_th4tt")]
+position = Vector2(642, 154)
+
+[node name="GoblinArcher3" parent="." instance=ExtResource("21_th4tt")]
+position = Vector2(250, 278)
+
+[node name="ItemPickup" parent="." instance=ExtResource("21_meju0")]
+position = Vector2(168, 657)
+item_data = ExtResource("19_th4tt")
+item_count = 99
