@@ -2834,16 +2834,20 @@ script = ExtResource("5_k53q1")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("6_fhl08")
+knockback_speed = 80.0
+charge_speed = 120.0
 attack_sound = ExtResource("8_od3ui")
 
 [node name="SecondAttack" type="Node" parent="StateMachine"]
 script = ExtResource("14_6pogt")
+knockback_speed = 70.0
 charge_speed = 120.0
 attack_sound = ExtResource("8_od3ui")
-decelerate_speed = 5.5
 
 [node name="ThirdAttack" type="Node" parent="StateMachine"]
 script = ExtResource("16_6eb1q")
+knockback_speed = 60.0
+charge_speed = 120.0
 attack_sound = ExtResource("8_od3ui")
 
 [node name="Stun" type="Node" parent="StateMachine"]

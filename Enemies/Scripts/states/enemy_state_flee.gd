@@ -17,7 +17,7 @@ var _flee_timer : float = 0.0
 
 func init() -> void:
 	pass
-	
+
 func enter() -> void:
 	if not enemy.can_shoot:	
 		$"../../IndicatorSprite2D".visible = true
