@@ -46,7 +46,7 @@ func process( _delta: float ) -> EnemyState:
 				
 				var collider = line_of_sight_ray.get_collider()
 				
-				# If the first thing we see is the player, start chasing!
+				# If the first thing we see is the player, start chasing or shooting!
 				if is_instance_valid(collider) and collider.is_in_group("player"):
 					if enemy.can_shoot :
 						return $"../Shoot"

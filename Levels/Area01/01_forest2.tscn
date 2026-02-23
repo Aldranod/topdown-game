@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ccjs8vvt5r2j0"]
+[gd_scene load_steps=39 format=4 uid="uid://ccjs8vvt5r2j0"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_tx3e1"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_il6ma"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="29_x36nl"]
 [ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="30_j58va"]
 [ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="31_gvois"]
+[ext_resource type="PackedScene" uid="uid://v3xwh0qtjood" path="res://Enemies/ShootingEnemy/GoblinArcher.tscn" id="32_4kcxk"]
 [ext_resource type="PackedScene" uid="uid://d388ot7vwnh0y" path="res://Props/Plants/Tree.tscn" id="33_w23xq"]
 [ext_resource type="PackedScene" uid="uid://cwd54brf8s2an" path="res://Props/Plants/Tree2.tscn" id="34_j2ak2"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="35_uuwre"]
@@ -81,7 +82,7 @@ position = Vector2(128, 160)
 tile_map_data = PackedByteArray("AAASAAoAAAAKAAgAAAASAAsAAAAKAAkAAAASAAwAAAAKAAoAAAASAA0AAAAKAAsAAAATAAkAAAALAAcAAAATAAoAAAALAAgAAAATAAsAAAALAAkAAAATAAwAAAALAAoAAAATAA0AAAALAAsAAAATAA4AAAAKAAwAAAATAA8AAAAKAA0AAAAUAAoAAAALAAkAAAAUAAsAAAALAAoAAAAUAAwAAAALAAsAAAAUAA0AAAAMAAsAAAAUAAgAAAALAAcAAAAUAAkAAAALAAgAAAAUAA4AAAAMAA4AAAAUAA8AAAAMAA8AAAAVAAgAAAAMAAcAAAAVAAkAAAAMAAgAAAAVAAoAAAAMAAkAAAAVAAsAAAAMAAoAAAAVAAwAAAAMAAsAAAAVAA0AAAAMAAwAAAAVAA4AAAANAA4AAAAVAA8AAAANAA8AAAAWAAgAAAANAAcAAAAWAAkAAAANAAgAAAAWAAoAAAANAAkAAAAWAAsAAAANAAoAAAAWAAwAAAANAAsAAAAWAA0AAAAMAAwAAAAWAA4AAAAKAA4AAAAWAA8AAAAKAA8AAAAXAAgAAAAOAAcAAAAXAAkAAAAOAAgAAAAXAAoAAAAOAAkAAAAXAAsAAAAOAAoAAAAXAAwAAAAOAAsAAAAXAA0AAAANAAsAAAAXAA4AAAALAA4AAAAXAA8AAAALAA8AAAAYAAkAAAAOAAcAAAAYAAoAAAAOAAgAAAAYAAsAAAAOAAkAAAAYAAwAAAAOAAoAAAAYAA0AAAAOAAsAAAAYAA4AAAAOAAwAAAAYAA8AAAAOAA0AAAAZAAoAAAAPAAgAAAAZAAsAAAAPAAkAAAAZAAwAAAAPAAoAAAAZAA0AAAAPAAsAAAA=")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("5_205g3")]
-position = Vector2(720, 472)
+position = Vector2(448, 376)
 
 [node name="Props" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -195,7 +196,7 @@ item_data = ExtResource("24_ce4hh")
 respawnable = false
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("23_n5mpc")]
-position = Vector2(469.9765, 162.861)
+position = Vector2(465.1834, 169.887)
 item_data = ExtResource("24_ce4hh")
 respawnable = false
 
@@ -1332,5 +1333,20 @@ offset = Vector2(0, 256)
 [node name="GoblinAmbush" parent="." instance=ExtResource("31_gvois")]
 position = Vector2(896, 88)
 
+[node name="GoblinAmbush4" parent="." instance=ExtResource("31_gvois")]
+position = Vector2(872, 488)
+
+[node name="GoblinAmbush3" parent="." instance=ExtResource("31_gvois")]
+position = Vector2(1168, 496)
+
 [node name="GoblinAmbush2" parent="." instance=ExtResource("31_gvois")]
 position = Vector2(48, 520)
+
+[node name="GoblinArcher" parent="." instance=ExtResource("32_4kcxk")]
+position = Vector2(672, 192)
+
+[node name="GoblinArcher2" parent="." instance=ExtResource("32_4kcxk")]
+position = Vector2(544, 520)
+
+[node name="GoblinArcher3" parent="." instance=ExtResource("32_4kcxk")]
+position = Vector2(1184, 416)

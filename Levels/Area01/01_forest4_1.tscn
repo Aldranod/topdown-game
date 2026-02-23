@@ -668,7 +668,7 @@ position = Vector2(415, 976)
 hp = 7
 
 [node name="Goblin12" parent="Enemies" instance=ExtResource("9_odo5p")]
-position = Vector2(361, 439)
+position = Vector2(503, 868)
 hp = 8
 
 [node name="Goblin13" parent="Enemies" instance=ExtResource("9_odo5p")]
@@ -689,7 +689,16 @@ hp = 5
 
 [node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("11_yofaq")]
 y_sort_enabled = true
-position = Vector2(612, 859)
+position = Vector2(562, 454)
+
+[node name="GoblinArcher" parent="Enemies" instance=ExtResource("21_th4tt")]
+position = Vector2(463, 198)
+
+[node name="GoblinArcher2" parent="Enemies" instance=ExtResource("21_th4tt")]
+position = Vector2(289, 694)
+
+[node name="GoblinArcher3" parent="Enemies" instance=ExtResource("21_th4tt")]
+position = Vector2(250, 278)
 
 [node name="LevelTransition3" parent="." instance=ExtResource("10_5duvv")]
 position = Vector2(812, 704)
@@ -772,15 +781,6 @@ item_data = ExtResource("18_44xel")
 [node name="Treasure-chest3" parent="." instance=ExtResource("17_etvu0")]
 position = Vector2(155, 531)
 item_data = ExtResource("20_umtxh")
-
-[node name="GoblinArcher" parent="." instance=ExtResource("21_th4tt")]
-position = Vector2(463, 198)
-
-[node name="GoblinArcher2" parent="." instance=ExtResource("21_th4tt")]
-position = Vector2(642, 154)
-
-[node name="GoblinArcher3" parent="." instance=ExtResource("21_th4tt")]
-position = Vector2(250, 278)
 
 [node name="ItemPickup" parent="." instance=ExtResource("21_meju0")]
 position = Vector2(168, 657)

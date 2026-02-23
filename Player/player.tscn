@@ -2458,7 +2458,8 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pisgm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gu6f8"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvnt1"]
+height = 40.0
 
 [sub_resource type="Animation" id="Animation_n471f"]
 length = 0.001
@@ -2707,7 +2708,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.174533
 script = ExtResource("1_4ntmi")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["player"]]
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_1l10g")
 script = ExtResource("45_maysp")
@@ -2952,11 +2953,12 @@ unique_name_in_owner = true
 collision_mask = 0
 
 [node name="HitBox" parent="." instance=ExtResource("13_p5o4e")]
+position = Vector2(0, -10)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -10)
-shape = SubResource("CircleShape2D_gu6f8")
+shape = SubResource("CapsuleShape2D_gvnt1")
 debug_color = Color(0.761, 0.812, 0.098, 0)
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]

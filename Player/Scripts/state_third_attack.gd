@@ -75,8 +75,4 @@ func EndAttack( _newAnimName : String) -> void:
 	
 func _on_hit_landed() -> void:
 	var knockback_direction = -player.cardinal_direction
-	#var knockback_direction = direction if player.cardinal_direction != Vector2.DOWN else -direction
-	#player.velocity = knockback_direction * knockback_speed
 	player.velocity = knockback_direction * knockback_speed
-	print("3rd attack")
-	print(player.velocity)

@@ -9,7 +9,6 @@
 size = Vector2(30, 8)
 
 [node name="Arrow" type="Node2D"]
-visible = false
 script = ExtResource("1_d1t5a")
 
 [node name="HurtBox" type="Area2D" parent="."]
