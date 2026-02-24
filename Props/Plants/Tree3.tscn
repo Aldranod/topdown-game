@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3pt5h60ltre7"]
+[gd_scene load_steps=19 format=3 uid="uid://d3pt5h60ltre7"]
 
 [ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_1hi0e"]
 [ext_resource type="Resource" uid="uid://bylt5tjjtj4cx" path="res://00_Globals/global_effects/hit_particle_settings/tree_particles.tres" id="2_l0jnn"]
+[ext_resource type="Script" uid="uid://lm43gaq2wrjq" path="res://00_Globals/global_effects/hit_particles_settings.gd" id="2_lq8hr"]
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_qlplb"]
 [ext_resource type="Texture2D" uid="uid://j428iomk435y" path="res://Props/Sprites/tree_1.png" id="3_l0jnn"]
 [ext_resource type="Resource" uid="uid://blga4ogm8laab" path="res://00_Globals/global_effects/hit_particle_settings/leaf_particles.tres" id="3_s73q3"]
@@ -190,8 +191,7 @@ _data = {
 
 [node name="Tree3" type="Node2D" groups=["hidable"]]
 script = ExtResource("1_1hi0e")
-particle_settings = ExtResource("2_l0jnn")
-particle_settings_leaf = ExtResource("3_s73q3")
+particles = Array[ExtResource("2_lq8hr")]([ExtResource("2_l0jnn"), ExtResource("3_s73q3")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

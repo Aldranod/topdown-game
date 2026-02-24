@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://blmuv7dk7ny5"]
+[gd_scene load_steps=19 format=3 uid="uid://blmuv7dk7ny5"]
 
 [ext_resource type="Script" uid="uid://bchlccmnrkss6" path="res://Props/Plants/plant.gd" id="1_djs60"]
 [ext_resource type="Texture2D" uid="uid://c1t8b1mvg1rj4" path="res://Props/Sprites/Props.png" id="1_opo5d"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="3_jc2yy"]
 [ext_resource type="Resource" uid="uid://dtdu1bwq238x5" path="res://items/blueberry.tres" id="3_k6e5a"]
 [ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="4_0y2q1"]
+[ext_resource type="Resource" uid="uid://blga4ogm8laab" path="res://00_Globals/global_effects/hit_particle_settings/leaf_particles.tres" id="4_ah4mw"]
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="4_gt7ev"]
 [ext_resource type="PackedScene" uid="uid://dai7o1vg0hga0" path="res://Interactables/Throwable/Throwable.tscn" id="5_jc2yy"]
 [ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="6_ah4mw"]
@@ -94,6 +95,7 @@ size = Vector2(31, 18)
 modulate = Color(0.8359375, 0.8359375, 0.8359375, 1)
 script = ExtResource("1_djs60")
 drops = Array[ExtResource("2_k6e5a")]([SubResource("Resource_gt7ev")])
+particle_settings = ExtResource("4_ah4mw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.9165642, 0.93359375, 0.79950064, 1)

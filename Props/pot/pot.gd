@@ -1,13 +1,13 @@
-class_name Plant extends Node2D
-signal plant_destroyed
+class_name Pot extends Node2D
+signal pot_destroyed
 
-var is_choped : bool = false
+var destroyed : bool = false
 
 const PICKUP = preload("res://items/item_pickup/item_pickup.tscn")
 @export var drops : Array[DropData]
 @export var particle_settings : HitParticleSettings
 
-@onready var is_choped_data: PersistentDataHandler = $IsChoped
+@onready var is_destroyed_data: PersistentDataHandler = $IsDestroyed
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
@@ -16,26 +16,26 @@ func _ready():
 	set_plant_state()
 
 func set_plant_state() -> void:
-	is_choped = is_choped_data.value
-	if is_choped:
+	destroyed = is_destroyed_data.value
+	if destroyed:
 		queue_free()
 
 func TakeDamage( _damage : HurtBox ) -> void:
 	var _direction = global_position.direction_to(_damage.global_position)
 	EffectManager.hit_particles($HitBox.global_position,-_direction,particle_settings)
-	plant_destroyed.emit()
-	animation_player.play("destroy")
-	await animation_player.animation_finished
-	is_choped_data.set_value()
-	drop_items()
-	queue_free()
+	#pot_destroyed.emit()
+	#animation_player.play("destroy")
+	#await animation_player.animation_finished
+	is_destroyed_data.set_value()
+	Destroy()
+	#queue_free()
 	pass
 	
 func Destroy() ->void:
-	plant_destroyed.emit()
+	pot_destroyed.emit()
 	animation_player.play("destroy")
 	await animation_player.animation_finished
-	is_choped_data.set_value()
+	is_destroyed_data.set_value()
 	drop_items()
 	queue_free()
 	pass

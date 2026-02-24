@@ -1,8 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://dsqvx0e8msa5u"]
+[gd_scene load_steps=22 format=3 uid="uid://dsqvx0e8msa5u"]
 
 [ext_resource type="Texture2D" uid="uid://c1t8b1mvg1rj4" path="res://Props/Sprites/Props.png" id="1_v5x4x"]
+[ext_resource type="Script" uid="uid://bqgfbei07h37b" path="res://Props/pot/pot.gd" id="1_yyl76"]
 [ext_resource type="AudioStream" uid="uid://bdi3spf3xpsv2" path="res://Props/pot/pot_destroy.wav" id="2_0vehh"]
+[ext_resource type="Script" uid="uid://c5sraeeen4dul" path="res://Enemies/Scripts/drop_data.gd" id="2_345wg"]
 [ext_resource type="PackedScene" uid="uid://dai7o1vg0hga0" path="res://Interactables/Throwable/Throwable.tscn" id="3_3q0u8"]
+[ext_resource type="Resource" uid="uid://dh7avm20vuttc" path="res://items/gem.tres" id="3_ttbf6"]
+[ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="4_ttbf6"]
+[ext_resource type="Resource" uid="uid://ddiolb1untyel" path="res://00_Globals/global_effects/hit_particle_settings/blood_particles.tres" id="5_oj0xe"]
+[ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="5_y50he"]
+[ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="6_345wg"]
+
+[sub_resource type="Resource" id="Resource_oj0xe"]
+script = ExtResource("2_345wg")
+item = ExtResource("3_ttbf6")
+probability = 50.0
+metadata/_custom_type_script = "uid://c5sraeeen4dul"
+
+[sub_resource type="Resource" id="Resource_tu7ae"]
+script = ExtResource("2_345wg")
+item = ExtResource("4_ttbf6")
+probability = 10.0
+metadata/_custom_type_script = "uid://c5sraeeen4dul"
 
 [sub_resource type="Gradient" id="Gradient_0vehh"]
 offsets = PackedFloat32Array(0.247788, 0.995575)
@@ -114,7 +133,13 @@ size = Vector2(16, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hha1h"]
 size = Vector2(20, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttbf6"]
+size = Vector2(20, 28)
+
 [node name="Pot" type="Node2D"]
+script = ExtResource("1_yyl76")
+drops = Array[ExtResource("2_345wg")]([SubResource("Resource_oj0xe"), SubResource("Resource_tu7ae")])
+particle_settings = ExtResource("5_oj0xe")
 
 [node name="Sprite2D_Shadow" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_3q0u8")
@@ -146,3 +171,11 @@ debug_color = Color(0, 0.6, 0.7, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Throwable"]
 shape = SubResource("RectangleShape2D_hha1h")
 debug_color = Color(0.078, 0.649, 0, 0)
+
+[node name="HitBox" parent="." instance=ExtResource("5_y50he")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_ttbf6")
+
+[node name="IsDestroyed" parent="." instance=ExtResource("6_345wg")]

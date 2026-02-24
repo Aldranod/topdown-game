@@ -1225,6 +1225,7 @@ script = ExtResource("14_r1qjk")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state")]
 script = ExtResource("15_5bs8d")
+state_duration_max = 1.0
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
 
@@ -1273,7 +1274,6 @@ chase_state = NodePath("../Chase")
 [node name="Shoot" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("26_02oyd")
 shoot_range = 250.0
-runaway_range = 100.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
@@ -1301,7 +1301,7 @@ polygon = PackedVector2Array(-651, -367, -59, -394, 33, -391, 662, -383, 667, -6
 
 [node name="LineOfSightRay" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
-target_position = Vector2(-2, 443)
+target_position = Vector2(0, 443)
 collision_mask = 25
 hit_from_inside = true
 

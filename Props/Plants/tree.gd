@@ -1,8 +1,7 @@
 class_name ForestTree extends Node2D
 
 @export var collision : bool = true
-@export var particle_settings : HitParticleSettings
-@export var particle_settings_leaf : HitParticleSettings
+@export var particles: Array[HitParticleSettings]
 @onready var static_body_2d: StaticBody2D = $StaticBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -31,7 +30,7 @@ func show_self() ->void:
 func TakeDamage( _damage : HurtBox ) -> void:
 	if visible:	
 		var _direction = global_position.direction_to(_damage.global_position)
-		EffectManager.hit_particles($HitBox.global_position,-_direction,particle_settings)
+		EffectManager.hit_particles($HitBox.global_position,-_direction,particles[0])
 	pass
 	
 func TakeDamage2( _damage : HurtBox ) -> void:
@@ -39,5 +38,5 @@ func TakeDamage2( _damage : HurtBox ) -> void:
 		var _direction = global_position.direction_to(_damage.global_position)
 		var offset_distance = 20.0  # Small distance offset
 		var particle_position = _damage.global_position + (-_direction * offset_distance)
-		EffectManager.hit_particles(particle_position,-_direction,particle_settings_leaf)
+		EffectManager.hit_particles(particle_position,-_direction,particles[1])
 	pass	
