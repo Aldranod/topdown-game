@@ -10,7 +10,6 @@ const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 @export var xp_reward : int = 1 
 @export var respawnable : bool = true
 @export var attack_range : float = 24.0
-@export var can_shoot : bool = false
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
@@ -102,3 +101,15 @@ func dust_emit() -> void:
 		distance_in_pixel -= 68
 		EffectManager.emit_dust(self)
 	pass
+
+func can_shoot() -> bool:
+	if $EnemyStateMachine.has_node("Shoot"):
+		print("shoot node found")
+		var shoot_state = $EnemyStateMachine/Shoot
+		var dist = global_position.distance_to(player.global_position)
+		if dist > attack_range and dist > shoot_state.runaway_range and dist <= shoot_state.shoot_range:
+			if shoot_state.check_los():
+				return true
+	else:
+		return false		
+	return false

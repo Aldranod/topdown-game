@@ -1173,7 +1173,6 @@ collision_mask = 80
 script = ExtResource("1_c7k5x")
 hp = 6
 attack_range = 30.0
-can_shoot = true
 
 [node name="HurtBox" parent="." instance=ExtResource("2_mra66")]
 monitoring = false
@@ -1267,13 +1266,13 @@ idle_state = NodePath("../Idle")
 
 [node name="Flee" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "chase_state")]
 script = ExtResource("25_527jw")
-flee_speed = 80.0
+flee_speed = 100.0
 vision_area = NodePath("../../VisionArea")
 chase_state = NodePath("../Chase")
 
 [node name="Shoot" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("26_02oyd")
-shoot_range = 350.0
+shoot_range = 250.0
 runaway_range = 100.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

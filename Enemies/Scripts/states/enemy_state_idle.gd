@@ -48,7 +48,7 @@ func process( _delta: float ) -> EnemyState:
 				
 				# If the first thing we see is the player, start chasing or shooting!
 				if is_instance_valid(collider) and collider.is_in_group("player"):
-					if enemy.can_shoot :
+					if enemy.can_shoot() :
 						return $"../Shoot"
 					else:
 						#$"../..".set_collision_mask_value(5, true)

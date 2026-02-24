@@ -13,6 +13,7 @@ var _animation_finished: bool = true
 var _cooldown_timer: float = 0.0
 
 func enter() -> void:
+	print("entering shoot state")
 	_cooldown_timer = 0.5
 	_animation_finished = true 
 	enemy.velocity = Vector2.ZERO
@@ -21,43 +22,55 @@ func enter() -> void:
 		enemy.animation_player.animation_finished.connect(_on_animation_finished)		
 
 func exit() -> void:
+	print("exiting shoot state")
 	if enemy.animation_player.animation_finished.is_connected(_on_animation_finished):
 		enemy.animation_player.animation_finished.disconnect(_on_animation_finished)
 
 func process(_delta: float) -> EnemyState:
 	_cooldown_timer -= _delta
 	# While waiting/shooting, always face the player
-	if is_instance_valid(enemy.player):
-		var dir = enemy.global_position.direction_to(enemy.player.global_position)
-		enemy.set_direction(dir)
+	#if is_instance_valid(enemy.player):
+		#print("player instance not valid")
+	var dir = enemy.global_position.direction_to(enemy.player.global_position)
+	enemy.set_direction(dir)
 	# If the spear animation is currently playing, don't allow state changes
 	if not _animation_finished:
+		print("animation not finished")
 		return null
 	# Logic for switching states
 	if PlayerManager.player.hp <= 0:
+		print("player dead")
 		return $"../Idle"
 	var dist = enemy.global_position.distance_to(enemy.player.global_position)
 	# 1. Check for transitions OUT of the shoot state
 	if dist > shoot_range:
-		return $"../Wander"
+		print("player out of shoot range, going chase")
+		return $"../Chase"
 	elif dist < enemy.attack_range:
+		print("player in attack range, going attack")
 		return $"../Attack"
 	elif dist < runaway_range:
+		print("player too close, going flee")
 		return $"../Flee"
 	# 2. If we are still in range, check if we can shoot
 	if _cooldown_timer <= 0:
+		print("cooldown 0")
 		if check_los():
+			print("los ok going shoot")
 			_shoot()
 		else:
-			enemy.update_animation("idle")
-			#return $"../Chase" 	
+			print("los NOK going idle")
+			#enemy.update_animation("idle")
+			return $"../Chase" 	
 	else:
 		# While waiting for cooldown, play idle animation so they don't look broken
+		print("cooldown in progress going idle")
 		enemy.update_animation("idle") 
 	return null
 
 func _on_animation_finished(_a: String) -> void:
 	_animation_finished = true
+	print("animation finished")
 	
 func _shoot() -> void:
 	if not is_instance_valid(enemy.player):

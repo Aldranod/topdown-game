@@ -41,7 +41,7 @@ func process( _delta: float ) -> EnemyState:
 		# First, do a cheap check to see if the player is even nearby.
 		if vision_area:
 			if vision_area.get_overlapping_bodies().has(enemy.player):
-				if enemy.can_shoot :
+				if enemy.can_shoot() :
 						return shoot_state
 				# If they are, do the expensive raycast check.
 				line_of_sight_ray.target_position = enemy.to_local(enemy.player.global_position)
@@ -51,7 +51,8 @@ func process( _delta: float ) -> EnemyState:
 				
 				# If the first thing we see is the player, start chasing!
 				if is_instance_valid(collider) and collider.is_in_group("player"):
-					if enemy.can_shoot :
+					if enemy.can_shoot() :
+						print("player in shoot range going shoot")
 						return shoot_state
 					else:	
 						return chase_state
