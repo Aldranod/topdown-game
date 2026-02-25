@@ -1300,7 +1300,7 @@ polygon = PackedVector2Array(-651, -367, -59, -394, 33, -391, 662, -383, 667, -6
 [node name="PersistentDataHandler" parent="." instance=ExtResource("28_8uyav")]
 
 [node name="LineOfSightRay" type="RayCast2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -24)
 target_position = Vector2(0, 443)
 collision_mask = 25
 hit_from_inside = true

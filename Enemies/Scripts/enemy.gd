@@ -113,3 +113,9 @@ func can_shoot() -> bool:
 	else:
 		return false		
 	return false
+
+func clear_collisions() -> void:
+	for c in get_children():
+		if c is CollisionShape2D:
+			c.queue_free()
+	pass

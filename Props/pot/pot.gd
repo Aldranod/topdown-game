@@ -33,11 +33,18 @@ func TakeDamage( _damage : HurtBox ) -> void:
 	
 func Destroy() ->void:
 	pot_destroyed.emit()
+	clear_collisions()
 	animation_player.play("destroy")
 	await animation_player.animation_finished
 	is_destroyed_data.set_value()
 	drop_items()
 	queue_free()
+	pass
+
+func clear_collisions() -> void:
+	for c in get_children():
+		if c is StaticBody2D:
+			c.queue_free()
 	pass
 		
 func drop_items() -> void:

@@ -33,6 +33,7 @@ func TakeDamage( _damage : HurtBox ) -> void:
 	
 func Destroy() ->void:
 	plant_destroyed.emit()
+	clear_collisions()
 	animation_player.play("destroy")
 	await animation_player.animation_finished
 	is_choped_data.set_value()
@@ -56,3 +57,9 @@ func drop_items() -> void:
 			#drop.velocity = velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
 			#drop.velocity = Vector2(randi_range(-2, 1), randi_range(1, 2))
 	pass	
+
+func clear_collisions() -> void:
+	for c in get_children():
+		if c is StaticBody2D:
+			c.queue_free()
+	pass

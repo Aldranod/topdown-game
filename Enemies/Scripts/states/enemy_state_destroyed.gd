@@ -21,7 +21,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	$"../../CollisionShape2D".set_deferred("disabled", true)
+	enemy.clear_collisions()
 	enemy.invulnerable = true
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.set_direction(_direction)
