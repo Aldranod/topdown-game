@@ -3,7 +3,9 @@ class_name State_Dash extends State
 @export var move_speed : float = 200.0
 @export var effect_delay : float = 0.1
 @export var dash_audio : AudioStream
-
+@onready var attack: State = $"../Attack"
+@onready var second_attack: State = $"../SecondAttack"
+@onready var third_attack: State_ThirdAttack = $"../ThirdAttack"
 @onready var idle: State = $"../Idle"
 
 var direction : Vector2 = Vector2.ZERO
@@ -43,7 +45,17 @@ func Process(_delta: float) -> State:
 func Physics(_delta: float) -> State:
 	return null	
 
-func HandleInput(_delta: InputEvent) -> State:
+func HandleInput(_event: InputEvent) -> State:
+	if _event.is_action_pressed("attack"):
+		if PlayerManager.player.third_attack_window_open:
+			return third_attack
+		if PlayerManager.player.combo_window_open:
+			return second_attack
+		if PlayerManager.player.attack_window_open:
+			return attack
+	if _event.is_action_pressed("up") or _event.is_action_pressed("down") or _event.is_action_pressed("left") or _event.is_action_pressed("right") :
+			next_state = idle
+			return idle		
 	return null		
 	
 func _on_animation_finished(anim_name : String) -> void:

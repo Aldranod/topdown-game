@@ -35,9 +35,9 @@ func Destroy() ->void:
 	pot_destroyed.emit()
 	clear_collisions()
 	animation_player.play("destroy")
+	drop_items()
 	await animation_player.animation_finished
 	is_destroyed_data.set_value()
-	drop_items()
 	queue_free()
 	pass
 
@@ -57,9 +57,15 @@ func drop_items() -> void:
 		for j in drop_count:
 			var drop :ItemPickup = PICKUP.instantiate() as ItemPickup
 			drop.item_data = drops[i].item
-			#get_parent().call_deferred("add_child", drop)
-			get_parent().add_child(drop)
-			drop.global_position = global_position
-			#drop.velocity = velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
-			#drop.velocity = Vector2(randi_range(-2, 1), randi_range(1, 2))
+			
+			get_parent().call_deferred("add_child", drop)
+			drop.global_position = position
+			#get_parent().add_child(drop)
+			#drop.velocity = self.velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
+			
+			drop.velocity = Vector2(randi_range(-2, 1), randi_range(1, 2))
+			
+			drop.velocity = drop.velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
+		
+
 	pass	

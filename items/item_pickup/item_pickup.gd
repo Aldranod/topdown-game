@@ -22,7 +22,7 @@ func _ready() -> void:
 			queue_free()
 	_update_texture()
 	_update_count_label()
-	
+	$Area2D/CollisionShape2D.set_deferred("disabled",false)
 	area_2d.body_entered.connect(_on_body_entered)
 	
 func _physics_process(delta: float) -> void:

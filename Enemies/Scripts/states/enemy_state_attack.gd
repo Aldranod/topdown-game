@@ -1,6 +1,8 @@
 class_name EnemyStateAttack extends EnemyState
 
 @export var attack_cooldown : float = 0.2
+@export var rush_forward : bool = false
+@export var rush_speed : float = 0
 var anim_name : String = "attack"
 var _animation_finished : bool = false
 var _direction :  Vector2
@@ -19,11 +21,13 @@ func enter() -> void:
 		#attack_hurt_box.monitoring = true
 	$"../..".set_collision_mask_value(5, true) 	
 	_animation_finished = false
-	enemy.velocity = Vector2.ZERO
 	_direction = enemy.global_position.direction_to(PlayerManager.player.global_position)
 	enemy.set_direction(_direction)
+	if rush_forward:
+		enemy.velocity = _direction * rush_speed
+	else:	
+		enemy.velocity = Vector2.ZERO
 	attack_select()
-	print(anim_name)
 	enemy.update_animation(anim_name)
 	enemy.animation_player.animation_finished.connect( _on_animation_finished)
 	pass
@@ -45,6 +49,7 @@ func physics( _delta: float ) -> EnemyState:
 	return null
 
 func _on_animation_finished( _a : String) -> void:
+	enemy.velocity = Vector2.ZERO
 	await get_tree().create_timer(attack_cooldown).timeout
 	_animation_finished = true	
 

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dlmtlgpaumt6i" path="res://Interactables/arrow/bow_fire.wav" id="4_wb1gv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy4uj"]
-size = Vector2(28, 6)
+size = Vector2(20, 6)
 
 [node name="Spear" type="Node2D"]
 script = ExtResource("1_lxt08")
@@ -14,11 +14,12 @@ script = ExtResource("1_lxt08")
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2(0, -18.999998)
 collision_layer = 0
-collision_mask = 258
+collision_mask = 2
 script = ExtResource("2_13knc")
 metadata/_custom_type_script = "uid://dg6f4iuiibbl4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_oy4uj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

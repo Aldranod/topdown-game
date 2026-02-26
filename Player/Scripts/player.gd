@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 signal DirectionChanged( new_direction: Vector2)
 signal player_damaged( hurt_box : HurtBox)
 signal player_dashing
+@export var dash_cooldown_duration: float = 1.5
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var stick_intensity:  float = 0.0  # 0.0 to 1.0
 var cardinal_direction : Vector2 = Vector2.DOWN
@@ -22,7 +23,7 @@ var attack : int =1 :
 var defense : int = 1
 var defense_bonus: int = 0
 
-var dash_cooldown_duration: float = 1.5
+
 var dash_cooldown_timer: float = 0.0 
 
 var arrow_count : int = 1 : set = _set_arrow_count
