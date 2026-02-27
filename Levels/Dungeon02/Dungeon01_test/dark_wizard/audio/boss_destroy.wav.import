@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://hx2x73txbkkl"
-path="res://.godot/imported/boss_destroy.wav-481baf9ccc31feeb9adf29be36d2d324.sample"
+path="res://.godot/imported/boss_destroy.wav-b412c79483ce8d30903cf8534007ce9a.sample"
 
 [deps]
 
-source_file="res://Levels/Dungeon01/dark_wizard/audio/boss_destroy.wav"
-dest_files=["res://.godot/imported/boss_destroy.wav-481baf9ccc31feeb9adf29be36d2d324.sample"]
+source_file="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_destroy.wav"
+dest_files=["res://.godot/imported/boss_destroy.wav-b412c79483ce8d30903cf8534007ce9a.sample"]
 
 [params]
 

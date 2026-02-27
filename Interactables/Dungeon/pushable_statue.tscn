@@ -20,6 +20,7 @@ position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rlg6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -18)
 texture = ExtResource("2_508vv")
 region_enabled = true

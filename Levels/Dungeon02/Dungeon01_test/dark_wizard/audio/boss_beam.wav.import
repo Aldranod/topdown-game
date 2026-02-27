@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d1dnxlp530iyv"
-path="res://.godot/imported/boss_beam.wav-4c4d0554b4fd3e75cb5a12cc92818309.sample"
+path="res://.godot/imported/boss_beam.wav-958d8f18ce80f3cafe1d0fdf81630b73.sample"
 
 [deps]
 
-source_file="res://Levels/Dungeon01/dark_wizard/audio/boss_beam.wav"
-dest_files=["res://.godot/imported/boss_beam.wav-4c4d0554b4fd3e75cb5a12cc92818309.sample"]
+source_file="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_beam.wav"
+dest_files=["res://.godot/imported/boss_beam.wav-958d8f18ce80f3cafe1d0fdf81630b73.sample"]
 
 [params]
 

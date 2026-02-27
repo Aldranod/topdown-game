@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://b6s62icywk745"]
 
-[ext_resource type="Script" uid="uid://come1nj1sqluy" path="res://Levels/Dungeon01/dark_wizard/script/beam_attack.gd" id="1_77nih"]
+[ext_resource type="Script" uid="uid://come1nj1sqluy" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/script/beam_attack.gd" id="1_77nih"]
 [ext_resource type="Material" uid="uid://dcyioxh5tg01i" path="res://shaders and materials/light_material.tres" id="1_qhmux"]
-[ext_resource type="Texture2D" uid="uid://cio7vtk45dqk7" path="res://Levels/Dungeon01/dark_wizard/sprites/energy-beam.png" id="1_yxhgf"]
-[ext_resource type="Script" uid="uid://bb1u3w7m8gden" path="res://Levels/Dungeon01/dark_wizard/script/energy_beam_sprite.gd" id="3_bw72m"]
-[ext_resource type="Texture2D" uid="uid://bbiljyekrd2wf" path="res://Levels/Dungeon01/dark_wizard/sprites/energy-beam-large.png" id="4_takxp"]
-[ext_resource type="AudioStream" uid="uid://d1dnxlp530iyv" path="res://Levels/Dungeon01/dark_wizard/audio/boss_beam.wav" id="5_o63j5"]
+[ext_resource type="Texture2D" uid="uid://cio7vtk45dqk7" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/energy-beam.png" id="1_yxhgf"]
+[ext_resource type="Script" uid="uid://bb1u3w7m8gden" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/script/energy_beam_sprite.gd" id="3_bw72m"]
+[ext_resource type="Texture2D" uid="uid://bbiljyekrd2wf" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/energy-beam-large.png" id="4_takxp"]
+[ext_resource type="AudioStream" uid="uid://d1dnxlp530iyv" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_beam.wav" id="5_o63j5"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="5_vgf30"]
 
 [sub_resource type="Animation" id="Animation_o63j5"]

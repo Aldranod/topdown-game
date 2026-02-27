@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c88yakerjojgq"
-path="res://.godot/imported/boss_hurt.wav-828e223e2a04ce279f969f0634a83b04.sample"
+path="res://.godot/imported/boss_hurt.wav-defa2c0226dbd7bf52df71a1a62fb1d2.sample"
 
 [deps]
 
-source_file="res://Levels/Dungeon01/dark_wizard/audio/boss_hurt.wav"
-dest_files=["res://.godot/imported/boss_hurt.wav-828e223e2a04ce279f969f0634a83b04.sample"]
+source_file="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_hurt.wav"
+dest_files=["res://.godot/imported/boss_hurt.wav-defa2c0226dbd7bf52df71a1a62fb1d2.sample"]
 
 [params]
 

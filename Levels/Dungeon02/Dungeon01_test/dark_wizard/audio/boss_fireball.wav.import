@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://daktx18jvm3jy"
-path="res://.godot/imported/boss_fireball.wav-5af2446607363bbdc3f271db0ced7346.sample"
+path="res://.godot/imported/boss_fireball.wav-209f8566fff74dc199a0cbbaf91cce83.sample"
 
 [deps]
 
-source_file="res://Levels/Dungeon01/dark_wizard/audio/boss_fireball.wav"
-dest_files=["res://.godot/imported/boss_fireball.wav-5af2446607363bbdc3f271db0ced7346.sample"]
+source_file="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_fireball.wav"
+dest_files=["res://.godot/imported/boss_fireball.wav-209f8566fff74dc199a0cbbaf91cce83.sample"]
 
 [params]
 

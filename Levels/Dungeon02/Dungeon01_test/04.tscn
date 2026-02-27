@@ -7,14 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://csrj1jc1acp40" path="res://Tile Maps/Sprites/dungeon.png" id="4_lpmky"]
 [ext_resource type="PackedScene" uid="uid://cg5wphk4fstcm" path="res://Tile Maps/dungeon-tiles-01.tscn" id="4_qi64o"]
 [ext_resource type="PackedScene" uid="uid://b030xyafiqs7n" path="res://Props/torches/torch_dungeon.tscn" id="6_oeau7"]
-[ext_resource type="Texture2D" uid="uid://cpdjqcu1vdbg1" path="res://Levels/Dungeon01/dark_wizard/sprites/boss-cloak.png" id="7_2ny6b"]
-[ext_resource type="Script" uid="uid://bju5ko8ugihf4" path="res://Levels/Dungeon01/dark_wizard/script/dark_wizard_boss.gd" id="7_57pam"]
-[ext_resource type="PackedScene" uid="uid://b6s62icywk745" path="res://Levels/Dungeon01/dark_wizard/energy_beam.tscn" id="7_q0e7s"]
+[ext_resource type="Texture2D" uid="uid://cpdjqcu1vdbg1" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/boss-cloak.png" id="7_2ny6b"]
+[ext_resource type="Script" uid="uid://bju5ko8ugihf4" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/script/dark_wizard_boss.gd" id="7_57pam"]
+[ext_resource type="PackedScene" uid="uid://b6s62icywk745" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/energy_beam.tscn" id="7_q0e7s"]
 [ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="7_sp03e"]
-[ext_resource type="Texture2D" uid="uid://ddv840pgfprut" path="res://Levels/Dungeon01/dark_wizard/sprites/boss-hand.png" id="8_0sbod"]
+[ext_resource type="Texture2D" uid="uid://ddv840pgfprut" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/boss-hand.png" id="8_0sbod"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="8_3vx3a"]
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="9_0sbod"]
-[ext_resource type="AudioStream" uid="uid://hx2x73txbkkl" path="res://Levels/Dungeon01/dark_wizard/audio/boss_destroy.wav" id="12_57pam"]
+[ext_resource type="AudioStream" uid="uid://hx2x73txbkkl" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_destroy.wav" id="12_57pam"]
 [ext_resource type="PackedScene" uid="uid://dgw24i87qyad0" path="res://GeneralNodes/ItemDropper/ItemDropper.tscn" id="16_867rx"]
 [ext_resource type="Resource" uid="uid://crafpf80i76yj" path="res://items/magical_flute.tres" id="17_4wfmf"]
 [ext_resource type="PackedScene" uid="uid://cq546xmyh16lb" path="res://quests/utility_nodes/quest_advance_trigger.tscn" id="18_phkn5"]
@@ -1004,6 +1004,8 @@ blend_mode = 2
 [node name="DarkWizardBoss" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("7_57pam")
+max_hp = null
+xp_reward = null
 
 [node name="PersistentDataHandler" parent="DarkWizardBoss" instance=ExtResource("7_sp03e")]
 

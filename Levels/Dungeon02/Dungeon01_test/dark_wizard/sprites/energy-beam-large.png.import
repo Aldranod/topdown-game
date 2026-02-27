@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpdjqcu1vdbg1"
-path="res://.godot/imported/boss-cloak.png-ed28d13dfd382be6d09aa6981ea35244.ctex"
+uid="uid://bbiljyekrd2wf"
+path="res://.godot/imported/energy-beam-large.png-ae4230ccdd5a3c6c2af2c5b4912423fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/Dungeon01/dark_wizard/sprites/boss-cloak.png"
-dest_files=["res://.godot/imported/boss-cloak.png-ed28d13dfd382be6d09aa6981ea35244.ctex"]
+source_file="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/energy-beam-large.png"
+dest_files=["res://.godot/imported/energy-beam-large.png-ae4230ccdd5a3c6c2af2c5b4912423fa.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

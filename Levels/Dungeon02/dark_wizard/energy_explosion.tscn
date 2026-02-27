@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqceynhmmfage"]
 
 [ext_resource type="Material" uid="uid://dcyioxh5tg01i" path="res://shaders and materials/light_material.tres" id="1_qa4t8"]
-[ext_resource type="Texture2D" uid="uid://dgnx136vgb8j7" path="res://Levels/Dungeon01/dark_wizard/sprites/energy-explosion.png" id="2_sueej"]
+[ext_resource type="Texture2D" uid="uid://dgnx136vgb8j7" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/sprites/energy-explosion.png" id="2_sueej"]
 
 [sub_resource type="Animation" id="Animation_qfbo5"]
 length = 0.001

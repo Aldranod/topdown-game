@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dy0wtvkoslxk8"]
 
-[ext_resource type="Script" uid="uid://cg0yu6uxq567n" path="res://Levels/Dungeon01/dark_wizard/script/energy_orb.gd" id="1_i4wd7"]
-[ext_resource type="AudioStream" uid="uid://daktx18jvm3jy" path="res://Levels/Dungeon01/dark_wizard/audio/boss_fireball.wav" id="2_fbt3e"]
-[ext_resource type="AudioStream" uid="uid://brq1p1uiceik" path="res://Levels/Dungeon01/dark_wizard/audio/boss_fireball_hit.wav" id="3_d32eg"]
+[ext_resource type="Script" uid="uid://cg0yu6uxq567n" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/script/energy_orb.gd" id="1_i4wd7"]
+[ext_resource type="AudioStream" uid="uid://daktx18jvm3jy" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_fireball.wav" id="2_fbt3e"]
+[ext_resource type="AudioStream" uid="uid://brq1p1uiceik" path="res://Levels/Dungeon02/Dungeon01_test/dark_wizard/audio/boss_fireball_hit.wav" id="3_d32eg"]
 [ext_resource type="Material" uid="uid://dcyioxh5tg01i" path="res://shaders and materials/light_material.tres" id="4_ifybo"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="5_2y1sm"]
 
