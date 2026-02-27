@@ -1,28 +1,17 @@
 shader_type canvas_item;
 
-uniform float vignette_intensity = 0.4;
-uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
-uniform vec4 vignette_rgb : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float edge_softness :  hint_range(0.0, 1.0) = 0.3;
+// This shader only shows the silhouette where the player is obscured
+// by something on a specific layer (like the tree).
+//render_mode unshaded;
 
-uniform sampler2D screen_vec :  hint_screen_texture;
+// This line tells Godot to ONLY draw this sprite where a light is hitting it
+render_mode light_only; 
 
-float vignette(vec2 uv){
-	// Create rectangular vignette with smooth gradient towards edges
-	vec2 center = uv - 0.5;
-	float rect_vignette = max(abs(center.x), abs(center.y));
-	
-	// Smooth gradient falloff - 1.0 at center, 0.0 at edges
-	float gradient = 1.0 - smoothstep(0.5 - edge_softness, 0.5, rect_vignette);
-	return gradient * vignette_opacity;
-}
+uniform vec4 silhouette_color : source_color = vec4(1.0, 1.0, 1.0, 0.5);
 
-void fragment(){
-	vec4 screen_color = texture(screen_vec, SCREEN_UV);
-	
-	// Apply vignette darkening with gradient towards edges
-	float vignette_factor = vignette(SCREEN_UV);
-	vec3 darkened = mix(vignette_rgb. rgb, screen_color.rgb, vignette_factor);
-	
-	COLOR = vec4(darkened, 1.0);
+void fragment() {
+    // Get the texture of the player
+    vec4 col = texture(TEXTURE, UV);
+    // Apply the silhouette color to the player's shape
+    COLOR = vec4(silhouette_color.rgb, col.a * silhouette_color.a);
 }

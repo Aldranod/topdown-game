@@ -1,19 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bx56ydy2i5lpl"]
+[gd_scene load_steps=12 format=3 uid="uid://bx56ydy2i5lpl"]
 
-[ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_3euub"]
-[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_83575"]
-[ext_resource type="Texture2D" uid="uid://r0q5lbcefr02" path="res://Props/Sprites/tree_3.png" id="3_d8qx3"]
-[ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_byr16"]
-[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_08q1g"]
+[ext_resource type="Script" uid="uid://bmvpu13meghtv" path="res://Props/Plants/tree.gd" id="1_g37mh"]
+[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="2_d8dck"]
+[ext_resource type="Texture2D" uid="uid://r0q5lbcefr02" path="res://Props/Sprites/tree_3.png" id="3_7qrbv"]
+[ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="4_wjgf0"]
+[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="5_48e23"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qetsp"]
-shader = ExtResource("2_83575")
+shader = ExtResource("2_d8dck")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a671x"]
-size = Vector2(32, 101.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_a671x"]
-radius = 43.0
+size = Vector2(32, 51.75)
 
 [sub_resource type="Animation" id="Animation_qetsp"]
 length = 0.001
@@ -105,30 +102,30 @@ _data = {
 &"show": SubResource("Animation_i0y2m")
 }
 
-[node name="AmbushTree" type="Node2D" groups=["hidable"]]
-script = ExtResource("1_3euub")
+[node name="OpaqueTree" type="Node2D" groups=["hidable"]]
+light_mask = 2
+script = ExtResource("1_g37mh")
+opaque = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_qetsp")
-position = Vector2(-44, 0)
-texture = ExtResource("3_d8qx3")
+position = Vector2(-44, -21)
+texture = ExtResource("3_7qrbv")
 offset = Vector2(45, 0)
 region_enabled = true
 region_rect = Rect2(0, 0, 100, 136)
-script = ExtResource("4_byr16")
+script = ExtResource("4_wjgf0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -21)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 10)
+position = Vector2(0, 34.875)
 shape = SubResource("RectangleShape2D_a671x")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, -12)
-shape = SubResource("CircleShape2D_a671x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -138,6 +135,6 @@ libraries = {
 [node name="ShadowSprite2" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.12941177)
 show_behind_parent = true
-position = Vector2(3, 54)
+position = Vector2(3, 33)
 scale = Vector2(4, 4)
-texture = ExtResource("5_08q1g")
+texture = ExtResource("5_48e23")

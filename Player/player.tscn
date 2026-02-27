@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=131 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://dygvbgchn2gtn" path="res://Player/Audio/SwordSwoosh.wav" id="8_od3ui"]
 [ext_resource type="Script" uid="uid://cy8emh6wq4tkp" path="res://Player/Scripts/PlayerInteractionsHost.gd" id="10_apopc"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="10_x3vf3"]
+[ext_resource type="Shader" uid="uid://3vb8ti2w7ivd" path="res://Player/player.gdshader" id="11_1kmt7"]
 [ext_resource type="Script" uid="uid://ds8orstgmm7a3" path="res://Player/Scripts/PlayerCamera.gd" id="11_5htga"]
 [ext_resource type="Script" uid="uid://cbwmy58dhym7" path="res://Player/Scripts/state_stun.gd" id="11_dkpta"]
 [ext_resource type="Script" uid="uid://c0fxdkwpjlqrf" path="res://Player/Scripts/state_charge_attack.gd" id="12_o28un"]
@@ -392,6 +393,10 @@ _data = {
 &"RESET": SubResource("Animation_755ss"),
 &"spin": SubResource("Animation_efx54")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4i3b"]
+shader = ExtResource("11_1kmt7")
+shader_parameter/silhouette_color = Color(1, 1, 1, 0.5)
 
 [sub_resource type="Animation" id="Animation_4ntmi"]
 length = 0.001
@@ -2201,9 +2206,9 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_c4i3b"]
 resource_name = "run_side"
-length = 0.55
+length = 0.6
 loop_mode = 1
-step = 0.01
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -2212,9 +2217,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, 1, 1),
 "update": 1,
-"values": [119, 120, 121, 122, 123, 124]
+"values": [121, 122, 123, 124, 119, 120]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -2714,6 +2719,14 @@ position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_1l10g")
 script = ExtResource("45_maysp")
 
+[node name="PointLight2D2" type="PointLight2D" parent="." groups=["player"]]
+visible = false
+position = Vector2(0, -16)
+blend_mode = 2
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_1l10g")
+script = ExtResource("45_maysp")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_k53q1")
@@ -2819,6 +2832,15 @@ libraries = {
 [node name="HeldItem" type="Node2D" parent="Sprite2D"]
 show_behind_parent = true
 position = Vector2(0, 20)
+
+[node name="SilhouetteSprite" type="Sprite2D" parent="Sprite2D"]
+visible = false
+light_mask = 2
+z_index = 10
+material = SubResource("ShaderMaterial_c4i3b")
+texture = ExtResource("2_b1ygp")
+hframes = 16
+vframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -3002,6 +3024,7 @@ process_material = SubResource("ParticleProcessMaterial_dy65m")
 
 [node name="GrappleHook" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -15)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GrappleHook"]
@@ -3056,10 +3079,8 @@ position = Vector2(0, -56)
 script = ExtResource("46_6rl0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="InputHints"]
-visible = false
 texture = ExtResource("46_1l10g")
 hframes = 18
-frame = 14
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

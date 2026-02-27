@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 func _on_area_enter( _a : Area2D) -> void:
 	PlayerManager.interact_pressed.connect( save)
-	Messages.input_hint_changed.emit( "interact")
+	Messages.input_hint_changed.emit("interact")
 	pass
 		
 func _on_area_exit( _a : Area2D) -> void:

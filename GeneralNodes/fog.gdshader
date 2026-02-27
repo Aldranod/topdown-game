@@ -12,7 +12,7 @@ uniform vec2 speed = vec2(0.02, 0.01);
 // Called for every pixel the material is visible on
 void fragment() {
 	// Make the fog slowly move
-	vec2 uv = UV + speed * TIME;
+	vec2 uv = UV - speed * TIME;
 	// Sample the noise texture
 	float noise = texture(noise_texture, uv).r;
 	// Convert the noise from the (0.0, 1.0) range to the (-1.0, 1.0) range

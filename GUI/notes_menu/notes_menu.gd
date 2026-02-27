@@ -22,6 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 	
 func hide_note() -> void:
+	print("hide note func")
 	get_tree().paused = false
 	control.visible = false
 	is_active = false
@@ -35,4 +36,5 @@ func show_note(note) -> void:
 	content.text = note.content
 	is_active = true
 	shown.emit()
-	pass	
+	pass
+	

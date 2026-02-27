@@ -17,10 +17,12 @@ func player_interact() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	PlayerManager.interact_pressed.connect( player_interact)
+	Messages.input_hint_changed.emit("interact")
 	animation_player.play("show")
 	pass
 	
 func _on_body_exited(body: Node2D) -> void:
 	PlayerManager.interact_pressed.disconnect( player_interact)
+	Messages.input_hint_changed.emit("")
 	animation_player.play("hide")
 	pass	

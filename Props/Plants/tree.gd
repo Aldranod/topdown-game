@@ -1,13 +1,15 @@
 class_name ForestTree extends Node2D
 
 @export var collision : bool = true
+@export var opaque : bool = false
 @export var particles: Array[HitParticleSettings]
 @onready var static_body_2d: StaticBody2D = $StaticBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
-	$HitBox.Damaged.connect( TakeDamage )
-	$HitBox2.Damaged.connect( TakeDamage2 )
+	if not opaque:
+		$HitBox.Damaged.connect( TakeDamage )
+		$HitBox2.Damaged.connect( TakeDamage2 )
 	if not collision:
 		remove_collision()
 	pass

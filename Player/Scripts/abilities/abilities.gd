@@ -16,6 +16,7 @@ var boomerang_instance : Boomerang = null
 @onready var walk: State_Walk = $"../StateMachine/Walk"
 @onready var bow: State_Bow = $"../StateMachine/Bow"
 @onready var grapple: State_Grapple = $"../StateMachine/Grapple"
+@onready var run: State_Run = $"../StateMachine/Run"
 
 
 func _ready() -> void:
@@ -73,7 +74,7 @@ func boomerang_ability() -> void:
 func bomb_ability() -> void:
 	if player.bomb_count <= 0:
 		return
-	elif state_machine.current_state == idle or state_machine.current_state == walk:
+	elif state_machine.current_state == idle or state_machine.current_state == walk or state_machine.current_state == run:
 		player.bomb_count -=1
 		lift.start_anim_late = true
 		var bomb : Node2D = BOMB.instantiate()
@@ -87,13 +88,13 @@ func bomb_ability() -> void:
 func bow_ability() -> void:
 	if player.arrow_count <=0:
 		return
-	elif state_machine.current_state == idle or state_machine.current_state == walk:
+	elif state_machine.current_state == idle or state_machine.current_state == walk or state_machine.current_state == run:
 		player.arrow_count -= 1
 		player.state_machine.change_state(bow)
 	pass
 
 func grapple_ability() ->void:
-	if state_machine.current_state == idle or state_machine.current_state == walk:
+	if state_machine.current_state == idle or state_machine.current_state == walk or state_machine.current_state == run:
 		player.state_machine.change_state(grapple)
 	pass
 
