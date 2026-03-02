@@ -447,6 +447,7 @@ repeat_times = 3
 material = ExtResource("21_j8rob")
 offset_right = 480.0
 offset_bottom = 270.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Leafs" parent="." instance=ExtResource("21_p87ns")]

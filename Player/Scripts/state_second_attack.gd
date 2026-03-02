@@ -17,35 +17,32 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
-	player.start_attack()
+	var move_direction = Vector2.RIGHT.rotated(player.aim_pivot.rotation)
+	player.face_target(player.get_global_mouse_position())
+	player.velocity = move_direction * charge_speed
+	
+	#var mouse_pos = player.get_global_mouse_position()
+	#player.face_target(mouse_pos)
+	#var move_direction = player.global_position.direction_to(mouse_pos)
+	#player.velocity = move_direction * charge_speed
+	
+	#player.start_attack()
 	player.start_third_attack_window()
-	#PlayerManager.player.combo_window_open = false
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack3")
-	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN:
-		#$"../../Sprite2D".scale.x = -1
-	#attack_anim.play("attack2_" + player.AnimDirection())
-	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
 	attacking = true
-	#await get_tree().create_timer(0.075).timeout
-	#if attacking:
-		#hurt_box.monitoring = true
 	pass
 	
 func Exit() -> void:
-	#if player.cardinal_direction == Vector2.UP or player.cardinal_direction == Vector2.DOWN or player.cardinal_direction == Vector2.RIGHT:
-		#$"../../Sprite2D".scale.x = 1
-	#PlayerManager.player.combo_window_open = false
 	animation_player.animation_finished.disconnect(EndAttack)
 	hurt_box.did_damage.disconnect(_on_hit_landed)
 	attacking = false
 	hurt_box.monitoring = false
-	#await get_tree().create_timer(1).timeout
 	await get_tree().process_frame
 	pass
 	

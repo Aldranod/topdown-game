@@ -115,7 +115,7 @@ item_count = 3
 respawnable = false
 
 [node name="ItemPickup4" parent="Props" instance=ExtResource("8_okpif")]
-position = Vector2(194.06079, -516.7112)
+position = Vector2(195.33563, -515.35535)
 item_data = ExtResource("9_2j0ch")
 respawnable = false
 
@@ -1088,6 +1088,7 @@ repeat_times = 3
 material = ExtResource("17_bah24")
 offset_right = 480.0
 offset_bottom = 270.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="Leafs" parent="." instance=ExtResource("18_xsj10")]

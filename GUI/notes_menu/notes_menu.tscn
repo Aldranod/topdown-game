@@ -24,6 +24,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 modulate = Color(0.859375, 0.826438, 0.763953, 1)

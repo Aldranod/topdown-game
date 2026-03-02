@@ -101,6 +101,7 @@ repeat_times = 3
 material = ExtResource("29_buffn")
 offset_right = 480.0
 offset_bottom = 270.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="grass-tiles-01" parent="." instance=ExtResource("3_oibqc")]
@@ -1521,7 +1522,7 @@ vframes = 4
 frame = 4
 
 [node name="ItemPickup" parent="Props/Secret" instance=ExtResource("17_yxt3t")]
-position = Vector2(-969.87036, -375.61847)
+position = Vector2(-971.30676, -369.43256)
 item_data = ExtResource("18_a8r62")
 respawnable = false
 

@@ -18,20 +18,24 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
+	var move_direction = Vector2.RIGHT.rotated(player.aim_pivot.rotation)
+	player.face_target(player.get_global_mouse_position())
+	player.velocity = move_direction * charge_speed
+	
+	#var mouse_pos = player.get_global_mouse_position()
+	#player.face_target(mouse_pos)
+	#var move_direction = player.global_position.direction_to(mouse_pos)
+	#player.velocity = move_direction * charge_speed
+	
 	player.start_combo()
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack")
-	#attack_anim.play("attack_" + player.AnimDirection())
-	player.velocity = player.cardinal_direction * charge_speed
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
-	attacking = true
-	#await get_tree().create_timer(0.075).timeout
-	#if attacking:
-		#hurt_box.monitoring = true
+	attacking = true	
 	pass
 	
 func Exit() -> void:

@@ -496,6 +496,7 @@ layout_mode = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Abilities"]
 layout_mode = 0
@@ -579,6 +580,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control/GameOver"]
 layout_mode = 1
@@ -598,7 +600,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -49.5
 offset_top = -70.0
-offset_right = 50.5
+offset_right = 53.5
 offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -655,6 +657,7 @@ anchor_bottom = 1.0
 offset_top = -50.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control/BossUI"]
 layout_mode = 1
@@ -718,8 +721,9 @@ script = ExtResource("7_scbx3")
 [node name="PanelContainer" type="PanelContainer" parent="Control/Notification"]
 layout_mode = 0
 offset_left = 5.0
+offset_top = 5.0
 offset_right = 249.0
-offset_bottom = 48.0
+offset_bottom = 53.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_5bkpt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Notification/PanelContainer"]
@@ -754,6 +758,7 @@ offset_left = 9.0
 offset_top = 243.0
 offset_right = 49.0
 offset_bottom = 283.0
+mouse_filter = 2
 fill_mode = 4
 texture_under = ExtResource("12_5nb4v")
 texture_progress = ExtResource("11_3m3x0")

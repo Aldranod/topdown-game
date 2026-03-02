@@ -28,6 +28,7 @@ func Physics(_delta: float) -> State:
 
 func HandleInput( _event: InputEvent) -> State:
 	if _event.is_action_pressed("attack"):
+		print("attack")
 		if PlayerManager.player.third_attack_window_open:
 			return third_attack
 		if PlayerManager.player.combo_window_open:

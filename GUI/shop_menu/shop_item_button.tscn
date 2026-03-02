@@ -13,6 +13,7 @@ region = Rect2(0, 0, 32, 32)
 custom_minimum_size = Vector2(220, 36)
 offset_right = 220.0
 offset_bottom = 36.0
+mouse_filter = 2
 script = ExtResource("1_wcyy0")
 
 [node name="Label" type="Label" parent="."]

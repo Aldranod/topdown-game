@@ -50,6 +50,12 @@ var initial_position
 @onready var combo_timer: Timer = $ComboTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var third_attack_timer: Timer = $ThirdAttackTimer
+@onready var aim_pivot: Node2D = $AimPivot
+@onready var aim_sprite: Sprite2D = $AimPivot/AimSprite
+@export_group("Aim Settings")
+@export var cursor_gap: float = 30.0      # How many pixels to stay BEHIND the cursor
+@export var aim_smoothness: float = 20.0  # How fast the dot catches up (HLD feel)
+
 
 func _ready():
 	PlayerManager.player = self
@@ -62,7 +68,8 @@ func _ready():
 	pass
 	
 func _process(_delta):
-	
+	update_aim_pivot(_delta)
+	#queue_redraw()
 	dust_emit()
 	direction = Vector2(
 		Input.get_axis("left", "right"),
@@ -92,6 +99,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		#player_damaged.emit(%AttackHurtBox)
 		PlayerManager.shake_camera()
 	pass
+
+#func _draw() -> void:
+	## 1. Get the TRUE world mouse position
+	#var mouse_global = get_global_mouse_position()
+	#
+	## 2. Get the TRUE world waist position
+	#var pivot_global = aim_pivot.global_position
+	#
+	## 3. Use the GLOBAL-TO-LOCAL matrix
+	## This automatically 'un-squashes' any weird parent scaling
+	#var inv_transform = get_global_transform().affine_inverse()
+	#
+	#var line_start = inv_transform * pivot_global
+	#var line_end = inv_transform * mouse_global
+	#
+	## 4. Draw the line with Antialiasing enabled (the 'true' at the end)
+	## This prevents the line from 'stepping' or 'snapping' to pixels
+	#draw_line(line_start, line_end, Color(1, 1, 1, 0.2), 1.0, true)
+
+func update_aim_pivot(delta: float) -> void:
+	var mouse_global = get_global_mouse_position()
+	var pivot_global = aim_pivot.global_position
+	
+	# 1. Math remains the same (reliable global math)
+	var vec_to_mouse = mouse_global - pivot_global
+	aim_pivot.global_rotation = vec_to_mouse.angle()
+	
+	var target_x = max(0.0, vec_to_mouse.length() - cursor_gap)
+	aim_sprite.position.x = lerp(aim_sprite.position.x, target_x, aim_smoothness * delta)
 	
 func SetDirection() -> bool:
 	if direction == Vector2.ZERO:
@@ -235,3 +271,13 @@ func dust_emit() -> void:
 		distance_in_pixel -= 68
 		EffectManager.emit_dust(PlayerManager.player)	
 	pass	
+
+func face_target(target_pos: Vector2) -> void:
+	# Calculate direction to target
+	var look_direction = (target_pos - global_position).normalized()
+	# Use your existing DIR_4 logic to find the closest cardinal direction
+	var direction_id : int = int(round(look_direction.angle() / TAU * DIR_4.size()))
+	cardinal_direction = DIR_4[direction_id]
+	# Update sprite flipping and signals
+	DirectionChanged.emit(cardinal_direction)
+	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
