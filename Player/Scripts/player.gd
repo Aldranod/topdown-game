@@ -115,24 +115,25 @@ func _draw() -> void:
 	
 func update_aim_pivot(delta: float) -> void:
 	var mouse_global = get_global_mouse_position()
-	var pivot_global = aim_pivot.global_position
+	var player_global = global_position  # Player's actual position
+	var pivot_offset = aim_pivot.position  # Pivot's LOCAL offset from player
+	var pivot_global = player_global + pivot_offset  # True global position of pivot
 	
-	# Calculate vector from pivot to mouse in global space
+	# Calculate vector directly from pivot to mouse in GLOBAL space
 	var vec_to_mouse = mouse_global - pivot_global
-	var distance_to_mouse = vec_to_mouse.length()
 	
-	# Rotate the pivot to face the mouse
+	# Rotate aim pivot to face the mouse
 	aim_pivot.global_rotation = vec_to_mouse.angle()
 	
-	# Calculate target distance (how far the sprite should be from pivot)
-	# Max distance is limited to maintain alignment on the aim line
+	# Calculate how far the sprite should be from the pivot
+	var distance_to_mouse = vec_to_mouse.length()
 	var target_distance = max(0.0, distance_to_mouse - cursor_gap)
 	
-	# Smoothly interpolate the distance (this is the key fix!)
+	# Smoothly interpolate the distance
 	var current_distance = aim_sprite.position.x
 	var new_distance = lerp(current_distance, target_distance, aim_smoothness * delta)
 	
-	# Apply the smoothed distance as local position
+	# Apply as local position
 	aim_sprite.position.x = new_distance
 	
 func SetDirection() -> bool:
