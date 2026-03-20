@@ -125,7 +125,6 @@
 class_name PlayerCamera extends Camera2D
 
 @export var zooom: Vector2 = Vector2(0.75, 0.75)
-
 @export_range(0, 1, 0.05) var mouse_influence: float = 0.2
 @export var max_look_distance: float = 60.0
 @export var look_smoothing: float = 2.0 # Lower = Slower/Smoother
@@ -151,17 +150,27 @@ func _ready():
 	reset_camera_position()
 
 func _process(delta: float) -> void:
-	# 1. Calculate Mouse Lean
-	# We use get_local_mouse_position() which is relative to the player
-	var target_lean = get_local_mouse_position() * mouse_influence
-	target_lean = target_lean.limit_length(max_look_distance)
+	var target_lean: Vector2 = Vector2.ZERO
+
+	var p = PlayerManager.player 
+
+	if p.is_using_controller:
+		var joy_dir = Vector2(
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+			Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+		)
+		if joy_dir.length() < 0.2:
+			joy_dir = p.direction # Uses the movement vector from your player script
+
+		if joy_dir.length() > 0.2:
+			target_lean = joy_dir * max_look_distance
+	else:
+		# 4. MOUSE LEAN: (Your existing logic)
+		target_lean = get_local_mouse_position() * mouse_influence
+		target_lean = target_lean.limit_length(max_look_distance)
 	
-	# 2. Smoothly interpolate LOCAL POSITION (not offset)
-	# Moving 'position' ensures Godot's built-in LIMITS work correctly.
+	# 5. Smoothly interpolate LOCAL POSITION (The lerp handles the switch perfectly)
 	position = position.lerp(target_lean, look_smoothing * delta)
-	
-	# 3. Handle Shake using OFFSET
-	# Offset is perfect for shake because shake is temporary and jittery
 	if shake_trauma > 0:
 		shake_trauma = max(shake_trauma - shake_decay * delta, 0)
 		offset = get_shake_vector()

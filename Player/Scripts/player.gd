@@ -72,7 +72,6 @@ func _ready():
 	
 func _process(_delta):
 	update_aim_pivot(_delta)
-	update_line()
 	dust_emit()
 	direction = Vector2(
 		Input.get_axis("left", "right"),
@@ -115,18 +114,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		#player_damaged.emit(%AttackHurtBox)
 		PlayerManager.shake_camera()
 	pass
-
-func update_line() -> void:
-	var mouse_global = get_global_mouse_position()
-	var player_pos = global_position
-	
-	# Create a simple 2-point line
-	var line_points = PackedVector2Array()
-	line_points.append(player_pos)
-	line_points.append(mouse_global)
-	
-	# Print to verify the line points
-	print("Line from ", player_pos, " to ", mouse_global)
 	
 func update_aim_pivot(delta: float) -> void:
 	if is_using_controller:
@@ -138,7 +125,7 @@ func update_aim_pivot(delta: float) -> void:
 		if joy_dir.length() > 0.3:
 			aim_pivot.global_rotation = joy_dir.angle()
 	else:
-		# 3. Mouse Logic (Your existing working code)
+		## 3. Mouse Logic (Your existing working code)
 		var mouse_global = get_global_mouse_position()
 		var vec_to_mouse = mouse_global - aim_pivot.global_position
 		aim_pivot.global_rotation = vec_to_mouse.angle()
@@ -290,14 +277,10 @@ func dust_emit() -> void:
 
 func face_target(target_pos: Vector2) -> void:
 	var look_direction : Vector2
-	
 	if is_using_controller:
-		# Simply use the direction the pivot is already pointing
 		look_direction = Vector2.RIGHT.rotated(aim_pivot.global_rotation)
 	else:
 		look_direction = (target_pos - global_position).normalized()
-	
-	# --- Existing Logic ---
 	var direction_id : int = int(round(look_direction.angle() / TAU * DIR_4.size()))
 	cardinal_direction = DIR_4[direction_id]
 	DirectionChanged.emit(cardinal_direction)

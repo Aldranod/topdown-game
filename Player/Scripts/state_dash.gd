@@ -53,9 +53,9 @@ func HandleInput(_event: InputEvent) -> State:
 			return second_attack
 		if PlayerManager.player.attack_window_open:
 			return attack
-	if _event.is_action_pressed("up") or _event.is_action_pressed("down") or _event.is_action_pressed("left") or _event.is_action_pressed("right") :
-			next_state = idle
-			return idle		
+	#if _event.is_action_pressed("up") or _event.is_action_pressed("down") or _event.is_action_pressed("left") or _event.is_action_pressed("right") :
+			#next_state = idle
+			#return idle		
 	return null		
 	
 func _on_animation_finished(anim_name : String) -> void:
