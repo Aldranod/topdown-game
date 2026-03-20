@@ -145,6 +145,7 @@ func _ready():
 	LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
 	UpdateLimits(LevelManager.current_tilemap_bounds)
 	PlayerManager.camera_shook.connect(add_camera_shake)
+	LevelManager.level_loaded.connect(_on_scene_transition)
 	
 	# Transition Fix: Force camera to player position immediately
 	reset_camera_position()
@@ -171,6 +172,10 @@ func reset_camera_position() -> void:
 	# Call this to snap camera to player (used during scene entry)
 	position = Vector2.ZERO
 	force_update_scroll() # Updates camera internals immediately
+
+func _on_scene_transition() -> void:
+	reset_smoothing.call_deferred()
+	pass
 
 func add_camera_shake(val : float) -> void:
 	shake_trauma = val
