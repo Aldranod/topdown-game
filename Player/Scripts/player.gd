@@ -118,15 +118,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func update_aim_pivot(delta: float) -> void:
 	if is_using_controller:
-		# 2. Controller Logic: Use Right Stick for rotation
-		var joy_dir = Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
-		# If Right Stick is idle, use movement stick (direction)
-		if joy_dir.length() < 0.3: joy_dir = direction 
-		# If we have any stick input, rotate the pivot
-		if joy_dir.length() > 0.3:
-			aim_pivot.global_rotation = joy_dir.angle()
+		# Don't update here - let state_aim handle it
+		return
 	else:
-		## 3. Mouse Logic (Your existing working code)
+		## Mouse Logic
 		var mouse_global = get_global_mouse_position()
 		var vec_to_mouse = mouse_global - aim_pivot.global_position
 		aim_pivot.global_rotation = vec_to_mouse.angle()
