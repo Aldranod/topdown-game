@@ -150,27 +150,29 @@ func _ready():
 	reset_camera_position()
 
 func _process(delta: float) -> void:
+	
 	var target_lean: Vector2 = Vector2.ZERO
 
 	var p = PlayerManager.player 
+	var is_aiming = p.state_machine.current_state is State_Aim
+	if not is_aiming:
+		if p.is_using_controller:
+			var joy_dir = Vector2(
+				Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
+				Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
+			)
+			if joy_dir.length() < 0.2:
+				joy_dir = p.direction # Uses the movement vector from your player script
 
-	if p.is_using_controller:
-		var joy_dir = Vector2(
-			Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
-			Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
-		)
-		if joy_dir.length() < 0.2:
-			joy_dir = p.direction # Uses the movement vector from your player script
-
-		if joy_dir.length() > 0.2:
-			target_lean = joy_dir * max_look_distance
-	else:
-		# 4. MOUSE LEAN: (Your existing logic)
-		target_lean = get_local_mouse_position() * mouse_influence
-		target_lean = target_lean.limit_length(max_look_distance)
-	
-	# 5. Smoothly interpolate LOCAL POSITION (The lerp handles the switch perfectly)
-	position = position.lerp(target_lean, look_smoothing * delta)
+			if joy_dir.length() > 0.2:
+				target_lean = joy_dir * max_look_distance
+		else:
+			# 4. MOUSE LEAN: (Your existing logic)
+			target_lean = get_local_mouse_position() * mouse_influence
+			target_lean = target_lean.limit_length(max_look_distance)
+		
+		# 5. Smoothly interpolate LOCAL POSITION (The lerp handles the switch perfectly)
+		position = position.lerp(target_lean, look_smoothing * delta)
 	if shake_trauma > 0:
 		shake_trauma = max(shake_trauma - shake_decay * delta, 0)
 		offset = get_shake_vector()

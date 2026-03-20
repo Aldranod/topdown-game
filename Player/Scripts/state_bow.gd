@@ -11,17 +11,16 @@ func _ready() -> void:
 	pass
 	
 func Enter() -> void:
+	var target_pos = player.get_global_mouse_position()
+	player.face_target(target_pos)
 	player.UpdateAnimation("bow")
-	player.animation_player.animation_finished.connect( _on_animation_finished)
-	direction = player.cardinal_direction
+	player.animation_player.animation_finished.connect(_on_animation_finished)
+	var fire_direction = Vector2.RIGHT.rotated(player.aim_pivot.global_rotation)
 	var arrow : Arrow = ARROW.instantiate()
-	player.add_sibling(arrow)
-	if direction == Vector2.UP:
-		arrow.global_position = player.global_position + (direction * 48)
-	else:
-		arrow.global_position = player.global_position + (direction * 38)
-	arrow.fire(direction)
-	#await get_tree().process_frame
+	player.get_parent().add_child(arrow) # Add to world, not as child of player
+	var spawn_dist = 48.0
+	arrow.global_position = player.aim_pivot.global_position + (fire_direction * spawn_dist)
+	arrow.fire(fire_direction)
 	pass
 	
 func Exit() -> void:

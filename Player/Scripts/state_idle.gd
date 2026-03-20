@@ -35,8 +35,8 @@ func HandleInput( _event: InputEvent) -> State:
 			return second_attack
 		if PlayerManager.player.attack_window_open:
 			return attack	
-		#else:	
-			#return attack
+	elif _event.is_action_pressed("aim"):
+		return $"../Aim"		
 	elif _event.is_action_pressed("interact"):
 		PlayerManager.interact()
 	elif _event.is_action_pressed("dash"):

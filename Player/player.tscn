@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=134 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -47,6 +47,7 @@
 [ext_resource type="Script" uid="uid://dnesf2agpls3f" path="res://Player/Scripts/state_run.gd" id="33_7x5p2"]
 [ext_resource type="PackedScene" uid="uid://dt6odjwlruvdn" path="res://GeneralNodes/footstep_audio_2d/footstep_audio_2d.tscn" id="33_i4o1l"]
 [ext_resource type="Texture2D" uid="uid://baf83qipt3qw2" path="res://Player/Sprites/grapple.png" id="36_jp1hh"]
+[ext_resource type="Script" uid="uid://6xwvejl05vha" path="res://Player/Scripts/state_aim.gd" id="38_7v2uk"]
 [ext_resource type="AudioStream" uid="uid://ckj2rakdomw1" path="res://Player/Audio/grapple_chain.wav" id="41_dy65m"]
 [ext_resource type="PackedScene" uid="uid://dgscudnwe6np7" path="res://GeneralNodes/rain_particles.tscn" id="43_ie76m"]
 [ext_resource type="Script" uid="uid://cq1mj8lvdhh4" path="res://Props/torches/torch_light_flicker.gd" id="45_maysp"]
@@ -2740,6 +2741,10 @@ script = ExtResource("31_dy65m")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("33_7x5p2")
+
+[node name="Aim" type="Node" parent="StateMachine"]
+script = ExtResource("38_7v2uk")
+controller_cursor_speed = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
