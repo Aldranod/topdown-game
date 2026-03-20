@@ -29,7 +29,13 @@ var initial_position
 
 func _ready():
 	sprite_x_scale = sprite.scale.x
-	if not respawnable:
+	var enemy_id = get_tree().current_scene.name + "_" + name
+	if respawnable:
+		# Check our temporary list
+		if SaveManager.check_enemy_death(enemy_id):
+			queue_free()
+			return
+	else:
 		persistent_data_handler.get_value()
 		if persistent_data_handler.value == true:
 			queue_free()
@@ -89,8 +95,17 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 	if hp > 0:
 		enemy_damaged.emit( hurt_box)	
 	else:
-		enemy_destroyed.emit( hurt_box)
-		persistent_data_handler.set_value()	
+		var enemy_id = get_tree().current_scene.name + "_" + name
+		if respawnable:
+			# Tell the manager this specific enemy is dead for now
+			SaveManager.add_enemy_death(enemy_id)
+		else:
+			# Permanent death
+			persistent_data_handler.set_value()
+		enemy_destroyed.emit( hurt_box )
+		#queue_free() # or whatever your death logic is
+		#enemy_destroyed.emit( hurt_box)
+		#persistent_data_handler.set_value()	
 		
 func _in_attack_range() -> bool:
 	return is_instance_valid(PlayerManager.player) and global_position.distance_to(PlayerManager.player.position) <= attack_range		
