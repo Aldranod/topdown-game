@@ -7,35 +7,26 @@ var virtual_cursor_pos: Vector2 = Vector2.ZERO
 
 
 func Enter() -> void:
-	# 1. Stop movement
 	player.velocity = Vector2.ZERO
-	# 2. Force visuals on
 	player.aim_sprite.visible = true
 	$"../../CursorOverlay".visible = true 
-	# Initialize virtual cursor to current mouse position
 	virtual_cursor_pos = get_viewport().get_mouse_position()
-	# 3. Play an idle or aiming animation
 	player.UpdateAnimation("idle") 
 
 func Exit() -> void:
-	# If we are using a controller, hide the cursor again upon leaving
 	if player.is_using_controller:
 		player.aim_sprite.visible = false
 		$"../../CursorOverlay".visible = false 
 
 func Process(delta: float) -> State:
-	# 1. If "aim" button is released, return to idle
 	if not Input.is_action_pressed("aim"):
 		return idle
 
-	# 2. If using controller, update the VIRTUAL cursor position
 	if player.is_using_controller:
 		update_controller_cursor(delta)
+		update_aim_sprite_position(delta)
 	
-	# 3. Ensure the character always faces the cursor while aiming
-	player.face_target(virtual_cursor_pos)  # Use virtual position, not mouse position
-	
-	# 4. Keep the aim pivot updated
+	player.face_target(virtual_cursor_pos)
 	player.update_aim_pivot(delta)
 	
 	return null
@@ -48,7 +39,12 @@ func update_controller_cursor(delta: float) -> void:
 	
 	if input_dir.length() > 0.15:
 		virtual_cursor_pos += input_dir * controller_cursor_speed * delta
-		
-		var screen_size = get_viewport().get_visible_rect().size
-		virtual_cursor_pos.x = clamp(virtual_cursor_pos.x, 0, screen_size.x)
-		virtual_cursor_pos.y = clamp(virtual_cursor_pos.y, 0, screen_size.y)
+	
+	var screen_size = get_viewport().get_visible_rect().size
+	virtual_cursor_pos.x = clamp(virtual_cursor_pos.x, 0, screen_size.x)
+	virtual_cursor_pos.y = clamp(virtual_cursor_pos.y, 0, screen_size.y)
+
+func update_aim_sprite_position(delta: float) -> void:
+	var vec_to_cursor = virtual_cursor_pos - player.aim_pivot.global_position
+	var target_x = max(0.0, vec_to_cursor.length() - player.cursor_gap)
+	player.aim_sprite.position.x = lerp(player.aim_sprite.position.x, target_x, player.aim_smoothness * delta)
