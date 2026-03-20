@@ -69,7 +69,7 @@ func _ready():
 	
 func _process(_delta):
 	update_aim_pivot(_delta)
-	#queue_redraw()
+	queue_redraw()
 	dust_emit()
 	direction = Vector2(
 		Input.get_axis("left", "right"),
@@ -100,34 +100,40 @@ func _unhandled_input(event: InputEvent) -> void:
 		PlayerManager.shake_camera()
 	pass
 
-#func _draw() -> void:
-	## 1. Get the TRUE world mouse position
-	#var mouse_global = get_global_mouse_position()
-	#
-	## 2. Get the TRUE world waist position
-	#var pivot_global = aim_pivot.global_position
-	#
-	## 3. Use the GLOBAL-TO-LOCAL matrix
-	## This automatically 'un-squashes' any weird parent scaling
-	#var inv_transform = get_global_transform().affine_inverse()
-	#
-	#var line_start = inv_transform * pivot_global
-	#var line_end = inv_transform * mouse_global
-	#
-	## 4. Draw the line with Antialiasing enabled (the 'true' at the end)
-	## This prevents the line from 'stepping' or 'snapping' to pixels
-	#draw_line(line_start, line_end, Color(1, 1, 1, 0.2), 1.0, true)
-
+func _draw() -> void:
+	# Use the exact same math as update_aim_pivot to ensure they are synced
+	var mouse_screen = get_viewport().get_mouse_position()
+	var mouse_world = get_canvas_transform().affine_inverse() * mouse_screen
+	
+	# Start at Waist, End at Cursor
+	# We use the Global-to-Local matrix to draw
+	var inv = get_global_transform().affine_inverse()
+	var start = inv * aim_pivot.global_position
+	var end = inv * mouse_world
+	
+	draw_line(start, end, Color(1, 1, 1, 0.2), 1.0, true)
+	
 func update_aim_pivot(delta: float) -> void:
 	var mouse_global = get_global_mouse_position()
 	var pivot_global = aim_pivot.global_position
 	
-	# 1. Math remains the same (reliable global math)
+	# Calculate vector from pivot to mouse in global space
 	var vec_to_mouse = mouse_global - pivot_global
+	var distance_to_mouse = vec_to_mouse.length()
+	
+	# Rotate the pivot to face the mouse
 	aim_pivot.global_rotation = vec_to_mouse.angle()
 	
-	var target_x = max(0.0, vec_to_mouse.length() - cursor_gap)
-	aim_sprite.position.x = lerp(aim_sprite.position.x, target_x, aim_smoothness * delta)
+	# Calculate target distance (how far the sprite should be from pivot)
+	# Max distance is limited to maintain alignment on the aim line
+	var target_distance = max(0.0, distance_to_mouse - cursor_gap)
+	
+	# Smoothly interpolate the distance (this is the key fix!)
+	var current_distance = aim_sprite.position.x
+	var new_distance = lerp(current_distance, target_distance, aim_smoothness * delta)
+	
+	# Apply the smoothed distance as local position
+	aim_sprite.position.x = new_distance
 	
 func SetDirection() -> bool:
 	if direction == Vector2.ZERO:

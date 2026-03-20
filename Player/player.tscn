@@ -2533,7 +2533,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.174533
 script = ExtResource("1_4ntmi")
 dash_cooldown_duration = 0.8
-aim_smoothness = 100.0
+aim_smoothness = 50.0
 
 [node name="PointLight2D" type="PointLight2D" parent="." groups=["player"]]
 position = Vector2(0, -16)
@@ -2749,7 +2749,6 @@ limit_top = 0
 limit_right = 0
 limit_bottom = 0
 limit_smoothed = true
-position_smoothing_enabled = true
 rotation_smoothing_speed = 0.2
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -2908,7 +2907,7 @@ hframes = 18
 [node name="AimPivot" type="Node2D" parent="."]
 modulate = Color(1, 0.032915592, 0, 1)
 z_index = 11
-position = Vector2(0, -15)
+position = Vector2(0, -16)
 
 [node name="AimSprite" type="Sprite2D" parent="AimPivot"]
 modulate = Color(0.53125, 0, 0.014807552, 1)
