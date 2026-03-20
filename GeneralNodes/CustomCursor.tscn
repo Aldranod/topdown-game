@@ -10,7 +10,6 @@ layer = 100
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_8wgo8")
 offset = Vector2(20, 20)
-lerp_speed = 15.0
 
 [node name="MainCursor" type="Sprite2D" parent="CursorRoot"]
 texture = ExtResource("2_01rrt")
