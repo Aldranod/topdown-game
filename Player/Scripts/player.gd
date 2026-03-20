@@ -96,12 +96,6 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:	
-	# Skip if this is a synthetic warp event from aim state
-	var aim_state = state_machine.current_state
-	if aim_state and aim_state.has_method("is_warping"):
-		if aim_state.is_warping:
-			return
-	
 	if event is InputEventMouseMotion or event is InputEventMouseButton or event is InputEventKey:
 		if is_using_controller:
 			is_using_controller = false

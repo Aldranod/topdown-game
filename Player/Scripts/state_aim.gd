@@ -4,7 +4,6 @@ class_name State_Aim extends State
 @onready var idle: State = $"../Idle"
 
 var virtual_cursor_pos: Vector2 = Vector2.ZERO
-var is_warping: bool = false  # Flag to prevent input event from triggering
 
 
 func Enter() -> void:
@@ -13,6 +12,7 @@ func Enter() -> void:
 	# 2. Force visuals on
 	player.aim_sprite.visible = true
 	$"../../CursorOverlay".visible = true 
+	# Initialize virtual cursor to current mouse position
 	virtual_cursor_pos = get_viewport().get_mouse_position()
 	# 3. Play an idle or aiming animation
 	player.UpdateAnimation("idle") 
@@ -31,13 +31,9 @@ func Process(delta: float) -> State:
 	# 2. If using controller, update the VIRTUAL cursor position
 	if player.is_using_controller:
 		update_controller_cursor(delta)
-		# Set flag before warping to prevent _unhandled_input from toggling is_using_controller
-		is_warping = true
-		get_viewport().warp_mouse(virtual_cursor_pos)
-		is_warping = false
 	
 	# 3. Ensure the character always faces the cursor while aiming
-	player.face_target(player.get_global_mouse_position())
+	player.face_target(virtual_cursor_pos)  # Use virtual position, not mouse position
 	
 	# 4. Keep the aim pivot updated
 	player.update_aim_pivot(delta)
