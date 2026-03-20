@@ -3,6 +3,7 @@ class_name State_Aim extends State
 @export var controller_cursor_speed: float = 800.0
 @onready var idle: State = $"../Idle"
 
+
 func Enter() -> void:
 	# 1. Stop movement
 	player.velocity = Vector2.ZERO

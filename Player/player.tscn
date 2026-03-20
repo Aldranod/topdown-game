@@ -2748,7 +2748,6 @@ controller_cursor_speed = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
-process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 0
