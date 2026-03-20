@@ -16,15 +16,11 @@ var attacking : bool = false
 @onready var dash: State_Dash = $"../Dash"
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
-func Enter() -> void:
-	var move_direction = Vector2.RIGHT.rotated(player.aim_pivot.rotation)
-	player.face_target(player.get_global_mouse_position())
+func Enter() -> void:	
+	var mouse_pos = player.get_global_mouse_position()
+	player.face_target(mouse_pos)
+	var move_direction = Vector2.RIGHT.rotated(player.aim_pivot.global_rotation)
 	player.velocity = move_direction * charge_speed
-	
-	#var mouse_pos = player.get_global_mouse_position()
-	#player.face_target(mouse_pos)
-	#var move_direction = player.global_position.direction_to(mouse_pos)
-	#player.velocity = move_direction * charge_speed
 	
 	player.start_attack()
 	hurt_box.attack_type = "sword"

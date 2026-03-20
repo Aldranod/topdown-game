@@ -36,6 +36,9 @@ var third_attack_window_open : bool = false
 var distance_in_pixel : float
 var initial_position
 
+var is_using_controller : bool = false
+var last_controller_direction : Vector2 = Vector2.DOWN
+
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
@@ -69,7 +72,7 @@ func _ready():
 	
 func _process(_delta):
 	update_aim_pivot(_delta)
-	queue_redraw()
+	update_line()
 	dust_emit()
 	direction = Vector2(
 		Input.get_axis("left", "right"),
@@ -93,48 +96,54 @@ func _physics_process(_delta):
 	initial_position = global_position
 	move_and_slide()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:	
+	if event is InputEventMouseMotion or event is InputEventMouseButton or event is InputEventKey:
+		if is_using_controller:
+			is_using_controller = false
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			aim_sprite.visible = true
+	
+	# Detect Controller
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		if not is_using_controller:
+			is_using_controller = true
+			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			aim_sprite.visible = false
+			
 	if event.is_action_pressed("test"):
 		#update_hp(-99)
 		#player_damaged.emit(%AttackHurtBox)
 		PlayerManager.shake_camera()
 	pass
 
-func _draw() -> void:
-	# Use the exact same math as update_aim_pivot to ensure they are synced
-	var mouse_screen = get_viewport().get_mouse_position()
-	var mouse_world = get_canvas_transform().affine_inverse() * mouse_screen
+func update_line() -> void:
+	var mouse_global = get_global_mouse_position()
+	var player_pos = global_position
 	
-	# Start at Waist, End at Cursor
-	# We use the Global-to-Local matrix to draw
-	var inv = get_global_transform().affine_inverse()
-	var start = inv * aim_pivot.global_position
-	var end = inv * mouse_world
+	# Create a simple 2-point line
+	var line_points = PackedVector2Array()
+	line_points.append(player_pos)
+	line_points.append(mouse_global)
 	
-	draw_line(start, end, Color(1, 1, 1, 0.2), 1.0, true)
+	# Print to verify the line points
+	print("Line from ", player_pos, " to ", mouse_global)
 	
 func update_aim_pivot(delta: float) -> void:
-	var mouse_global = get_global_mouse_position()
-	var player_global = global_position  # Player's actual position
-	var pivot_offset = aim_pivot.position  # Pivot's LOCAL offset from player
-	var pivot_global = player_global + pivot_offset  # True global position of pivot
-	
-	# Calculate vector directly from pivot to mouse in GLOBAL space
-	var vec_to_mouse = mouse_global - pivot_global
-	
-	# Rotate aim pivot to face the mouse
-	aim_pivot.global_rotation = vec_to_mouse.angle()
-	
-	# Calculate how far the sprite should be from the pivot
-	var distance_to_mouse = vec_to_mouse.length()
-	var target_distance = max(0.0, distance_to_mouse - cursor_gap)
-	
-	# Smoothly interpolate the distance
-	var current_distance = aim_sprite.position.x
-	var new_distance = lerp(current_distance, target_distance, aim_smoothness * delta)
-	
-	# Apply as local position
-	aim_sprite.position.x = new_distance
+	if is_using_controller:
+		# 2. Controller Logic: Use Right Stick for rotation
+		var joy_dir = Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		# If Right Stick is idle, use movement stick (direction)
+		if joy_dir.length() < 0.3: joy_dir = direction 
+		# If we have any stick input, rotate the pivot
+		if joy_dir.length() > 0.3:
+			aim_pivot.global_rotation = joy_dir.angle()
+	else:
+		# 3. Mouse Logic (Your existing working code)
+		var mouse_global = get_global_mouse_position()
+		var vec_to_mouse = mouse_global - aim_pivot.global_position
+		aim_pivot.global_rotation = vec_to_mouse.angle()
+		var target_x = max(0.0, vec_to_mouse.length() - cursor_gap)
+		aim_sprite.position.x = lerp(aim_sprite.position.x, target_x, aim_smoothness * delta)
 	
 func SetDirection() -> bool:
 	if direction == Vector2.ZERO:
@@ -280,11 +289,16 @@ func dust_emit() -> void:
 	pass	
 
 func face_target(target_pos: Vector2) -> void:
-	# Calculate direction to target
-	var look_direction = (target_pos - global_position).normalized()
-	# Use your existing DIR_4 logic to find the closest cardinal direction
+	var look_direction : Vector2
+	
+	if is_using_controller:
+		# Simply use the direction the pivot is already pointing
+		look_direction = Vector2.RIGHT.rotated(aim_pivot.global_rotation)
+	else:
+		look_direction = (target_pos - global_position).normalized()
+	
+	# --- Existing Logic ---
 	var direction_id : int = int(round(look_direction.angle() / TAU * DIR_4.size()))
 	cardinal_direction = DIR_4[direction_id]
-	# Update sprite flipping and signals
 	DirectionChanged.emit(cardinal_direction)
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1

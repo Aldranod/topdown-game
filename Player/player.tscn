@@ -2555,7 +2555,6 @@ shape = SubResource("CapsuleShape2D_k53q1")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -21)
 texture = ExtResource("2_b1ygp")
-offset = Vector2(0, 0.5)
 hframes = 16
 vframes = 9
 script = ExtResource("3_m0h3t")

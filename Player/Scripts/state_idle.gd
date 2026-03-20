@@ -17,7 +17,7 @@ func Exit() -> void:
 func Process(_delta: float) -> State:
 	if player.direction != Vector2.ZERO:
 		# Check if stick is pushed hard enough to run
-		if player. stick_intensity >= 0.7:  # Same threshold as run state
+		if player.stick_intensity >= 0.7:  # Same threshold as run state
 			return run  # Go to run instead of walk
 		return walk
 	player.velocity = Vector2.ZERO
