@@ -73,7 +73,7 @@ func _ready():
 	
 func _process(_delta):
 	queue_redraw()
-	update_aim_pivot(_delta)
+	
 	dust_emit()
 	var in_aim_state = state_machine.current_state is State_Aim
 	if not in_aim_state:
