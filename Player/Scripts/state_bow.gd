@@ -13,18 +13,12 @@ func _ready() -> void:
 	
 func Enter() -> void:
 	var aim_target_pos: Vector2
-	if player.is_using_controller:
-		aim_target_pos = aim_sprite.global_position
-	else:
-		aim_target_pos = player.get_global_mouse_position()
+	aim_target_pos = player.get_global_mouse_position()
 	player.face_target(aim_target_pos)
 	player.UpdateAnimation("bow")	
 	player.animation_player.animation_finished.connect(_on_animation_finished)
 	var fire_direction: Vector2
-	if player.is_using_controller:
-		fire_direction = Vector2.RIGHT.rotated(player.aim_sprite.global_rotation)
-	else:
-		fire_direction = (aim_target_pos - player.global_position).normalized()
+	fire_direction = (aim_target_pos - player.global_position).normalized()
 	var arrow: Arrow = ARROW.instantiate()
 	player.get_parent().add_child(arrow)  # Add to world, not as child of player
 	var spawn_dist: float = 58.0

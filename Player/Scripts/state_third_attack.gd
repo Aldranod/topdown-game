@@ -18,11 +18,11 @@ var attacking : bool = false
 
 func Enter() -> void:
 	if player.is_using_controller:
-		# Controller: use current direction or last direction
-		var attack_target = player.global_position + (player.direction if player.direction != Vector2.ZERO else player.last_controller_direction)
+		var controller_direction = player.direction if player.direction != Vector2.ZERO else player.last_controller_direction
+		var attack_target = player.global_position + controller_direction
 		player.face_target(attack_target)
-		var move_direction = (player.direction if player.direction != Vector2.ZERO else player.last_controller_direction)
-		player.velocity = move_direction * charge_speed
+		#var move_direction = (player.direction if player.direction != Vector2.ZERO else player.last_controller_direction)
+		player.velocity = controller_direction * charge_speed
 	else:
 		# Mouse/Keyboard: face and move toward mouse
 		player.face_target(player.get_global_mouse_position())
@@ -67,7 +67,9 @@ func HandleInput(_event: InputEvent) -> State:
 	if _event. is_action_pressed("dash"):
 		if player.can_dash():
 			player.start_dash_cooldown()
-			return dash  # Cancel attack and dash instead
+			return dash			  # Cancel attack and dash instead
+	elif _event.is_action_pressed("aim"):
+		return $"../Aim"		  # Cancel attack and aim instead
 	return null							
 
 func EndAttack( _newAnimName : String) -> void:
