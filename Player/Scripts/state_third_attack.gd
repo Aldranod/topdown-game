@@ -16,7 +16,7 @@ var attacking : bool = false
 @onready var dash: State_Dash = $"../Dash"
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
-func Enter() -> void:	
+func Enter() -> void:
 	if player.is_using_controller:
 		# Controller: use current direction or last direction
 		var attack_target = player.global_position + (player.direction if player.direction != Vector2.ZERO else player.last_controller_direction)

@@ -38,6 +38,7 @@ var initial_position
 
 var is_using_controller : bool = false
 var last_controller_direction : Vector2 = Vector2.DOWN
+var aim_sprite_visible: bool = false
 
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -96,18 +97,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion or event is InputEventMouseButton or event is InputEventKey:
 		if is_using_controller:
 			is_using_controller = false
-			$AimPivot.visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-
 	# Detect Controller
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if not is_using_controller:
 			is_using_controller = true
-			$AimPivot.visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			
-
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			
 	if event.is_action_pressed("test"):
 		#update_hp(-99)
