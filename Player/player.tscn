@@ -2744,7 +2744,6 @@ script = ExtResource("33_7x5p2")
 
 [node name="Aim" type="Node" parent="StateMachine"]
 script = ExtResource("38_7v2uk")
-controller_cursor_speed = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1

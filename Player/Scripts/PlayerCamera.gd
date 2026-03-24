@@ -157,13 +157,8 @@ func _process(delta: float) -> void:
 	var is_aiming = p.state_machine.current_state is State_Aim
 	if not is_aiming:
 		if p.is_using_controller:
-			var joy_dir = Vector2(
-				Input.get_joy_axis(0, JOY_AXIS_RIGHT_X),
-				Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)
-			)
-			if joy_dir.length() < 0.2:
-				joy_dir = p.direction # Uses the movement vector from your player script
-
+			# Don't use right stick for camera - only use movement direction
+			var joy_dir = p.direction
 			if joy_dir.length() > 0.2:
 				target_lean = joy_dir * max_look_distance
 		else:

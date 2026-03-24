@@ -18,9 +18,9 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
-	var mouse_pos = player.get_global_mouse_position()
+	var mouse_pos = player.get_aim_target()
 	player.face_target(mouse_pos)
-	var move_direction = Vector2.RIGHT.rotated(player.aim_pivot.global_rotation)
+	var move_direction = player.cardinal_direction
 	player.velocity = move_direction * charge_speed
 	
 	player.start_combo()

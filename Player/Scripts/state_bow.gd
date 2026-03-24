@@ -11,14 +11,14 @@ func _ready() -> void:
 	pass
 	
 func Enter() -> void:
-	var target_pos = player.get_global_mouse_position()
+	var target_pos = player.get_aim_target()
 	player.face_target(target_pos)
 	player.UpdateAnimation("bow")
 	player.animation_player.animation_finished.connect(_on_animation_finished)
 	var fire_direction = Vector2.RIGHT.rotated(player.aim_pivot.global_rotation)
 	var arrow : Arrow = ARROW.instantiate()
 	player.get_parent().add_child(arrow) # Add to world, not as child of player
-	var spawn_dist = 48.0
+	var spawn_dist = 58.0
 	arrow.global_position = player.aim_pivot.global_position + (fire_direction * spawn_dist)
 	arrow.fire(fire_direction)
 	pass
@@ -39,7 +39,10 @@ func HandleInput(_delta: InputEvent) -> State:
 	return null		
 	
 func _on_animation_finished(anim_name : String) -> void:
-	next_state = idle
+	if Input.is_action_pressed("aim"):
+		next_state = $"../Aim"
+	else:	
+		next_state = idle
 	pass
 	
 

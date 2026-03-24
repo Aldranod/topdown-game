@@ -3,13 +3,11 @@
 [ext_resource type="Script" uid="uid://oaefbmr53yyj" path="res://GeneralNodes/custom_cursor.gd" id="1_8wgo8"]
 [ext_resource type="Texture2D" uid="uid://3eqdmad8l2l1" path="res://GUI/coursor.png" id="2_01rrt"]
 
-[node name="CursorOverlay" type="CanvasLayer"]
-layer = 100
+[node name="CursorOverlay" type="Node2D"]
 
 [node name="CursorRoot" type="Node2D" parent="."]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_8wgo8")
-offset = Vector2(20, 20)
 
 [node name="MainCursor" type="Sprite2D" parent="CursorRoot"]
 texture = ExtResource("2_01rrt")

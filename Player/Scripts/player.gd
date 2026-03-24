@@ -58,7 +58,7 @@ var last_controller_direction : Vector2 = Vector2.DOWN
 @export_group("Aim Settings")
 @export var cursor_gap: float = 30.0      # How many pixels to stay BEHIND the cursor
 @export var aim_smoothness: float = 20.0  # How fast the dot catches up (HLD feel)
-
+var virtual_cursor_pos: Vector2
 
 func _ready():
 	PlayerManager.player = self
@@ -68,23 +68,29 @@ func _ready():
 	update_damage_values()
 	PlayerManager.player_leveled_up.connect(_on_player_leveled_up)
 	PlayerManager.INVENTORY_DATA.equipment_changed.connect(_on_equipment_changed)
+	virtual_cursor_pos = get_viewport().get_visible_rect().size / 2  # start centered
 	pass
 	
 func _process(_delta):
+	queue_redraw()
 	update_aim_pivot(_delta)
 	dust_emit()
-	direction = Vector2(
-		Input.get_axis("left", "right"),
-		Input.get_axis("up", "down")
-	).normalized()
-	
-	# Calculate stick intensity (how far the stick is pushed)
-	var raw_input = Vector2(
-		Input.get_axis("left", "right"),
-		Input.get_axis("up", "down")
-	)
-	stick_intensity = raw_input.length()  # Returns 0.0 to ~1.414
-	stick_intensity = clamp(stick_intensity, 0.0, 1.0)  # Clamp to 0-1
+	var in_aim_state = state_machine.current_state is State_Aim
+	if not in_aim_state:
+		direction = Vector2(
+			Input.get_axis("left", "right"),
+			Input.get_axis("up", "down")
+		).normalized()
+		
+		if direction.length() > 0.1:
+			last_controller_direction = direction
+		# Calculate stick intensity (how far the stick is pushed)
+		var raw_input = Vector2(
+			Input.get_axis("left", "right"),
+			Input.get_axis("up", "down")
+		)
+		stick_intensity = raw_input.length()  # Returns 0.0 to ~1.414
+		stick_intensity = clamp(stick_intensity, 0.0, 1.0)  # Clamp to 0-1
 	
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= _delta
@@ -94,19 +100,26 @@ func _process(_delta):
 func _physics_process(_delta):
 	initial_position = global_position
 	move_and_slide()
-
+	
+func _draw() -> void:
+	# Draw red dot at player origin (0,0)
+	draw_circle(Vector2.ZERO, 3, Color.RED)
+	# Draw blue dot at aim_pivot position
+	draw_circle(aim_pivot.position, 3, Color.BLUE)
+	draw_circle(sprite.position + Vector2(0, -sprite.texture.get_height() / 2), 3, Color.GREEN)
+	
 func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion or event is InputEventMouseButton or event is InputEventKey:
 		if is_using_controller:
 			is_using_controller = false
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 			aim_sprite.visible = true
 			$CursorOverlay.visible = true
 	# Detect Controller
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if not is_using_controller:
 			is_using_controller = true
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 			aim_sprite.visible = false
 			$CursorOverlay.visible = false
 			
@@ -117,16 +130,27 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 	
 func update_aim_pivot(delta: float) -> void:
+	var visual_center = global_position + Vector2(0, -14)
+	aim_pivot.global_position = visual_center
+	var world_cursor: Vector2
 	if is_using_controller:
-		# Don't update here - let state_aim handle it
-		return
+		world_cursor = get_viewport().canvas_transform.affine_inverse() * virtual_cursor_pos
 	else:
-		## Mouse Logic
-		var mouse_global = get_global_mouse_position()
-		var vec_to_mouse = mouse_global - aim_pivot.global_position
-		aim_pivot.global_rotation = vec_to_mouse.angle()
-		var target_x = max(0.0, vec_to_mouse.length() - cursor_gap)
-		aim_sprite.position.x = lerp(aim_sprite.position.x, target_x, aim_smoothness * delta)
+		world_cursor = get_global_mouse_position()  # always correct, no conversion needed
+	var vec_to_cursor = world_cursor - visual_center
+	print("aim_pivot.global_position: ", aim_pivot.global_position)
+	print("aim_sprite.global_position: ", aim_sprite.global_position)
+	print("world_cursor: ", world_cursor)
+	print("aim_sprite should be at: ", visual_center + vec_to_cursor.normalized() * aim_sprite.position.x)
+	
+
+	if vec_to_cursor.length() > 5.0:
+		aim_pivot.global_rotation = vec_to_cursor.angle()
+		if is_using_controller:
+			last_controller_direction = vec_to_cursor.normalized()
+	var dist = vec_to_cursor.length()
+	var target_x = clamp(dist - cursor_gap, 0.0, dist)
+	aim_sprite.position.x = lerp(aim_sprite.position.x, target_x, aim_smoothness * delta)		
 	
 func SetDirection() -> bool:
 	if direction == Vector2.ZERO:
@@ -274,10 +298,19 @@ func dust_emit() -> void:
 func face_target(target_pos: Vector2) -> void:
 	var look_direction : Vector2
 	if is_using_controller:
-		look_direction = Vector2.RIGHT.rotated(aim_pivot.global_rotation)
+		if direction.length() > 0.1:
+			look_direction = direction
+		else:
+			look_direction = cardinal_direction	
 	else:
 		look_direction = (target_pos - global_position).normalized()
 	var direction_id : int = int(round(look_direction.angle() / TAU * DIR_4.size()))
 	cardinal_direction = DIR_4[direction_id]
 	DirectionChanged.emit(cardinal_direction)
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+
+func get_aim_target() -> Vector2:
+	if is_using_controller:
+		return get_viewport().canvas_transform.affine_inverse() * virtual_cursor_pos
+	else:
+		return get_global_mouse_position()
