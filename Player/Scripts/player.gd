@@ -248,3 +248,11 @@ func dust_emit() -> void:
 		distance_in_pixel -= 68
 		EffectManager.emit_dust(PlayerManager.player)	
 	pass	
+
+func face_target(target_pos: Vector2) -> void:
+	var direction_to_target = (target_pos - global_position).normalized()
+	if direction_to_target != Vector2.ZERO:
+		var direction_id : int = int( round( direction_to_target.angle() / TAU * DIR_4.size() ) )
+		cardinal_direction = DIR_4[ direction_id]
+		DirectionChanged.emit(cardinal_direction)
+		sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1

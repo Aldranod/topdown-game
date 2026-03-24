@@ -17,11 +17,15 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:	
-	var mouse_pos = player.get_viewport().get_mouse_position()
-	var move_direction = Vector2.RIGHT.rotated(mouse_pos)
-	player.face_target(player.get_global_mouse_position())
-	player.velocity = move_direction * charge_speed
+	var mouse_pos = player.get_global_mouse_position()
+	var direction_to_mouse = (mouse_pos - player.global_position).normalized()
+	player.cardinal_direction = direction_to_mouse
 	
+	
+	# Calculate move direction and apply velocity
+	var move_direction = direction_to_mouse
+	player.velocity = move_direction * charge_speed
+	player.face_target(player.get_global_mouse_position())
 	player.start_attack()
 	hurt_box.attack_type = "sword"
 	player.UpdateAnimation("attack2")
