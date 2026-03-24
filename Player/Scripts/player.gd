@@ -96,11 +96,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion or event is InputEventMouseButton or event is InputEventKey:
 		if is_using_controller:
 			is_using_controller = false
+			$AimPivot.visible = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			
 
 	# Detect Controller
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if not is_using_controller:
 			is_using_controller = true
+			$AimPivot.visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			
 
 			
 	if event.is_action_pressed("test"):
