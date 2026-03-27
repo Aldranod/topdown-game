@@ -1723,13 +1723,6 @@ process_material = SubResource("ParticleProcessMaterial_buffn")
 position = Vector2(32, 32)
 color = Color(0.72156864, 0.7254902, 0.85490197, 1)
 
-[node name="TutorialHintSave" parent="." instance=ExtResource("21_rw508")]
-position = Vector2(1944, 216)
-description = "Press [img={20}x{20}]res://GeneralNodes/TutorialHint/E.png[/img] or [img={20}x{20}]res://GeneralNodes/TutorialHint/X.png[/img] to save the game at the bonfire."
-target_nodes = Array[NodePath]([NodePath("../SavePoint")])
-action_signal_name = "bonfire_used"
-global_signal = true
-
 [node name="SavePoint" parent="." instance=ExtResource("30_uxrgw")]
 position = Vector2(1920, 176)
 

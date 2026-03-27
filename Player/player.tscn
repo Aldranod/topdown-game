@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://dbe7ar1xpjjx6"]
+[gd_scene load_steps=134 format=3 uid="uid://dbe7ar1xpjjx6"]
 
 [ext_resource type="Script" uid="uid://dadk2yuxm8np4" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://djwdk5sk04xwc" path="res://Player/Sprites/player_sprite.png" id="2_b1ygp"]
@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://qapvw8d7terh" path="res://Player/Sprites/input_icons.png" id="46_1l10g"]
 [ext_resource type="Script" uid="uid://cu7m70u1tcf6v" path="res://Player/Scripts/input_hints.gd" id="46_6rl0i"]
 [ext_resource type="Texture2D" uid="uid://bfifym2r81d8j" path="res://GUI/aimpivot.png" id="53_c4i3b"]
+[ext_resource type="Script" uid="uid://brvyoxhp8nuxj" path="res://Player/aim_pivot_mouse.gd" id="55_7v2uk"]
 
 [sub_resource type="Gradient" id="Gradient_gvnt1"]
 offsets = PackedFloat32Array(0.119469, 0.300885, 0.619469, 0.867257, 1)
@@ -2921,6 +2922,12 @@ modulate = Color(0.53125, 0, 0.014807552, 1)
 self_modulate = Color(1, 0, 0.060288906, 1)
 texture = ExtResource("53_c4i3b")
 offset = Vector2(100, 0)
+
+[node name="AimPivotMouse" type="Node2D" parent="."]
+script = ExtResource("55_7v2uk")
+
+[node name="Sprite2D" type="Sprite2D" parent="AimPivotMouse"]
+texture = ExtResource("53_c4i3b")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

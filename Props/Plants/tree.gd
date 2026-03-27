@@ -21,12 +21,13 @@ func remove_collision() -> void:
 
 func hide_self() ->void:
 	animation_player.play("hide")
-	visible = false
+	modulate.a = 0.3
 	pass
 	
 func show_self() ->void:
 	animation_player.play("show")
 	visible = true
+	modulate.a = 1
 	pass	
 	
 func TakeDamage( _damage : HurtBox ) -> void:

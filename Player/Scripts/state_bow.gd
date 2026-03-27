@@ -17,19 +17,12 @@ func Enter() -> void:
 	player.face_target(aim_target_pos)
 	player.UpdateAnimation("bow")	
 	player.animation_player.animation_finished.connect(_on_animation_finished)
-	
-	#var fire_direction: Vector2
-	#fire_direction = (aim_target_pos - player.global_position).normalized()
-	
 	var pivot_pos = $"../../AimPivot".global_position
 	var fire_direction = (aim_target_pos - pivot_pos).normalized()
-	
 	var arrow: Arrow = ARROW.instantiate()
 	player.get_parent().add_child(arrow)  # Add to world, not as child of player
 	var spawn_dist: float = 48.0
-	#arrow.global_position = player.global_position + (fire_direction * spawn_dist)
 	arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
-	#arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
 	arrow.fire(fire_direction)
 	pass
 	
