@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://03jhlopvv66j"]
+[gd_scene load_steps=44 format=4 uid="uid://03jhlopvv66j"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_buffn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_rw508"]
@@ -35,9 +35,6 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="28_q1fhw"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="29_buffn"]
 [ext_resource type="PackedScene" uid="uid://d4hgaqdibwenn" path="res://GeneralNodes/SavePoint/save_point.tscn" id="30_uxrgw"]
-[ext_resource type="PackedScene" uid="uid://rka0fnqpei3e" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="36_cy0is"]
-[ext_resource type="Resource" uid="uid://ouvi02c4yox5" path="res://items/ability_arrow.tres" id="37_i4e32"]
-[ext_resource type="Resource" uid="uid://cc2djwha0ulcu" path="res://items/arrow.tres" id="38_dkig7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vqeb"]
 radius = 113.13696
@@ -1747,14 +1744,5 @@ position = Vector2(-984, -72.000015)
 rotation = -0.261799
 scale = Vector2(0.6806122, 0.8352392)
 texture = ExtResource("6_043pa")
-
-[node name="Treasure-chest" parent="." instance=ExtResource("36_cy0is")]
-position = Vector2(1872, 344)
-item_data = ExtResource("37_i4e32")
-
-[node name="ItemPickup" parent="." instance=ExtResource("17_yxt3t")]
-position = Vector2(1920, 304)
-item_data = ExtResource("38_dkig7")
-item_count = 99
 
 [connection signal="player_entered" from="QuestActivatedSwitch/TriggerArea2" to="DialogInteraction" method="player_interact"]

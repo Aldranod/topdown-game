@@ -26,8 +26,8 @@ var defense_bonus: int = 0
 
 var dash_cooldown_timer: float = 0.0 
 
-var arrow_count : int = 1 : set = _set_arrow_count
-var bomb_count : int = 1 : set = _set_bomb_count
+var arrow_count : int = 0 : set = _set_arrow_count
+var bomb_count : int = 0 : set = _set_bomb_count
 
 var combo_window_open : bool = false
 var attack_window_open : bool = true

@@ -90,25 +90,25 @@ position = Vector2(72, 328)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="GoblinAmbush" parent="Enemies" instance=ExtResource("31_gvois")]
+[node name="GoblinAmbush" parent="Enemies" groups=["enemies"] instance=ExtResource("31_gvois")]
 position = Vector2(1056, 408)
 
-[node name="GoblinAmbush4" parent="Enemies" instance=ExtResource("31_gvois")]
+[node name="GoblinAmbush4" parent="Enemies" groups=["enemies"] instance=ExtResource("31_gvois")]
 position = Vector2(1320, 528)
 
-[node name="GoblinAmbush3" parent="Enemies" instance=ExtResource("31_gvois")]
+[node name="GoblinAmbush3" parent="Enemies" groups=["enemies"] instance=ExtResource("31_gvois")]
 position = Vector2(1144, 504)
 
-[node name="GoblinAmbush2" parent="Enemies" instance=ExtResource("31_gvois")]
+[node name="GoblinAmbush2" parent="Enemies" groups=["enemies"] instance=ExtResource("31_gvois")]
 position = Vector2(1144, 696)
 
-[node name="GoblinArcher" parent="Enemies" instance=ExtResource("32_4kcxk")]
+[node name="GoblinArcher" parent="Enemies" groups=["enemies"] instance=ExtResource("32_4kcxk")]
 position = Vector2(1040, 272)
 
-[node name="GoblinArcher2" parent="Enemies" instance=ExtResource("32_4kcxk")]
+[node name="GoblinArcher2" parent="Enemies" groups=["enemies"] instance=ExtResource("32_4kcxk")]
 position = Vector2(936, 256)
 
-[node name="GoblinArcher3" parent="Enemies" instance=ExtResource("32_4kcxk")]
+[node name="GoblinArcher3" parent="Enemies" groups=["enemies"] instance=ExtResource("32_4kcxk")]
 position = Vector2(1136, 288)
 
 [node name="Orc" parent="Enemies" instance=ExtResource("34_ms1ua")]

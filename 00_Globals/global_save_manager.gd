@@ -52,7 +52,7 @@ func load_game() -> void:
 	json.parse( file.get_line())
 	var save_dict : Dictionary = json.get_data() as Dictionary
 	current_save = save_dict
-	
+	enemy_persistence.clear()
 	LevelManager.load_new_level( current_save.scene_path, "", Vector2.ZERO)
 	
 	await LevelManager.level_load_started

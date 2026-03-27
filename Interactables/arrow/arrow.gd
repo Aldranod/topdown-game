@@ -30,10 +30,6 @@ func fire( fire_dir: Vector2 ) -> void:
 	pass	
 
 func rotate_nodes() -> void:
-	#var angle : float = move_dir.angle()
-	#sprite_2d.rotation = angle
-	#sprite_2d_2.rotation = angle
-	#hurt_box.rotation = angle
 	
 	var s1 = get_node_or_null("Sprite2D")
 	var s2 = get_node_or_null("Sprite2D2")

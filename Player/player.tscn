@@ -2742,6 +2742,10 @@ script = ExtResource("33_7x5p2")
 
 [node name="Aim" type="Node" parent="StateMachine"]
 script = ExtResource("38_7v2uk")
+ads_snap_radius = 400.0
+ads_snap_angle_deg = 360.0
+ads_snap_speed = 5.0
+ads_max_snap_distance = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1

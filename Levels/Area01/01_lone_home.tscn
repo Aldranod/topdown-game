@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://durt3f5pildyb"]
+[gd_scene load_steps=32 format=4 uid="uid://durt3f5pildyb"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_7y3vb"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_lc8n7"]
@@ -22,6 +22,9 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="20_suanp"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="21_chx4c"]
 [ext_resource type="Texture2D" uid="uid://bj7hlvmv5kwcd" path="res://Tile Maps/Sprites/light_stream.jpg" id="22_suanp"]
+[ext_resource type="PackedScene" uid="uid://rka0fnqpei3e" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="23_8weie"]
+[ext_resource type="Resource" uid="uid://ouvi02c4yox5" path="res://items/ability_arrow.tres" id="24_75s63"]
+[ext_resource type="Resource" uid="uid://cc2djwha0ulcu" path="res://items/arrow.tres" id="25_5ifug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olm4v"]
 size = Vector2(2072, 66)
@@ -615,12 +618,8 @@ position = Vector2(1672, 744)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Goblin2" parent="Enemies" instance=ExtResource("13_hqa5g")]
-position = Vector2(808, 480)
-hp = 4
-
-[node name="Goblin3" parent="Enemies" instance=ExtResource("13_hqa5g")]
-position = Vector2(1064, 544)
+[node name="Goblin3" parent="Enemies" groups=["enemies"] instance=ExtResource("13_hqa5g")]
+position = Vector2(824, 440)
 hp = 4
 
 [node name="TutorialHint3" parent="." instance=ExtResource("15_1y17y")]
@@ -703,3 +702,12 @@ position = Vector2(1912.0001, 160)
 rotation = 0.261799
 scale = Vector2(0.6806122, 0.8352392)
 texture = ExtResource("22_suanp")
+
+[node name="Treasure-chest" parent="." instance=ExtResource("23_8weie")]
+position = Vector2(1544, 304)
+item_data = ExtResource("24_75s63")
+
+[node name="ItemPickup" parent="." instance=ExtResource("9_5ifug")]
+position = Vector2(1592, 264)
+item_data = ExtResource("25_5ifug")
+item_count = 99

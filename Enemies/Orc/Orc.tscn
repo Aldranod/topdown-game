@@ -870,7 +870,7 @@ _data = {
 &"destroy": SubResource("Animation_vjyi2")
 }
 
-[node name="Orc" type="CharacterBody2D"]
+[node name="Orc" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 256
 collision_mask = 80
 script = ExtResource("1_ewd0x")

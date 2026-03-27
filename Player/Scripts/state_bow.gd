@@ -7,33 +7,30 @@ const ARROW = preload("res://Interactables/arrow/arrow.tscn")
 var direction : Vector2 = Vector2.ZERO
 var next_state : State = null
 @onready var aim_sprite: Sprite2D = $"../../AimPivot/AimSprite"
+@export var sprite_visual_offset: Vector2 = Vector2(0, 16)
 
 func _ready() -> void:
 	pass
 	
 func Enter() -> void:
-	var aim_target_pos: Vector2
-	aim_target_pos = player.get_global_mouse_position()
+	var aim_target_pos: Vector2 = player.get_global_mouse_position()
 	player.face_target(aim_target_pos)
 	player.UpdateAnimation("bow")	
 	player.animation_player.animation_finished.connect(_on_animation_finished)
-	var fire_direction: Vector2
-	fire_direction = (aim_target_pos - player.global_position).normalized()
+	
+	#var fire_direction: Vector2
+	#fire_direction = (aim_target_pos - player.global_position).normalized()
+	
+	var pivot_pos = $"../../AimPivot".global_position
+	var fire_direction = (aim_target_pos - pivot_pos).normalized()
+	
 	var arrow: Arrow = ARROW.instantiate()
 	player.get_parent().add_child(arrow)  # Add to world, not as child of player
-	var spawn_dist: float = 58.0
-	arrow.global_position = player.global_position + (fire_direction * spawn_dist)
+	var spawn_dist: float = 48.0
+	#arrow.global_position = player.global_position + (fire_direction * spawn_dist)
+	arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
+	#arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
 	arrow.fire(fire_direction)
-	#var target_pos = player.get_aim_target()
-	#player.face_target(target_pos)
-	#player.UpdateAnimation("bow")
-	#player.animation_player.animation_finished.connect(_on_animation_finished)
-	#var fire_direction = Vector2.RIGHT.rotated(player.aim_pivot.global_rotation)
-	#var arrow : Arrow = ARROW.instantiate()
-	#player.get_parent().add_child(arrow) # Add to world, not as child of player
-	#var spawn_dist = 58.0
-	#arrow.global_position = player.aim_pivot.global_position + (fire_direction * spawn_dist)
-	#arrow.fire(fire_direction)
 	pass
 	
 func Exit() -> void:

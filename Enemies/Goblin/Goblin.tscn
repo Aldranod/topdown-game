@@ -1082,7 +1082,7 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_fjr0p")
 debug_color = Color(0.12156863, 0.13333334, 0.5686275, 0.89411765)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
 position = Vector2(0, -11)
 shape = SubResource("CapsuleShape2D_oij8y")
 
