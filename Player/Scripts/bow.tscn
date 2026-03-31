@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://oupmy8h12qcr"]
+
+[ext_resource type="Script" uid="uid://c2qxknyu0p6i" path="res://bow.gd" id="1_bej15"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iruov"]
+
+[node name="Bow" type="Node2D"]
+script = ExtResource("1_bej15")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, 0)
+scale = Vector2(2.5, 1)
+texture = SubResource("PlaceholderTexture2D_iruov")
+
+[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
+position = Vector2(22.8, 0)

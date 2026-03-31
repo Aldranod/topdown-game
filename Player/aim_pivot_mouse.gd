@@ -29,4 +29,4 @@ func _process(delta):
 	current_distance = lerp(current_distance, target_distance, follow_speed * delta)
 	
 	# Rebuild position from player every frame → no drift
-	global_position = player_pos + dir * current_distance
+	position = dir * current_distance

@@ -6,14 +6,14 @@ func _ready() -> void:
 	pass	
 		
 func _on_area_enter(_p : Node2D) -> void:
-	if _p is Player:
+	if _p is Player or _p.is_in_group("enemies"):
 		for c in get_children():
 			if c.is_in_group("hidable"):
 				c.hide_self()
 	pass	
 	
 func _on_area_exited(_p : Node2D) -> void:
-	if _p is Player:
+	if _p is Player or _p.is_in_group("enemies"):
 		for c in get_children():
 			if c.is_in_group("hidable"):
 				c.show_self()

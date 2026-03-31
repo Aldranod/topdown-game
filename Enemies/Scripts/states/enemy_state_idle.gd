@@ -7,7 +7,7 @@ class_name EnemyStateIdle extends EnemyState
 @export var state_duration_max : float = 1.5
 @export var after_idle_state : EnemyState
 @export var chase_state: EnemyStateChase # Add an export for the chase state
-@export var ambush: bool = false
+@export var in_ambush: bool = false
 
 var _timer : float = 0.0
 
@@ -32,13 +32,12 @@ func exit() -> void:
 	
 func process( _delta: float ) -> EnemyState:
 	if PlayerManager.player.hp > 0:
-		if enemy._in_attack_range():
+		if enemy._in_attack_range() and not in_ambush:
 			#$"../..".set_collision_mask_value(5, true)
-			ambush = false
 			return attack_state
 		# --- NEW LINE OF SIGHT LOGIC ---
 		# First, do a cheap check to see if the player is even nearby.
-		if vision_area:
+		if vision_area and not in_ambush:
 			if vision_area.get_overlapping_bodies().has(enemy.player):
 				# If they are, do the expensive raycast check.
 				line_of_sight_ray.target_position = enemy.to_local(enemy.player.global_position)
@@ -52,12 +51,11 @@ func process( _delta: float ) -> EnemyState:
 						return $"../Shoot"
 					else:
 						#$"../..".set_collision_mask_value(5, true)
-						ambush = false 
 						return chase_state
 
 	# If we don't have line of sight, just continue with the normal idle timer.
 	_timer -= _delta
-	if _timer <= 0 and not ambush:
+	if _timer <= 0 and not in_ambush:
 		return after_idle_state
 	else:	
 		return idle	

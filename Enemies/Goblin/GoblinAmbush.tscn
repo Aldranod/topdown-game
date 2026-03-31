@@ -1090,7 +1090,7 @@ script = ExtResource("8_konpt")
 script = ExtResource("9_dnede")
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
-ambush = true
+in_ambush = true
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state", "chase_state")]
 script = ExtResource("10_yam40")

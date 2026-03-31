@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2xrdfp5j3mwj"]
+
+[ext_resource type="Script" uid="uid://cxi623x1w40jn" path="res://Enemies/ambush_area.gd" id="1_3afn7"]
+
+[node name="AmbushArea" type="Area2D"]
+script = ExtResource("1_3afn7")

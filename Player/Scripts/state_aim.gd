@@ -20,6 +20,7 @@ var already_firing: bool = false
 var snap_target: Node2D = null  # the enemy we're snapping toward
 
 func Enter() -> void:
+	$"../../AimPivotMouse/AimPivotMouseSprite".visible = false
 	player.aim_sprite_visible = true
 	aim_sprite.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -33,6 +34,7 @@ func Enter() -> void:
 		aim_sprite.rotation = player.cardinal_direction.angle()	
 
 func Exit() -> void:
+	$"../../AimPivotMouse/AimPivotMouseSprite".visible = true
 	player.aim_sprite_visible = false
 	aim_sprite.visible = false
 	already_firing = false

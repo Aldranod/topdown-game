@@ -1095,7 +1095,7 @@ autoplay = "idle_down"
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("8_68gig")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state")]
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state") groups=["enemies"]]
 script = ExtResource("9_aln51")
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")

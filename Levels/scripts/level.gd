@@ -40,7 +40,7 @@ func _ready() -> void:
 func start_lightning_loop() -> void:
 	while storm:
 		# 1. Calculate random wait time
-		var wait_time = randf_range(10.0, 45.0)
+		var wait_time = randf_range(10.0, 45.0)	
 		# 2. Wait for that time
 		await get_tree().create_timer(wait_time).timeout
 		# 3. Trigger Lightning
@@ -48,8 +48,8 @@ func start_lightning_loop() -> void:
 	
 func lightning() -> void:
 	var tween = create_tween()
-	tween.tween_property($CanvasModulate, "color", Color(1, 1, 1, 1), 0.2)
-	tween.tween_property($CanvasModulate, "color", Color8(184, 185, 218), 0.3)
+	tween.tween_property($Weather/CanvasModulate, "color", Color(1, 1, 1, 1), 0.2)
+	tween.tween_property($Weather/CanvasModulate, "color", Color8(184, 185, 218), 0.3)
 	pass
 		
 func play_cutscene() -> void:
@@ -83,7 +83,7 @@ func _apply_weather_from_enum(type_enum: WeatherType) -> void:
 	if weather_map.has(type_enum):
 		var script_to_load = weather_map[type_enum]
 		# Pass the SCRIPT to the manager (exactly what it expects)
-		$WeatherManager.change_to(script_to_load)
+		%WeatherManager.change_to(script_to_load)
 	else:
 		print("Error: Weather type not found in map for enum value: ", type_enum)
 

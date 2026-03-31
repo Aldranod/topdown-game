@@ -134,3 +134,7 @@ func clear_collisions() -> void:
 		if c is CollisionShape2D:
 			c.queue_free()
 	pass
+	
+func exit_ambush() -> void:
+	$EnemyStateMachine/Idle.in_ambush = false
+	pass	

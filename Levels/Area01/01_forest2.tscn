@@ -1303,6 +1303,7 @@ Step: 1 - find hidden path
 Complete: true"
 
 [node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_x36nl")]
+unique_name_in_owner = true
 particle = NodePath("../Particles")
 color_rect = NodePath("../Parallax2D/ColorRect")
 

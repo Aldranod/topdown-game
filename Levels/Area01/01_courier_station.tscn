@@ -83,6 +83,7 @@ weather_layer_1 = 4
 weather_layer_2 = 3
 
 [node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_a4n88")]
+unique_name_in_owner = true
 particle = NodePath("../Particles")
 color_rect = NodePath("../Parallax2D/ColorRect")
 

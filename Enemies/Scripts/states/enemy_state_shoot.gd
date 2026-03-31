@@ -85,9 +85,9 @@ func spawn_spear() -> void: # triggered by animation player
 	var direction = enemy.global_position.direction_to(enemy.player.global_position)
 	var spear : Spear = SPEAR.instantiate()
 	if enemy.cardinal_direction == Vector2.DOWN:
-		spear.global_position = enemy.global_position + (direction * 35)
+		spear.global_position = enemy.global_position + (direction * 25)
 	else:	
-		spear.global_position = enemy.global_position + (direction * 28)
+		spear.global_position = enemy.global_position + (direction * 18)
 	spear.fire(direction)
 	enemy.add_sibling(spear)
 	pass	

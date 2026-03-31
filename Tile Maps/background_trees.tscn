@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://vmjaeq3sdbf5"]
+
+[ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="1_bismw"]
+[ext_resource type="Texture2D" uid="uid://b4ybpvgumkiqs" path="res://Props/Sprites/tree4_2.png" id="1_mv4kc"]
+[ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="2_bismw"]
+[ext_resource type="Script" uid="uid://bag6ckb4nssxi" path="res://Tile Maps/bgsprite_2d.gd" id="3_6ecqj"]
+[ext_resource type="Texture2D" uid="uid://j428iomk435y" path="res://Props/Sprites/tree_1.png" id="3_22qfo"]
+[ext_resource type="Texture2D" uid="uid://ds875pcuhv4gq" path="res://Props/Sprites/tree_2.png" id="4_teei4"]
+[ext_resource type="Script" uid="uid://dqs3kn1iv4w6i" path="res://Tile Maps/bgsprite_2d_2.gd" id="6_03s01"]
+[ext_resource type="Script" uid="uid://uyyw3wbdqu2y" path="res://Tile Maps/bgsprite_2d_3.gd" id="8_kednj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22qfo"]
+shader = ExtResource("1_bismw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ecqj"]
+shader = ExtResource("1_bismw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_03s01"]
+shader = ExtResource("1_bismw")
+
+[node name="BackgroundTrees" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_22qfo")
+position = Vector2(0, 16)
+texture = ExtResource("1_mv4kc")
+script = ExtResource("3_6ecqj")
+
+[node name="ShadowSprite2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.12941177)
+show_behind_parent = true
+position = Vector2(48, 24)
+scale = Vector2(4, 4)
+texture = ExtResource("2_bismw")
+
+[node name="ShadowSprite3" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.12941177)
+show_behind_parent = true
+position = Vector2(-40, 24)
+scale = Vector2(4, 4)
+texture = ExtResource("2_bismw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6ecqj")
+position = Vector2(48, -16)
+texture = ExtResource("3_22qfo")
+script = ExtResource("6_03s01")
+
+[node name="ShadowSprite2" type="Sprite2D" parent="Sprite2D2"]
+modulate = Color(0, 0, 0, 0.12941177)
+show_behind_parent = true
+position = Vector2(-48, 24)
+scale = Vector2(4, 4)
+texture = ExtResource("2_bismw")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_03s01")
+position = Vector2(0, 16)
+texture = ExtResource("4_teei4")
+script = ExtResource("8_kednj")
+
+[node name="ShadowSprite2" type="Sprite2D" parent="Sprite2D3"]
+modulate = Color(0, 0, 0, 0.12941177)
+show_behind_parent = true
+position = Vector2(0, 56)
+scale = Vector2(4, 4)
+texture = ExtResource("2_bismw")

@@ -57,6 +57,7 @@ var aim_sprite_visible: bool = false
 
 func _ready():
 	PlayerManager.player = self
+	initial_position = global_position
 	state_machine.Initialize(self)
 	hit_box.Damaged.connect( _take_damage)
 	update_hp(99)
@@ -66,7 +67,6 @@ func _ready():
 	pass
 	
 func _process(_delta):
-	dust_emit()
 	var in_aim_state = state_machine.current_state is State_Aim
 	if not in_aim_state:
 		direction = Vector2(
@@ -87,6 +87,7 @@ func _process(_delta):
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= _delta
 	PlayerHud.update_dash_cooldown(dash_cooldown_timer, dash_cooldown_duration)
+	dust_emit()
 	pass	
 	
 func _physics_process(_delta):
@@ -98,12 +99,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if is_using_controller:
 			is_using_controller = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			$AimPivotMouse/AimPivotMouseSprite.visible = true
 	# Detect Controller
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if not is_using_controller:
 			is_using_controller = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			
+			$AimPivotMouse/AimPivotMouseSprite.visible = false
 	if event.is_action_pressed("test"):
 		#update_hp(-99)
 		#player_damaged.emit(%AttackHurtBox)
