@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://blmuv7dk7ny5"]
+[gd_scene load_steps=20 format=3 uid="uid://blmuv7dk7ny5"]
 
 [ext_resource type="Script" uid="uid://bchlccmnrkss6" path="res://Props/Plants/plant.gd" id="1_djs60"]
 [ext_resource type="Texture2D" uid="uid://c1t8b1mvg1rj4" path="res://Props/Sprites/Props.png" id="1_opo5d"]
@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://1b4xa4hputkg" path="res://Props/Plants/Tree.tres" id="4_gt7ev"]
 [ext_resource type="PackedScene" uid="uid://dai7o1vg0hga0" path="res://Interactables/Throwable/Throwable.tscn" id="5_jc2yy"]
 [ext_resource type="Script" uid="uid://bhpcjhthhjyq4" path="res://Props/Plants/sprite_2d.gd" id="6_ah4mw"]
+[ext_resource type="AudioStream" uid="uid://yy6idwnnscv6" path="res://Props/Plants/bush_cut.mp3" id="10_8qoe2"]
 
 [sub_resource type="Resource" id="Resource_gt7ev"]
 script = ExtResource("2_k6e5a")
@@ -81,6 +82,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.27244896,
+"start_offset": 0.05,
+"stream": ExtResource("10_8qoe2")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6e5a"]
 _data = {
@@ -133,3 +149,6 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Throwable"]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_jc2yy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -6.0

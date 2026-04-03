@@ -9,4 +9,5 @@ func _on_area_enter(_p : Node2D) -> void:
 		var e = get_parent()
 		if e is Enemy:
 			e.exit_ambush()
+		queue_free()	
 	pass	

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bix6n142gqqbp"]
+
+[ext_resource type="Script" uid="uid://bjewxts05ejei" path="res://Enemies/corpse.gd" id="1_hx0qp"]
+
+[node name="Corpse" type="Node2D"]
+script = ExtResource("1_hx0qp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

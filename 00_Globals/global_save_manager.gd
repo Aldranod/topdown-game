@@ -27,13 +27,15 @@ var current_save : Dictionary = {
 	quests = [
 		
 	],
-	abilities = [ "","","",""]
+	abilities = [ "","","",""],
+	corpses = []
 }
 
 func save_game() -> void:
 	update_player_data()
 	update_scene_path()
 	enemy_persistence.clear()
+	current_save.corpses.clear()
 	update_item_data()
 	update_quest_data()
 	update_time_data()
@@ -53,6 +55,7 @@ func load_game() -> void:
 	var save_dict : Dictionary = json.get_data() as Dictionary
 	current_save = save_dict
 	enemy_persistence.clear()
+	current_save.corpses.clear()
 	LevelManager.load_new_level( current_save.scene_path, "", Vector2.ZERO)
 	
 	await LevelManager.level_load_started
@@ -119,8 +122,7 @@ func remove_persistent_value( value :String) -> void:
 
 func check_persistent_value( value: String) -> bool:
 	var p = current_save.persistence as Array
-	return p.has( value)
-	pass					
+	return p.has( value)			
 
 func add_enemy_death(id : String) -> void:
 	if not enemy_persistence.has(id):
@@ -128,3 +130,18 @@ func add_enemy_death(id : String) -> void:
 
 func check_enemy_death(id : String) -> bool:
 	return enemy_persistence.has(id)
+	
+func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, scene_path: String) -> void:
+	for c in current_save.corpses:
+		if c.id == enemy_id:
+			return
+	current_save.corpses.append({
+		id = enemy_id,
+		pos_x = pos_x,
+		pos_y = pos_y,
+		scale_x = scale_x,
+		scene_path = scene_path  # NEW
+	})
+	
+func get_corpses() -> Array:
+	return current_save.corpses		

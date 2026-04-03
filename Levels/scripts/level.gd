@@ -15,6 +15,7 @@ var weather_map : Dictionary = {}
 @export var weather_layer_1: WeatherType = WeatherType.None
 @export var weather_layer_2: WeatherType = WeatherType.None
 
+const CORPSE = preload("res://Enemies/corpse.tscn")
 #@export var weather : bool = false
 #@export var weather_mod1: WEATHER
 #@export var weather_mod2: WEATHER
@@ -36,6 +37,7 @@ func _ready() -> void:
 	weather_check()
 	#LevelManager.time_tick.connect(lightning)
 	start_lightning_loop()
+	_restore_corpses()
 
 func start_lightning_loop() -> void:
 	while storm:
@@ -114,3 +116,16 @@ func hide_tree() -> void:
 
 func show_tree() -> void:
 	pass # Replace with function body.
+	
+func _restore_corpses() -> void:
+	var scene_prefix = name + "_"
+	for data in SaveManager.get_corpses():
+		if not data.id.begins_with(scene_prefix):
+			continue
+		var corpse_data = load(data.scene_path) as CorpseData
+		if corpse_data == null:
+			continue
+		var corpse = CORPSE.instantiate()
+		add_child(corpse)
+		corpse.global_position = Vector2(data.pos_x, data.pos_y)
+		corpse.setup(corpse_data, data.scale_x)

@@ -5,11 +5,13 @@ signal enemy_damaged( hurt_box : HurtBox )
 signal enemy_destroyed( hurt_box : HurtBox )
 
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+const CORPSE = preload("res://Enemies/corpse.tscn")
 
 @export var hp : int = 3
 @export var xp_reward : int = 1 
 @export var respawnable : bool = true
 @export var attack_range : float = 24.0
+@export var corpse_data: CorpseData = null
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
@@ -103,6 +105,7 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 			# Permanent death
 			persistent_data_handler.set_value()
 		enemy_destroyed.emit( hurt_box )
+		_spawn_corpse(enemy_id)
 		#queue_free() # or whatever your death logic is
 		#enemy_destroyed.emit( hurt_box)
 		#persistent_data_handler.set_value()	
@@ -138,3 +141,19 @@ func clear_collisions() -> void:
 func exit_ambush() -> void:
 	$EnemyStateMachine/Idle.in_ambush = false
 	pass	
+
+func _spawn_corpse(enemy_id: String) -> void:
+	if corpse_data == null:
+		return
+	var corpse = CORPSE.instantiate()
+	var level = get_tree().current_scene
+	level.add_child(corpse)
+	corpse.global_position = global_position
+	corpse.setup(corpse_data, sprite.scale.x)
+	SaveManager.add_corpse(
+		enemy_id,
+		global_position.x,
+		global_position.y,
+		sprite.scale.x,
+		corpse_data.resource_path  # store .tres path for restoration
+	)

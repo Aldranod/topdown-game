@@ -2,8 +2,9 @@
 
 [resource]
 particle_flag_disable_z = true
+emission_shape_offset = Vector3(4000, 4000, 0)
 emission_shape = 3
-emission_box_extents = Vector3(5000, 1000, 1)
+emission_box_extents = Vector3(4000, 4000, 1)
 direction = Vector3(1, 1, 0)
 spread = 10.0
 initial_velocity_min = 400.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://ca3g6qw0kscv1"]
+[gd_scene load_steps=61 format=3 uid="uid://ca3g6qw0kscv1"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_f3wku"]
+[ext_resource type="Resource" uid="uid://ksdxqhd45hta" path="res://Enemies/Goblin/goblin_corpse.tres" id="2_giajk"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_lvhkj"]
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="3_t4jts"]
 [ext_resource type="Texture2D" uid="uid://d05bq88j3rak0" path="res://Enemies/fear_indicator1.png" id="4_ocmpk"]
@@ -1030,12 +1031,14 @@ _data = {
 &"destroy": SubResource("Animation_vjyi2")
 }
 
-[node name="Goblin" type="CharacterBody2D"]
+[node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
+z_index = -1
 collision_layer = 256
 collision_mask = 80
 script = ExtResource("1_f3wku")
 hp = 6
 attack_range = 30.0
+corpse_data = ExtResource("2_giajk")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_lvhkj")]
 monitoring = false
@@ -1161,6 +1164,7 @@ modulate = Color(1, 1, 1, 0.21960784)
 position = Vector2(1, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
+visible = false
 position = Vector2(0, 4)
 polygon = PackedVector2Array(-189, -195, -1, -234, 209, -196, 291, -73, 295, 145, 102, 209, 0, 228, -121, 203, -278, 143, -280, -67)
 

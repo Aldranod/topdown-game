@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="HitParticleSettings" load_steps=4 format=3 uid="uid://dyhvqlpo8ltut"]
+
+[ext_resource type="Script" uid="uid://lm43gaq2wrjq" path="res://00_Globals/global_effects/hit_particles_settings.gd" id="1_65osr"]
+[ext_resource type="Texture2D" uid="uid://318q1t4qew6v" path="res://00_Globals/global_effects/hit_particle_settings/blood_particle.png" id="2_4icer"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sdtr"]
+atlas = ExtResource("2_4icer")
+region = Rect2(7, 10, 2, 2)
+
+[resource]
+script = ExtResource("1_65osr")
+count = 10
+color = Color(0.51171875, 0.37106806, 0.26850903, 1)
+texture = SubResource("AtlasTexture_6sdtr")
+metadata/_custom_type_script = "uid://lm43gaq2wrjq"

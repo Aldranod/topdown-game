@@ -79,7 +79,7 @@ anim_offset_max = 1.0
 script = ExtResource("1_buffn")
 music = ExtResource("2_rw508")
 weather_active = true
-weather_layer_1 = 4
+weather_layer_1 = 1
 weather_layer_2 = 3
 
 [node name="WeatherManager" parent="." node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("27_a4n88")]
@@ -1738,5 +1738,11 @@ position = Vector2(-984, -72.000015)
 rotation = -0.261799
 scale = Vector2(0.6806122, 0.8352392)
 texture = ExtResource("6_043pa")
+
+[node name="LevelTransition3" parent="." instance=ExtResource("7_a8r62")]
+position = Vector2(1760, 448)
+level = "uid://0xm2fhk6spvy"
+center_player = true
+side = 2
 
 [connection signal="player_entered" from="QuestActivatedSwitch/TriggerArea2" to="DialogInteraction" method="player_interact"]
