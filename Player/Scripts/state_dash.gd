@@ -63,14 +63,6 @@ func HandleInput(_event: InputEvent) -> State:
 			return second_attack
 		if PlayerManager.player.attack_window_open:
 			return attack
-	#if _event.is_action_pressed("up") and direction != Vector2.UP:
-		#direction = Vector2.UP
-	#if  _event.is_action_pressed("down") and direction  != Vector2.DOWN:
-		#direction = Vector2.DOWN
-	#if  _event.is_action_pressed("left") and direction  != Vector2.LEFT:
-		#direction = Vector2.LEFT
-	#if  _event.is_action_pressed("right") and direction  != Vector2.RIGHT:
-		#direction = Vector2.RIGHT
 	return null		
 	
 func _on_animation_finished(anim_name : String) -> void:
