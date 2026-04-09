@@ -3,7 +3,7 @@ class_name EnemyStateStun extends EnemyState
 @export var anim_name : String = "stun"
 @export var knockback_speed : float = 0.0
 @export var decelerate_speed : float = 5.0
-@export var particle_settings : HitParticleSettings
+@export var particles: Array [HitParticleSettings ]
 @export_category("AI")
 @export var next_state : EnemyState
 @export var flee_state: EnemyState  # Add this export
@@ -27,7 +27,8 @@ func enter() -> void:
 	enemy.set_direction(_direction)
 	enemy.velocity = _direction * -knockback_speed
 	enemy.update_animation(anim_name)
-	EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,particle_settings)
+	for p in particles:
+		EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,p)
 	enemy.animation_player.animation_finished.connect( _on_animation_finished)
 	pass
 	
@@ -36,7 +37,7 @@ func exit() -> void:
 	pass
 	
 func process( _delta: float ) -> EnemyState:
-	if _animation_finished == true:
+	if _animation_finished:
 		# Check if enemy should flee based on health
 		var health_ratio = float(enemy.hp) / float(_initial_hp)
 		if health_ratio <= flee_health_threshold and flee_state:

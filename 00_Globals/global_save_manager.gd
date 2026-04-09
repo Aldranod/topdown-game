@@ -28,7 +28,8 @@ var current_save : Dictionary = {
 		
 	],
 	abilities = [ "","","",""],
-	corpses = []
+	corpses = [],
+	dash = false
 }
 
 func save_game() -> void:

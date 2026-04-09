@@ -8,6 +8,7 @@ class_name State_Idle extends State
 @onready var run: State = $"../Run"
 
 func Enter() -> void:
+	$"../../Label2".text = "idle"
 	player.UpdateAnimation("idle")
 	pass
 	
@@ -27,7 +28,7 @@ func Physics(_delta: float) -> State:
 	return null	
 
 func HandleInput( _event: InputEvent) -> State:
-	if _event.is_action_pressed("attack"):
+	if _event.is_action_pressed("attack") and PlayerManager.INVENTORY_DATA.check_if_equiped("Iron Sword"):
 		print("attack")
 		if PlayerManager.player.third_attack_window_open:
 			return third_attack

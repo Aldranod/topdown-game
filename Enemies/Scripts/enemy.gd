@@ -74,7 +74,9 @@ func set_direction( _new_direction : Vector2) -> bool:
 	return true
 
 func update_animation( state : String ) -> void:
-	animation_player.play( state + "_" + anim_direction())
+	var anim_name = state + "_" + anim_direction()
+	if anim_name:
+		animation_player.play( anim_name)
 	pass	
 	
 func anim_direction() -> String:
@@ -149,7 +151,16 @@ func _spawn_corpse(enemy_id: String) -> void:
 	var level = get_tree().current_scene
 	level.add_child(corpse)
 	corpse.global_position = global_position
-	corpse.setup(corpse_data, sprite.scale.x)
+	var pose = 0
+	if cardinal_direction == Vector2.DOWN:
+		pose = randf_range(130.0,230.0)
+	if cardinal_direction == Vector2.UP:
+		pose = randf_range(-57.0,57.0)
+	if cardinal_direction == Vector2.LEFT:
+		pose = randf_range(-40.0,-126.0)
+	if cardinal_direction == Vector2.RIGHT:
+		pose = randf_range(40.0,126.0)			
+	corpse.setup(corpse_data, sprite.scale.x, pose)
 	SaveManager.add_corpse(
 		enemy_id,
 		global_position.x,

@@ -31,6 +31,9 @@ func _on_area_exit( _a : Area2D) -> void:
 	pass
 	
 func save() -> void:
+	print(PlayerManager.player.state_machine.current_state)
+	if PlayerManager.player.state_machine.current_state is State_Death:
+		return
 	Messages.bonfire_used.emit()
 	label_animation_player.play("saved")
 	label_animation_player.seek(0)

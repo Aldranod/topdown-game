@@ -20,6 +20,12 @@ func add_item( item : ItemData, count : int = 1) -> bool:
 	if item is AbilityItemData:
 		ability_acquired.emit( item)
 		return true
+	
+	if item is EquipableItemData:		
+		var equipable_item: EquipableItemData = item as EquipableItemData
+		# Check if it's a weapon type
+		if equipable_item.type == EquipableItemData.Type.WEAPON:
+			return auto_equip_weapon(equipable_item)
 		
 	for s in slots:
 		if s:
@@ -35,7 +41,7 @@ func add_item( item : ItemData, count : int = 1) -> bool:
 			slots[i] = new
 			new.changed.connect(slot_changed)
 			return true
-			
+					
 	print ("inv was full!")
 	return false
 
@@ -175,3 +181,44 @@ func get_item_held_quantity(_item : ItemData) -> int:
 					return slot.quantity
 	return 0
 			
+func check_if_equiped( name: String = "") -> bool:
+	for s in equipment_slots():
+		if s == null:
+			continue
+		var e : EquipableItemData = s.item_data
+		if name:
+			if e.name == name:
+				return true
+	return false
+
+func auto_equip_weapon(weapon: EquipableItemData) -> bool:
+	# Calculate weapon equipment slot index
+	var weapon_slot_index: int = slots.size() - equipment_slot_count + 1  # +1 for weapon slot
+	# Get currently equipped weapon (if any)
+	var current_weapon: SlotData = slots[weapon_slot_index]
+	# Create new slot for the picked up weapon
+	var new_weapon_slot = SlotData.new()
+	new_weapon_slot.item_data = weapon
+	new_weapon_slot.quantity = 1
+	new_weapon_slot.changed.connect(slot_changed)
+	# Equip the new weapon
+	slots[weapon_slot_index] = new_weapon_slot
+	# If there was a weapon equipped, move it to inventory
+	if current_weapon != null:
+		# Try to add old weapon to inventory
+		var added_to_inventory = _add_to_inventory(current_weapon)
+		if not added_to_inventory:
+			print("Warning: Old weapon couldn't fit in inventory!")
+			# You could drop it on the ground here if you want
+	# Emit equipment changed signal
+	equipment_changed.emit()
+	return true
+	
+func _add_to_inventory(slot: SlotData) -> bool:
+	# Try to find empty inventory slot
+	for i in inventory_slots().size():
+		if slots[i] == null:
+			slots[i] = slot
+			return true
+	# Inventory is full
+	return false	

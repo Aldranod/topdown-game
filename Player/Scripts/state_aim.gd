@@ -20,6 +20,7 @@ var already_firing: bool = false
 var snap_target: Node2D = null  # the enemy we're snapping toward
 
 func Enter() -> void:
+	$"../../Label2".text = "aim"
 	$"../../AimPivotMouse/AimPivotMouseSprite".visible = false
 	player.aim_sprite_visible = true
 	aim_sprite.visible = true

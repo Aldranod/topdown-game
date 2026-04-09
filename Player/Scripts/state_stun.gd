@@ -17,6 +17,7 @@ func init() -> void:
 	player.player_damaged.connect( _player_damaged)
 
 func Enter() -> void:
+	$"../../Label2".text = "stun"
 	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.animation_player.animation_finished.connect( _animation_finished)
 	direction = player.global_position.direction_to( hurt_box.global_position)

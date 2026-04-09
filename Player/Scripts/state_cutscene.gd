@@ -8,6 +8,7 @@ func init() -> void:
 	pass
 
 func Enter() -> void:
+	$"../../Label2".text = "cutscene"
 	player.UpdateAnimation("idle")
 	player.process_mode = Node.PROCESS_MODE_ALWAYS
 	pass

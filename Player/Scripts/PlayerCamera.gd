@@ -152,14 +152,14 @@ func _ready():
 func _process(delta: float) -> void:
 	
 	var target_lean: Vector2 = Vector2.ZERO
-
 	var p = PlayerManager.player 
 	var is_aiming = p.state_machine.current_state is State_Aim
+	
 	if not is_aiming:
 		if p.is_using_controller:
 			# Don't use right stick for camera - only use movement direction
 			var joy_dir = p.direction
-			if joy_dir.length() > 0.2:
+			if PlayerManager.player.stick_intensity >= 0.9:
 				target_lean = joy_dir * max_look_distance
 		else:
 			# 4. MOUSE LEAN: (Your existing logic)

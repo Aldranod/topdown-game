@@ -50,8 +50,9 @@ func start_lightning_loop() -> void:
 	
 func lightning() -> void:
 	var tween = create_tween()
+	var color = $Weather/CanvasModulate.color
 	tween.tween_property($Weather/CanvasModulate, "color", Color(1, 1, 1, 1), 0.2)
-	tween.tween_property($Weather/CanvasModulate, "color", Color8(184, 185, 218), 0.3)
+	tween.tween_property($Weather/CanvasModulate, "color", color, 0.3)
 	pass
 		
 func play_cutscene() -> void:

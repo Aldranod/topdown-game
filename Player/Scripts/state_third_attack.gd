@@ -17,6 +17,7 @@ var attacking : bool = false
 @onready var hurt_box: HurtBox = %AttackHurtBox
 
 func Enter() -> void:
+	$"../../Label2".text = "third attack"
 	if player.is_using_controller:
 		var controller_direction = player.direction if player.direction != Vector2.ZERO else player.last_controller_direction
 		var attack_target = player.global_position + controller_direction
@@ -31,7 +32,7 @@ func Enter() -> void:
 		player.velocity = move_direction * charge_speed
 	player.start_attack()
 	hurt_box.attack_type = "sword"
-	player.UpdateAnimation("attack2")
+	player.UpdateAnimation("attack3")
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound

@@ -2,12 +2,12 @@ class_name State_Death extends State
 
 @export var exhaust_audio: AudioStream
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
-
 	
 func init() -> void:
 	pass	
 	
 func Enter() -> void:
+	$"../../Label2".text = "death"
 	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.set_collision_mask_value(9, false)	
 	player.animation_player.play("death")

@@ -45,6 +45,7 @@ func init() -> void:
 	pass
 
 func Enter() -> void:
+	$"../../Label2".text = "grapple"
 	player.UpdateAnimation("idle")
 	grapple_hook.visible = true
 	grapple_hurt_box.monitoring = true

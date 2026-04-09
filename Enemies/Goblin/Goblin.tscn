@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://ca3g6qw0kscv1"]
+[gd_scene load_steps=63 format=3 uid="uid://ca3g6qw0kscv1"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_f3wku"]
 [ext_resource type="Resource" uid="uid://ksdxqhd45hta" path="res://Enemies/Goblin/goblin_corpse.tres" id="2_giajk"]
@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://sfksfyhertl4" path="res://Enemies/vision_area.tscn" id="17_q12kk"]
 [ext_resource type="Script" uid="uid://duhigatkcswte" path="res://Enemies/Scripts/states/enemy_state_flee.gd" id="19_csilq"]
 [ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="19_eqe8e"]
+[ext_resource type="Script" uid="uid://lm43gaq2wrjq" path="res://00_Globals/global_effects/hit_particles_settings.gd" id="20_n5a5p"]
+[ext_resource type="Resource" uid="uid://c7nw2nlq4myml" path="res://00_Globals/global_effects/hit_particle_settings/goblin_big_blood_particles.tres" id="21_71d3d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjr0p"]
 radius = 13.0
@@ -1032,7 +1034,6 @@ _data = {
 }
 
 [node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
-z_index = -1
 collision_layer = 256
 collision_mask = 80
 script = ExtResource("1_f3wku")
@@ -1083,7 +1084,7 @@ damage = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtBox"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_fjr0p")
-debug_color = Color(0.12156863, 0.13333334, 0.5686275, 0.89411765)
+debug_color = Color(0.12156863, 0.13333334, 0.5686275, 0.59607846)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
 position = Vector2(0, -11)
@@ -1112,9 +1113,9 @@ chase_state = NodePath("../Chase")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state", "flee_state")]
 script = ExtResource("11_a1tsi")
-knockback_speed = 250.0
+knockback_speed = 300.0
 decelerate_speed = 10.0
-particle_settings = ExtResource("12_pcgih")
+particles = Array[ExtResource("20_n5a5p")]([ExtResource("12_pcgih"), ExtResource("21_71d3d")])
 next_state = NodePath("../Chase")
 flee_state = NodePath("../Flee")
 

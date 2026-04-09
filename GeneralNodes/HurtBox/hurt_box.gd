@@ -12,4 +12,6 @@ func AreaEntered( a : Area2D) -> void:
 	if a is HitBox:
 		did_damage.emit()
 		a.TakeDamage( self)
+		if a.get_parent().is_in_group("enemies") or a.get_parent().is_in_group("breakables"):
+			EffectManager.set_hitspark("enemy",a.global_position,false, PlayerManager.player.direction)
 	pass		

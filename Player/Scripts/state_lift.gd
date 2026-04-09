@@ -13,6 +13,7 @@ func init() -> void:
 	pass	
 	
 func Enter() -> void:
+	$"../../Label2".text = "lift"
 	player.UpdateAnimation("lift")
 	if start_anim_late == true:
 		player.animation_player.seek( 0.2)

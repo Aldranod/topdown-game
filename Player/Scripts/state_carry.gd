@@ -17,6 +17,7 @@ func init() -> void:
 	pass	
 	
 func Enter() -> void:
+	$"../../Label2".text = "carry"
 	player.UpdateAnimation("carry")
 	walking = false
 	pass

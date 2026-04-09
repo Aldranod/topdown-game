@@ -11,7 +11,8 @@ func _ready() -> void:
 	
 	pass
 	
-func Enter() -> void:	
+func Enter() -> void:
+	$"../../Label2".text = "bow"	
 	var aim_target_pos: Vector2 = PlayerManager.player.get_global_mouse_position() + Vector2(0,5)
 	player.face_target(aim_target_pos)
 	player.UpdateAnimation("bow")	

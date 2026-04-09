@@ -25,6 +25,7 @@ func init() -> void:
 	pass	
 	
 func Enter() -> void:
+	$"../../Label2".text = "charge attack"
 	timer = charge_duration
 	is_attacking = false
 	walking = false

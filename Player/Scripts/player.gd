@@ -197,6 +197,8 @@ func _set_bomb_count( value : int) -> void:
 	pass
 	
 func can_dash() -> bool:
+	if SaveManager.current_save.dash == false:
+		return false
 	player_dashing.emit()
 	return dash_cooldown_timer <= 0.0
 

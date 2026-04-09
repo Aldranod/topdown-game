@@ -23,17 +23,18 @@ func TakeDamage( _damage : HurtBox ) -> void:
 	for p in particles:
 		EffectManager.hit_particles($HitBox.global_position,-_direction,p)
 	var rand = randi_range(0,1)
-	if rand == 0:	
-		animation_player.play("hit")
+	if hp <= 1:
+		Destroy()
 	else:	
-		animation_player.play("hit_2")
-	await animation_player.animation_finished	
+		if rand == 0:	
+			animation_player.play("hit")
+		else:	
+			animation_player.play("hit_2")
+		await animation_player.animation_finished	
 	if fixed_hit_count:
 		hp -= 1
 	else:
-		hp -= _damage.damage
-	if hp <= 0:
-		Destroy()		
+		hp -= _damage.damagesd
 	pass
 
 	
