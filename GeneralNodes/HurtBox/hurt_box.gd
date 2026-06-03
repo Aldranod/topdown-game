@@ -14,4 +14,7 @@ func AreaEntered( a : Area2D) -> void:
 		a.TakeDamage( self)
 		if a.get_parent().is_in_group("enemies") or a.get_parent().is_in_group("breakables"):
 			EffectManager.set_hitspark("enemy",a.global_position,false, PlayerManager.player.direction)
+			if a.get_parent().is_in_group("enemies") and attack_type== "sword":
+				Input.start_joy_vibration(0, 0.5, 0.5, 0.2)
+				PlayerManager.player.add_wrath(PlayerManager.player.wrath_per_hit)
 	pass		

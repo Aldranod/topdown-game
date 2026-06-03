@@ -22,6 +22,7 @@ func init() -> void:
 	
 func enter() -> void:
 	enemy.clear_collisions()
+	disable_hurt_box()
 	enemy.invulnerable = true
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.set_direction(_direction)
@@ -29,9 +30,8 @@ func enter() -> void:
 	enemy.update_animation(anim_name)
 	EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,particle_settings)
 	enemy.animation_player.animation_finished.connect( _on_animation_finished)
-	disable_hurt_box()
 	drop_items()
-	PlayerManager.reward_xp(enemy.xp_reward)
+	#PlayerManager.reward_xp(enemy.xp_reward)
 	pass
 	
 func exit() -> void:
@@ -49,6 +49,7 @@ func _on_enemy_destroyed( hurt_box : HurtBox) -> void:
 	state_machine.change_state( self)	
 
 func _on_animation_finished( _a : String) -> void:
+	Messages.coward_check.emit(enemy)
 	enemy.queue_free()	
 	
 func disable_hurt_box() -> void:

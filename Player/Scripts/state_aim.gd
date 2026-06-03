@@ -4,7 +4,7 @@ class_name State_Aim extends State
 @onready var aim_sprite: Sprite2D = $"../../AimPivot/AimSprite"
 @export var rotation_speed: float = 10.0
 @export var fire_cooldown: float = 0.5
-
+@export var shoot_wrath_cost: int = 2
 # ADS Snapping settings
 @export_group("ADS Snapping")
 @export var ads_snap_enabled: bool = true
@@ -13,7 +13,7 @@ class_name State_Aim extends State
 @export var ads_snap_speed: float = 15.0        # how fast the snap lerps to target
 @export var ads_max_snap_distance: float = 20.0 # how close aim must be to enemy (screen units) to trigger
 
-const ARROW = preload("res://Interactables/arrow/arrow.tscn")
+const ARROW = preload("res://Interactables/arrow/wrath_arrow.tscn")
 
 var cooldown_timer: float = 0.0
 var already_firing: bool = false
@@ -68,12 +68,15 @@ func Process(delta: float) -> State:
 
 func HandleInput(_event: InputEvent) -> State:
 	var trigger_strength = Input.get_action_strength("ability_trigger")
-	if trigger_strength < 0.2 or player.arrow_count <= 0 or cooldown_timer > 0.0 or already_firing:
+	if trigger_strength < 0.2 or cooldown_timer > 0.0 or already_firing:
 		return null
-
+	if player.wrath < 2:
+		PlayerHud.low_wrath()
+		return null	
+		
 	already_firing = true
 	cooldown_timer = fire_cooldown
-	player.arrow_count -= 1
+	player.consume_wrath(shoot_wrath_cost)
 
 	player.face_target(aim_sprite.global_position)
 	set_direction()

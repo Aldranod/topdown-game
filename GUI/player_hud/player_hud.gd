@@ -21,7 +21,7 @@ var fade_tween: Tween
 @onready var boss_ui: Control = $Control/BossUI
 @onready var boss_hp_bar: TextureProgressBar = $Control/BossUI/TextureProgressBar
 @onready var boss_label: Label = $Control/BossUI/Label
-
+@onready var wrath_bar: TextureProgressBar = $Control/WrathMeter/TextureProgressBar
 @onready var notification: NotificationUI = $Control/Notification
 @onready var dash_cooldown_indicator: TextureProgressBar = %DashCooldownIndicator
 
@@ -118,7 +118,19 @@ func hide_boss_health() -> void:
 	
 func update_boss_health(hp: int, max_hp: int) -> void:
 	boss_hp_bar.value = clampf(float(hp) / float(max_hp) * 100,0,100)
-	pass	
+	pass
+
+func update_wrath(wrath: int, max_wrath: int) -> void:
+	$Control/WrathMeter/AnimationPlayer.play("wrath_modify")
+	wrath_bar.value = clampf(float(wrath) / float(max_wrath) * 100,0,100)
+	if wrath_bar.value == 100.0:
+		print("full")
+		$Control/WrathMeter/AnimationPlayer.play("full_wrath")
+	pass
+
+func low_wrath() -> void:
+	$Control/WrathMeter/AnimationPlayer.play("low_wrath")
+	pass				
 
 func queue_notification(_title : String, _message: String) -> void:
 	notification.add_notification_to_queue(_title, _message)

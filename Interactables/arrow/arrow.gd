@@ -36,10 +36,12 @@ func rotate_nodes() -> void:
 	var s1 = get_node_or_null("Sprite2D")
 	var s2 = get_node_or_null("Sprite2D2")
 	var hb = get_node_or_null("HurtBox")
+	var pl = get_node_or_null("PointLight2D")
 	var angle = move_dir.angle()
 	if s1: s1.rotation = angle
 	if s2: s2.rotation = angle
 	if hb: hb.rotation = angle
+	if pl: pl.rotation = angle
 	pass	
 		
 func _on_did_damage() -> void:

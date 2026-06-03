@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://8s7bkwnnvq67"]
+
+[ext_resource type="Script" uid="uid://cxgqigw3olhtm" path="res://GeneralNodes/Arena/arena.gd" id="1_17oom"]
+[ext_resource type="Script" uid="uid://janmhyn2mfai" path="res://GeneralNodes/PersistentDataHandler/persistent-data-handler.gd" id="2_vdqup"]
+
+[node name="Arena" type="Node"]
+script = ExtResource("1_17oom")
+
+[node name="PersistentDataHandler" type="Node" parent="."]
+script = ExtResource("2_vdqup")
+metadata/_custom_type_script = "uid://janmhyn2mfai"

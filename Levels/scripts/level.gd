@@ -46,7 +46,7 @@ func start_lightning_loop() -> void:
 		# 2. Wait for that time
 		await get_tree().create_timer(wait_time).timeout
 		# 3. Trigger Lightning
-		await lightning()
+		lightning()
 	
 func lightning() -> void:
 	var tween = create_tween()
@@ -129,4 +129,4 @@ func _restore_corpses() -> void:
 		var corpse = CORPSE.instantiate()
 		add_child(corpse)
 		corpse.global_position = Vector2(data.pos_x, data.pos_y)
-		corpse.setup(corpse_data, data.scale_x)
+		corpse.setup(corpse_data, data.scale_x, data.pose)

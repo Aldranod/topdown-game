@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxbxqlexg44sk"]
+
+[ext_resource type="Script" uid="uid://ph7gd8121o2o" path="res://GeneralNodes/Arena/wave.gd" id="1_cajx7"]
+[ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="2_v0b6h"]
+[ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="3_5jsgc"]
+
+[node name="Wave" type="Node"]
+script = ExtResource("1_cajx7")
+enemies = Array[PackedScene]([ExtResource("2_v0b6h"), ExtResource("2_v0b6h"), ExtResource("3_5jsgc"), ExtResource("2_v0b6h"), ExtResource("2_v0b6h"), ExtResource("2_v0b6h"), ExtResource("2_v0b6h")])

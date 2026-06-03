@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b16rkodjr3v2a"]
+
+[node name="Abyss" type="StaticBody2D" groups=["abyss"]]
+z_index = 2
+collision_layer = 640
+collision_mask = 258

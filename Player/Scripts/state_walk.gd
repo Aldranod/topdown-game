@@ -6,6 +6,7 @@ class_name State_Walk extends State
 @onready var dash: State = $"../Dash"
 @onready var second_attack: State_SecondAttack = $"../SecondAttack"
 @onready var third_attack: State_ThirdAttack = $"../ThirdAttack"
+@onready var heal: State_Heal = $"../Heal"
 
 @onready var run: State = $"../Run"
 
@@ -20,6 +21,12 @@ func Exit() -> void:
 func Process(_delta: float) -> State:
 	if player.direction == Vector2.ZERO:
 		return idle
+	if player.stick_intensity < 0.3:
+		move_speed = 25
+	elif player.stick_intensity > 0.4 and player.stick_intensity < 0.6:
+		move_speed = 75	
+	elif player.stick_intensity > 0.4 and player.stick_intensity < 0.6:
+		move_speed = 120				
 	# If stick intensity is high, switch to run
 	if player.stick_intensity >= 0.7 and not Input.is_action_pressed("walk"):
 		return run
@@ -44,6 +51,11 @@ func HandleInput( _event: InputEvent) -> State:
 		return $"../Aim"			
 	elif _event.is_action_pressed("interact"):
 		PlayerManager.interact()
+	elif _event.is_action_pressed("heal"):
+		if player.wrath >= $"../Heal".heal_wrath_cost:
+			return heal
+		else:
+			PlayerHud.low_wrath()
 	elif _event.is_action_pressed("dash"):
 		if PlayerManager.player.can_dash():
 			return dash

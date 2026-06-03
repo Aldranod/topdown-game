@@ -16,6 +16,7 @@ var attacking : bool = false
 @onready var charge_attack: State = $"../ChargeAttack"
 @onready var dash: State_Dash = $"../Dash"
 @onready var hurt_box: HurtBox = %AttackHurtBox
+@onready var heal: State_Heal = $"../Heal"
 
 func Enter() -> void:
 	$"../../Label2".text = "attack"
@@ -68,7 +69,12 @@ func HandleInput(_event: InputEvent) -> State:
 			player.start_dash_cooldown()
 			return dash			  # Cancel attack and dash instead
 	elif _event.is_action_pressed("aim"):
-		return $"../Aim"		  # Cancel attack and aim instead
+		return $"../Aim"          #Cancel attack and aim instead
+	elif _event.is_action_pressed("heal"):
+		if player.wrath >= $"../Heal".heal_wrath_cost:
+			return heal
+		else:
+			PlayerHud.low_wrath()			  #
 	return null						
 
 func EndAttack( _newAnimName : String) -> void:

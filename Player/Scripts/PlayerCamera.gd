@@ -1,127 +1,3 @@
-#class_name PlayerCamera extends Camera2D
-#
-#@export var zooom: Vector2 = Vector2(0.75,0.75)
-#
-## --- Hyper Light Drifter "Look Ahead" Settings ---
-#@export_range(0, 1, 0.05) var mouse_influence: float = 0.25 # How much the camera follows the mouse
-#@export var max_look_distance: float = 100.0 # Maximum pixels the camera can peek away from player
-#@export var look_smoothing: float = 5.0 # How fast the camera shifts (higher = faster)
-#
-#@export_range(0,1,0.05,"or_greater") var shake_power : float = 0.5 # overall strength of shake
-#@export var shake_max_offset : float = 5.0 # maximum shake in pixels
-#@export var shake_decay : float = 1.0 # how quickly shake stops
-#var shake_trauma : float = 0.0
-#var mouse_offset : Vector2 = Vector2.ZERO
-	#
-#func _ready():
-	#zoom = zooom
-	#process_callback = CAMERA2D_PROCESS_PHYSICS 
-	#LevelManager.TileMapBoundsChanged.connect( UpdateLimits)
-	#UpdateLimits(LevelManager.current_tilemap_bounds)
-	#PlayerManager.camera_shook.connect( add_camera_shake)
-	#pass
-#
-##func _physics_process(delta: float) -> void:
-	##if shake_trauma > 0:
-		##shake_trauma = max(shake_trauma - shake_decay * delta, 0)
-		##shake()		
-	##pass
-	##
-##func add_camera_shake( val : float) -> void:
-	##shake_trauma = val
-	##pass	
-	##
-##func shake() -> void:
-	##var amount : float = pow(shake_trauma * shake_power, 2)
-	##offset = Vector2( randf_range(-1,1),randf_range(-1,1)) * shake_max_offset * amount
-	##pass
-	##
-##func UpdateLimits( bounds : Array[Vector2]) -> void:
-	##if bounds == []:
-		##return
-	##limit_left = int( bounds[0].x)	
-	##limit_top = int( bounds[0].y)	
-	##limit_right = int( bounds[1].x)	
-	##limit_bottom = int( bounds[1].y)		
-	##pass
-
-#class_name PlayerCamera extends Camera2D
-#
-#@export var zooom: Vector2 = Vector2(0.75, 0.75)
-#
-## --- Hyper Light Drifter "Look Ahead" Settings ---
-#@export_range(0, 1, 0.05) var mouse_influence: float = 0.15 # Reduced for slower feel
-#@export var max_look_distance: float = 60.0 # Reduced for slower feel
-#@export var look_smoothing: float = 2.0 # Lowered for much slower, smoother movement
-#
-## --- Shake Settings ---
-#@export_range(0, 1, 0.05, "or_greater") var shake_power : float = 0.5 
-#@export var shake_max_offset : float = 5.0 
-#@export var shake_decay : float = 1.0 
-#var shake_trauma : float = 0.0
-#
-#var mouse_offset : Vector2 = Vector2.ZERO
-	#
-#func _ready():
-	#zoom = zooom
-	## Use process for smoother visuals
-	#process_callback = CAMERA2D_PROCESS_IDLE 
-	#LevelManager.TileMapBoundsChanged.connect(UpdateLimits)
-	#UpdateLimits(LevelManager.current_tilemap_bounds)
-	#PlayerManager.camera_shook.connect(add_camera_shake)
-#
-#func _process(delta: float) -> void:
-	#update_mouse_look(delta)
-	#
-	#var shake_vec = Vector2.ZERO
-	#if shake_trauma > 0:
-		#shake_trauma = max(shake_trauma - shake_decay * delta, 0)
-		#shake_vec = get_shake_vector()
-	#
-	#offset = mouse_offset + shake_vec
-	#
-#func update_mouse_look(delta: float) -> void:
-	#var mouse_pos = get_local_mouse_position()
-	#
-	## 1. Calculate raw target offset
-	#var target_offset = mouse_pos * mouse_influence
-	#target_offset = target_offset.limit_length(max_look_distance)
-	#
-	## 2. CLAMP OFFSET TO TILEMAP LIMITS
-	## We calculate the half-size of the visible screen in world pixels
-	#var view_size = get_viewport_rect().size * zoom
-	#var half_view = view_size / 2.0
-	#
-	## Calculate how much room the camera has to move before hitting limits
-	## limit_left etc. are set by your UpdateLimits function
-	#var max_left = (global_position.x - half_view.x) - limit_left
-	#var max_right = limit_right - (global_position.x + half_view.x)
-	#var max_top = (global_position.y - half_view.y) - limit_top
-	#var max_bottom = limit_bottom - (global_position.y + half_view.y)
-	#
-	## We clamp the target_offset so it can't go further than the available room
-	## Note: max_left and max_top should be negative or zero in this context
-	#target_offset.x = clamp(target_offset.x, -max_left, max_right)
-	#target_offset.y = clamp(target_offset.y, -max_top, max_bottom)
-#
-	## 3. SMOOTH MOVEMENT
-	## Lowered look_smoothing makes the camera move significantly slower
-	#mouse_offset = mouse_offset.lerp(target_offset, look_smoothing * delta)
-#
-#func add_camera_shake(val : float) -> void:
-	#shake_trauma = val
-	#
-#func get_shake_vector() -> Vector2:
-	#var amount : float = pow(shake_trauma * shake_power, 2)
-	#return Vector2(randf_range(-1, 1), randf_range(-1, 1)) * shake_max_offset * amount
-	#
-#func UpdateLimits(bounds : Array[Vector2]) -> void:
-	#if bounds == [] or bounds.size() < 2: return
-	#limit_left = int(bounds[0].x)	
-	#limit_top = int(bounds[0].y)	
-	#limit_right = int(bounds[1].x)	
-	#limit_bottom = int(bounds[1].y)
-
 class_name PlayerCamera extends Camera2D
 
 @export var zooom: Vector2 = Vector2(0.75, 0.75)
@@ -129,14 +5,28 @@ class_name PlayerCamera extends Camera2D
 @export var max_look_distance: float = 60.0
 @export var look_smoothing: float = 2.0 # Lower = Slower/Smoother
 
+@export_group("Limit Transitions")
+## Duration for smooth limit transitions (in seconds)
+@export var limit_transition_duration: float = 0.5
+## Temporary smoothing multiplier during limit transitions
+@export var transition_smoothing_boost: float = 0.5
+
 @export_group("Shake Settings")
 @export_range(0, 1, 0.05, "or_greater") var shake_power : float = 0.5 
 @export var shake_max_offset : float = 5.0 
 @export var shake_decay : float = 1.0 
 var shake_trauma : float = 0.0
 
+# NEW: Smooth limit transition variables
+var _is_transitioning_limits: bool = false
+var _transition_timer: float = 0.0
+var _start_limits: Array[int] = [0, 0, 0, 0]  # left, top, right, bottom
+var _target_limits: Array[int] = [0, 0, 0, 0]
+var _original_smoothing: float = 2.0
+
 func _ready():
 	zoom = zooom
+	_original_smoothing = look_smoothing
 	# Use IDLE process for smooth mouse following
 	process_callback = CAMERA2D_PROCESS_IDLE
 	
@@ -150,23 +40,20 @@ func _ready():
 	reset_camera_position()
 
 func _process(delta: float) -> void:
+	if _is_transitioning_limits:
+		_update_limit_transition(delta)
 	
 	var target_lean: Vector2 = Vector2.ZERO
 	var p = PlayerManager.player 
 	var is_aiming = p.state_machine.current_state is State_Aim
-	
 	if not is_aiming:
 		if p.is_using_controller:
-			# Don't use right stick for camera - only use movement direction
 			var joy_dir = p.direction
 			if PlayerManager.player.stick_intensity >= 0.9:
 				target_lean = joy_dir * max_look_distance
 		else:
-			# 4. MOUSE LEAN: (Your existing logic)
 			target_lean = get_local_mouse_position() * mouse_influence
 			target_lean = target_lean.limit_length(max_look_distance)
-		
-		# 5. Smoothly interpolate LOCAL POSITION (The lerp handles the switch perfectly)
 		position = position.lerp(target_lean, look_smoothing * delta)
 	if shake_trauma > 0:
 		shake_trauma = max(shake_trauma - shake_decay * delta, 0)
@@ -196,3 +83,59 @@ func UpdateLimits(bounds : Array[Vector2]) -> void:
 	limit_top = int(bounds[0].y)	
 	limit_right = int(bounds[1].x)	
 	limit_bottom = int(bounds[1].y)
+
+func set_limits_smooth(new_limits: Array[int]) -> void:
+	"""Smoothly transition to new camera limits"""
+	if new_limits.size() != 4:
+		return
+	
+	# Store current limits as start
+	_start_limits = [limit_left, limit_top, limit_right, limit_bottom]
+	_target_limits = new_limits.duplicate()
+	
+	# Start transition
+	_is_transitioning_limits = true
+	_transition_timer = 0.0
+	
+	# Boost smoothing during transition for smoother camera movement
+	look_smoothing = _original_smoothing * transition_smoothing_boost
+	
+	print("Starting smooth limit transition: ", _start_limits, " -> ", _target_limits)
+
+# NEW: Update limit transition
+func _update_limit_transition(delta: float) -> void:
+	_transition_timer += delta
+	var progress = min(_transition_timer / limit_transition_duration, 1.0)
+	
+	# Use ease-out for smooth deceleration
+	var eased_progress = ease(progress, -2.0)  # Ease out
+	
+	# Lerp each limit
+	limit_left = int(lerp(float(_start_limits[0]), float(_target_limits[0]), eased_progress))
+	limit_top = int(lerp(float(_start_limits[1]), float(_target_limits[1]), eased_progress))
+	limit_right = int(lerp(float(_start_limits[2]), float(_target_limits[2]), eased_progress))
+	limit_bottom = int(lerp(float(_start_limits[3]), float(_target_limits[3]), eased_progress))
+	
+	# End transition
+	if progress >= 1.0:
+		_is_transitioning_limits = false
+		# Restore original smoothing
+		look_smoothing = _original_smoothing
+		print("Limit transition completed")
+
+# NEW: Instant limit update (for when you need it)
+func set_limits_instant(new_limits: Array[int]) -> void:
+	"""Instantly set camera limits without transition"""
+	if new_limits.size() != 4:
+		return
+	
+	limit_left = new_limits[0]
+	limit_top = new_limits[1]
+	limit_right = new_limits[2]
+	limit_bottom = new_limits[3]
+	
+	_is_transitioning_limits = false
+
+# NEW: Get current limits as array
+func get_current_limits() -> Array[int]:
+	return [limit_left, limit_top, limit_right, limit_bottom]	

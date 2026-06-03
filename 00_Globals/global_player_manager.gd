@@ -79,7 +79,18 @@ func reset_camera_on_player( tween_duration: float = 0.5) -> void:
 		tween.set_ease( Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_QUAD)
 		tween.tween_property( camera, "position", Vector2.ZERO, tween_duration)
-	pass	
-	
+	pass
+		
+func is_max_level(power_type: String) -> bool:
+	match power_type:
+		"attack": return player.attack >= 4
+		"dash": return player.attack >= 6
+		_: return true
+
+func get_upgrade_cost(power_type: String) -> int:
+	match power_type:
+		"attack": return 10 + (player.attack * 15)
+		"dash": return 5 + (player.attack * 5)
+		_: return 5
 
 	

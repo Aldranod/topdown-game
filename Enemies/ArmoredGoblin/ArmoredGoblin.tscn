@@ -1,7 +1,8 @@
-[gd_scene load_steps=70 format=3 uid="uid://dm0xqp572cxo5"]
+[gd_scene load_steps=71 format=3 uid="uid://dm0xqp572cxo5"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_k78yg"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_330gf"]
+[ext_resource type="Resource" uid="uid://ksdxqhd45hta" path="res://Enemies/Goblin/goblin_corpse.tres" id="2_nae63"]
 [ext_resource type="PackedScene" uid="uid://b36sxyb2xdsmp" path="res://GeneralNodes/HitBox/hit_box.tscn" id="3_kjvil"]
 [ext_resource type="Texture2D" uid="uid://b7rsq7ec2lykr" path="res://Player/Sprites/Shadow.png" id="4_7l1y5"]
 [ext_resource type="Texture2D" uid="uid://t6vfcf64gsbp" path="res://Enemies/ArmoredGoblin/goblinarmor2.png" id="5_7l1y5"]
@@ -1225,6 +1226,7 @@ collision_mask = 80
 script = ExtResource("1_k78yg")
 hp = 4
 xp_reward = 2
+corpse_data = ExtResource("2_nae63")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_330gf")]
 
@@ -1276,6 +1278,8 @@ script = ExtResource("8_ne1hh")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state")]
 script = ExtResource("9_1bqap")
+state_duration_min = 0.2
+state_duration_max = 0.4
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
 
@@ -1296,6 +1300,7 @@ drops = Array[ExtResource("13_5guf3")]([SubResource("Resource_yynal"), SubResour
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state", "telegraph_state")]
 script = ExtResource("16_ey1du")
+chase_speed = 10.0
 turn_rate = 0.5
 can_charge = true
 vision_area = NodePath("../../VisionArea")
@@ -1350,6 +1355,7 @@ libraries = {
 
 [node name="VisionArea" parent="." instance=ExtResource("18_tsb3p")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]

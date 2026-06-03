@@ -2,7 +2,7 @@ class_name Enemy extends CharacterBody2D
 
 signal direction_changed( new_direction : Vector2)
 signal enemy_damaged( hurt_box : HurtBox )
-signal enemy_destroyed( hurt_box : HurtBox )
+signal enemy_destroyed( hurt_box : HurtBox)
 
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 const CORPSE = preload("res://Enemies/corpse.tscn")
@@ -28,22 +28,30 @@ var sprite_x_scale : float = 1
 
 var distance_in_pixel : float
 var initial_position
+@export var in_ambush: bool = false
+@export var coward: bool = false
 
 func _ready():
 	sprite_x_scale = sprite.scale.x
 	var enemy_id = get_tree().current_scene.name + "_" + name
-	if respawnable:
-		# Check our temporary list
-		if SaveManager.check_enemy_death(enemy_id):
-			queue_free()
-			return
-	else:
-		persistent_data_handler.get_value()
-		if persistent_data_handler.value == true:
-			queue_free()
+	if not is_in_group("bossminion"):
+		if respawnable:
+			# Check our temporary list
+			if SaveManager.check_enemy_death(enemy_id):
+				queue_free()
+				return
+		else:
+			persistent_data_handler.get_value()
+			if persistent_data_handler.value == true:
+				queue_free()
 	state_machine.initialize(self)
 	player = PlayerManager.player
+	Messages.coward_check.connect(_flee_or_not)
 	hit_box.Damaged.connect( _take_damage )
+	if in_ambush:
+		hit_box.monitorable = false
+	else:
+		hit_box.monitorable = true	 
 	pass
 
 func _process(_delta):
@@ -97,7 +105,8 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 	EffectManager.damage_text(hurt_box.damage, global_position + Vector2(0,-36))
 	EffectManager.frame_freeze(0.1,0.26)	
 	if hp > 0:
-		enemy_damaged.emit( hurt_box)	
+		enemy_damaged.emit( hurt_box)
+		return	
 	else:
 		var enemy_id = get_tree().current_scene.name + "_" + name
 		if respawnable:
@@ -106,7 +115,7 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 		else:
 			# Permanent death
 			persistent_data_handler.set_value()
-		enemy_destroyed.emit( hurt_box )
+		enemy_destroyed.emit( hurt_box)
 		_spawn_corpse(enemy_id)
 		#queue_free() # or whatever your death logic is
 		#enemy_destroyed.emit( hurt_box)
@@ -139,18 +148,19 @@ func clear_collisions() -> void:
 		if c is CollisionShape2D:
 			c.queue_free()
 	pass
-	
+
 func exit_ambush() -> void:
-	$EnemyStateMachine/Idle.in_ambush = false
+	hit_box.set_deferred("monitorable", true)
+	in_ambush = false
 	pass	
 
 func _spawn_corpse(enemy_id: String) -> void:
 	if corpse_data == null:
 		return
-	var corpse = CORPSE.instantiate()
 	var level = get_tree().current_scene
-	level.add_child(corpse)
+	var corpse = CORPSE.instantiate()
 	corpse.global_position = global_position
+	level.add_child(corpse)
 	var pose = 0
 	if cardinal_direction == Vector2.DOWN:
 		pose = randf_range(130.0,230.0)
@@ -166,5 +176,11 @@ func _spawn_corpse(enemy_id: String) -> void:
 		global_position.x,
 		global_position.y,
 		sprite.scale.x,
-		corpse_data.resource_path  # store .tres path for restoration
+		corpse_data.resource_path,  # store .tres path for restoration
+		pose
 	)
+func _flee_or_not(killed_enemy : CharacterBody2D) -> void:
+	if coward and hp > 0:
+		if global_position.distance_to(killed_enemy.global_position) <= 100:
+			state_machine.change_state($EnemyStateMachine/Flee)
+	pass	

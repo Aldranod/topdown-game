@@ -39,9 +39,9 @@ func exit() -> void:
 func process( _delta: float ) -> EnemyState:
 	if _animation_finished:
 		# Check if enemy should flee based on health
-		var health_ratio = float(enemy.hp) / float(_initial_hp)
-		if health_ratio <= flee_health_threshold and flee_state:
-			return flee_state
+		#var health_ratio = float(enemy.hp) / float(_initial_hp)
+		#if health_ratio <= flee_health_threshold and flee_state:
+			#return flee_state
 		return next_state
 	enemy.velocity -= enemy.velocity * decelerate_speed * _delta	
 	return null

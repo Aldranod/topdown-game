@@ -316,6 +316,6 @@ offset_top = 16.0
 offset_right = 127.0
 offset_bottom = 39.0
 theme_override_fonts/font = ExtResource("2_dt4po")
-text = "Shopkeeper"
+text = "Shrine of Warth God"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

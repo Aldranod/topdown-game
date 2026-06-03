@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://ca3g6qw0kscv1"]
+[gd_scene load_steps=69 format=3 uid="uid://ca3g6qw0kscv1"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_f3wku"]
 [ext_resource type="Resource" uid="uid://ksdxqhd45hta" path="res://Enemies/Goblin/goblin_corpse.tres" id="2_giajk"]
@@ -961,6 +961,44 @@ _data = {
 &"walk_up": SubResource("Animation_jlwhn")
 }
 
+[sub_resource type="Gradient" id="Gradient_71d3d"]
+offsets = PackedFloat32Array(0.51104975, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nmspl"]
+gradient = SubResource("Gradient_71d3d")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.6752137, 0.41880342)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_543j8"]
+script = ExtResource("20_n5a5p")
+count = 18
+color = Color(1, 0.05207616, 0.11928123, 1)
+texture = SubResource("GradientTexture2D_nmspl")
+metadata/_custom_type_script = "uid://lm43gaq2wrjq"
+
+[sub_resource type="Gradient" id="Gradient_nmspl"]
+offsets = PackedFloat32Array(0.51104975, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_543j8"]
+gradient = SubResource("Gradient_nmspl")
+width = 4
+height = 4
+fill = 1
+fill_from = Vector2(0.48427674, 0.5031447)
+fill_to = Vector2(0.49685535, 0)
+
+[sub_resource type="Resource" id="Resource_4abgw"]
+script = ExtResource("20_n5a5p")
+count = 18
+color = Color(1, 0.05207616, 0.11928123, 1)
+texture = SubResource("GradientTexture2D_543j8")
+metadata/_custom_type_script = "uid://lm43gaq2wrjq"
+
 [sub_resource type="Resource" id="Resource_yynal"]
 script = ExtResource("13_ys2o2")
 item = ExtResource("14_t3vbn")
@@ -1035,11 +1073,12 @@ _data = {
 
 [node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 256
-collision_mask = 80
+collision_mask = 208
 script = ExtResource("1_f3wku")
 hp = 6
 attack_range = 30.0
 corpse_data = ExtResource("2_giajk")
+coward = true
 
 [node name="HurtBox" parent="." instance=ExtResource("2_lvhkj")]
 monitoring = false
@@ -1101,6 +1140,8 @@ script = ExtResource("8_68gig")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state") groups=["enemies"]]
 script = ExtResource("9_aln51")
+state_duration_min = 0.1
+state_duration_max = 0.2
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
 
@@ -1115,14 +1156,14 @@ chase_state = NodePath("../Chase")
 script = ExtResource("11_a1tsi")
 knockback_speed = 300.0
 decelerate_speed = 10.0
-particles = Array[ExtResource("20_n5a5p")]([ExtResource("12_pcgih"), ExtResource("21_71d3d")])
+particles = Array[ExtResource("20_n5a5p")]([ExtResource("12_pcgih"), ExtResource("21_71d3d"), SubResource("Resource_543j8")])
 next_state = NodePath("../Chase")
 flee_state = NodePath("../Flee")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("12_ad7vh")
-particle_settings = ExtResource("12_pcgih")
-drops = Array[ExtResource("13_ys2o2")]([SubResource("Resource_yynal"), SubResource("Resource_67htc")])
+particle_settings = SubResource("Resource_4abgw")
+drops = Array[ExtResource("13_ys2o2")]([SubResource("Resource_yynal"), SubResource("Resource_67htc"), null])
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state")]
 script = ExtResource("16_mvdyt")

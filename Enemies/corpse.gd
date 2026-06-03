@@ -9,4 +9,4 @@ func setup(data: CorpseData, scale_x: float, pose: float) -> void:
 	sprite.vframes = data.vframes
 	sprite.frame = data.frame
 	sprite.scale.x = scale_x
-	sprite.rotation = pose	
+	sprite.rotation = pose

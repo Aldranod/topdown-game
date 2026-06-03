@@ -29,10 +29,12 @@ var current_save : Dictionary = {
 	],
 	abilities = [ "","","",""],
 	corpses = [],
-	dash = false
+	dash = true
 }
 
 func save_game() -> void:
+	var p : Player = PlayerManager.player
+	p.update_hp(99)
 	update_player_data()
 	update_scene_path()
 	enemy_persistence.clear()
@@ -71,6 +73,9 @@ func load_game() -> void:
 	p.defense = current_save.player.defense
 	p.arrow_count = current_save.player.arrow_count
 	p.bomb_count = current_save.player.bomb_count
+	p.wrath = 0
+	p.update_wrath_ui()
+	p.update_hp(99)
 	
 	PlayerManager.INVENTORY_DATA.parse_save_data(current_save.items)
 	QuestManager.current_quests = current_save.quests
@@ -132,7 +137,7 @@ func add_enemy_death(id : String) -> void:
 func check_enemy_death(id : String) -> bool:
 	return enemy_persistence.has(id)
 	
-func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, scene_path: String) -> void:
+func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, scene_path: String, pose: float) -> void:
 	for c in current_save.corpses:
 		if c.id == enemy_id:
 			return
@@ -141,7 +146,8 @@ func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, sc
 		pos_x = pos_x,
 		pos_y = pos_y,
 		scale_x = scale_x,
-		scene_path = scene_path  # NEW
+		scene_path = scene_path,
+		pose = pose  # NEW
 	})
 	
 func get_corpses() -> Array:

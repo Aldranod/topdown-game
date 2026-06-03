@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dds1y5fp5fxbm"]
+
+[ext_resource type="Script" uid="uid://ccxqqlmj2q1iv" path="res://GeneralNodes/Arena/arena_trigger.gd" id="1_8rjjp"]
+
+[node name="ArenaTrigger" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_8rjjp")

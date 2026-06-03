@@ -18,7 +18,7 @@ var boomerang_instance : Boomerang = null
 @onready var grapple: State_Grapple = $"../StateMachine/Grapple"
 @onready var run: State_Run = $"../StateMachine/Run"
 @onready var aim: State_Aim = $"../StateMachine/Aim"
-
+@export var shoot_wrath_cost: int = 2
 
 func _ready() -> void:
 	player = PlayerManager.player
@@ -87,10 +87,11 @@ func bomb_ability() -> void:
 	pass
 
 func bow_ability() -> void:
-	if player.arrow_count <=0:
+	if player.wrath < 2:
+		PlayerHud.low_wrath()
 		return
 	elif state_machine.current_state == aim or state_machine.current_state == idle or state_machine.current_state == walk or state_machine.current_state == run:
-		player.arrow_count -= 1
+		player.consume_wrath(shoot_wrath_cost)
 		player.state_machine.change_state(bow)
 	pass
 

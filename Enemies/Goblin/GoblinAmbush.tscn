@@ -1040,6 +1040,7 @@ script = ExtResource("1_uvm47")
 hp = 6
 attack_range = 30.0
 corpse_data = ExtResource("2_yam40")
+coward = true
 
 [node name="HurtBox" parent="." instance=ExtResource("2_locsy")]
 monitoring = false
@@ -1090,11 +1091,10 @@ autoplay = "idle_down"
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("8_konpt")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state")]
+[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state") groups=["enemies"]]
 script = ExtResource("9_dnede")
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
-in_ambush = true
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state", "chase_state")]
 script = ExtResource("10_yam40")

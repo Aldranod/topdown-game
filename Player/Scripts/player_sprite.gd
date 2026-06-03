@@ -1,6 +1,6 @@
 extends Sprite2D
 
-const FRAME_COUNT :int= 144
+const FRAME_COUNT :int= 435
 
 @onready var weapon_below: Sprite2D = $Sprite2D_Weapon_Below
 @onready var weapon_above: Sprite2D = $Sprite2D_Weapon_Above
@@ -10,8 +10,8 @@ func _ready() -> void:
 	pass
 	
 func _process(_delta: float) -> void:	
-	weapon_below.frame = frame
-	weapon_above.frame = frame + FRAME_COUNT
+	#weapon_below.frame = frame
+	#weapon_above.frame = frame + FRAME_COUNT
 	pass
 	
 func _on_equipment_change() -> void:

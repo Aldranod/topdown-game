@@ -9,6 +9,7 @@ var attacking : bool = false
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_anim: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+@onready var heal: State_Heal = $"../Heal"
 
 @onready var walk: State = $"../Walk"	
 @onready var idle: State = $"../Idle"
@@ -69,6 +70,11 @@ func HandleInput(_event: InputEvent) -> State:
 			return dash			  # Cancel attack and dash instead
 	elif _event.is_action_pressed("aim"):
 		return $"../Aim"		  # Cancel attack and aim instead
+	elif _event.is_action_pressed("heal"):
+		if player.wrath >= $"../Heal".heal_wrath_cost:
+			return heal
+		else:
+			PlayerHud.low_wrath()
 	return null							
 
 func EndAttack( _newAnimName : String) -> void:

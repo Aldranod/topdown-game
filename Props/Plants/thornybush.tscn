@@ -261,7 +261,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5ael"]
-size = Vector2(18, 12)
+size = Vector2(32, 14.5)
 
 [node name="ThornyBush" type="Node2D" groups=["breakables"]]
 modulate = Color(0.8359375, 0.8359375, 0.8359375, 1)
@@ -311,7 +311,7 @@ script = ExtResource("10_oswfb")
 metadata/_custom_type_script = "uid://dg6f4iuiibbl4"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 1.5)
+position = Vector2(0, 0.75)
 shape = SubResource("RectangleShape2D_k5ael")
 debug_color = Color(0.67578125, 0.029926972, 0.0753423, 0.41960785)
 

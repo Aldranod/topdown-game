@@ -116,7 +116,8 @@ func setup_collision_box() -> void:
 			hurt_box.add_child(_col)
 			_col.debug_color = Color(1,0,0,0.5)
 			var _col_2: CollisionShape2D = c.duplicate()
-			wall_detect.add_child( _col_2 )	
+			wall_detect.add_child( _col_2 )
+			break	
 
 func hit_ground() -> void:
 	destroy()

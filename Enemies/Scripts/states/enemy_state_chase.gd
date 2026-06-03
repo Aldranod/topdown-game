@@ -29,7 +29,9 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	$"../..".set_collision_mask_value(5, true) 
+	$"../..".set_collision_mask_value(5, true)
+	$"../..".set_collision_mask_value(7, true) 
+	$"../..".set_collision_mask_value(8, true) 
 	pathfinder = PATHFINDER.instantiate() as Pathfinder
 	enemy.add_child(pathfinder)
 	_aggro_timer = state_aggro_duration

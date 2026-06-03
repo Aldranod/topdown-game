@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bwqrixvk54x1o"]
+[gd_scene load_steps=37 format=3 uid="uid://bwqrixvk54x1o"]
 
 [ext_resource type="Script" uid="uid://clsagibt63fmx" path="res://GUI/player_hud/player_hud.gd" id="1_oghrr"]
 [ext_resource type="Texture2D" uid="uid://esco35gopknm" path="res://GUI/player_hud/gui-health.png" id="2_4b3j6"]
@@ -289,6 +289,107 @@ region = Rect2(9, 40, 14, 15)
 atlas = ExtResource("5_sysqg")
 region = Rect2(40, 40, 15, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1kye"]
+atlas = ExtResource("5_sysqg")
+region = Rect2(24, 40, 15, 15)
+
+[sub_resource type="Animation" id="Animation_e1kye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, 4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ki6p8"]
+resource_name = "full_wrath"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(18.892157, 18.892157, 18.892157, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w5viu"]
+resource_name = "low_wrath"
+length = 0.4
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.3, 0.34, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(-10, 2), Vector2(-7, 0), Vector2(-5, -2), Vector2(-3, 0), Vector2(-1, 2), Vector2(0, 4), Vector2(-8, 4), Vector2(0, 4), Vector2(-8, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_5nb4v"]
+resource_name = "wrath_modify"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureProgressBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.47843137), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5viu"]
+_data = {
+&"RESET": SubResource("Animation_e1kye"),
+&"full_wrath": SubResource("Animation_ki6p8"),
+&"low_wrath": SubResource("Animation_w5viu"),
+&"wrath_modify": SubResource("Animation_5nb4v")
+}
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bkpt"]
 content_margin_left = 12.0
 content_margin_top = 6.0
@@ -417,20 +518,20 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
+visible = false
 position = Vector2(411, 9)
 texture = ExtResource("2_4b3j6")
 region_enabled = true
 region_rect = Rect2(29, 0, 34, 8)
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Control"]
-layout_mode = 0
-offset_left = 346.0
-offset_top = 17.0
-offset_right = 476.0
-offset_bottom = 41.0
+layout_mode = 1
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 143.0
+offset_bottom = 27.0
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 2
-alignment = 1
 
 [node name="Heart" parent="Control/HFlowContainer" instance=ExtResource("3_yhjvm")]
 layout_mode = 2
@@ -493,9 +594,14 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Abilities" type="Control" parent="Control"]
-anchors_preset = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_right = 1.0
 offset_bottom = 40.0
+grow_horizontal = 2
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Abilities"]
@@ -649,6 +755,7 @@ libraries = {
 }
 
 [node name="BossUI" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -710,11 +817,61 @@ theme_override_fonts/font = ExtResource("6_rxq5y")
 text = "BOSS NAME"
 horizontal_alignment = 1
 
+[node name="WrathMeter" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = -8.0
+offset_top = 4.0
+offset_right = 32.0
+offset_bottom = 52.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control/WrathMeter"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -21.0
+offset_right = 119.0
+offset_bottom = -7.0
+grow_vertical = 0
+value = 20.0
+nine_patch_stretch = true
+texture_progress = SubResource("AtlasTexture_e1kye")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/WrathMeter"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 26.53333
+offset_top = -30.0
+offset_right = 125.53333
+grow_vertical = 0
+texture = ExtResource("5_sysqg")
+region_rect = Rect2(0, 0, 64, 30)
+patch_margin_left = 22
+patch_margin_right = 25
+axis_stretch_horizontal = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/WrathMeter"]
+libraries = {
+&"": SubResource("AnimationLibrary_w5viu")
+}
+
 [node name="Notification" type="Control" parent="Control"]
 process_mode = 3
-anchors_preset = 0
-offset_right = 40.0
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
 offset_bottom = 40.0
+grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("7_scbx3")
 
@@ -753,11 +910,11 @@ libraries = {
 
 [node name="DashCooldownIndicator" type="TextureProgressBar" parent="Control"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 9.0
-offset_top = 243.0
-offset_right = 49.0
-offset_bottom = 283.0
+layout_mode = 1
+offset_left = 61.0
+offset_top = 13.0
+offset_right = 77.0
+offset_bottom = 29.0
 mouse_filter = 2
 fill_mode = 4
 texture_under = ExtResource("12_5nb4v")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drhdaji5q6bf3"]
+
+[ext_resource type="Script" uid="uid://ctnne3bb4e5dq" path="res://GeneralNodes/CameraLimiter/camera_limiter.gd" id="1_osrpo"]
+
+[node name="CameraLimiter" type="Area2D"]
+script = ExtResource("1_osrpo")

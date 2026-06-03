@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://c5sraeeen4dul"
 shader = ExtResource("4_gt7ev")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bmnw"]
-size = Vector2(24, 14)
+size = Vector2(32, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djs60"]
 size = Vector2(24, 15)
@@ -149,6 +149,7 @@ script = ExtResource("6_ah4mw")
 [node name="HitBox" parent="." instance=ExtResource("3_jc2yy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_2bmnw")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

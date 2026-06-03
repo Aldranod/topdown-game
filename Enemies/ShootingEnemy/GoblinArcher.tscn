@@ -1241,7 +1241,6 @@ shoot_state = NodePath("../Shoot")
 script = ExtResource("17_nig1d")
 knockback_speed = 250.0
 decelerate_speed = 10.0
-particle_settings = ExtResource("18_bpyhw")
 next_state = NodePath("../Chase")
 flee_state = NodePath("../Flee")
 
@@ -1275,7 +1274,7 @@ chase_state = NodePath("../Chase")
 script = ExtResource("26_02oyd")
 shoot_range = 250.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=["enemies"]]
 bus = &"SFX"
 
 [node name="DestroyEffectSprite" type="Sprite2D" parent="."]

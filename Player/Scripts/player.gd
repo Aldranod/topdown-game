@@ -4,6 +4,7 @@ signal DirectionChanged( new_direction: Vector2)
 signal player_damaged( hurt_box : HurtBox)
 signal player_dashing
 @export var dash_cooldown_duration: float = 1.5
+@export var player_inv: bool = false
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var stick_intensity:  float = 0.0  # 0.0 to 1.0
 var cardinal_direction : Vector2 = Vector2.DOWN
@@ -12,6 +13,10 @@ var direction : Vector2 = Vector2.ZERO
 var invulnerable : bool = false
 var hp : int = 6
 var max_hp : int = 6
+
+var wrath : int = 0
+var max_wrath : int = 10
+var wrath_per_hit : int = 1
 
 var level : int = 1
 var xp: int = 0
@@ -22,7 +27,6 @@ var attack : int =1 :
 		update_damage_values()
 var defense : int = 1
 var defense_bonus: int = 0
-
 
 var dash_cooldown_timer: float = 0.0 
 
@@ -39,6 +43,7 @@ var initial_position
 var is_using_controller : bool = false
 var last_controller_direction : Vector2 = Vector2.DOWN
 var aim_sprite_visible: bool = false
+var dash_start_position: Vector2 = Vector2.ZERO
 
 @onready var camera_2d: PlayerCamera = $Camera2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
@@ -54,6 +59,8 @@ var aim_sprite_visible: bool = false
 @onready var combo_timer: Timer = $ComboTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var third_attack_timer: Timer = $ThirdAttackTimer
+@onready var fall_box: Area2D = $FallBox
+@onready var falling: State_Falling = $StateMachine/Falling
 
 func _ready():
 	PlayerManager.player = self
@@ -64,9 +71,14 @@ func _ready():
 	update_damage_values()
 	PlayerManager.player_leveled_up.connect(_on_player_leveled_up)
 	PlayerManager.INVENTORY_DATA.equipment_changed.connect(_on_equipment_changed)
+	update_wrath_ui()
 	pass
 	
 func _process(_delta):
+	if player_inv:
+		invulnerable = true
+	if fall_box.monitoring == true and _is_over_abyss():
+		state_machine.change_state(falling)
 	var in_aim_state = state_machine.current_state is State_Aim
 	if not in_aim_state:
 		direction = Vector2(
@@ -146,7 +158,6 @@ func _take_damage( hurt_box : HurtBox) -> void:
 		print(dmg)
 		update_hp( -dmg)
 		player_damaged.emit(hurt_box)
-			
 	pass
 	
 func update_hp( delta : int) -> void:
@@ -261,3 +272,31 @@ func face_target(target_pos: Vector2) -> void:
 		cardinal_direction = DIR_4[ direction_id]
 		DirectionChanged.emit(cardinal_direction)
 		sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+
+func add_wrath(amount: int) -> void:
+	#Add wrath when hitting enemy
+	wrath = min(max_wrath, wrath + amount)
+	update_wrath_ui()
+	
+func consume_wrath(amount: int) -> bool:
+	if wrath >= amount:
+		wrath -= amount
+		update_wrath_ui()
+		return true
+	return false
+	
+func update_wrath_ui() -> void:
+	PlayerHud.update_wrath(wrath, max_wrath)
+	pass
+
+func _is_over_abyss() -> bool:
+	"""Check if hitbox is overlapping with an Abyss area"""
+	if not fall_box:
+		return false
+	var overlapping_areas = fall_box.get_overlapping_bodies()
+	for area in overlapping_areas:
+		print(area)	
+		# Option 1: Check by group
+		if area.is_in_group("abyss"):
+			return true
+	return false

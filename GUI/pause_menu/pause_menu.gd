@@ -45,8 +45,6 @@ func show_pause_menu() -> void:
 	%ArrowCountLabel.text = str(PlayerManager.player.arrow_count)
 	%BombCountLabel.text = str(PlayerManager.player.bomb_count)
 	
-	
-	
 func hide_pause_menu() -> void:
 	get_tree().paused = false
 	visible = false

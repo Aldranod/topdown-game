@@ -8,16 +8,19 @@ class_name State_Dash extends State
 @onready var third_attack: State_ThirdAttack = $"../ThirdAttack"
 @onready var idle: State = $"../Idle"
 @onready var run: State_Run = $"../Run"
-
+@onready var fall_box: Area2D = $"../../FallBox"
 var direction : Vector2 = Vector2.ZERO
 var next_state : State = null
 var effect_timer : float = 0
 	
 func Enter() -> void:
+	fall_box.monitoring = false
 	$"../../Label2".text = "dash"
 	$"../../Sprite2D/AttackEffectSprite2".visible = false
+	player.dash_start_position = player.global_position
 	player.invulnerable = true
-	player.set_collision_mask_value(9, false)	
+	player.set_collision_mask_value(9, false)
+	player.set_collision_mask_value(8, false)	
 	player.UpdateAnimation("dash")
 	player.animation_player.animation_finished.connect( _on_animation_finished)
 	direction = player.direction
@@ -30,26 +33,28 @@ func Enter() -> void:
 	pass
 	
 func Exit() -> void:
+	fall_box.monitoring = true
 	player.set_collision_mask_value(9, true)
+	player.set_collision_mask_value(8, true)	
 	player.invulnerable = false
-	player.animation_player.animation_finished.disconnect( _on_animation_finished)
+	
 	next_state = null
 	pass
 	
 func Process(_delta: float) -> State:
+	var input = Vector2(
+		Input.get_axis("left", "right"),
+		Input.get_axis("up", "down")
+	).normalized()
+	if input.length() > 0.2 and input.dot(direction) < 0.9:
+		direction = input
+		
 	player.velocity = direction * move_speed
 	effect_timer -= _delta
 	if effect_timer < 0:
 		effect_timer = effect_delay
 		spawn_effect()
-	var input = Vector2(
-		Input.get_axis("left", "right"),
-		Input.get_axis("up", "down")
-	).normalized()
-
-	# Only redirect if there is meaningful input different from current dash direction
-	if input.length() > 0.2 and input.dot(direction) < 0.9:
-		direction = input	
+			
 	return next_state
 
 func Physics(_delta: float) -> State:
@@ -66,8 +71,9 @@ func HandleInput(_event: InputEvent) -> State:
 	return null		
 	
 func _on_animation_finished(anim_name : String) -> void:
+	player.animation_player.animation_finished.disconnect( _on_animation_finished)
 	PlayerManager.player.start_dash_cooldown()
-	next_state = idle
+	next_state = idle	
 	pass
 	
 func spawn_effect() -> void:
@@ -82,7 +88,8 @@ func spawn_effect() -> void:
 	
 	var tween : Tween = create_tween()
 	tween.set_ease( Tween.EASE_OUT )
-	tween.tween_property( effect, "modulate", Color( 1,1,1,0.0 ), 0.2 )
+	tween.tween_property( effect, "modulate", Color( 1,1,1,0.0 ), 0.4 )
 	tween.chain().tween_callback( effect.queue_free )
 	pass
-							
+
+								

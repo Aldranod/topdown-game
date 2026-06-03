@@ -1,6 +1,6 @@
 class_name State_Bow extends State
 
-const ARROW = preload("res://Interactables/arrow/arrow.tscn")
+const ARROW = preload("res://Interactables/arrow/wrath_arrow.tscn")
 
 @onready var idle: State = $"../Idle"
 var direction : Vector2 = Vector2.ZERO
