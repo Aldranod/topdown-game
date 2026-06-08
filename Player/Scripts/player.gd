@@ -6,6 +6,9 @@ signal player_dashing
 @export var dash_cooldown_duration: float = 1.5
 @export var player_inv: bool = false
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+var _material: ShaderMaterial
+var _target_vignette: float = 0.2
+var _current_vignette: float = 0.2
 var stick_intensity:  float = 0.0  # 0.0 to 1.0
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
@@ -72,6 +75,11 @@ func _ready():
 	PlayerManager.player_leveled_up.connect(_on_player_leveled_up)
 	PlayerManager.INVENTORY_DATA.equipment_changed.connect(_on_equipment_changed)
 	update_wrath_ui()
+	_material = $Camera2D/ColorRect.get_material() as ShaderMaterial
+	if not _material:
+		push_error("Player: No ShaderMaterial found!")
+		return
+	_material.set_shader_parameter("vignette_opacity", _current_vignette)
 	pass
 	
 func _process(_delta):
@@ -98,6 +106,10 @@ func _process(_delta):
 	
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= _delta
+	if _current_vignette != _target_vignette:
+		_current_vignette = lerp(_current_vignette, _target_vignette, _delta * 3.0)
+		if _material:
+			_material.set_shader_parameter("vignette_opacity", _current_vignette)	
 	PlayerHud.update_dash_cooldown(dash_cooldown_timer, dash_cooldown_duration)
 	dust_emit()
 	pass	
@@ -163,6 +175,10 @@ func _take_damage( hurt_box : HurtBox) -> void:
 func update_hp( delta : int) -> void:
 	hp = clampi( hp + delta, 0, max_hp)
 	PlayerHud.update_hp( hp, max_hp)
+	if hp <= max_hp * 0.3:  # Low health
+		_target_vignette = 0.5
+	else:  # Full health
+		_target_vignette = 0.1
 	pass
 	
 func make_invulnerable( _duration : float = 1.0 ) -> void:

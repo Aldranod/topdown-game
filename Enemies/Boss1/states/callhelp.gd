@@ -11,7 +11,7 @@ var enemies_spawned: bool = false
 var _spawning_in_progress: bool = false
 
 func enter() -> void:
-	$"../../Sprite2D/AttackHurtBox".monitoring = false	
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	$"../../Label".text = "Call Help"
 	enemies_spawned = false
 	_spawning_in_progress = true
@@ -41,7 +41,6 @@ func process(_delta: float) -> EnemyState:
 	
 func exit() -> void:
 	# Don't reset if we're still spawning
-	$"../../Sprite2D/AttackHurtBox".monitoring = true	
 	if not _spawning_in_progress:
 		enemies_spawned = false
 	

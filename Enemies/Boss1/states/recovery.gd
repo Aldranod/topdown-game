@@ -11,6 +11,7 @@ var _timer: float
 func enter() -> void:
 	if stage2:
 		recovery_duration = 0.6
+	$"../../Sprite2D/AttackHurtBox".monitoring = false	
 	$"../../Label".text = "recovery"
 	_timer = recovery_duration
 	enemy.velocity = Vector2.ZERO # Stop all movement

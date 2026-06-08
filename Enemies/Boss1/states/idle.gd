@@ -33,6 +33,7 @@ func init() -> void:
 	
 func enter() -> void:
 	$"../../Label".text = "idle"
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	enemy.velocity = Vector2.ZERO
 	if boss.stage2:
 		_timer = 0.1

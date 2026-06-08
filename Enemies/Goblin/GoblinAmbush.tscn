@@ -1035,7 +1035,7 @@ animations = [{
 
 [node name="GoblinAmbush" type="CharacterBody2D"]
 collision_layer = 256
-collision_mask = 64
+collision_mask = 720
 script = ExtResource("1_uvm47")
 hp = 6
 attack_range = 30.0
@@ -1093,6 +1093,8 @@ script = ExtResource("8_konpt")
 
 [node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("after_idle_state", "chase_state") groups=["enemies"]]
 script = ExtResource("9_dnede")
+state_duration_min = 0.1
+state_duration_max = 0.2
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
 

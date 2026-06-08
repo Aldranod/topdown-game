@@ -53,6 +53,7 @@ project/assembly_name="top-down"
 tilemaps="Tilemaps with footsteps"
 hidable=""
 bossminion=""
+arenaminion=""
 
 [input]
 
@@ -187,6 +188,7 @@ heal={
 2d_physics/layer_7="EnemyBoundary"
 2d_physics/layer_8="AbyssBoundary"
 2d_physics/layer_9="Enemy"
+2d_physics/layer_10="MountainWalls"
 
 [physics]
 

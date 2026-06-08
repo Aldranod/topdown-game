@@ -20,6 +20,7 @@ func init() -> void:
 	
 func enter() -> void:
 	$"../../Label".text = "attack"
+	attack_hurt_box.damage = 2
 	#if attack_hurt_box:
 		#attack_hurt_box.monitoring = true	
 	$"../..".set_collision_mask_value(5, true) 	

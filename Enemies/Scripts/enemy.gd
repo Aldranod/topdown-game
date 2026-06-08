@@ -34,7 +34,7 @@ var initial_position
 func _ready():
 	sprite_x_scale = sprite.scale.x
 	var enemy_id = get_tree().current_scene.name + "_" + name
-	if not is_in_group("bossminion"):
+	if not is_in_group("bossminion") and not is_in_group("arenaminion") :
 		if respawnable:
 			# Check our temporary list
 			if SaveManager.check_enemy_death(enemy_id):

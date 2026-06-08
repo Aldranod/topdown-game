@@ -130,7 +130,7 @@ tracks/1/path = NodePath("Sprite2D/AttackHurtBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(-9, 24), Vector2(0, 0)]
@@ -142,7 +142,7 @@ tracks/2/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -171,7 +171,7 @@ tracks/1/path = NodePath("Sprite2D/AttackHurtBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(13, 13), Vector2(5, 13)]
@@ -183,7 +183,7 @@ tracks/2/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -212,7 +212,7 @@ tracks/1/path = NodePath("Sprite2D/AttackHurtBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.40221098, 0.5),
+"times": PackedFloat32Array(0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(3, -6), Vector2(0, 0)]
@@ -224,10 +224,55 @@ tracks/2/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5),
+"times": PackedFloat32Array(0.29778904, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dobwv"]
+resource_name = "call_help_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [28, 29, 28, 29, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_ceale"]
+resource_name = "call_help_side"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [28, 29, 28, 29, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_vg574"]
+resource_name = "call_help_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [28, 29, 28, 29, 28, 29]
 }
 
 [sub_resource type="Animation" id="Animation_j1hhj"]
@@ -1104,87 +1149,6 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_dobwv"]
-resource_name = "call_help_down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [28, 29, 28, 29, 28, 29]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333, 0.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_ceale"]
-resource_name = "call_help_side"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [28, 29, 28, 29, 28, 29]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333, 0.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_vg574"]
-resource_name = "call_help_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [28, 29, 28, 29, 28, 29]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/AttackHurtBox:monitoring")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333, 0.9666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8tnav"]
 _data = {
 &"RESET": SubResource("Animation_t8cwk"),
@@ -1314,7 +1278,7 @@ animations = [{
 [node name="Boss1" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 256
-collision_mask = 80
+collision_mask = 720
 script = ExtResource("1_f6u1v")
 consecutive_hit_threshold = 2
 hp = 60
@@ -1324,6 +1288,7 @@ attack_range = 90.0
 corpse_data = ExtResource("2_3pyqh")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_v0ejt")]
+monitoring = false
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -1353,7 +1318,7 @@ vframes = 4
 [node name="AttackHurtBox" parent="Sprite2D" instance=ExtResource("3_v0ejt")]
 position = Vector2(0, 18)
 monitoring = false
-damage = 4
+damage = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/AttackHurtBox"]
 position = Vector2(0, -7)

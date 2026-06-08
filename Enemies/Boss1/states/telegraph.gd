@@ -17,6 +17,7 @@ var _timer: float
 func enter() -> void:
 	if boss.stage2:
 		telegraph_duration = 0.6
+	$"../../Sprite2D/AttackHurtBox".monitoring = false	
 	$"../../Label".text = "telegraph"
 	_timer = telegraph_duration
 	enemy.velocity = Vector2.ZERO

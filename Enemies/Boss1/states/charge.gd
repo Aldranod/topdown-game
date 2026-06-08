@@ -7,6 +7,7 @@ class_name BossStateCharge extends EnemyState
 
 @export var next_state: EnemyState # Where to go after charging (e.g., back to Chase)
 @export var recovery_state: BossStateRecovery
+@onready var attack_hurt_box: HurtBox = $"../../Sprite2D/AttackHurtBox"
 
 var _charge_direction: Vector2
 var _timer: float
@@ -15,6 +16,7 @@ var _hit_landed: bool = false
 func enter() -> void:
 	$"../../Label".text = "charge"
 	$"../../Sprite2D/AttackHurtBox".monitoring = true
+	attack_hurt_box.damage = 3
 	enemy.invulnerable = true
 	_timer = charge_duration
 	_hit_landed = false

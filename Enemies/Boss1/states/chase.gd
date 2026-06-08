@@ -31,6 +31,7 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	if boss.stage2:
 		chase_speed = 160
 		state_aggro_duration = 1

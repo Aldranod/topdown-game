@@ -22,6 +22,7 @@ func init() -> void:
 	
 func enter() -> void:
 	$"../../Label".text = "destroy"
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	enemy.clear_collisions()
 	disable_hurt_box()
 	enemy.invulnerable = true

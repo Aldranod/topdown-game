@@ -24,6 +24,7 @@ func init() -> void:
 	
 func enter() -> void:
 	$"../../Label".text = "stun"
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	_animation_finished = false
 	_direction = enemy.global_position.direction_to(_damage_position)
 	enemy.set_direction(_direction)

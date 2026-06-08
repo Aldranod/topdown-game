@@ -22,6 +22,7 @@ func init() -> void:
 	
 func enter() -> void:
 	$"../../Label".text = "wander"
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	_timer = randi_range(state_cycles_min, state_cycles_max) * state_animation_duration
 	var rand = randi_range(0, 3)
 	_direction = enemy.DIR_4[rand]

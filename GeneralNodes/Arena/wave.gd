@@ -13,6 +13,7 @@ func release_enemies() -> void:
 	var marker : int = 0
 	for enemy in enemies:
 		var ENEMY : Enemy = enemy.instantiate()
+		ENEMY.add_to_group("arenaminion")
 		enemies_node.add_child(ENEMY)
 		ENEMY.global_position = markers[marker].global_position
 		print("enemy "+ str(marker) + " instantiated on position: " + str(ENEMY.position))

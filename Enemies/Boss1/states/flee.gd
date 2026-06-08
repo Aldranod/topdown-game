@@ -20,6 +20,7 @@ func init() -> void:
 
 func enter() -> void:
 	$"../../Label".text = "flee"
+	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	if not enemy.can_shoot:	
 		$"../../IndicatorSprite2D".visible = true
 		$"../../IndicatorSprite2D".play("fear")
