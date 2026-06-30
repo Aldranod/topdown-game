@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp04pelsvuw43"]
+[gd_scene load_steps=7 format=3 uid="uid://cp04pelsvuw43"]
 
 [ext_resource type="Script" uid="uid://tm4v4nb82qjf" path="res://Interactables/arrow/arrow.gd" id="1_jckgg"]
 [ext_resource type="Script" uid="uid://dg6f4iuiibbl4" path="res://GeneralNodes/HurtBox/hurt_box.gd" id="2_s1x4m"]
@@ -8,12 +8,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oy4uj"]
 size = Vector2(30, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nejv5"]
+size = Vector2(30, 8)
+
 [node name="Arrow" type="Node2D"]
 script = ExtResource("1_jckgg")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 258
+collision_mask = 274
 script = ExtResource("2_s1x4m")
 damage = 2
 metadata/_custom_type_script = "uid://dg6f4iuiibbl4"
@@ -34,3 +37,10 @@ stream = ExtResource("4_6uu0l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-29, -29, 59, 58)
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+shape = SubResource("RectangleShape2D_nejv5")

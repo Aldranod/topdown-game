@@ -46,7 +46,7 @@ _data = {
 
 [node name="ItemPickup" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 144
+collision_mask = 656
 motion_mode = 1
 script = ExtResource("1_vftl2")
 

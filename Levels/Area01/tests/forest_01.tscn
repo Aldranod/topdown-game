@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cad42r81oka2x"]
+[gd_scene load_steps=42 format=4 uid="uid://cad42r81oka2x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_n8ytn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_nfhwk"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://2iri12vk4vqp" path="res://Levels/Area01/tests/light_ray.gd" id="14_dhoih"]
 [ext_resource type="Resource" uid="uid://dphrny44nvo2e" path="res://items/potion.tres" id="16_h2335"]
 [ext_resource type="PackedScene" uid="uid://x5ysqpmakmyg" path="res://Props/Plants/plant2.tscn" id="17_ei6rm"]
+[ext_resource type="PackedScene" uid="uid://vmjaeq3sdbf5" path="res://Tile Maps/background_trees.tscn" id="23_ametq"]
 [ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="24_8hp6p"]
 [ext_resource type="PackedScene" uid="uid://d4hgaqdibwenn" path="res://GeneralNodes/SavePoint/save_point.tscn" id="25_0ci1v"]
 [ext_resource type="PackedScene" uid="uid://op5ajp0xs84m" path="res://Interactables/altar/Altar.tscn" id="26_dhoih"]
@@ -292,7 +293,6 @@ position = Vector2(824, 928)
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
 level = "uid://dha7fplbdq8ij"
-target_transition_area = ""
 size = 5
 side = 2
 
@@ -966,9 +966,6 @@ position = Vector2(1064, -840)
 [node name="Tree609" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(1232, 856)
 
-[node name="Tree610" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(384, -808)
-
 [node name="Tree611" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(688, 976)
 
@@ -1288,9 +1285,6 @@ position = Vector2(744, -408)
 [node name="Tree895" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(664, -448)
 
-[node name="Tree897" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(256, 0)
-
 [node name="Tree902" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(456, -160)
 
@@ -1348,9 +1342,6 @@ position = Vector2(544, 16)
 [node name="Tree926" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(560, -232)
 
-[node name="Tree927" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(592, -392)
-
 [node name="Tree929" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(552, -304)
 
@@ -1359,9 +1350,6 @@ position = Vector2(576, -152)
 
 [node name="Tree931" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(624, -232)
-
-[node name="Tree932" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(616, -344)
 
 [node name="Tree933" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(616, -184)
@@ -1383,9 +1371,6 @@ position = Vector2(1592, 128)
 
 [node name="Tree1000" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(728, -344)
-
-[node name="Tree1001" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(656, -360)
 
 [node name="Tree1004" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(1520, 240)
@@ -1518,9 +1503,6 @@ position = Vector2(400, 552)
 
 [node name="Tree413" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(928, -152)
-
-[node name="Tree414" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(432, -632)
 
 [node name="Tree416" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(856, -176)
@@ -1720,9 +1702,6 @@ position = Vector2(72, -152)
 [node name="Tree32" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(1112, -712)
 
-[node name="Tree33" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(264, -336)
-
 [node name="Tree65" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(168, 128)
 
@@ -1753,17 +1732,11 @@ position = Vector2(-16, -80)
 [node name="Tree127" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(16, -128)
 
-[node name="Tree128" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(184, -24)
-
 [node name="Tree129" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(96, 56)
 
 [node name="Tree132" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(120, 0)
-
-[node name="Tree133" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(200, 56)
 
 [node name="Tree134" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(120, -80)
@@ -1884,9 +1857,6 @@ position = Vector2(792, -392)
 
 [node name="Tree141" parent="Props/Trees" instance=ExtResource("13_vwbcb")]
 position = Vector2(1112, -1000)
-
-[node name="Tree142" parent="Props/Trees" instance=ExtResource("13_vwbcb")]
-position = Vector2(200, -88)
 
 [node name="Tree143" parent="Props/Trees" instance=ExtResource("13_vwbcb")]
 position = Vector2(64, 8)
@@ -2089,9 +2059,6 @@ position = Vector2(216, 256)
 [node name="Tree374" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(184, -352)
 
-[node name="Tree376" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(256, -400)
-
 [node name="Tree377" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(368, 512)
 
@@ -2139,9 +2106,6 @@ position = Vector2(536, 736)
 
 [node name="Tree149" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(512, -200)
-
-[node name="Tree223" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
-position = Vector2(312, -544)
 
 [node name="Tree224" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(192, -552)
@@ -2369,11 +2333,11 @@ position = Vector2(696, -232)
 position = Vector2(1176, 312)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(761.71814, -100.09992)
+position = Vector2(758.2367, -97.509766)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(761.71814, -100.09992)
+position = Vector2(758.2367, -97.509766)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -2389,6 +2353,191 @@ position = Vector2(896, -840)
 
 [node name="Altar2" parent="Props" instance=ExtResource("26_dhoih")]
 position = Vector2(896, -840)
+
+[node name="BackgroundTreesGroup" type="Node2D" parent="Props"]
+modulate = Color(0.7564044, 0.7564044, 0.7564044, 1)
+y_sort_enabled = true
+
+[node name="BackgroundTrees" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(352, 904)
+
+[node name="BackgroundTrees2" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(656, 912)
+
+[node name="BackgroundTrees4" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(248, 984)
+
+[node name="BackgroundTrees5" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(360, 992)
+
+[node name="BackgroundTrees6" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(656, 1000)
+
+[node name="BackgroundTrees7" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(248, 856)
+
+[node name="BackgroundTrees8" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(152, 944)
+
+[node name="BackgroundTrees9" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(248, 792)
+
+[node name="BackgroundTrees10" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(248, 728)
+
+[node name="BackgroundTrees11" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(240, 664)
+
+[node name="BackgroundTrees12" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(240, 600)
+
+[node name="BackgroundTrees13" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(240, 504)
+
+[node name="BackgroundTrees16" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(184, 240)
+
+[node name="BackgroundTrees17" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(152, 168)
+
+[node name="BackgroundTrees18" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(112, 328)
+
+[node name="BackgroundTrees19" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(112, 464)
+
+[node name="BackgroundTrees20" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 568)
+
+[node name="BackgroundTrees21" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 696)
+
+[node name="BackgroundTrees22" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 696)
+
+[node name="BackgroundTrees23" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 696)
+
+[node name="BackgroundTrees24" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 816)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees25" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(120, 816)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees27" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(992, 984)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees28" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1096, 1000)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees29" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1096, 1000)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees36" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(320, 664)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees40" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1480, 904)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees41" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1224, 968)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees42" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1328, 936)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees43" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1432, 992)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees44" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1496, 784)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees45" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1464, 696)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees46" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1480, 608)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees47" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1472, 536)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees48" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1464, 480)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees50" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1400, 304)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees51" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1512, 392)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees52" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1496, 240)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees53" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1496, 240)
+scale = Vector2(-1, 1)
+
+[node name="BackgroundTrees54" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1368, 176)
+
+[node name="BackgroundTrees55" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1336, 232)
+
+[node name="BackgroundTrees56" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1488, 136)
+
+[node name="BackgroundTrees57" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(864, 56)
+
+[node name="BackgroundTrees58" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1064, 152)
+
+[node name="BackgroundTrees59" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1056, 208)
+
+[node name="BackgroundTrees60" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1184, 176)
+
+[node name="BackgroundTrees61" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(1272, 112)
+
+[node name="BackgroundTrees62" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(616, 56)
+
+[node name="BackgroundTrees63" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(736, 40)
+
+[node name="BackgroundTrees64" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(200, 40)
+
+[node name="BackgroundTrees65" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(312, -824)
+
+[node name="BackgroundTrees66" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(664, -384)
+
+[node name="BackgroundTrees67" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(216, -320)
+
+[node name="BackgroundTrees68" parent="Props/BackgroundTreesGroup" instance=ExtResource("23_ametq")]
+position = Vector2(424, -632)
 
 [node name="LevelTransition2" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(1144, 360)
@@ -2421,7 +2570,7 @@ texture = ExtResource("50_03vu2")
 offset = Vector2(0, 256)
 
 [node name="ItemPickup2" parent="." instance=ExtResource("8_t5ank")]
-position = Vector2(810.57886, 815.6962)
+position = Vector2(798.223, 834.7917)
 item_data = ExtResource("24_8hp6p")
 
 [node name="SavePoint" parent="." instance=ExtResource("25_0ci1v")]
@@ -2431,19 +2580,20 @@ position = Vector2(896, 560)
 y_sort_enabled = true
 
 [node name="GoblinAmbush5" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(280, -16)
+position = Vector2(280, 16)
 hp = 3
 in_ambush = true
 
 [node name="AmbushArea" parent="Enemies/GoblinAmbush5" instance=ExtResource("28_ametq")]
+position = Vector2(0, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush5/AmbushArea"]
-position = Vector2(96, 120)
+position = Vector2(96, 112)
 shape = SubResource("RectangleShape2D_0pkd0")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 
 [node name="GoblinAmbush6" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(280, -352)
+position = Vector2(272, -352)
 hp = 3
 in_ambush = true
 
@@ -2455,7 +2605,7 @@ shape = SubResource("RectangleShape2D_0pkd0")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 
 [node name="GoblinAmbush7" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(432, -664)
+position = Vector2(424, -712)
 hp = 3
 in_ambush = true
 
@@ -2467,7 +2617,7 @@ shape = SubResource("RectangleShape2D_0pkd0")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 
 [node name="GoblinAmbush8" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(592, -424)
+position = Vector2(592, -416)
 hp = 3
 in_ambush = true
 
@@ -2491,7 +2641,7 @@ shape = SubResource("RectangleShape2D_ehdx3")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 
 [node name="GoblinAmbush10" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(384, -840)
+position = Vector2(384, -848)
 hp = 3
 in_ambush = true
 
@@ -2501,5 +2651,17 @@ in_ambush = true
 position = Vector2(144, -56)
 shape = SubResource("RectangleShape2D_ehdx3")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="Border3" type="StaticBody2D" parent="Borders"]
+z_index = 2
+position = Vector2(-296, 256)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border3"]
+position = Vector2(992, -40)
+polygon = PackedVector2Array(-600, -256, -560, -280, -536, -264, -488, -288, -456, -264, -432, -248, -408, -232, -424, -224, -432, -208, -432, -192, -413.7413, -186.25871, -448, -152, -568, -112)
 
 [connection signal="inv_open" from="listener" to="Area2D2" method="_on_action_performed"]

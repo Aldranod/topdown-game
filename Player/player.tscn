@@ -3338,7 +3338,7 @@ horizontal_alignment = 1
 [node name="FallBox" type="Area2D" parent="."]
 position = Vector2(0, -4)
 collision_layer = 2
-collision_mask = 512
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallBox"]
 position = Vector2(0, -0.25)

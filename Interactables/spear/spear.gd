@@ -13,6 +13,7 @@ var move_dir : Vector2 = Vector2.RIGHT
 func _ready() -> void:
 	rotate_nodes()
 	hurt_box.did_damage.connect( _on_did_damage)
+	hurt_box.body_entered.connect(_on_body_entered)
 	get_tree().create_timer( 10).timeout.connect( _on_timeout)
 	if fire_audio:
 		audio_stream_player_2d.stream = fire_audio
@@ -53,3 +54,6 @@ func _on_did_damage() -> void:
 func _on_timeout() -> void:
 	queue_free()
 	pass	
+func _on_body_entered(body: Node2D) -> void:
+	# Hits anything on layer 5 — trees, buildings, regular walls
+	queue_free()
