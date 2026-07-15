@@ -124,6 +124,8 @@ func init() -> void:
 	pass
 
 func enter() -> void:
+	$"../../../Goblin5/Label".text = "chase"
+	print("chase")
 	$"../..".set_collision_mask_value(5, true)
 	$"../..".set_collision_mask_value(7, true)
 	$"../..".set_collision_mask_value(8, true)

@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dt6g2j7l0y83l" path="res://Interactables/Dungeon/bars_open.wav" id="3_sqxns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q3oe3"]
-size = Vector2(64, 66)
+size = Vector2(64, 93)
 
 [sub_resource type="Animation" id="Animation_sqxns"]
 length = 0.001
@@ -197,7 +197,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(32, -29)
+position = Vector2(32, -39.5)
 shape = SubResource("RectangleShape2D_q3oe3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

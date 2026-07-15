@@ -2896,6 +2896,7 @@ size = Vector2(14, 20)
 size = Vector2(8, 4.5)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
 collision_mask = 920
 motion_mode = 1
 wall_min_slide_angle = 0.174533

@@ -52,7 +52,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D_Shadow:modulate")
+tracks/1/path = NodePath("Sprite2D/Sprite2D_Shadow:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -96,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D_Shadow:modulate")
+tracks/1/path = NodePath("Sprite2D/Sprite2D_Shadow:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -150,19 +150,22 @@ size = Vector2(20, 12)
 size = Vector2(20, 28)
 
 [node name="Pot" type="Node2D" groups=["breakables"]]
+y_sort_enabled = true
 script = ExtResource("1_yyl76")
 drops = Array[ExtResource("2_345wg")]([SubResource("Resource_oj0xe"), SubResource("Resource_tu7ae")])
 particle_settings = ExtResource("5_oj0xe")
 
-[node name="Sprite2D_Shadow" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_3q0u8")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -9)
 texture = ExtResource("1_v5x4x")
+offset = Vector2(0, 10)
 hframes = 16
 vframes = 3
 frame = 4
+
+[node name="Sprite2D_Shadow" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 20)
+texture = SubResource("GradientTexture2D_3q0u8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -170,6 +173,7 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 10)
 collision_layer = 16
 collision_mask = 0
 
@@ -180,12 +184,14 @@ debug_color = Color(0, 0.6, 0.7, 0)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Throwable" parent="." instance=ExtResource("3_3q0u8")]
+position = Vector2(0, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Throwable"]
 shape = SubResource("RectangleShape2D_hha1h")
 debug_color = Color(0.078, 0.649, 0, 0)
 
 [node name="HitBox" parent="." instance=ExtResource("5_y50he")]
+position = Vector2(0, 19)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -13)

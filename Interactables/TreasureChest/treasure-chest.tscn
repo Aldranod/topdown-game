@@ -204,6 +204,7 @@ script = ExtResource("1_avjv6")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
 texture = ExtResource("2_gkxf7")
+offset = Vector2(0, 10)
 hframes = 2
 
 [node name="ItemSprite" type="Sprite2D" parent="."]

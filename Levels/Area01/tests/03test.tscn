@@ -768,7 +768,7 @@ weather_layer_1 = 1
 weather_layer_2 = 2
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("5_lc7bp")]
-position = Vector2(1728, -1048)
+position = Vector2(330.64282, 270.2096)
 
 [node name="Tilemaps" type="Node2D" parent="."]
 z_as_relative = false
@@ -1625,27 +1625,21 @@ vframes = 4
 frame = 4
 
 [node name="Pot" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(464, 160)
 
 [node name="Pot3" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(552, 160)
 
 [node name="Pot4" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(544, 152)
 
 [node name="Pot5" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(528, 160)
 
 [node name="Pot2" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(448, 168)
 
 [node name="Pot6" parent="Props/Other" instance=ExtResource("23_fl050")]
-y_sort_enabled = true
 position = Vector2(360, 192)
 
 [node name="DeadSoldier" type="Sprite2D" parent="Props/Other"]
@@ -1684,7 +1678,7 @@ position = Vector2(2632, -1968)
 item_data = ExtResource("8_62oxq")
 
 [node name="ItemPickup7" parent="Props/Other" instance=ExtResource("21_jawob")]
-position = Vector2(2737.821, 1.3433686)
+position = Vector2(2737.821, 1.3433685)
 item_data = ExtResource("8_62oxq")
 
 [node name="ItemPickup5" parent="Props/Other" instance=ExtResource("21_jawob")]
@@ -1760,7 +1754,7 @@ position = Vector2(2840, 200)
 position = Vector2(3392, -16)
 
 [node name="ItemPickup6" parent="Props/Other" instance=ExtResource("21_jawob")]
-position = Vector2(2737.811, 2.11322)
+position = Vector2(2737.811, 2.1132202)
 item_data = ExtResource("30_m8754")
 item_count = 75
 

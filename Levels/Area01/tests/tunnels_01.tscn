@@ -1,0 +1,152 @@
+[gd_scene load_steps=15 format=4 uid="uid://dh0a7m8e7nll5"]
+
+[ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_fvwdy"]
+[ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_xyu4j"]
+[ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="3_ocy56"]
+[ext_resource type="PackedScene" uid="uid://cg5wphk4fstcm" path="res://Tile Maps/dungeon-tiles-01.tscn" id="4_4wiko"]
+[ext_resource type="PackedScene" uid="uid://65ltrbv0lnuk" path="res://Tile Maps/Sprites/shop_tilemap_layer.tscn" id="5_8f3y1"]
+[ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="6_payk0"]
+[ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="7_ir2xm"]
+[ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="8_8f3y1"]
+[ext_resource type="PackedScene" uid="uid://bntcx48x68r7i" path="res://Interactables/Dungeon/locked_door.tscn" id="9_4wiko"]
+[ext_resource type="PackedScene" uid="uid://cmtv281o7w0ch" path="res://Interactables/Dungeon/barred_door.tscn" id="10_fvwdy"]
+[ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="10_genna"]
+[ext_resource type="PackedScene" uid="uid://b030xyafiqs7n" path="res://Props/torches/torch_dungeon.tscn" id="11_xyu4j"]
+[ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="14_payk0"]
+[ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="15_ir2xm"]
+
+[node name="tunnels1" type="Node2D"]
+script = ExtResource("1_fvwdy")
+music = ExtResource("2_xyu4j")
+darkness = true
+weather_layer_1 = 1
+weather_layer_2 = 2
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_ocy56")]
+position = Vector2(96, 48)
+
+[node name="Tilemaps" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="dungeon-tiles-01" parent="Tilemaps" instance=ExtResource("4_4wiko")]
+z_index = -1
+tile_map_data = PackedByteArray("AAAAAAAAAQABAAIAAAAAAAEAAQAAAAEAAAAAAAIAAQAMAAMAAAABAAAAAQACAAIAAAABAAEAAQABAAEAAAABAAIAAQAMAAMAAAACAAAAAQADAAIAAAACAAEAAQACAAEAAAACAAIAAQAMAAMAAAADAAAAAQAAAAIAAAADAAEAAQADAAEAAAADAAIAAQAMAAMAAAAEAAAAAQABAAIAAAAEAAEAAQAAAAQAAAAFAAAAAQACAAIAAAAFAAEAAQABAAQAAAAEAAIAAQAMAAMAAAAEAAMAAQAMAAQAAAAFAAIAAQAMAAMAAAAFAAMAAQAMAAQAAAACAAMAAQAMAAQAAAADAAMAAQAMAAQAAAAAAAMAAQAMAAQAAAABAAMAAQAMAAQAAAD9//3/AQACAAIAAAD9//7/AQACAAAAAAD9////AQACAAEAAAD+//3/AQADAAIAAAD+//7/AQADAAAAAAD+////AQADAAEAAAD///3/AQAAAAIAAAD///7/AQAAAAAAAAD/////AQAAAAEAAAAAAP3/AQABAAIAAAAAAP7/AQABAAAAAAAAAP//AQABAAEAAAD9/wAAAQACAAIAAAD+/wAAAQADAAIAAAD//wAAAQAAAAIAAAD9/wEAAQACAAAAAAD+/wEAAQADAAAAAAD//wEAAQADAAEAAAD9/wIAAQAMAAMAAAD+/wIAAQAMAAMAAAD//wIAAQAMAAMAAAD9/wQAAQAMAAUAAAD9/wUAAQAMAAYAAAD+/wQAAQAMAAUAAAD+/wUAAQAMAAYAAAD//wQAAQAMAAUAAAD//wUAAQAMAAYAAAD9/wMAAQAMAAQAAAD+/wMAAQAMAAQAAAD//wMAAQAMAAQAAAABAP3/AQACAAIAAAABAP7/AQACAAAAAAABAP//AQACAAEAAAACAP3/AQADAAIAAAACAP7/AQADAAAAAAACAP//AQADAAEAAAADAP3/AQAAAAIAAAADAP7/AQAAAAAAAAADAP//AQAAAAEAAAAEAP3/AQABAAIAAAAEAP7/AQABAAAAAAAEAP//AQABAAEAAAAFAP3/AQACAAIAAAAFAP7/AQACAAAAAAAFAP//AQACAAEAAAAAAAQAAQAMAAUAAAAAAAUAAQAMAAYAAAABAAQAAQAMAAUAAAABAAUAAQAMAAYAAAACAAQAAQAMAAUAAAACAAUAAQAMAAYAAAADAAQAAQAMAAUAAAADAAUAAQAMAAYAAAAEAAQAAQAMAAUAAAAEAAUAAQAMAAYAAAAFAAQAAQAMAAUAAAAFAAUAAQAMAAYAAAAGAAQAAQAMAAUAAAAGAAUAAQAMAAYAAAAHAAQAAQANAAUAAAAHAAUAAQANAAYAAAAIAAQAAQAOAAUAAAAIAAUAAQAOAAYAAAAGAP3/AQAMAAMAAAAGAP7/AQAMAAMAAAAGAP//AQAMAAMAAAAHAP3/AQANAAMAAAAHAP7/AQANAAMAAAAHAP//AQANAAMAAAAIAP3/AQAOAAMAAAAIAP7/AQAOAAMAAAAIAP//AQAOAAMAAAAGAAAAAQAMAAMAAAAHAAAAAQANAAMAAAAIAAAAAQAOAAMAAAAGAAMAAQAMAAQAAAAHAAMAAQANAAQAAAAIAAMAAQAOAAQAAAAIAAIAAQAOAAMAAAAHAAIAAQANAAMAAAAGAAIAAQAMAAMAAAAGAAEAAQAMAAMAAAAHAAEAAQANAAMAAAAIAAEAAQAOAAMAAAD8//z/AQALAAMAAAD9//z/AQACAAEAAAD+//z/AQADAAEAAAD///z/AQAAAAEAAAAAAPz/AQABAAEAAAABAPz/AQACAAEAAAACAPz/AQADAAEAAAADAPz/AQAAAAEAAAAEAPz/AQABAAEAAAAFAPz/AQACAAEAAAAGAPz/AQAMAAMAAAAHAPz/AQANAAMAAAAIAPz/AQAOAAMAAAD8//3/AQALAAMAAAD8//7/AQALAAMAAAD8////AQALAAMAAAD8/wAAAQALAAMAAAD8/wEAAQALAAMAAAD8/wIAAQALAAMAAAD8/wMAAQALAAQAAAD8/wQAAQALAAUAAAD8/wUAAQALAAYAAAAIAPv/AQAOAAMAAAAHAPv/AQANAAMAAAAGAPv/AQAMAAMAAAAFAPv/AQACAAAAAAAEAPv/AQABAAAAAAADAPv/AQAAAAAAAAACAPv/AQADAAAAAAABAPv/AQACAAAAAAAAAPv/AQABAAAAAAD///v/AQAAAAAAAAD+//v/AQADAAAAAAD9//v/AQACAAAAAAD8//v/AQALAAMAAAD7/wUAAQAKAAYAAAD7/wQAAQAKAAUAAAD7/wMAAQAKAAQAAAD7/wIAAQAKAAMAAAD7/wEAAQAKAAMAAAD7/wAAAQAKAAMAAAD7////AQAKAAMAAAD7//7/AQAKAAMAAAD7//3/AQAKAAMAAAD7//z/AQAKAAMAAAD7//v/AQAKAAMAAAD7//r/AQAKAAMAAAD8//r/AQALAAMAAAD9//r/AQACAAIAAAD+//r/AQADAAIAAAD///r/AQAAAAIAAAAAAPr/AQABAAIAAAABAPr/AQACAAIAAAACAPr/AQADAAIAAAADAPr/AQAAAAIAAAAEAPr/AQABAAIAAAAFAPr/AQACAAIAAAAGAPr/AQAMAAMAAAAHAPr/AQANAAMAAAAIAPr/AQAOAAMAAAD6/wUAAQAJAAYAAAD6/wQAAQAJAAUAAAD6/wMAAQAJAAQAAAD6/wIAAQAJAAMAAAD6/wEAAQAJAAMAAAD6/wAAAQAJAAMAAAD6////AQAJAAMAAAD6//7/AQAJAAMAAAD6//3/AQAJAAMAAAD6//z/AQAJAAMAAAD6//v/AQAJAAMAAAD6//r/AQAJAAMAAAAJAP7/AQAPAAMAAAAJAP//AQAPAAMAAAAJAAAAAQAPAAMAAAAJAAMAAQAPAAQAAAAJAAQAAQAPAAUAAAAJAAUAAQAPAAYAAAAJAPr/AQAPAAMAAAAJAPv/AQAPAAMAAAAJAPz/AQAPAAMAAAAJAP3/AQAPAAMAAAAJAAEAAQAPAAMAAAAJAAIAAQAPAAMAAAAFAPn/AQAMAAMAAAAAAPn/AQAMAAMAAAABAPn/AQAMAAMAAAACAPn/AQAMAAMAAAADAPn/AQAMAAMAAAAEAPn/AQAMAAMAAAAGAPn/AQAMAAMAAAAHAPn/AQANAAMAAAAIAPn/AQAOAAMAAAD9//n/AQAMAAMAAAD+//n/AQAMAAMAAAD///n/AQAMAAMAAAD9//j/AQAEAAcAAAD+//j/AQAHAAcAAAD///j/AQAMAAIAAAAAAPj/AQAEAAcAAAD9//f/AQAEAAYAAAD+//f/AQAHAAYAAAD///f/AQAMAAEAAAAAAPf/AQAEAAYAAAAFAPj/AQAEAAcAAAAGAPj/AQAHAAcAAAAHAPj/AQANAAIAAAAIAPj/AQAOAAIAAAAFAPf/AQAEAAYAAAAGAPf/AQAHAAYAAAAHAPf/AQANAAEAAAAIAPf/AQAOAAEAAAADAPf/AQAHAAYAAAADAPj/AQAHAAcAAAAEAPf/AQAMAAEAAAAEAPj/AQAMAAIAAAADAPb/AQAHAAUAAAAEAPb/AQAMAAAAAAAAAPb/AQAEAAUAAAAFAPb/AQAEAAUAAAD9//b/AQAEAAUAAAD+//b/AQAHAAUAAAD///b/AQAMAAAAAAAGAPb/AQAHAAUAAAAHAPb/AQANAAAAAAAIAPb/AQAOAAAAAAD8//b/AQALAAAAAAD8//f/AQALAAEAAAD8//j/AQALAAIAAAD8//n/AQALAAMAAAD7//n/AQAKAAMAAAD6//j/AQAJAAIAAAD6//f/AQAJAAEAAAD6//b/AQAJAAAAAAD7//b/AQAKAAAAAAD7//f/AQAKAAEAAAD7//j/AQAKAAIAAAD6//n/AQAJAAMAAAAJAPb/AQAPAAAAAAAJAPf/AQAPAAEAAAAJAPj/AQAPAAIAAAAJAPn/AQAPAAMAAAAKAP3/AQAPAAcAAAAKAAIAAQAPAAcAAAAKAAMAAQAPAAcAAAAKAAQAAQAPAAcAAAAKAAUAAQAPAAcAAAAKAPr/AQAPAAcAAAAKAP7/AQAPAAcAAAD5//3/AQAPAAcAAAD5/wIAAQAPAAcAAAD5/wMAAQAPAAcAAAD5/wQAAQAPAAcAAAD5/wUAAQAPAAcAAAD5//r/AQAPAAcAAAD5//7/AQAPAAcAAAD5//b/AQAPAAcAAAD5//f/AQAPAAcAAAD5//j/AQAPAAcAAAAKAPb/AQAPAAcAAAAKAPf/AQAPAAcAAAAKAPj/AQAPAAcAAAD5//n/AQAPAAcAAAAKAPn/AQAPAAcAAAAKAP//AQAPAAcAAAAKAAAAAQAPAAcAAAAKAAEAAQAPAAcAAAD5////AQAPAAcAAAD5/wAAAQAPAAcAAAD5/wEAAQAPAAcAAAAKAPv/AQAPAAcAAAAKAPz/AQAPAAcAAAD5//v/AQAPAAcAAAD5//z/AQAPAAcAAAACAPj/AQAGAAcAAAABAPj/AQAFAAcAAAABAPb/AQAFAAUAAAACAPb/AQAGAAUAAAABAPf/AQAFAAYAAAACAPf/AQAGAAYAAAALAPb/AQAPAAcAAAALAPf/AQAPAAcAAAALAPj/AQAPAAcAAAALAPn/AQAPAAcAAAALAPr/AQAPAAcAAAALAPv/AQAPAAcAAAALAPz/AQAPAAcAAAALAP3/AQAPAAcAAAALAP7/AQAPAAcAAAALAP//AQAPAAcAAAALAAAAAQAPAAcAAAALAAEAAQAPAAcAAAALAAIAAQAPAAcAAAALAAMAAQAPAAcAAAALAAQAAQAPAAcAAAALAAUAAQAPAAcAAAAMAPb/AQAPAAcAAAAMAPf/AQAPAAcAAAAMAPj/AQAPAAcAAAAMAPn/AQAPAAcAAAAMAPr/AQAPAAcAAAAMAPv/AQAPAAcAAAAMAPz/AQAPAAcAAAAMAP3/AQAPAAcAAAAMAP7/AQAPAAcAAAAMAP//AQAPAAcAAAAMAAAAAQAPAAcAAAAMAAEAAQAPAAcAAAAMAAIAAQAPAAcAAAAMAAMAAQAPAAcAAAAMAAQAAQAPAAcAAAAMAAUAAQAPAAcAAAANAPb/AQAPAAcAAAANAPf/AQAPAAcAAAANAPj/AQAPAAcAAAANAPn/AQAPAAcAAAANAPr/AQAPAAcAAAANAPv/AQAPAAcAAAANAPz/AQAPAAcAAAANAP3/AQAPAAcAAAANAP7/AQAPAAcAAAANAP//AQAPAAcAAAANAAAAAQAPAAcAAAANAAEAAQAPAAcAAAANAAIAAQAPAAcAAAANAAMAAQAPAAcAAAANAAQAAQAPAAcAAAANAAUAAQAPAAcAAAD2//b/AQAPAAcAAAD2//f/AQAPAAcAAAD2//j/AQAPAAcAAAD2//n/AQAPAAcAAAD2//r/AQAPAAcAAAD2//v/AQAPAAcAAAD2//z/AQAPAAcAAAD2//3/AQAPAAcAAAD2//7/AQAPAAcAAAD2////AQAPAAcAAAD2/wAAAQAPAAcAAAD2/wEAAQAPAAcAAAD2/wIAAQAPAAcAAAD2/wMAAQAPAAcAAAD2/wQAAQAPAAcAAAD2/wUAAQAPAAcAAAD3//b/AQAPAAcAAAD3//f/AQAPAAcAAAD3//j/AQAPAAcAAAD3//n/AQAPAAcAAAD3//r/AQAPAAcAAAD3//v/AQAPAAcAAAD3//z/AQAPAAcAAAD3//3/AQAPAAcAAAD3//7/AQAPAAcAAAD3////AQAPAAcAAAD3/wAAAQAPAAcAAAD3/wEAAQAPAAcAAAD3/wIAAQAPAAcAAAD3/wMAAQAPAAcAAAD3/wQAAQAPAAcAAAD3/wUAAQAPAAcAAAD4//b/AQAPAAcAAAD4//f/AQAPAAcAAAD4//j/AQAPAAcAAAD4//n/AQAPAAcAAAD4//r/AQAPAAcAAAD4//v/AQAPAAcAAAD4//z/AQAPAAcAAAD4//3/AQAPAAcAAAD4//7/AQAPAAcAAAD4////AQAPAAcAAAD4/wAAAQAPAAcAAAD4/wEAAQAPAAcAAAD4/wIAAQAPAAcAAAD4/wMAAQAPAAcAAAD4/wQAAQAPAAcAAAD4/wUAAQAPAAcAAAA=")
+
+[node name="ShopTilemapLayer" parent="Tilemaps" instance=ExtResource("5_8f3y1")]
+position = Vector2(0, -2)
+tile_map_data = PackedByteArray("AAD+//v/AAAJAAEAAAD+//r/AAAJAAAAAAD///v/AAAKAAEAAAD///r/AAAKAAAAAAAAAPv/AAALAAEAAAAAAPr/AAALAAAAAAA=")
+
+[node name="Weather" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Weather"]
+visible = false
+color = Color(0.14459325, 0.14459325, 0.171875, 1)
+
+[node name="WeatherManager" parent="Weather" node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("6_payk0")]
+unique_name_in_owner = true
+particle = NodePath("../Particles")
+color_rect = NodePath("../Parallax2D/ColorRect")
+
+[node name="Particles" type="GPUParticles2D" parent="Weather"]
+position = Vector2(560, 1112)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("7_ir2xm")
+
+[node name="Parallax2D" type="Parallax2D" parent="Weather"]
+scroll_scale = Vector2(1.2, 1)
+repeat_size = Vector2(480, 270)
+repeat_times = 3
+
+[node name="ColorRect" type="ColorRect" parent="Weather/Parallax2D"]
+material = ExtResource("8_8f3y1")
+offset_right = 480.0
+offset_bottom = 270.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Props" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-952, 0)
+
+[node name="TorchDungeon10" parent="Props" instance=ExtResource("11_xyu4j")]
+position = Vector2(-56, -152)
+
+[node name="PointLight2D" parent="Props/TorchDungeon10" index="3"]
+energy = 1.68
+shadow_enabled = true
+texture_scale = 1.3
+
+[node name="BarredDoor" parent="Props" instance=ExtResource("10_fvwdy")]
+position = Vector2(32, -232)
+
+[node name="BarredDoor4" parent="Props" instance=ExtResource("10_fvwdy")]
+modulate = Color(0.69411767, 0.69803923, 0.8784314, 1)
+position = Vector2(-416, -24)
+scale = Vector2(1, -1)
+
+[node name="BarredDoor5" parent="Props" instance=ExtResource("10_fvwdy")]
+modulate = Color(0.69411767, 0.69803923, 0.8784314, 1)
+position = Vector2(8, 104)
+scale = Vector2(1, -1)
+
+[node name="BarredDoor6" parent="Props" instance=ExtResource("10_fvwdy")]
+modulate = Color(0.69411767, 0.69803923, 0.8784314, 1)
+position = Vector2(200, 104)
+scale = Vector2(1, -1)
+
+[node name="BarredDoor7" parent="Props" instance=ExtResource("10_fvwdy")]
+modulate = Color(0.6940213, 0.6981155, 0.87890625, 1)
+position = Vector2(352, -24)
+scale = Vector2(1, -1)
+
+[node name="BarredDoor2" parent="Props" instance=ExtResource("10_fvwdy")]
+position = Vector2(-416, -104)
+
+[node name="BarredDoor3" parent="Props" instance=ExtResource("10_fvwdy")]
+position = Vector2(352, -104)
+
+[node name="LevelTransition" parent="." instance=ExtResource("10_genna")]
+position = Vector2(200, 24)
+level = "uid://dha7fplbdq8ij"
+target_transition_area = "LevelTransition2"
+size = 1
+side = 3
+
+[node name="LevelTransition2" parent="." instance=ExtResource("10_genna")]
+position = Vector2(-272, -1376)
+level = "uid://cxpyct50w8gyx"
+target_transition_area = "LevelTransition2"
+size = 1
+
+[node name="LockedDoor" parent="." instance=ExtResource("9_4wiko")]
+position = Vector2(-648, -528)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -968.0
+offset_top = -552.0
+offset_right = -686.0
+offset_bottom = -399.0
+text = "Prison where Order kept enemies
+and artifact of Dark Powers.
+Corrupting power of artifact drove
+members of the Order into madness
+
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -968.0
+offset_top = -416.0
+offset_right = -686.0
+offset_bottom = -344.0
+text = "Revenangt have to retrieve artifact
+ in order to ressurect his familiy"
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="ItemPickup2" parent="." instance=ExtResource("14_payk0")]
+position = Vector2(-85.93258, -87.17949)
+item_data = ExtResource("15_ir2xm")
+
+[editable path="Props/TorchDungeon10"]

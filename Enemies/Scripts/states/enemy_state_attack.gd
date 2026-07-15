@@ -17,6 +17,8 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
+	$"../../../Goblin5/Label".text = "attack"
+	print("attack")
 	#if attack_hurt_box:
 		#attack_hurt_box.monitoring = true
 	$"../..".set_collision_mask_value(5, true) 	

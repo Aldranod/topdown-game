@@ -44,6 +44,7 @@ func player_interact() -> void:
 	if picked_up == false:
 		PlayerManager.interact_handled = true
 		disable_collisions(prop)
+		$"../Sprite2D".offset.y = 0
 		if prop.get_parent():
 			prop.get_parent().remove_child(prop)
 		PlayerManager.player.held_item.add_child(prop)	

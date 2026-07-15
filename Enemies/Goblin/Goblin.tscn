@@ -1177,7 +1177,7 @@ polygon = PackedVector2Array(-189, -195, -1, -234, 209, -196, 291, -73, 295, 145
 [node name="PersistentDataHandler" parent="." instance=ExtResource("19_eqe8e")]
 
 [node name="LineOfSightRay" type="RayCast2D" parent="."]
-collision_mask = 25
+collision_mask = 537
 
 [node name="ChargeRay" type="RayCast2D" parent="."]
 collision_mask = 24

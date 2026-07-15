@@ -63,7 +63,7 @@ var dash_start_position: Vector2 = Vector2.ZERO
 @onready var attack_timer: Timer = $AttackTimer
 @onready var third_attack_timer: Timer = $ThirdAttackTimer
 @onready var fall_box: Area2D = $FallBox
-@onready var falling: State_Falling = $StateMachine/Falling
+@onready var falling: State_Falling = $StateMachine/Falling					
 
 func _ready():
 	PlayerManager.player = self
