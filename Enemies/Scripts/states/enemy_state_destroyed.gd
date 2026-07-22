@@ -21,7 +21,6 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	$"../../../Goblin5/Label".text = "destroy"
 	enemy.clear_collisions()
 	disable_hurt_box()
 	enemy.invulnerable = true

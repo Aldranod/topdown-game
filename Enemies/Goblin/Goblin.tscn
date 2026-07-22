@@ -1108,6 +1108,7 @@ state_duration_min = 0.1
 state_duration_max = 0.2
 after_idle_state = NodePath("../Wander")
 chase_state = NodePath("../Chase")
+shoot_through_walls = false
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state", "chase_state")]
 script = ExtResource("10_l6iyu")
@@ -1134,6 +1135,7 @@ script = ExtResource("16_mvdyt")
 anim_name = "chase"
 chase_speed = 100.0
 turn_rate = 0.5
+shoot_through_walls = false
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
 state_aggro_duration = 6.0

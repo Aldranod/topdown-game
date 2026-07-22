@@ -1284,7 +1284,7 @@ consecutive_hit_threshold = 2
 hp = 60
 xp_reward = 2
 respawnable = false
-attack_range = 90.0
+attack_range = 60.0
 corpse_data = ExtResource("2_3pyqh")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_v0ejt")]
@@ -1370,6 +1370,7 @@ particle_settings = ExtResource("16_f6u1v")
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state", "telegraph_state", "circle_state")]
 script = ExtResource("16_m8o5x")
 chase_speed = 140.0
+turn_rate = 0.5
 can_charge = true
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
@@ -1455,10 +1456,10 @@ polygon = PackedVector2Array(-298.6667, -218.66666, 298.6667, -218.66666, 298.66
 [node name="PersistentDataHandler" parent="." instance=ExtResource("27_wrc6e")]
 
 [node name="ChargeRay" type="RayCast2D" parent="."]
-collision_mask = 24
+collision_mask = 152
 
 [node name="LineOfSightRay" type="RayCast2D" parent="."]
-collision_mask = 25
+collision_mask = 665
 
 [node name="IndicatorSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false

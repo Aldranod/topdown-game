@@ -107,17 +107,16 @@ position = Vector2(-416, -104)
 position = Vector2(352, -104)
 
 [node name="LevelTransition" parent="." instance=ExtResource("10_genna")]
-position = Vector2(200, 24)
-level = "uid://dha7fplbdq8ij"
-target_transition_area = "LevelTransition2"
+position = Vector2(168, 24)
+level = "uid://uxt1oq0j6icp"
+target_transition_area = "LevelTransition3"
 size = 1
-side = 3
 
 [node name="LevelTransition2" parent="." instance=ExtResource("10_genna")]
-position = Vector2(-272, -1376)
-level = "uid://cxpyct50w8gyx"
-target_transition_area = "LevelTransition2"
+position = Vector2(64, -248)
+level = "uid://dpcx5gua37tnp"
 size = 1
+side = 2
 
 [node name="LockedDoor" parent="." instance=ExtResource("9_4wiko")]
 position = Vector2(-648, -528)

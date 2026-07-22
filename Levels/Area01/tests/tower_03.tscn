@@ -21,7 +21,7 @@ weather_layer_1 = 1
 weather_layer_2 = 2
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_d0r0y")]
-position = Vector2(280, -1080)
+position = Vector2(312, -1080)
 
 [node name="Tilemaps" type="Node2D" parent="."]
 modulate = Color(0.6261257, 0.6261257, 0.6261257, 1)
@@ -34,7 +34,7 @@ script = ExtResource("5_cx5p4")
 [node name="BrokenFloor" parent="Tilemaps" instance=ExtResource("6_5xaoy")]
 position = Vector2(328, -1056)
 broke_audio = ExtResource("7_v367w")
-level = "uid://dh0a7m8e7nll5"
+level = "uid://dl6wdyt645fjw"
 
 [node name="Weather" type="Node" parent="."]
 

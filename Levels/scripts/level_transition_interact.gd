@@ -37,10 +37,12 @@ func player_interact() -> void:
 	
 func _on_area_entered( _a: Area2D ) -> void:
 	PlayerManager.interact_pressed.connect( player_interact)
+	Messages.input_hint_changed.emit("interact")
 	pass
 	
 func _on_area_exited( _a: Area2D ) -> void:
 	PlayerManager.interact_pressed.disconnect( player_interact)
+	Messages.input_hint_changed.emit("")
 	pass	
 
 func _update_area() -> void:

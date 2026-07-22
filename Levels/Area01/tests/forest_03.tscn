@@ -78,7 +78,7 @@ size = Vector2(176, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anawp"]
 size = Vector2(532, 420)
 
-[node name="forest1" type="Node2D"]
+[node name="forest3" type="Node2D"]
 script = ExtResource("1_2esto")
 music = ExtResource("2_jgsv0")
 weather_active = true

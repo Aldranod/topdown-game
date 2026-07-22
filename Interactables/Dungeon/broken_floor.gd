@@ -19,19 +19,19 @@ func _ready() -> void:
 		$Sprite2D.visible = false	
 	
 func _player_entered( _p : Node2D) -> void:
-	if is_broken:
-		if PlayerManager.player.state_machine.current_state is State_Dash:
+	if PlayerManager.player.state_machine.current_state is State_Dash:
 			return
+	else:		
+		if is_broken:
+			LevelManager.load_new_level( level, target_transition_area, Vector2(0,460))	
 		else:
-			LevelManager.load_new_level( level, target_transition_area, Vector2.ZERO)	
-	else:
-		is_broken = true
-		is_broken_data.set_value()
-		audio.stream = broke_audio
-		$Sprite2D.visible = true
-		await get_tree().physics_frame
-		await get_tree().physics_frame
-		LevelManager.load_new_level( level, target_transition_area, Vector2.ZERO)			
+			is_broken = true
+			is_broken_data.set_value()
+			audio.stream = broke_audio
+			$Sprite2D.visible = true
+			await get_tree().physics_frame
+			await get_tree().physics_frame
+			LevelManager.load_new_level( level, target_transition_area, Vector2(0,460))			
 	pass
 	
 func set_state() -> void:

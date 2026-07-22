@@ -17,9 +17,11 @@ func _ready() -> void:
 	
 func _on_area_enter( _a : Area2D) -> void:
 	PlayerManager.interact_pressed.connect( open_door )
+	Messages.input_hint_changed.emit("interact")
 	
 func _on_area_exit( _a : Area2D) -> void:
 	PlayerManager.interact_pressed.disconnect( open_door )	
+	Messages.input_hint_changed.emit("")
 
 func open_door() -> void:
 	if key_item == null:

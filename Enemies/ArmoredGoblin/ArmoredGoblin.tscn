@@ -1319,12 +1319,11 @@ libraries = {
 
 [node name="VisionArea" parent="." instance=ExtResource("18_tsb3p")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
 position = Vector2(0, 4)
-polygon = PackedVector2Array(-112, -96, -2, -146, 103, -100, 135, -12, 167, 220, 95, 252, -1, 265, -97, 244, -161, 220, -137, -4)
+polygon = PackedVector2Array(-112, -96, -1, -132, 103, -100, 135, -12, 111, 124, -1, 148, -121, 116, -137, -4)
 
 [node name="PersistentDataHandler" parent="." instance=ExtResource("19_i564s")]
 

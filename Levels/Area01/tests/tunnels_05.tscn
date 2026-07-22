@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://csjh2gxavkcwd"]
+[gd_scene load_steps=16 format=4 uid="uid://csjh2gxavkcwd"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_0t1fh"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_5w53y"]
@@ -14,8 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://51holitkfpng" path="res://Enemies/Orc/Orc.tscn" id="12_lo07v"]
 [ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="13_md0xx"]
 [ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="14_gf6kt"]
+[ext_resource type="PackedScene" uid="uid://bb3jg2dmd2khe" path="res://Levels/level_transition_interact.tscn" id="15_5w53y"]
 
-[node name="tunnels3" type="Node2D"]
+[node name="tunnels5" type="Node2D"]
 script = ExtResource("1_0t1fh")
 music = ExtResource("2_5w53y")
 darkness = true
@@ -85,7 +86,7 @@ texture_scale = 1.3
 position = Vector2(-784, 1432)
 
 [node name="LevelTransition" parent="." instance=ExtResource("10_o4eeu")]
-position = Vector2(-944, -144)
+position = Vector2(-80, 1120)
 level = "uid://dha7fplbdq8ij"
 target_transition_area = "LevelTransition2"
 size = 1
@@ -130,6 +131,20 @@ position = Vector2(664, 624)
 [node name="ItemPickup2" parent="." instance=ExtResource("13_md0xx")]
 position = Vector2(27.338326, -72.898605)
 item_data = ExtResource("14_gf6kt")
+
+[node name="LevelTransitionInteract" parent="." instance=ExtResource("15_5w53y")]
+position = Vector2(-256, 1072)
+level = "uid://cthwthf8qa7mt"
+target_transition_area = "LevelTransitionInteract"
+size = 4
+side = 3
+
+[node name="LevelTransitionInteract2" parent="." instance=ExtResource("15_5w53y")]
+position = Vector2(912, 3032)
+level = "uid://cad42r81oka2x"
+target_transition_area = "LevelTransition2"
+size = 4
+side = 3
 
 [editable path="Props/TorchDungeon10"]
 [editable path="Props/TorchDungeon11"]

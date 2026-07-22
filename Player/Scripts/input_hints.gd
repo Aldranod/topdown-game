@@ -12,8 +12,8 @@ const HINT_MAP : Dictionary = {
 		"inv_open":4
 	},
 	"xbox" : {
-		"interact" :7,
-		"attack":5,
+		"interact" :8,
+		"attack":7,
 		"inv_open":17
 	}
 }

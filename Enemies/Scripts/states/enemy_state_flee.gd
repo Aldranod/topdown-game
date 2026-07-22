@@ -19,7 +19,6 @@ func init() -> void:
 	pass
 
 func enter() -> void:
-	$"../../../Goblin5/Label".text = "flee"
 	if not enemy.can_shoot:	
 		$"../../IndicatorSprite2D".visible = true
 		$"../../IndicatorSprite2D".play("fear")

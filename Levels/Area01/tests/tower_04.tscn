@@ -79,10 +79,10 @@ target_transition_area = "LevelTransition2"
 size = 1
 
 [node name="LevelTransition3" parent="." instance=ExtResource("15_rcydb")]
-position = Vector2(-32, -1112)
-level = "uid://cxpyct50w8gyx"
-target_transition_area = "LevelTransition2"
+position = Vector2(-80, -1112)
+level = "uid://dh0a7m8e7nll5"
 size = 1
+side = 1
 
 [node name="LevelTransitionInteract" parent="." instance=ExtResource("11_ab5ph")]
 position = Vector2(-232, -1088)

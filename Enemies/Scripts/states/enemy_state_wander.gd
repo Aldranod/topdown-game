@@ -22,8 +22,6 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
-	$"../../../Goblin5/Label".text = "wander"
-	print("wander")
 	_timer = randi_range(state_cycles_min, state_cycles_max) * state_animation_duration
 	var rand = randi_range(0, 3)
 	_direction = enemy.DIR_4[rand]

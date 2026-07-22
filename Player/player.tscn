@@ -3303,6 +3303,7 @@ position = Vector2(0, -56)
 script = ExtResource("46_6rl0i")
 
 [node name="Sprite2D" type="Sprite2D" parent="InputHints"]
+z_index = 25
 texture = ExtResource("46_1l10g")
 hframes = 18
 

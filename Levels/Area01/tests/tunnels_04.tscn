@@ -110,17 +110,22 @@ position = Vector2(936, -104)
 position = Vector2(680, -104)
 
 [node name="LevelTransition" parent="." instance=ExtResource("10_ddoss")]
-position = Vector2(-944, -144)
-level = "uid://dha7fplbdq8ij"
+position = Vector2(-224, 824)
+level = "uid://dh0a7m8e7nll5"
 target_transition_area = "LevelTransition2"
 size = 1
 side = 3
 
 [node name="LevelTransition2" parent="." instance=ExtResource("10_ddoss")]
-position = Vector2(-272, -1376)
-level = "uid://cxpyct50w8gyx"
+position = Vector2(-224, 400)
+level = "uid://dl6wdyt645fjw"
 target_transition_area = "LevelTransition2"
 size = 1
+side = 2
+
+[node name="LevelTransition3" parent="." instance=ExtResource("10_ddoss")]
+position = Vector2(-525.2317, 607.95264)
+level = "uid://cthwthf8qa7mt"
 
 [node name="LockedDoor" parent="." instance=ExtResource("11_o6ogf")]
 position = Vector2(-648, -528)

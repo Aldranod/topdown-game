@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvfmduy3x0nek"]
+[gd_scene load_steps=10 format=3 uid="uid://dvfmduy3x0nek"]
 
 [ext_resource type="Script" uid="uid://tm4v4nb82qjf" path="res://Interactables/arrow/arrow.gd" id="1_jckgg"]
 [ext_resource type="Script" uid="uid://dg6f4iuiibbl4" path="res://GeneralNodes/HurtBox/hurt_box.gd" id="2_s1x4m"]
@@ -19,6 +19,9 @@ height = 8
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1x4m"]
+size = Vector2(30, 8)
 
 [node name="WrathArrow" type="Node2D"]
 modulate = Color(8.123444, 8.123444, 8.123444, 1)
@@ -54,3 +57,10 @@ rect = Rect2(-29, -29, 59, 58)
 energy = 0.2
 texture = SubResource("GradientTexture2D_s1x4m")
 script = ExtResource("5_s1x4m")
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+shape = SubResource("RectangleShape2D_s1x4m")
