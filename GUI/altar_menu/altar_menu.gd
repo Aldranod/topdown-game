@@ -65,6 +65,7 @@ func grant_power() -> void:
 		print("bow upgraded")
 	if _power == "Dash_upgrade":
 		print("dash upgraded")
-	used_altar_node.altar_used()	
+	used_altar_node.altar_used()
+	SaveManager.save_player_stats()	
 	await get_tree().create_timer(1).timeout
 	hide_menu()	

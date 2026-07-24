@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dblbbgc4ygpae"]
+[gd_scene load_steps=23 format=4 uid="uid://dblbbgc4ygpae"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_rk241"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_qyg45"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="14_tdcfa"]
 [ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="15_hb77o"]
 [ext_resource type="PackedScene" uid="uid://b16rkodjr3v2a" path="res://GeneralNodes/Abyss/abyss.tscn" id="16_qyg45"]
+[ext_resource type="PackedScene" uid="uid://cig22x276n8km" path="res://Props/torches/wall_torch.tscn" id="18_c6flb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bqv45"]
 light_mode = 1
@@ -297,6 +298,12 @@ collision_layer = 128
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Abyss/Abyss50"]
 polygon = PackedVector2Array(144, 64, 208, 64, 208, 96, 176, 96, 176, 128, 144, 128)
+
+[node name="WallTorch" parent="." instance=ExtResource("18_c6flb")]
+position = Vector2(-480.00003, 488.00003)
+
+[node name="WallTorch2" parent="." instance=ExtResource("18_c6flb")]
+position = Vector2(32, 488)
 
 [editable path="Props/TorchDungeon10"]
 [editable path="Props/TorchDungeon12"]

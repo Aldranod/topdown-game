@@ -151,4 +151,30 @@ func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, sc
 	})
 	
 func get_corpses() -> Array:
-	return current_save.corpses		
+	return current_save.corpses
+
+func save_items() -> void:
+	var p : Player = PlayerManager.player
+	update_item_data()
+	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE)
+	var save_json = JSON.stringify( current_save )
+	file.store_line( save_json)
+	game_saved.emit()
+	pass			
+
+func save_player_stats() -> void:
+	var p : Player = PlayerManager.player
+	current_save.player.hp = p.hp
+	current_save.player.max_hp = p.max_hp
+	current_save.player.level = p.level
+	current_save.player.xp = p.xp
+	current_save.player.attack = p.attack
+	current_save.player.defense = p.defense
+	current_save.player.arrow_count = p.arrow_count
+	current_save.player.bomb_count = p.bomb_count
+	current_save.abilities = p.player_abilities.abilities
+	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE)
+	var save_json = JSON.stringify( current_save )
+	file.store_line( save_json)
+	game_saved.emit()
+	pass

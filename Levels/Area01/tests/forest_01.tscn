@@ -118,6 +118,12 @@ lifetime = 2.0
 visibility_rect = Rect2(-5000, -800, 10000, 5000)
 process_material = ExtResource("47_0qav8")
 
+[node name="Particles2" type="GPUParticles2D" parent="Weather"]
+position = Vector2(51.031616, -1056.5837)
+lifetime = 2.0
+visibility_rect = Rect2(-5000, -800, 10000, 5000)
+process_material = ExtResource("47_0qav8")
+
 [node name="Parallax2D" type="Parallax2D" parent="Weather"]
 scroll_scale = Vector2(1.2, 1)
 repeat_size = Vector2(480, 270)
@@ -317,6 +323,7 @@ libraries = {
 y_sort_enabled = true
 
 [node name="Secret" type="Node2D" parent="Props"]
+visible = false
 modulate = Color(0.75686276, 0.75686276, 0.75686276, 1)
 y_sort_enabled = true
 position = Vector2(544, -752)
@@ -2971,7 +2978,7 @@ shape = SubResource("RectangleShape2D_0pkd0")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 
 [node name="GoblinAmbush9" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(632, -960)
+position = Vector2(632, -968)
 hp = 3
 in_ambush = true
 
@@ -3004,7 +3011,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border3"]
 position = Vector2(992, -40)
-polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -392, -600, -392, -600, -440, -592, -440, -552, -392, -544, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -248, -408, -232, -424, -224, -432, -208, -432, -192, -413.7413, -186.25871, -448, -152, -400, -32, -424, 136, -352, 248, -224, 224, -144, 184, -72, 272, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 496, 560, 680, 480, 680, 216, 896, 864, 424, 848, 128, 848, -528, 752)
+polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -392, -600, -392, -600, -440, -592, -440, -552, -392, -544, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -248, -408, -232, -424, -224, -432, -208, -432, -192, -413.7413, -186.25871, -448, -152, -400, -32, -416, 64, -424, 136, -400, 200, -352, 248, -224, 224, -144, 184, -72, 272, -24, 304, -16, 360, 8, 400, 56, 376, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 480, 552, 496, 560, 536, 568, 568, 544, 632, 528, 680, 480, 704, 392, 680, 216, 896, 864, 424, 848, 128, 848, -528, 752)
 
 [node name="Border4" type="StaticBody2D" parent="Borders"]
 z_index = 2

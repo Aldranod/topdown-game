@@ -19,18 +19,21 @@ func equipment_slots() -> Array[SlotData]:
 func add_item( item : ItemData, count : int = 1) -> bool:
 	if item is AbilityItemData:
 		ability_acquired.emit( item)
+		SaveManager.save_items()
 		return true
 	
 	if item is EquipableItemData:		
 		var equipable_item: EquipableItemData = item as EquipableItemData
 		# Check if it's a weapon type
 		if equipable_item.type == EquipableItemData.Type.WEAPON:
+			SaveManager.save_items()
 			return auto_equip_weapon(equipable_item)
 		
 	for s in slots:
 		if s:
 			if s.item_data == item:
 				s.quantity += count
+				SaveManager.save_items()
 				return true
 				
 	for i in inventory_slots().size():
@@ -40,9 +43,11 @@ func add_item( item : ItemData, count : int = 1) -> bool:
 			new.quantity = count
 			slots[i] = new
 			new.changed.connect(slot_changed)
+			SaveManager.save_items()
 			return true
 					
 	print ("inv was full!")
+	
 	return false
 
 #func remove_item(item : ItemData, count : int = 1) -> void:

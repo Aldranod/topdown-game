@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://biebhe2lfcaeg"]
+[gd_scene load_steps=13 format=4 uid="uid://biebhe2lfcaeg"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_ac5cj"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_hlnhr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://dw3pvqlslsmp0" path="res://GeneralNodes/HeavyRain.tres" id="7_xgmmy"]
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="8_x2cms"]
 [ext_resource type="PackedScene" uid="uid://dsqvx0e8msa5u" path="res://Props/pot/Pot.tscn" id="9_v4e81"]
+[ext_resource type="PackedScene" uid="uid://cig22x276n8km" path="res://Props/torches/wall_torch.tscn" id="10_v4e81"]
 [ext_resource type="PackedScene" uid="uid://5ykiwb1tejk0" path="res://Interactables/shopkeeper/shopkeeper.tscn" id="11_7hdsl"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="15_qouio"]
 
@@ -70,6 +71,9 @@ position = Vector2(-136, -1408)
 
 [node name="Pot3" parent="Props" instance=ExtResource("9_v4e81")]
 position = Vector2(-290.40442, -1153.2665)
+
+[node name="WallTorch" parent="Props" instance=ExtResource("10_v4e81")]
+position = Vector2(-251.34563, -1172.3606)
 
 [node name="LevelTransition" parent="." instance=ExtResource("15_qouio")]
 position = Vector2(-120, -1088)
