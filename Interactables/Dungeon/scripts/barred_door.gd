@@ -12,3 +12,8 @@ func open_door() -> void:
 func close_door() ->void:
 	animation_player.play("close_door")
 	pass		
+
+func open() -> void:
+	$StaticBody2D/CollisionShape2D.disabled = true
+	$Sprite2D.frame = 5
+	pass

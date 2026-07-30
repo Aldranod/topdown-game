@@ -34,7 +34,6 @@ script = ExtResource("5_xfvmo")
 [node name="Weather" type="Node" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Weather"]
-visible = false
 color = Color(0.20784314, 0.20784314, 0.24705882, 1)
 
 [node name="WeatherManager" parent="Weather" node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("6_qq3aj")]

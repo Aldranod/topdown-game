@@ -18,8 +18,8 @@ shader = ExtResource("5_10tsg")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bmnw"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_djs60"]
-size = Vector2(24, 14.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_pb38e"]
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_2bmnw"]
 length = 0.001
@@ -261,7 +261,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k5ael"]
-radius = 14.0
+radius = 7.0
 
 [node name="ThornyBush" type="Node2D" groups=["breakables"]]
 modulate = Color(0.8359375, 0.8359375, 0.8359375, 1)
@@ -294,7 +294,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 8.75)
-shape = SubResource("RectangleShape2D_djs60")
+shape = SubResource("CircleShape2D_pb38e")
 
 [node name="IsChoped" parent="." instance=ExtResource("9_mf3we")]
 

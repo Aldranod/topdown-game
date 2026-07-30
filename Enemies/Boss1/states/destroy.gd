@@ -21,6 +21,10 @@ func init() -> void:
 	pass
 	
 func enter() -> void:
+	$"../../../../Props/BarredDoor9".open_door()
+	$"../../../../Props/BarredDoor4".open_door()
+	if not SaveManager.check_persistent_value("res://Levels/Area01/tests/boss_01.tscn/BossLock/PersistentDataHandler"):
+			SaveManager.add_persistent_value("res://Levels/Area01/tests/boss_01.tscn/BossLock/PersistentDataHandler")	
 	$"../../Label".text = "destroy"
 	$"../../Sprite2D/AttackHurtBox".monitoring = false
 	enemy.clear_collisions()

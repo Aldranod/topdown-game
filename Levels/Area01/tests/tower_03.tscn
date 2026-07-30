@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cxpyct50w8gyx"]
+[gd_scene load_steps=15 format=4 uid="uid://cxpyct50w8gyx"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_27y4s"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_ncchv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="8_7xttw"]
 [ext_resource type="PackedScene" uid="uid://dsqvx0e8msa5u" path="res://Props/pot/Pot.tscn" id="9_suagi"]
 [ext_resource type="PackedScene" uid="uid://rka0fnqpei3e" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="10_q8piy"]
+[ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="13_v367w"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="15_jq3rf"]
 
 [node name="tower3" type="Node2D"]
@@ -84,6 +85,7 @@ position = Vector2(280, -1168)
 
 [node name="Treasure-chest" parent="Props" instance=ExtResource("10_q8piy")]
 position = Vector2(432, -1144)
+item_data = ExtResource("13_v367w")
 
 [node name="LevelTransition" parent="." instance=ExtResource("15_jq3rf")]
 position = Vector2(248, -1088)

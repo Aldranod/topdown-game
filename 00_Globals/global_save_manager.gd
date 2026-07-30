@@ -29,7 +29,8 @@ var current_save : Dictionary = {
 	],
 	abilities = [ "","","",""],
 	corpses = [],
-	dash = true
+	dash = true,
+	doors =[]
 }
 
 func save_game() -> void:
@@ -119,6 +120,10 @@ func update_time_data() -> void:
 func add_persistent_value( value :String) -> void:
 	if check_persistent_value(value) == false:
 		current_save.persistence.append(value)
+		var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE)
+		var save_json = JSON.stringify( current_save )
+		file.store_line( save_json)
+		game_saved.emit()
 	pass
 
 func remove_persistent_value( value :String) -> void:
@@ -154,7 +159,6 @@ func get_corpses() -> Array:
 	return current_save.corpses
 
 func save_items() -> void:
-	var p : Player = PlayerManager.player
 	update_item_data()
 	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE)
 	var save_json = JSON.stringify( current_save )

@@ -409,30 +409,25 @@ y_sort_enabled = true
 
 [node name="Borders" type="Node2D" parent="."]
 
-[node name="Border2" type="StaticBody2D" parent="Borders"]
-position = Vector2(2280, 592)
-collision_layer = 16
-collision_mask = 0
-
 [node name="Border9" type="StaticBody2D" parent="Borders"]
 z_index = 2
-position = Vector2(2768, -976)
+position = Vector2(431.35883, -1095.6829)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border9"]
-position = Vector2(-16, -8)
-polygon = PackedVector2Array(-1216, -112, -1072, -72, -1216, 152, -1240, 88, -1232, 48, -1232, 0, -1240.3926, -22.380112, -1184, -64, -1216, -88, -1256, -80, -1240, -96)
+position = Vector2(1312.6411, 15.682861)
+polygon = PackedVector2Array(-1216, -96, -1184, -96, -1152, -128, -1120, -88, -1072, -72, -1216, 152, -1400, 40, -1384, 0, -1352, -8, -1336, -24, -1304, -64, -1272, -80, -1248, -104)
 
 [node name="Border5" type="StaticBody2D" parent="Borders"]
 z_index = 2
-position = Vector2(1456, -688)
+position = Vector2(548.42175, -1385.9453)
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border5"]
-position = Vector2(-16, -8)
-polygon = PackedVector2Array(-1176, 8, -1160, -8, -1144, -32, -1120, -40, -1096, -64, -1072, -72, -1008, -24, -992, 16, -1016, 48, -1024, 80, -1048, 80, -1064, 96, -1080, 120, -1096, 88, -1120, 80, -1136, 80, -1144, 48)
+position = Vector2(1075.5782, -6.0546875)
+polygon = PackedVector2Array(-1200, 56, -1208, -16, -1008, -24, -992, 16, -984, 40, -992, 56, -1008, 104, -1016, 112, -1032, 112, -1048, 112, -1064, 144, -1080, 144, -1096, 112, -1112, 112, -1128, 112, -1136, 88, -1144, 88, -1152, 88, -1152, 56, -1168, 48, -1184, 56)
 
 [node name="Border7" type="StaticBody2D" parent="Borders"]
 z_index = 2
@@ -452,7 +447,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border8"]
 position = Vector2(-16, -32)
-polygon = PackedVector2Array(-1248, 64, -1288, 0, -1280, -32, -1008, -24, -992, 16, -1016, 48, -1024, 80, -1048, 80, -1064, 96, -1080, 120, -1096, 88, -1112, 80, -1120, 80, -1136, 80, -1152, 64, -1176, 64, -1200, 104, -1216, 72, -1232, 64)
+polygon = PackedVector2Array(-1248, 64, -1288, 0, -1280, -32, -1200, -80, -1184, -88, -1176, -136, -1104, -200, -1008, -24, -992, 16, -1016, 48, -1024, 80, -1048, 80, -1064, 96, -1080, 120, -1096, 88, -1112, 80, -1120, 80, -1136, 80, -1152, 64, -1176, 64, -1200, 104, -1216, 72, -1232, 64)
 
 [node name="Border12" type="StaticBody2D" parent="Borders"]
 z_index = 2
@@ -482,6 +477,7 @@ texture = ExtResource("12_t6gsv")
 offset = Vector2(0, 256)
 
 [node name="CameraLimiter2" parent="." instance=ExtResource("29_6qcav")]
+visible = false
 position = Vector2(648, -1336)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimiter2"]

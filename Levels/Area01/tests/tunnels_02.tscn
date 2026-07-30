@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dl6wdyt645fjw"]
+[gd_scene load_steps=24 format=4 uid="uid://dl6wdyt645fjw"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_0ednd"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_74j5e"]
@@ -9,12 +9,22 @@
 [ext_resource type="Material" uid="uid://cojt5cg1xjofv" path="res://GeneralNodes/Fog.tres" id="7_f8lri"]
 [ext_resource type="PackedScene" uid="uid://b030xyafiqs7n" path="res://Props/torches/torch_dungeon.tscn" id="8_218nq"]
 [ext_resource type="PackedScene" uid="uid://cmtv281o7w0ch" path="res://Interactables/Dungeon/barred_door.tscn" id="9_31n8o"]
+[ext_resource type="PackedScene" uid="uid://cig22x276n8km" path="res://Props/torches/wall_torch.tscn" id="10_218nq"]
 [ext_resource type="PackedScene" uid="uid://bb0ycm44mxofe" path="res://Levels/level_transition.tscn" id="10_f6nyo"]
 [ext_resource type="PackedScene" uid="uid://bntcx48x68r7i" path="res://Interactables/Dungeon/locked_door.tscn" id="11_c25ro"]
 [ext_resource type="PackedScene" uid="uid://ca3g6qw0kscv1" path="res://Enemies/Goblin/Goblin.tscn" id="12_2yhfj"]
 [ext_resource type="PackedScene" uid="uid://dm0xqp572cxo5" path="res://Enemies/ArmoredGoblin/ArmoredGoblin.tscn" id="13_mu4sx"]
 [ext_resource type="PackedScene" uid="uid://cg2bbqxjj76ei" path="res://items/item_pickup/item_pickup.tscn" id="14_q6lpk"]
 [ext_resource type="Resource" uid="uid://buds5k3chctuo" path="res://items/w_iron_sword.tres" id="15_lgqmw"]
+[ext_resource type="Resource" uid="uid://dj1cs88hk13yv" path="res://items/hunters_key.tres" id="17_f8lri"]
+[ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="17_w1h5b"]
+[ext_resource type="Script" uid="uid://tclwj6e5qemx" path="res://Levels/Area01/tests/prison_gates.gd" id="18_218nq"]
+[ext_resource type="Script" uid="uid://doa5j8sxy5b7q" path="res://Interactables/dialog/scripts/dialog_text.gd" id="18_c4dly"]
+[ext_resource type="Resource" uid="uid://b465fltph6hko" path="res://npc/shopkeeper.tres" id="19_f8lri"]
+[ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="20_c4dly"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ednd"]
+radius = 35.0
 
 [node name="tunnels2" type="Node2D"]
 script = ExtResource("1_0ednd")
@@ -24,7 +34,7 @@ weather_layer_1 = 1
 weather_layer_2 = 2
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_7augp")]
-position = Vector2(117.17688, -66.89746)
+position = Vector2(120, 248)
 
 [node name="Tilemaps" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -113,6 +123,12 @@ position = Vector2(-112, 152)
 [node name="BarredDoor9" parent="Props" instance=ExtResource("9_31n8o")]
 position = Vector2(680, -104)
 
+[node name="WallTorch" parent="Props" instance=ExtResource("10_218nq")]
+position = Vector2(-280.00003, -128)
+
+[node name="WallTorch2" parent="Props" instance=ExtResource("10_218nq")]
+position = Vector2(287.99997, -120)
+
 [node name="LevelTransition" parent="." instance=ExtResource("10_f6nyo")]
 position = Vector2(120, -528)
 level = "uid://dha7fplbdq8ij"
@@ -152,40 +168,91 @@ text = "Revenangt have to retrieve artifact
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-1264, 0)
 
 [node name="Goblin" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(880, -320)
+position = Vector2(-384, -240)
 
 [node name="Goblin7" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(880, -272)
+position = Vector2(-384, -192)
 
 [node name="Goblin4" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(1145.0107, -330.8554)
+position = Vector2(-136, -64)
 
 [node name="Goblin5" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(1145.0107, 183.60602)
+position = Vector2(-128, 64)
 
 [node name="Goblin2" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(1896, -304)
+position = Vector2(632, -304)
 
 [node name="Goblin6" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(1663.3696, 191.40088)
+position = Vector2(384, -32)
 
 [node name="Goblin3" parent="Enemies" instance=ExtResource("12_2yhfj")]
-position = Vector2(1920, 208)
+position = Vector2(648, -32)
 
 [node name="ArmoredGoblin" parent="Enemies" instance=ExtResource("13_mu4sx")]
-position = Vector2(1914.7542, -328.90668)
+position = Vector2(648, -192)
 
 [node name="ArmoredGoblin3" parent="Enemies" instance=ExtResource("13_mu4sx")]
-position = Vector2(1897.2157, 187.50348)
+position = Vector2(640, 40)
 
 [node name="ArmoredGoblin2" parent="Enemies" instance=ExtResource("13_mu4sx")]
-position = Vector2(879.9851, 191.40088)
+position = Vector2(-384, 32)
 
 [node name="ItemPickup2" parent="." instance=ExtResource("14_q6lpk")]
 position = Vector2(15.752258, -64.578156)
 item_data = ExtResource("15_lgqmw")
+
+[node name="ItemPickup" parent="." instance=ExtResource("14_q6lpk")]
+position = Vector2(216, -67.40777)
+item_data = ExtResource("17_f8lri")
+respawnable = false
+
+[node name="ItemPickup3" parent="." instance=ExtResource("14_q6lpk")]
+position = Vector2(149.92685, 256)
+item_data = ExtResource("17_f8lri")
+respawnable = false
+
+[node name="PrisonGates" type="Area2D" parent="."]
+position = Vector2(128, -24)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("18_218nq")
+key_item = ExtResource("17_f8lri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrisonGates"]
+shape = SubResource("CircleShape2D_0ednd")
+
+[node name="DialogInteraction" parent="PrisonGates" instance=ExtResource("17_w1h5b")]
+position = Vector2(1160, 584)
+
+[node name="DialogText" type="Node" parent="PrisonGates/DialogInteraction"]
+script = ExtResource("18_c4dly")
+text = "Doors are locked"
+npc_info = ExtResource("19_f8lri")
+metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
+
+[node name="PersistentDataHandler" parent="PrisonGates" instance=ExtResource("20_c4dly")]
+
+[node name="PrisonGates2" type="Area2D" parent="."]
+position = Vector2(128, 144)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("18_218nq")
+key_item = ExtResource("17_f8lri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrisonGates2"]
+shape = SubResource("CircleShape2D_0ednd")
+
+[node name="DialogInteraction" parent="PrisonGates2" instance=ExtResource("17_w1h5b")]
+position = Vector2(1160, 432)
+
+[node name="DialogText" type="Node" parent="PrisonGates2/DialogInteraction"]
+script = ExtResource("18_c4dly")
+text = "Doors are locked"
+npc_info = ExtResource("19_f8lri")
+metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
+
+[node name="PersistentDataHandler" parent="PrisonGates2" instance=ExtResource("20_c4dly")]
 
 [editable path="Props/TorchDungeon10"]

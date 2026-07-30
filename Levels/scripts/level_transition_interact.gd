@@ -8,6 +8,9 @@ signal level_transitioned
 @export var open_audio : AudioStream
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var is_open_data: PersistentDataHandler = $PersistentDataHandler
+@onready var label_animation_player: AnimationPlayer = $Label/LabelAnimationPlayer
+@export var interaction_text : bool = false
+@export var message : String = ""
 
 func _ready() -> void:
 	super()
@@ -26,12 +29,17 @@ func player_interact() -> void:
 		var door_unlocked = PlayerManager.INVENTORY_DATA.use_item( key_item)
 		if door_unlocked:
 			audio.stream = open_audio
+			audio.play()
+			await get_tree().create_timer(0.5).timeout
 			is_open_data.set_value()
 			set_state()
 			level_transitioned.emit()
 			_player_entered(PlayerManager.player)
 		else:
-			audio.stream = locked_audio	
+			audio.stream = locked_audio
+			if interaction_text:
+				$Label.text = message
+				label_animation_player.play("locked")	
 		audio.play()		
 	pass	
 	
@@ -51,3 +59,4 @@ func _update_area() -> void:
 
 func set_state() -> void:
 	is_open = is_open_data.value
+	
