@@ -21,15 +21,15 @@ var target_transition : String
 var position_offset : Vector2
 
 func _ready() -> void:
-	time = INGAME_TO_REAL_MINUTE_DURATION * INITIAL_HOUR * MINUTES_PER_HOUR
+	#time = INGAME_TO_REAL_MINUTE_DURATION * INITIAL_HOUR * MINUTES_PER_HOUR
 	await get_tree().process_frame
 	level_loaded.emit()
 
-func _process(delta: float) -> void:
-	time += delta * INGAME_TO_REAL_MINUTE_DURATION * INGAME_SPEED
-	var value =(sin(time - PI /2) + 1.0) / 2.0
-	_recalculate_time()
-	pass
+#func _process(delta: float) -> void:
+	##time += delta * INGAME_TO_REAL_MINUTE_DURATION * INGAME_SPEED
+	##var value =(sin(time - PI /2) + 1.0) / 2.0
+	##_recalculate_time()
+	#pass
 
 func ChangeTilemapBounds(bounds: Array[ Vector2]) -> void:
 	current_tilemap_bounds = bounds
@@ -56,14 +56,14 @@ func load_new_level(
 	
 	pass
 
-func _recalculate_time() -> void:
-	var total_minutes = int(time / INGAME_TO_REAL_MINUTE_DURATION)
-	var current_day_minutes = total_minutes % MINUTES_PER_DAY
-	var hour = int(current_day_minutes / MINUTES_PER_HOUR)
-	var minute = int(current_day_minutes % MINUTES_PER_HOUR)
-	
-	#if past_minute != minute:
-		#past_minute = minute
-		#time_tick.emit(time)
-	time_tick.emit(time)	
-	pass
+#func _recalculate_time() -> void:
+	#var total_minutes = int(time / INGAME_TO_REAL_MINUTE_DURATION)
+	#var current_day_minutes = total_minutes % MINUTES_PER_DAY
+	#var hour = int(current_day_minutes / MINUTES_PER_HOUR)
+	#var minute = int(current_day_minutes % MINUTES_PER_HOUR)
+	#
+	##if past_minute != minute:
+		##past_minute = minute
+		##time_tick.emit(time)
+	#time_tick.emit(time)	
+	#pass

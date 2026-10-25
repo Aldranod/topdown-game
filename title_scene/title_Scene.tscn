@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4uyba845je8m"]
+[gd_scene load_steps=14 format=3 uid="uid://4uyba845je8m"]
 
 [ext_resource type="PackedScene" uid="uid://c8xmjm2nd64cw" path="res://Tile Maps/dungeon_small.tscn" id="1_ljakt"]
 [ext_resource type="Script" uid="uid://dfs8p8hmoov41" path="res://title_scene/title_scene.gd" id="1_n7msw"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://danm6guxr83il" path="res://title_scene/audio/menu_select.wav" id="4_ikr7a"]
 [ext_resource type="PackedScene" uid="uid://6c813gpotmec" path="res://Levels/player_spawn.tscn" id="5_fvjit"]
 [ext_resource type="PackedScene" uid="uid://ds2s6jmjqwrcs" path="res://title_scene/splash_scene.tscn" id="8_05l2a"]
+[ext_resource type="FontFile" uid="uid://blofs77f4laor" path="res://GUI/fonts/Abaddon Bold.ttf" id="8_ikr7a"]
 
 [sub_resource type="Animation" id="Animation_fvjit"]
 length = 0.001
@@ -112,6 +113,7 @@ offset_right = 68.0
 offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_ikr7a")
 text = "new game"
 
 [node name="ButtonContinue" type="Button" parent="CanvasLayer/Control"]
@@ -127,11 +129,13 @@ offset_right = 68.0
 offset_bottom = 113.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_ikr7a")
 text = "continue"
 
 [node name="SplashScene" parent="CanvasLayer" instance=ExtResource("8_05l2a")]
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("5_fvjit")]
+visible = false
 position = Vector2(240, 146)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

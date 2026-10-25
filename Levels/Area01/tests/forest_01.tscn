@@ -2429,11 +2429,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(761.5174, -96.15188)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(761.5174, -96.15188)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
