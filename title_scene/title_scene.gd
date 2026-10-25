@@ -35,7 +35,8 @@ func setup_title_screen() -> void:
 	
 func start_game() -> void:
 	play_audio( button_press_audio)
-	LevelManager.load_new_level(START_LEVEL,"",Vector2(811,921))
+	PlayerManager.player_spawned = false
+	LevelManager.load_new_level(START_LEVEL,"",Vector2.ZERO)
 	pass	
 
 func load_game() -> void:
