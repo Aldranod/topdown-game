@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://v3xwh0qtjood"]
+[gd_scene load_steps=56 format=3 uid="uid://v3xwh0qtjood"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_c7k5x"]
 [ext_resource type="PackedScene" uid="uid://dui72kxccwlch" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="2_mra66"]
@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://buwbann6wdy5k" path="res://00_Globals/global_effects/hit_particle_settings/goblin_blood_particles.tres" id="18_bpyhw"]
 [ext_resource type="Script" uid="uid://m5a15tuova7g" path="res://Enemies/Scripts/states/enemy_state_destroyed.gd" id="19_7lby1"]
 [ext_resource type="Script" uid="uid://c5sraeeen4dul" path="res://Enemies/Scripts/drop_data.gd" id="20_brp1v"]
-[ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="21_dmmea"]
 [ext_resource type="Resource" uid="uid://dh7avm20vuttc" path="res://items/gem.tres" id="22_pa0ux"]
 [ext_resource type="Script" uid="uid://c6b0exbgipcpy" path="res://Enemies/Scripts/states/enemy_state_chase.gd" id="23_tvmv7"]
 [ext_resource type="Script" uid="uid://cyil36i3fmjtj" path="res://Enemies/Scripts/states/enemy_state_attack.gd" id="24_h2y5j"]
@@ -1059,16 +1058,15 @@ _data = {
 &"walk_up": SubResource("Animation_jlwhn")
 }
 
-[sub_resource type="Resource" id="Resource_yynal"]
-script = ExtResource("20_brp1v")
-item = ExtResource("21_dmmea")
-probability = 33.0
-metadata/_custom_type_script = "uid://c5sraeeen4dul"
-
 [sub_resource type="Resource" id="Resource_67htc"]
 script = ExtResource("20_brp1v")
 item = ExtResource("22_pa0ux")
-max_amount = 3
+metadata/_custom_type_script = "uid://c5sraeeen4dul"
+
+[sub_resource type="Resource" id="Resource_bfutf"]
+script = ExtResource("20_brp1v")
+item = ExtResource("22_pa0ux")
+probability = 50.0
 metadata/_custom_type_script = "uid://c5sraeeen4dul"
 
 [sub_resource type="Animation" id="Animation_yynal"]
@@ -1212,7 +1210,7 @@ flee_state = NodePath("../Flee")
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("19_7lby1")
 particle_settings = ExtResource("18_bpyhw")
-drops = Array[ExtResource("20_brp1v")]([SubResource("Resource_yynal"), SubResource("Resource_67htc")])
+drops = Array[ExtResource("20_brp1v")]([SubResource("Resource_67htc"), SubResource("Resource_bfutf")])
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state") groups=["enemies"]]
 script = ExtResource("23_tvmv7")

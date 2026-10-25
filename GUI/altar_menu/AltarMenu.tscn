@@ -53,7 +53,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_owg56")
 
 [node name="PanelContainer" type="PanelContainer" parent="AltarMenu"]
-self_modulate = Color(1, 1, 1, 0.56078434)
+self_modulate = Color(1, 1, 1, 0.23529412)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

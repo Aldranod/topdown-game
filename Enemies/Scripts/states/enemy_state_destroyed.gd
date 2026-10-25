@@ -69,6 +69,7 @@ func drop_items() -> void:
 			drop.item_data = drops[i].item
 			enemy.get_parent().call_deferred("add_child", drop)
 			drop.global_position = enemy.global_position
+			drop.scale = Vector2(0.5,0.5)
 			drop.velocity = enemy.velocity.rotated(randf_range(-1.5, 1.5)) * randf_range(0.9, 1.5)
 	pass		
 			

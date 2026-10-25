@@ -72,7 +72,6 @@ script = null
 [node name="Weather" type="Node" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Weather"]
-visible = false
 color = Color(0.14459325, 0.14459325, 0.171875, 1)
 
 [node name="WeatherManager" parent="Weather" node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("5_yn84t")]

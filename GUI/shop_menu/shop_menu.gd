@@ -7,7 +7,7 @@ const MENU_FOCUS = preload("res://title_scene/audio/menu_focus.wav")
 const MENU_SELECT = preload("res://title_scene/audio/menu_select.wav")
 const SHOP_ITEM_BUTTON = preload("res://GUI/shop_menu/shop_item_button.tscn")
 
-var currency : ItemData = preload("res://items/gem.tres")
+var currency : ItemData = preload("res://items/coin.tres")
 
 signal shown
 signal hidden
@@ -16,7 +16,7 @@ var is_active : bool = false
 @onready var close_button: Button = %CloseButton
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var shop_items_container: VBoxContainer = %ShopItemsContainer
-@onready var gems_label: Label = %GemsLabel
+@onready var coins_label: Label = %CoinsLabel
 @onready var gems_animation_player: AnimationPlayer = $Control/PanelContainer/AnimationPlayer
 
 @onready var item_image: TextureRect = %ItemImage
@@ -45,7 +45,7 @@ func show_menu( items : Array[ItemData],dialog_triggered : bool = true) -> void:
 		await DialogSystem.finished
 	enable_menu()
 	populate_item_list(items)
-	update_gems()
+	update_coins()
 	shop_items_container.get_child(0).grab_focus()
 	play_audio(OPEN_SHOP)
 	shown.emit()
@@ -62,8 +62,8 @@ func enable_menu( _enabled : bool = true) -> void:
 	visible = _enabled
 	is_active = _enabled
 
-func update_gems() -> void:
-	gems_label.text = str(get_item_quantity(currency))
+func update_coins() -> void:
+	coins_label.text = str(get_item_quantity(currency))
 	pass
 	
 func get_item_quantity(item : ItemData) -> int:
@@ -110,7 +110,7 @@ func purchase_item( item : ItemData) -> void:
 		var inv : InventoryData = PlayerManager.INVENTORY_DATA
 		inv.add_item(item)
 		inv.use_item(currency, item.cost)
-		update_gems()
+		update_coins()
 		update_item_details(item)
 		pass
 	else:

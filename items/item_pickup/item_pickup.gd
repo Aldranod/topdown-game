@@ -10,6 +10,7 @@ signal picked_up
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var count_label: Label = %CountLabel
 @onready var persistent_data_handler: PersistentDataHandler = $PersistentDataHandler
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -24,6 +25,7 @@ func _ready() -> void:
 	_update_count_label()
 	$Area2D/CollisionShape2D.set_deferred("disabled",false)
 	area_2d.body_entered.connect(_on_body_entered)
+	animation_player.play("bounce")
 	
 func _physics_process(delta: float) -> void:
 	var collision_info = move_and_collide( velocity * delta)

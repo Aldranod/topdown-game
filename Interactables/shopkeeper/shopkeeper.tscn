@@ -1,18 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://5ykiwb1tejk0"]
+[gd_scene load_steps=18 format=3 uid="uid://5ykiwb1tejk0"]
 
 [ext_resource type="Script" uid="uid://bvjnoh4d2jilx" path="res://Interactables/shopkeeper/shopkeeper.gd" id="1_c7uoq"]
 [ext_resource type="PackedScene" uid="uid://cjmtuh5qbw2pw" path="res://npc/npc.tscn" id="2_f4o7l"]
+[ext_resource type="Script" uid="uid://q0abgt6p5r78" path="res://items/scripts/item_data.gd" id="2_qrm3n"]
+[ext_resource type="Resource" uid="uid://crafpf80i76yj" path="res://items/magical_flute.tres" id="3_cyuks"]
 [ext_resource type="Resource" uid="uid://b465fltph6hko" path="res://npc/shopkeeper.tres" id="3_f4o7l"]
+[ext_resource type="Resource" uid="uid://bpl1xyctq3ye4" path="res://items/bomb.tres" id="4_w5t0x"]
 [ext_resource type="Texture2D" uid="uid://bewg4l012arc2" path="res://Interactables/dialog/sprites/dialog_interactable.png" id="5_l65jf"]
 [ext_resource type="Script" uid="uid://doa5j8sxy5b7q" path="res://Interactables/dialog/scripts/dialog_text.gd" id="5_rm5k1"]
 [ext_resource type="Script" uid="uid://fshksdm1ixai" path="res://Interactables/dialog/scripts/dialog_choice.gd" id="6_l65jf"]
 [ext_resource type="Script" uid="uid://c5uj5hel8n7vv" path="res://Interactables/dialog/scripts/dialog_branch.gd" id="7_cap4d"]
-[ext_resource type="Resource" uid="uid://cggy6yuevygk6" path="res://npc/00_npcs/00_hero.tres" id="9_l65jf"]
-[ext_resource type="PackedScene" uid="uid://dfao1r52i6rrt" path="res://quests/utility_nodes/quest_activated_switch.tscn" id="10_cap4d"]
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="10_w5t0x"]
-[ext_resource type="Resource" uid="uid://ditbdn2uxoskb" path="res://quests/abandoned_temple.tres" id="11_qrm3n"]
-[ext_resource type="Script" uid="uid://dqo11wbbbowm3" path="res://quests/utility_nodes/quest_advance_trigger.gd" id="12_cyuks"]
-[ext_resource type="Resource" uid="uid://co6pgaqxncolt" path="res://quests/kill_greenskins.tres" id="14_x0jcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w4e83"]
 size = Vector2(44, 50)
@@ -137,291 +135,10 @@ _data = {
 
 [node name="Shopkeeper" type="Node2D"]
 script = ExtResource("1_c7uoq")
+shop_inventory = Array[ExtResource("2_qrm3n")]([ExtResource("3_cyuks"), ExtResource("4_w5t0x")])
 
 [node name="NPC" parent="." instance=ExtResource("2_f4o7l")]
 npc_resource = ExtResource("3_f4o7l")
-
-[node name="QuestActivatedSwitch" parent="NPC" instance=ExtResource("10_cap4d")]
-remove_when_activated = true
-react_to_global_signal = true
-linked_quest = ExtResource("11_qrm3n")
-settings_summary = "UPDATE QUEST:
-Quest: Abandoned temple
-Checking if player has quest"
-
-[node name="DialogInteraction" parent="NPC/QuestActivatedSwitch" instance=ExtResource("10_w5t0x")]
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction"]
-script = ExtResource("5_rm5k1")
-text = "Thank you for taking care of these greenskins!"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogChoice" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction"]
-script = ExtResource("6_l65jf")
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://fshksdm1ixai"
-
-[node name="DialogBranch3" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "What's going on here?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "I don't understand this either. Goblins on this side of the mountains? Right under the noses of the brave mountain guard?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText2" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Anyway, two days ago they suddenly appeared in my orchard and started ransacking it! "
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText3" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "After a moment, they attacked me, but I managed to barricade myself inside. Thanks again for your help. "
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText4" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "I would have starved to death here if it weren't for you."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogChoice" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("6_l65jf")
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://fshksdm1ixai"
-
-[node name="DialogBranch" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "Does anyone still live here?"
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch"]
-script = ExtResource("5_rm5k1")
-text = "Well, Toshek lives nearby to the west. He's a hunter. But considering he didn't come to my aid, I guess the Goblins got him first"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText2" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch"]
-script = ExtResource("5_rm5k1")
-text = "There is also courier outpost to the east but you've probably already been there."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogBranch3" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "I need to get to Daingne-Bean. Can you help me?"
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Daingne-Bean aye?. Are you returning from that expedition against the rebels? Has the rebellion been crushed?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText2" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Yes...
-I don't want to talk about this.
-So do you know way to Daingne-Bean from here?"
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText3" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "This part of the forest is cut off from the world. I don't know of any way through the mountains. "
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText10" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "You'll have to return to the courier outpost and cross the river there."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText6" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Bridge on the river have been destroyed."
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText5" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Well, that's a mess. It looks like you will stuck here for some time."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText4" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Really no other way around?"
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText7" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Well...
-Toshek told me once about  an old abandoned temple carved into a mountain wall."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText8" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "However, he never examined it and I don't blame him. Who knows what lurks in darkness here?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText9" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Anyway I don't know its location so you'll have to find it on your own."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="QuestAdvanceTrigger" type="Node2D" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch3/DialogChoice/DialogBranch3"]
-script = ExtResource("12_cyuks")
-signal_name = "selected"
-linked_quest = ExtResource("11_qrm3n")
-settings_summary = "UPDATE QUEST:
-Quest: Abandoned temple
-Step: 0 - N/A
-Complete: false"
-metadata/_custom_type_script = "uid://dqo11wbbbowm3"
-
-[node name="DialogBranch" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "Do you have something for trade?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogBranch2" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "I Have to go"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch/DialogInteraction/DialogChoice/DialogBranch2"]
-script = ExtResource("5_rm5k1")
-text = "I'll be here when you need some stuff!"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="QuestActivatedSwitch2" parent="NPC" instance=ExtResource("10_cap4d")]
-check_type = 3
-react_to_global_signal = true
-linked_quest = ExtResource("14_x0jcj")
-settings_summary = "UPDATE QUEST:
-Quest: Kill greenskins
-Checking if quest is complete"
-
-[node name="DialogInteraction" parent="NPC/QuestActivatedSwitch2" instance=ExtResource("10_w5t0x")]
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction"]
-script = ExtResource("5_rm5k1")
-text = "Thank you for taking care of these greenskins!"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogChoice" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction"]
-script = ExtResource("6_l65jf")
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://fshksdm1ixai"
-
-[node name="DialogBranch3" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "What's going on here?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "I don't understand this either. Goblins on this side of the mountains? Right under the noses of the brave mountain guard?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText2" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Anyway, two days ago they suddenly appeared in my orchard and started ransacking it! "
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText3" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "After a moment, they attacked me, but I managed to barricade myself inside. Thanks again for your help. "
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText4" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "I would have starved to death here if it weren't for you."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText7" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Does anyone still live here?"
-npc_info = ExtResource("9_l65jf")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText5" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "Well, Toshek lives nearby to the west. He's a hunter. But considering he didn't come to my aid, I guess the Goblins got to him first"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText6" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch3"]
-script = ExtResource("5_rm5k1")
-text = "There is also courier outpost to the east but you've probably already been there."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogBranch4" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "Can you tell me more about this temple?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText7" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch4"]
-script = ExtResource("5_rm5k1")
-text = "As I said, Toshek told me once about it. He said that it is hidden somewhere near rocks."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText8" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch4"]
-script = ExtResource("5_rm5k1")
-text = "However, he never examined it and I don't blame him. Who knows what lurks in darkness here?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogText9" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch4"]
-script = ExtResource("5_rm5k1")
-text = "Anyway I don't know its location so you'll have to find it on your own."
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
-
-[node name="DialogBranch" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "Do you have something for trade?"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogBranch2" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice"]
-script = ExtResource("7_cap4d")
-text = "Have to go"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
-
-[node name="DialogText" type="Node" parent="NPC/QuestActivatedSwitch2/DialogInteraction/DialogChoice/DialogBranch2"]
-script = ExtResource("5_rm5k1")
-text = "I'll be here when you need some stuff!"
-npc_info = ExtResource("3_f4o7l")
-metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="NPC"]
 z_index = 100
@@ -440,3 +157,29 @@ libraries = {
 &"": SubResource("AnimationLibrary_k34qd")
 }
 autoplay = "default"
+
+[node name="DialogInteraction" parent="NPC" instance=ExtResource("10_w5t0x")]
+
+[node name="DialogText" type="Node" parent="NPC/DialogInteraction"]
+script = ExtResource("5_rm5k1")
+text = "Ah another lost traveler. 
+Do you have any of these old precious coins? I can trade it for something interesting..."
+npc_info = ExtResource("3_f4o7l")
+metadata/_custom_type_script = "uid://doa5j8sxy5b7q"
+
+[node name="DialogChoice" type="Node" parent="NPC/DialogInteraction"]
+script = ExtResource("6_l65jf")
+npc_info = ExtResource("3_f4o7l")
+metadata/_custom_type_script = "uid://fshksdm1ixai"
+
+[node name="DialogBranch" type="Node" parent="NPC/DialogInteraction/DialogChoice"]
+script = ExtResource("7_cap4d")
+text = "See items"
+npc_info = ExtResource("3_f4o7l")
+metadata/_custom_type_script = "uid://c5uj5hel8n7vv"
+
+[node name="DialogBranch2" type="Node" parent="NPC/DialogInteraction/DialogChoice"]
+script = ExtResource("7_cap4d")
+text = "Leave"
+npc_info = ExtResource("3_f4o7l")
+metadata/_custom_type_script = "uid://c5uj5hel8n7vv"

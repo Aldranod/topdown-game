@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dj684hs8dfws6"]
+[gd_scene load_steps=13 format=3 uid="uid://dj684hs8dfws6"]
 
 [ext_resource type="Texture2D" uid="uid://ssobr7llhmdq" path="res://items/sprites/items.png" id="1_mswg8"]
 [ext_resource type="Script" uid="uid://bfbpnwc0v1ttv" path="res://GUI/shop_menu/shop_menu.gd" id="1_t0q3b"]
 [ext_resource type="FontFile" uid="uid://jk1i6udjycsw" path="res://GUI/fonts/Abaddon Light.ttf" id="2_dt4po"]
+[ext_resource type="Texture2D" uid="uid://ce0fker4m5wxx" path="res://items/sprites/items_03.png" id="2_ejil7"]
 [ext_resource type="PackedScene" uid="uid://cc55xln4lyugd" path="res://GUI/shop_menu/shop_item_button.tscn" id="3_dt4po"]
 [ext_resource type="FontFile" uid="uid://b3vfln84rwak7" path="res://GUI/fonts/m5x7.ttf" id="4_lv53b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dt4po"]
-atlas = ExtResource("1_mswg8")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("2_ejil7")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="Animation" id="Animation_t0q3b"]
 length = 0.001
@@ -128,7 +129,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_dt4po")
 stretch_mode = 3
 
-[node name="GemsLabel" type="Label" parent="Control/PanelContainer/HBoxContainer"]
+[node name="CoinsLabel" type="Label" parent="Control/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2

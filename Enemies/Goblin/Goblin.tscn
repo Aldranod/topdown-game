@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://ca3g6qw0kscv1"]
+[gd_scene load_steps=68 format=3 uid="uid://ca3g6qw0kscv1"]
 
 [ext_resource type="Script" uid="uid://c7dobkknt8028" path="res://Enemies/Scripts/enemy.gd" id="1_f3wku"]
 [ext_resource type="Resource" uid="uid://ksdxqhd45hta" path="res://Enemies/Goblin/goblin_corpse.tres" id="2_giajk"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://m5a15tuova7g" path="res://Enemies/Scripts/states/enemy_state_destroyed.gd" id="12_ad7vh"]
 [ext_resource type="Resource" uid="uid://buwbann6wdy5k" path="res://00_Globals/global_effects/hit_particle_settings/goblin_blood_particles.tres" id="12_pcgih"]
 [ext_resource type="Script" uid="uid://c5sraeeen4dul" path="res://Enemies/Scripts/drop_data.gd" id="13_ys2o2"]
-[ext_resource type="Resource" uid="uid://1yi5jmltbl86" path="res://items/apple.tres" id="14_t3vbn"]
 [ext_resource type="Resource" uid="uid://dh7avm20vuttc" path="res://items/gem.tres" id="15_j3imk"]
 [ext_resource type="Texture2D" uid="uid://ngpve6krp6jq" path="res://Enemies/Slime/DestroySmoke.png" id="16_4i38r"]
 [ext_resource type="Script" uid="uid://c6b0exbgipcpy" path="res://Enemies/Scripts/states/enemy_state_chase.gd" id="16_mvdyt"]
@@ -963,16 +962,15 @@ color = Color(1, 0.05207616, 0.11928123, 1)
 texture = SubResource("GradientTexture2D_543j8")
 metadata/_custom_type_script = "uid://lm43gaq2wrjq"
 
-[sub_resource type="Resource" id="Resource_yynal"]
-script = ExtResource("13_ys2o2")
-item = ExtResource("14_t3vbn")
-probability = 33.0
-metadata/_custom_type_script = "uid://c5sraeeen4dul"
-
 [sub_resource type="Resource" id="Resource_67htc"]
 script = ExtResource("13_ys2o2")
 item = ExtResource("15_j3imk")
-max_amount = 3
+metadata/_custom_type_script = "uid://c5sraeeen4dul"
+
+[sub_resource type="Resource" id="Resource_71d3d"]
+script = ExtResource("13_ys2o2")
+item = ExtResource("15_j3imk")
+probability = 50.0
 metadata/_custom_type_script = "uid://c5sraeeen4dul"
 
 [sub_resource type="Animation" id="Animation_yynal"]
@@ -1128,7 +1126,7 @@ flee_state = NodePath("../Flee")
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("12_ad7vh")
 particle_settings = SubResource("Resource_4abgw")
-drops = Array[ExtResource("13_ys2o2")]([SubResource("Resource_yynal"), SubResource("Resource_67htc"), null])
+drops = Array[ExtResource("13_ys2o2")]([SubResource("Resource_67htc"), SubResource("Resource_71d3d")])
 
 [node name="Chase" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area", "attack_area", "idle_state")]
 script = ExtResource("16_mvdyt")
