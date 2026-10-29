@@ -1038,6 +1038,7 @@ script = ExtResource("1_uvm47")
 hp = 6
 attack_range = 30.0
 corpse_data = ExtResource("2_yam40")
+corpse_color = Color(0.76171875, 0.6822757, 0.46263894, 1)
 coward = true
 
 [node name="HurtBox" parent="." instance=ExtResource("2_locsy")]

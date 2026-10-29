@@ -12,6 +12,7 @@ const CORPSE = preload("res://Enemies/corpse.tscn")
 @export var respawnable : bool = true
 @export var attack_range : float = 24.0
 @export var corpse_data: CorpseData = null
+@export var corpse_color: Color
 
 var cardinal_direction : Vector2 = Vector2.DOWN
 var direction : Vector2 = Vector2.ZERO
@@ -170,7 +171,7 @@ func _spawn_corpse(enemy_id: String) -> void:
 		pose = randf_range(-40.0,-126.0)
 	if cardinal_direction == Vector2.RIGHT:
 		pose = randf_range(40.0,126.0)			
-	corpse.setup(corpse_data, sprite.scale.x, pose)
+	corpse.setup(corpse_data, sprite.scale.x, pose, corpse_color)
 	SaveManager.add_corpse(
 		enemy_id,
 		global_position.x,

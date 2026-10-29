@@ -11,6 +11,7 @@ const START_LEVEL : String = "res://Levels/Area01/tests/forest_01.tscn"
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
+	PlayerManager.player.get_node("Camera2D").enabled = false
 	AudioManager.play_music(music)
 	get_tree().paused = true
 	PlayerManager.player.visible = false
@@ -22,7 +23,6 @@ func _ready() -> void:
 	LevelManager.level_load_started.connect(exit_title_screen)	
 	await $CanvasLayer/SplashScene/AldranodGamesLogo/AnimationPlayer.animation_finished	
 	setup_title_screen()
-	
 	pass
 
 func setup_title_screen() -> void:
@@ -45,6 +45,7 @@ func load_game() -> void:
 	pass
  
 func exit_title_screen() -> void:
+	PlayerManager.player.get_node("Camera2D").enabled = true
 	PlayerManager.player.visible = true
 	PlayerHud.visible = true
 	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS

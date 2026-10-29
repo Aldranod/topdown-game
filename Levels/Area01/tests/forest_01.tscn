@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://cad42r81oka2x"]
+[gd_scene load_steps=52 format=4 uid="uid://cad42r81oka2x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_n8ytn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_nfhwk"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="35_3x8nt"]
 [ext_resource type="Script" uid="uid://doa5j8sxy5b7q" path="res://Interactables/dialog/scripts/dialog_text.gd" id="36_lxscg"]
 [ext_resource type="Resource" uid="uid://b465fltph6hko" path="res://npc/shopkeeper.tres" id="37_1xqa7"]
+[ext_resource type="PackedScene" uid="uid://5gm01rs1n3ve" path="res://Enemies/Zombie/Zombie.tscn" id="38_qukn3"]
 [ext_resource type="PackedScene" uid="uid://dl5b2mo72vl06" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="38_x22ho"]
 [ext_resource type="PackedScene" uid="uid://dd1kdg5wsekyp" path="res://GeneralNodes/leafs.tscn" id="45_ku5et"]
 [ext_resource type="PackedScene" uid="uid://cxckttjyuufk3" path="res://00_Globals/weather_manager.tscn" id="46_ex721"]
@@ -2429,11 +2430,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72667)
+position = Vector2(762.5842, -98.72669)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72667)
+position = Vector2(762.5842, -98.72669)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -3093,6 +3094,15 @@ debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
 position = Vector2(144, -56)
 shape = SubResource("RectangleShape2D_ehdx3")
 debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
+
+[node name="Zombie" parent="Enemies" instance=ExtResource("38_qukn3")]
+position = Vector2(1183.1975, 545.68866)
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource("38_qukn3")]
+position = Vector2(321.4407, 31.889221)
+
+[node name="Zombie3" parent="Enemies" instance=ExtResource("38_qukn3")]
+position = Vector2(338.3807, -83.060776)
 
 [node name="Borders" type="Node2D" parent="."]
 

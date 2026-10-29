@@ -62,10 +62,10 @@ position = Vector2(-32, 0)
 [node name="Props" type="Node" parent="."]
 
 [node name="PushableStatue" parent="Props" instance=ExtResource("2_0w75n")]
-position = Vector2(448, 198)
+position = Vector2(348, 193)
 
 [node name="PushableStatue2" parent="Props" instance=ExtResource("2_0w75n")]
-position = Vector2(95, 199)
+position = Vector2(124, 199)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
