@@ -19,6 +19,7 @@ var direction : Vector2 = Vector2.ZERO
 var player : Player
 var invulnerable : bool = false
 var sprite_x_scale : float = 1
+var death_id : String = ""
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
@@ -117,7 +118,8 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 			# Permanent death
 			persistent_data_handler.set_value()
 		enemy_destroyed.emit( hurt_box)
-		_spawn_corpse(enemy_id)
+		#_spawn_corpse(enemy_id)
+		death_id = enemy_id
 		#queue_free() # or whatever your death logic is
 		#enemy_destroyed.emit( hurt_box)
 		#persistent_data_handler.set_value()	
