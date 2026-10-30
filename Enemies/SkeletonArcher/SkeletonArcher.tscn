@@ -1002,7 +1002,7 @@ script = ExtResource("1_2tuhv")
 hp = 6
 attack_range = 30.0
 corpse_data = ExtResource("2_84s4b")
-corpse_color = Color(0.5625, 0.5625, 0.5625, 1)
+corpse_color = Color(0.7421875, 0.7421875, 0.7421875, 1)
 
 [node name="HurtBox" parent="." instance=ExtResource("2_og86w")]
 visible = false

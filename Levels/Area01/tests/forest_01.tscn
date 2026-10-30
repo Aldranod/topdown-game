@@ -319,7 +319,7 @@ tile_map_data = PackedByteArray("AAAnAAkAAAAKAAwAAAAoAAkAAAAOAAwAAAAmAAkAAAANAAw
 collision_enabled = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_r5pyd")]
-position = Vector2(2613.1426, 763.7132)
+position = Vector2(817.50006, 922.7901)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
@@ -2433,11 +2433,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72667)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72667)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -3051,7 +3051,7 @@ shape = SubResource("RectangleShape2D_gakbc")
 position = Vector2(321.18002, -495.71997)
 
 [node name="SkeletonArcher2" parent="Enemies" instance=ExtResource("33_4wrjy")]
-position = Vector2(2675.4429, 269.04486)
+position = Vector2(579.3388, -652.11566)
 
 [node name="Borders" type="Node2D" parent="."]
 

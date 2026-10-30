@@ -3,6 +3,12 @@ class_name EnemyStateShoot extends EnemyState
 
 const SPEAR = preload("res://Interactables/spear/spear.tscn")
 
+const MUZZLE := {
+	"down": Vector2(20, 20),
+	"up":   Vector2(20, -20),
+	"side": Vector2(22, 0),   # x zostanie odbite zależnie od strony
+}
+
 @export var anim_name: String = "throw"
 @export var shoot_cooldown: float = 1.5
 @export var shoot_range: float = 150.0
@@ -80,18 +86,30 @@ func _shoot() -> void:
 	# Start the attack animation
 	enemy.update_animation(anim_name)
 	
-func spawn_spear() -> void: # triggered by animation player
-	# Spawn Spear
-	var direction = enemy.global_position.direction_to(enemy.player.global_position)
+#func spawn_spear() -> void: # triggered by animation player
+	## Spawn Spear
+	#var direction = enemy.global_position.direction_to(enemy.player.global_position)
+	#var spear : Spear = SPEAR.instantiate()
+	#if enemy.cardinal_direction == Vector2.DOWN:
+		#spear.global_position = enemy.global_position + (direction * 25)
+	#else:	
+		#spear.global_position = enemy.global_position + (direction * 18)
+	#spear.fire(direction)
+	#enemy.add_sibling(spear)
+	#pass	
+	
+func spawn_spear() -> void:
+	var dir_name : String = enemy.anim_direction()   # "down" / "up" / "side"
+	var offset : Vector2 = MUZZLE[dir_name]
+	if dir_name == "side":
+		offset.x *= sign(enemy.sprite.scale.x) if enemy.sprite.scale.x != 0 else 1.0
+	var origin : Vector2 = enemy.global_position + offset
+	var direction : Vector2 = origin.direction_to(enemy.player.global_position + Vector2(0, -12))
 	var spear : Spear = SPEAR.instantiate()
-	if enemy.cardinal_direction == Vector2.DOWN:
-		spear.global_position = enemy.global_position + (direction * 25)
-	else:	
-		spear.global_position = enemy.global_position + (direction * 18)
+	spear.global_position = origin
 	spear.fire(direction)
 	enemy.add_sibling(spear)
-	pass	
-	
+		
 #func check_los() -> bool:
 	#line_of_sight_ray.target_position = enemy.to_local(enemy.player.global_position)
 	#

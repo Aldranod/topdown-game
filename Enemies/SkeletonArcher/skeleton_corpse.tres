@@ -7,4 +7,6 @@
 script = ExtResource("1_g0ntx")
 corpse_texture = ExtResource("1_u5onc")
 hframes = 13
+vframes = 14
+frame = 83
 metadata/_custom_type_script = "uid://dwncpdxfl8ho2"
