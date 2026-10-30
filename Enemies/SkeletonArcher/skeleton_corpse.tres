@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CorpseData" load_steps=3 format=3 uid="uid://56rghkx5lw8w"]
+
+[ext_resource type="Script" uid="uid://dwncpdxfl8ho2" path="res://Enemies/corpse_data.gd" id="1_g0ntx"]
+[ext_resource type="Texture2D" uid="uid://djekkpm6si72r" path="res://Enemies/SkeletonArcher/SkeletonArcher.png" id="1_u5onc"]
+
+[resource]
+script = ExtResource("1_g0ntx")
+corpse_texture = ExtResource("1_u5onc")
+hframes = 13
+metadata/_custom_type_script = "uid://dwncpdxfl8ho2"

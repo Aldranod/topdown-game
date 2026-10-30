@@ -14,7 +14,7 @@ move_speed = null
 fire_audio = null
 
 [node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(0, -18.999998)
+position = Vector2(2, -14.999998)
 collision_layer = 0
 collision_mask = 18
 script = ExtResource("2_13knc")
@@ -25,14 +25,14 @@ position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_oy4uj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-15, -23)
+position = Vector2(-13, -19)
 scale = Vector2(0.9375, 0.875)
 texture = ExtResource("3_lxt08")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.287)
-position = Vector2(-16, -5.999998)
+position = Vector2(-14, -1.9999981)
 texture = ExtResource("3_lxt08")
 centered = false
 

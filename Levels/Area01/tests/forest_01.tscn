@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://cad42r81oka2x"]
+[gd_scene load_steps=53 format=4 uid="uid://cad42r81oka2x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_n8ytn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_nfhwk"]
@@ -23,9 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://d4hgaqdibwenn" path="res://GeneralNodes/SavePoint/save_point.tscn" id="25_0ci1v"]
 [ext_resource type="PackedScene" uid="uid://cmtv281o7w0ch" path="res://Interactables/Dungeon/barred_door.tscn" id="25_qukn3"]
 [ext_resource type="PackedScene" uid="uid://op5ajp0xs84m" path="res://Interactables/altar/Altar.tscn" id="26_dhoih"]
-[ext_resource type="PackedScene" uid="uid://ddtpyf5ghl5ww" path="res://Enemies/Goblin/GoblinAmbush.tscn" id="27_ehdx3"]
 [ext_resource type="PackedScene" uid="uid://2xrdfp5j3mwj" path="res://Enemies/ambush_area.tscn" id="28_ametq"]
 [ext_resource type="Resource" uid="uid://ouvi02c4yox5" path="res://items/ability_arrow.tres" id="28_pxegb"]
+[ext_resource type="PackedScene" uid="uid://yyl1c805t6tl" path="res://Enemies/SkeletonArcher/SkeletonArcher.tscn" id="33_4wrjy"]
 [ext_resource type="Script" uid="uid://t5gj045daqup" path="res://Levels/Area01/tests/wall_gates.gd" id="33_blcwu"]
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="35_3x8nt"]
 [ext_resource type="Script" uid="uid://doa5j8sxy5b7q" path="res://Interactables/dialog/scripts/dialog_text.gd" id="36_lxscg"]
@@ -94,11 +94,14 @@ height = 434.5
 blend_mode = 1
 light_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pkd0"]
-size = Vector2(240, 96)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wrjy"]
+size = Vector2(200, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehdx3"]
-size = Vector2(112, 112)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qukn3"]
+size = Vector2(200, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gakbc"]
+size = Vector2(100, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8a5vq"]
 radius = 35.0
@@ -316,7 +319,7 @@ tile_map_data = PackedByteArray("AAAnAAkAAAAKAAwAAAAoAAkAAAAOAAwAAAAmAAkAAAANAAw
 collision_enabled = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_r5pyd")]
-position = Vector2(811.0509, 921.1237)
+position = Vector2(2613.1426, 763.7132)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
@@ -2430,11 +2433,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.72667)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.72667)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -3013,96 +3016,42 @@ position = Vector2(896, 560)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="GoblinAmbush5" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(280, 16)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush5" instance=ExtResource("28_ametq")]
-position = Vector2(0, 8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush5/AmbushArea"]
-position = Vector2(96, 112)
-shape = SubResource("RectangleShape2D_0pkd0")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="GoblinAmbush6" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(280, -352)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush6" instance=ExtResource("28_ametq")]
-position = Vector2(-8, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush6/AmbushArea"]
-position = Vector2(184, -192)
-shape = SubResource("RectangleShape2D_0pkd0")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="GoblinAmbush7" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(424, -712)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush7" instance=ExtResource("28_ametq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush7/AmbushArea"]
-position = Vector2(32, 120)
-shape = SubResource("RectangleShape2D_0pkd0")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="GoblinAmbush8" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(592, -416)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush8" instance=ExtResource("28_ametq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush8/AmbushArea"]
-position = Vector2(-128, -120)
-shape = SubResource("RectangleShape2D_0pkd0")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="GoblinAmbush9" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(680, -984)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush9" instance=ExtResource("28_ametq")]
-position = Vector2(32, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush9/AmbushArea"]
-position = Vector2(-192, 80)
-shape = SubResource("RectangleShape2D_ehdx3")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="GoblinAmbush10" parent="Enemies" groups=["enemies"] instance=ExtResource("27_ehdx3")]
-position = Vector2(384, -848)
-hp = 3
-in_ambush = true
-
-[node name="AmbushArea" parent="Enemies/GoblinAmbush10" instance=ExtResource("28_ametq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush10/AmbushArea"]
-position = Vector2(144, -56)
-shape = SubResource("RectangleShape2D_ehdx3")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
-[node name="AmbushArea2" parent="Enemies/GoblinAmbush10" instance=ExtResource("28_ametq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/GoblinAmbush10/AmbushArea2"]
-position = Vector2(144, -56)
-shape = SubResource("RectangleShape2D_ehdx3")
-debug_color = Color(0.70196074, 0.058336843, 0, 0.41960785)
-
 [node name="Zombie" parent="Enemies" instance=ExtResource("38_qukn3")]
-position = Vector2(1183.1975, 545.68866)
+position = Vector2(272, 8)
+in_ambush = true
+
+[node name="AmbushArea" parent="Enemies/Zombie" instance=ExtResource("28_ametq")]
+position = Vector2(-48, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Zombie/AmbushArea"]
+position = Vector2(144, 80)
+shape = SubResource("RectangleShape2D_4wrjy")
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("38_qukn3")]
-position = Vector2(321.4407, 31.889221)
+position = Vector2(648, -1008)
+in_ambush = true
+
+[node name="AmbushArea" parent="Enemies/Zombie2" instance=ExtResource("28_ametq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Zombie2/AmbushArea"]
+position = Vector2(-48, 56)
+shape = SubResource("RectangleShape2D_qukn3")
 
 [node name="Zombie3" parent="Enemies" instance=ExtResource("38_qukn3")]
-position = Vector2(338.3807, -83.060776)
+position = Vector2(288, -360)
+in_ambush = true
+
+[node name="AmbushArea" parent="Enemies/Zombie3" instance=ExtResource("28_ametq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Zombie3/AmbushArea"]
+position = Vector2(56, 72)
+shape = SubResource("RectangleShape2D_gakbc")
+
+[node name="SkeletonArcher" parent="Enemies" instance=ExtResource("33_4wrjy")]
+position = Vector2(321.18002, -495.71997)
+
+[node name="SkeletonArcher2" parent="Enemies" instance=ExtResource("33_4wrjy")]
+position = Vector2(2675.4429, 269.04486)
 
 [node name="Borders" type="Node2D" parent="."]
 
@@ -3114,7 +3063,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border3"]
 position = Vector2(992, -40)
-polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -392, -600, -392, -600, -440, -592, -440, -552, -392, -544, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -248, -408, -232, -424, -224, -432, -208, -432, -192, -413.7413, -186.25871, -448, -152, -400, -32, -416, 64, -552, 120, -592, 120, -600, 176, -584, 304, -512, 312, -440, 256, -384, 280, -352, 248, -224, 224, -144, 184, -72, 272, -24, 304, -16, 360, 8, 400, 56, 376, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 480, 552, 496, 560, 536, 568, 568, 544, 632, 528, 680, 480, 704, 392, 680, 216, 648, 192, 616, 200, 616, 224, 560, 224, 552, 192, 512, 192, 512, 112, 600, 112, 608, 80, 624, 56, 608, 40, 584, -32, 656, -80, 776, -112, 896, 864, 424, 848, 128, 848, -528, 752, -656, 424, -664, 16)
+polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -416, -616, -440, -592, -440, -552, -400, -528, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -256, -424, -248, -440, -232, -448, -208, -440, -184, -416, -176, -448, -152, -424, -80, -408, -40, -400, 8, -416, 64, -552, 120, -592, 120, -600, 176, -584, 304, -512, 312, -440, 256, -384, 280, -352, 248, -224, 224, -144, 184, -72, 272, -24, 304, -16, 360, 8, 400, 56, 376, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 480, 552, 496, 560, 536, 568, 568, 544, 632, 528, 680, 480, 704, 392, 680, 216, 648, 192, 616, 200, 616, 224, 560, 224, 552, 192, 512, 192, 512, 112, 600, 112, 608, 80, 624, 56, 608, 40, 584, -32, 656, -80, 776, -112, 896, 864, 424, 848, 128, 848, -528, 752, -656, 424, -664, 16)
 
 [node name="Border4" type="StaticBody2D" parent="Borders"]
 z_index = 2
