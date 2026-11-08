@@ -129,4 +129,5 @@ func _restore_corpses() -> void:
 		var corpse = CORPSE.instantiate()
 		add_child(corpse)
 		corpse.global_position = Vector2(data.pos_x, data.pos_y)
-		corpse.setup(corpse_data, data.scale_x, data.pose)
+		var corpse_color = Color(0,0,0,0)
+		corpse.setup(corpse_data, data.scale_x, data.pose, corpse_color)
