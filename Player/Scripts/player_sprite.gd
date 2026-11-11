@@ -4,19 +4,19 @@ const FRAME_COUNT :int= 435
 
 @onready var weapon_below: Sprite2D = $Sprite2D_Weapon_Below
 @onready var weapon_above: Sprite2D = $Sprite2D_Weapon_Above
+@onready var attack_sprite : Sprite2D = $"../Sprite2DAttack"
+@onready var anim : AnimationPlayer = $"../AnimationPlayer"
 
 func _ready() -> void:
 	PlayerManager.INVENTORY_DATA.equipment_changed.connect(_on_equipment_change)
 	pass
 	
 func _process(_delta: float) -> void:
-	if $"../AnimationPlayer".current_animation == "attack_side":
-		visible = false
-	else:
-		visible = true	
-	pass	
-	#weapon_below.frame = frame
-	#weapon_above.frame = frame + FRAME_COUNT
+	var a : String = anim.current_animation
+	var use_attack : bool = a.ends_with("_side") and a.begins_with("attack")
+	self_modulate.a = 0.0 if use_attack else 1.0
+	attack_sprite.visible = use_attack
+	attack_sprite.scale.x = scale.x   # kopiuj odwrócenie w lewo
 	pass
 	
 func _on_equipment_change() -> void:
