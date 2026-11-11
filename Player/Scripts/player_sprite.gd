@@ -4,14 +4,21 @@ const FRAME_COUNT :int= 435
 
 @onready var weapon_below: Sprite2D = $Sprite2D_Weapon_Below
 @onready var weapon_above: Sprite2D = $Sprite2D_Weapon_Above
-@onready var attack_sprite : Sprite2D = $"../Sprite2DAttack"
-@onready var anim : AnimationPlayer = $"../AnimationPlayer"
+@onready var attack_sprite : Sprite2D
+@onready var anim : AnimationPlayer
 
 func _ready() -> void:
+	if not (get_parent() is Player):
+		set_process(false)   # smuga z dasha: nic nie rób
+		return
+	attack_sprite = $"../Sprite2DAttack"
+	anim = $"../AnimationPlayer"	
 	PlayerManager.INVENTORY_DATA.equipment_changed.connect(_on_equipment_change)
 	pass
 	
 func _process(_delta: float) -> void:
+	if anim == null or attack_sprite == null:
+		return
 	var a : String = anim.current_animation
 	var use_attack : bool = a.ends_with("_side") and a.begins_with("attack")
 	self_modulate.a = 0.0 if use_attack else 1.0
