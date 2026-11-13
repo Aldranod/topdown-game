@@ -3,6 +3,7 @@ class_name EnemyStateShoot extends EnemyState
 
 const SPEAR = preload("res://Interactables/spear/spear.tscn")
 const OBSTACLE_MASK := 16   # warstwa 5: drzewa, budynki, ściany (taka jak w masce strzały)
+const PATHFINDER : PackedScene = preload("res://Enemies/pathfinder.tscn")
 
 const MUZZLE := {
 	"down": Vector2(20, 20),
@@ -14,14 +15,11 @@ const MUZZLE := {
 @export var shoot_cooldown: float = 1.5
 @export var shoot_range: float = 150.0
 @export var runaway_range: float = 80.0
-@onready var line_of_sight_ray: RayCast2D = $"../../LineOfSightRay"
+@export var reposition_speed : float = 70.0
+@export var min_spot_distance : float = 110.0
 
 var _animation_finished: bool = true 
 var _cooldown_timer: float = 0.0
-
-const PATHFINDER : PackedScene = preload("res://Enemies/pathfinder.tscn")
-@export var reposition_speed : float = 70.0
-@export var min_spot_distance : float = 110.0
 var pathfinder : Pathfinder
 var _direction : Vector2 = Vector2.ZERO
 var _spot : Vector2 = Vector2.ZERO
@@ -30,10 +28,10 @@ var _spot_timer : float = 0.0
 
 func enter() -> void:
 	print("entering shoot state")
+	_direction = Vector2.ZERO
 	_cooldown_timer = 0.5
 	_animation_finished = true 
 	enemy.velocity = Vector2.ZERO
-	line_of_sight_ray.add_exception(enemy)
 	if not enemy.animation_player.animation_finished.is_connected(_on_animation_finished):
 		enemy.animation_player.animation_finished.connect(_on_animation_finished)
 	pathfinder = PATHFINDER.instantiate() as Pathfinder
@@ -50,21 +48,15 @@ func exit() -> void:
 
 func process(_delta: float) -> EnemyState:
 	_cooldown_timer -= _delta
-	# While waiting/shooting, always face the player
-	#if is_instance_valid(enemy.player):
-		#print("player instance not valid")
 	var dir = enemy.global_position.direction_to(enemy.player.global_position)
 	enemy.set_direction(dir)
-	# If the spear animation is currently playing, don't allow state changes
 	if not _animation_finished:
 		print("animation not finished")
 		return null
-	# Logic for switching states
 	if PlayerManager.player.hp <= 0:
 		print("player dead")
 		return $"../Idle"
 	var dist = enemy.global_position.distance_to(enemy.player.global_position)
-	# 1. Check for transitions OUT of the shoot state
 	if dist > shoot_range:
 		print("player out of shoot range, going chase")
 		return $"../Chase"
@@ -74,7 +66,6 @@ func process(_delta: float) -> EnemyState:
 	elif dist < runaway_range:
 		print("player too close, going flee")
 		return $"../Flee"
-	# 2. If we are still in range, check if we can shoot
 	if _cooldown_timer <= 0:
 		print("cooldown 0")
 		if check_los():
@@ -83,15 +74,9 @@ func process(_delta: float) -> EnemyState:
 		else:
 			return _reposition(_delta)
 	else:
-		# While waiting for cooldown, play idle animation so they don't look broken
 		print("cooldown in progress going idle")
 		enemy.velocity = Vector2.ZERO
 		enemy.update_animation("idle")
-		#if enemy.is_on_wall():
-			#_strafe_dir = -_strafe_dir
-		#var to_player : Vector2 = enemy.global_position.direction_to(enemy.player.global_position)
-		#enemy.velocity = to_player.orthogonal() * _strafe_dir * strafe_speed
-		#enemy.update_animation("chase") 
 	return null
 
 func _on_animation_finished(_a: String) -> void:
@@ -109,18 +94,6 @@ func _shoot() -> void:
 	# Start the attack animation
 	enemy.update_animation(anim_name)
 	
-#func spawn_spear() -> void:
-	#var dir_name : String = enemy.anim_direction()   # "down" / "up" / "side"
-	#var offset : Vector2 = MUZZLE[dir_name]
-	#if dir_name == "side":
-		#offset.x *= sign(enemy.sprite.scale.x) if enemy.sprite.scale.x != 0 else 1.0
-	#var origin : Vector2 = enemy.global_position + offset
-	#var direction : Vector2 = origin.direction_to(enemy.player.global_position + Vector2(0, -12))
-	#var spear : Spear = SPEAR.instantiate()
-	#spear.global_position = origin
-	#spear.fire(direction)
-	#enemy.add_sibling(spear)
-	
 func spawn_spear() -> void:
 	if not is_instance_valid(enemy.player):
 		return
@@ -135,35 +108,6 @@ func spawn_spear() -> void:
 	spear.global_position = origin
 	spear.fire(tip.direction_to(target))
 	enemy.add_sibling(spear)	
-
-#func check_los() -> bool:
-	#var tip := _muzzle_origin() + Vector2(2, -15)   # taki sam offset jak HurtBox w spear.tscn
-	#if _blocked(enemy.global_position + Vector2(0, -15), tip):
-		#return false
-	#if _blocked(tip, enemy.player.global_position + Vector2(0, -12)):
-		#return false
-	#if not is_instance_valid(enemy.player):
-		#return false
-	## 1. Calculate the vector from the RAY'S global position to the PLAYER'S global position
-	## Subtracting the ray's global position from the player's global position gives us 
-	## the exact vector needed to reach the player.
-	#var global_direction = enemy.player.global_position - line_of_sight_ray.global_position
-	#
-	## 2. We must convert this global vector into the RayCast's local coordinate space.
-	## We use '.rotated(-line_of_sight_ray.global_rotation)' to cancel out any 
-	## rotation the RayCast or its parents might have.
-	#line_of_sight_ray.target_position = global_direction.rotated(-line_of_sight_ray.global_rotation)
-	#
-	#line_of_sight_ray.force_raycast_update()			
-	#
-	#if line_of_sight_ray.is_colliding():
-		#var collider = line_of_sight_ray.get_collider()
-		#if collider:
-			## Check if we hit the player (or their hitbox)
-			#if collider.is_in_group("player") or (collider.owner and collider.owner.is_in_group("player")):
-				#return true
-				#
-	#return false
 
 func _muzzle_origin() -> Vector2:
 	var dir_name : String = enemy.anim_direction()

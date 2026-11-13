@@ -117,7 +117,7 @@ func hide_tree() -> void:
 
 func show_tree() -> void:
 	pass # Replace with function body.
-	
+		
 func _restore_corpses() -> void:
 	var scene_prefix = name + "_"
 	for data in SaveManager.get_corpses():
