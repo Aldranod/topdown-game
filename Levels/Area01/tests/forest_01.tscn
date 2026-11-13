@@ -319,7 +319,7 @@ tile_map_data = PackedByteArray("AAAnAAkAAAAKAAwAAAAoAAkAAAAOAAwAAAAmAAkAAAANAAw
 collision_enabled = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_r5pyd")]
-position = Vector2(2493.6523, 515.688)
+position = Vector2(811.11237, 928.42676)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
@@ -2436,11 +2436,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.726685)
+position = Vector2(762.5842, -98.72667)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.726685)
+position = Vector2(762.5842, -98.72667)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 

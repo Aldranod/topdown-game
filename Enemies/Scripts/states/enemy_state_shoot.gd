@@ -20,6 +20,7 @@ var _animation_finished: bool = true
 var _cooldown_timer: float = 0.0
 @export var strafe_speed : float = 35.0
 var _strafe_dir : float = 1.0
+var no_shoot_until_msec : int = 0
 
 func enter() -> void:
 	print("entering shoot state")
@@ -70,6 +71,7 @@ func process(_delta: float) -> EnemyState:
 		else:
 			print("los NOK going idle")
 			#enemy.update_animation("idle")
+			no_shoot_until_msec = Time.get_ticks_msec() + 1500
 			return $"../Chase" 	
 	else:
 		# While waiting for cooldown, play idle animation so they don't look broken

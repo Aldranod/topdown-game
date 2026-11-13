@@ -1089,6 +1089,7 @@ drops = Array[ExtResource("14_6swni")]([SubResource("Resource_67htc"), SubResour
 script = ExtResource("16_pigcm")
 anim_name = "chase"
 chase_speed = 80.0
+turn_rate = 0.5
 vision_area = NodePath("../../VisionArea")
 attack_area = NodePath("../../Sprite2D/AttackHurtBox")
 idle_state = NodePath("../Idle")

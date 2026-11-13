@@ -43,6 +43,8 @@ func _process(delta: float) -> void:
 
 #set the best path vector by checking desired direction and considering obstacles
 func set_path() -> void:
+	for r in rays:
+		r.force_raycast_update()
 	#get dir to player
 	var player_dir : Vector2 = global_position.direction_to(PlayerManager.player.global_position)
 	# reset obstacle values to 0
