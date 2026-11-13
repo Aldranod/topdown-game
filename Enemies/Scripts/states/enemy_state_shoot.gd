@@ -76,6 +76,8 @@ func process(_delta: float) -> EnemyState:
 	return null
 
 func _on_animation_finished(_a: String) -> void:
+	if not _a.begins_with(anim_name):
+		return
 	_animation_finished = true
 	print("animation finished")
 	
