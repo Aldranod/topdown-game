@@ -11,7 +11,6 @@ func init() -> void:
 
 func Enter() -> void:
 	$"../../Label2".text = "heal"
-	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	if try_wrath_heal():
 		player.UpdateAnimation("healed")
 		player.animation_player.animation_finished.connect(state_complete)

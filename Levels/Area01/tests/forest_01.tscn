@@ -319,7 +319,7 @@ tile_map_data = PackedByteArray("AAAnAAkAAAAKAAwAAAAoAAkAAAAOAAwAAAAmAAkAAAANAAw
 collision_enabled = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_r5pyd")]
-position = Vector2(817.50006, 922.7901)
+position = Vector2(2493.6523, 515.688)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
@@ -1283,6 +1283,9 @@ position = Vector2(1232, 80)
 
 [node name="Tree784" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(1248, 24)
+
+[node name="Tree786" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
+position = Vector2(2704, 328)
 
 [node name="Tree785" parent="Props/Trees" instance=ExtResource("12_sdc0w")]
 position = Vector2(1392, 424)
@@ -2433,11 +2436,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -3052,6 +3055,9 @@ position = Vector2(321.18002, -495.71997)
 
 [node name="SkeletonArcher2" parent="Enemies" instance=ExtResource("33_4wrjy")]
 position = Vector2(579.3388, -652.11566)
+
+[node name="SkeletonArcher3" parent="Enemies" instance=ExtResource("33_4wrjy")]
+position = Vector2(2748.9343, 190.25214)
 
 [node name="Borders" type="Node2D" parent="."]
 

@@ -18,6 +18,8 @@ const MUZZLE := {
 
 var _animation_finished: bool = true 
 var _cooldown_timer: float = 0.0
+@export var strafe_speed : float = 35.0
+var _strafe_dir : float = 1.0
 
 func enter() -> void:
 	print("entering shoot state")
@@ -72,7 +74,12 @@ func process(_delta: float) -> EnemyState:
 	else:
 		# While waiting for cooldown, play idle animation so they don't look broken
 		print("cooldown in progress going idle")
-		enemy.update_animation("idle") 
+		enemy.update_animation("idle")
+		#if enemy.is_on_wall():
+			#_strafe_dir = -_strafe_dir
+		#var to_player : Vector2 = enemy.global_position.direction_to(enemy.player.global_position)
+		#enemy.velocity = to_player.orthogonal() * _strafe_dir * strafe_speed
+		#enemy.update_animation("chase") 
 	return null
 
 func _on_animation_finished(_a: String) -> void:
@@ -85,7 +92,9 @@ func _shoot() -> void:
 	if not is_instance_valid(enemy.player):
 		return
 	_cooldown_timer = shoot_cooldown
-	_animation_finished = false	
+	_animation_finished = false
+	enemy.velocity = Vector2.ZERO
+	_strafe_dir = -_strafe_dir	
 	# Start the attack animation
 	enemy.update_animation(anim_name)
 	
