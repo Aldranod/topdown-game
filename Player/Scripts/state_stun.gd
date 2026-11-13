@@ -18,7 +18,6 @@ func init() -> void:
 
 func Enter() -> void:
 	$"../../Label2".text = "stun"
-	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.animation_player.animation_finished.connect( _animation_finished)
 	direction = player.global_position.direction_to( hurt_box.global_position)
 	EffectManager.set_hitspark("player",player.global_position,false, direction)

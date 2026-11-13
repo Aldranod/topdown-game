@@ -16,7 +16,6 @@ var effect_timer : float = 0
 func Enter() -> void:
 	fall_box.monitoring = false
 	$"../../Label2".text = "dash"
-	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.dash_start_position = player.global_position
 	player.invulnerable = true
 	player.set_collision_mask_value(9, false)

@@ -8,7 +8,6 @@ func init() -> void:
 	
 func Enter() -> void:
 	$"../../Label2".text = "death"
-	$"../../Sprite2D/AttackEffectSprite2".visible = false
 	player.set_collision_mask_value(9, false)	
 	player.animation_player.play("death")
 	audio.stream = exhaust_audio

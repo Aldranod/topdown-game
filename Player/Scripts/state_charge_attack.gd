@@ -14,9 +14,9 @@ var particles : ParticleProcessMaterial
 @onready var charge_hurt_box: HurtBox = %CHargeHurtBox
 @onready var charge_spin_hurt_box: HurtBox = %ChargeSpinHurtBox
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
-@onready var spin_effect_sprite_2d: Sprite2D = $"../../Sprite2D/SpinEffectSprite2D"
-@onready var spin_animation_player: AnimationPlayer = $"../../Sprite2D/SpinEffectSprite2D/AnimationPlayer"
-@onready var gpu_particles_2d: GPUParticles2D = $"../../Sprite2D/CHargeHurtBox/GPUParticles2D"
+@onready var spin_effect_sprite_2d: Sprite2D = %SpinEffectSprite2D
+@onready var spin_animation_player: AnimationPlayer = $"../../Sprite2DAttack/SpinEffectSprite2D/AnimationPlayer"
+@onready var gpu_particles_2d: GPUParticles2D = $"../../Sprite2DAttack/CHargeHurtBox/GPUParticles2D"
 	
 func init() -> void:
 	gpu_particles_2d.emitting = false

@@ -7,7 +7,6 @@ var attacking : bool = false
 @export var attack_sound : AudioStream
 @export_range(1,20,0.5) var decelerate_speed : float = 5.0
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
-@onready var attack_anim: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AnimationPlayer"
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 @onready var heal: State_Heal = $"../Heal"
 
@@ -33,7 +32,7 @@ func Enter() -> void:
 		player.velocity = move_direction * charge_speed
 	player.start_attack()
 	hurt_box.attack_type = "sword"
-	player.UpdateAnimation("attack3")
+	player.UpdateAnimation("attack")
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound
