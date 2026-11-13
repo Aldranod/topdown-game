@@ -138,6 +138,8 @@ func can_shoot() -> bool:
 	if $EnemyStateMachine.has_node("Shoot"):
 		print("shoot node found")
 		var shoot_state = $EnemyStateMachine/Shoot
+		if Time.get_ticks_msec() < shoot_state.no_shoot_until_msec:   # <-- NOWE
+			return false   
 		var dist = global_position.distance_to(player.global_position)
 		if dist > attack_range and dist > shoot_state.runaway_range and dist <= shoot_state.shoot_range:
 			if shoot_state.check_los():
