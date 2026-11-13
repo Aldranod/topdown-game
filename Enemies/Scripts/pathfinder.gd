@@ -19,6 +19,9 @@ var rays : Array[RayCast2D]
 var move_dir : Vector2 = Vector2.ZERO
 var best_path : Vector2 = Vector2.ZERO
 
+var has_target : bool = false
+var target_pos : Vector2 = Vector2.ZERO
+
 @onready var timer: Timer = $Timer
 
 
@@ -46,7 +49,9 @@ func set_path() -> void:
 	for r in rays:
 		r.force_raycast_update()
 	#get dir to player
-	var player_dir : Vector2 = global_position.direction_to(PlayerManager.player.global_position)
+	#var player_dir : Vector2 = global_position.direction_to(PlayerManager.player.global_position)
+	var target : Vector2 = target_pos if has_target else PlayerManager.player.global_position
+	var player_dir : Vector2 = global_position.direction_to(target)
 	# reset obstacle values to 0
 	for i in 8:
 		obstacles[i] = 0

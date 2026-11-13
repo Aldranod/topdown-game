@@ -1142,4 +1142,5 @@ collision_mask = 25
 hit_from_inside = true
 
 [node name="ChargeRay" type="RayCast2D" parent="."]
+visible = false
 collision_mask = 24
