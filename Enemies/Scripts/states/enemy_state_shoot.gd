@@ -2,6 +2,7 @@
 class_name EnemyStateShoot extends EnemyState
 
 const SPEAR = preload("res://Interactables/spear/spear.tscn")
+const OBSTACLE_MASK := 16   # warstwa 5: drzewa, budynki, ściany (taka jak w masce strzały)
 
 const MUZZLE := {
 	"down": Vector2(20, 20),
@@ -86,48 +87,41 @@ func _shoot() -> void:
 	# Start the attack animation
 	enemy.update_animation(anim_name)
 	
-#func spawn_spear() -> void: # triggered by animation player
-	## Spawn Spear
-	#var direction = enemy.global_position.direction_to(enemy.player.global_position)
+#func spawn_spear() -> void:
+	#var dir_name : String = enemy.anim_direction()   # "down" / "up" / "side"
+	#var offset : Vector2 = MUZZLE[dir_name]
+	#if dir_name == "side":
+		#offset.x *= sign(enemy.sprite.scale.x) if enemy.sprite.scale.x != 0 else 1.0
+	#var origin : Vector2 = enemy.global_position + offset
+	#var direction : Vector2 = origin.direction_to(enemy.player.global_position + Vector2(0, -12))
 	#var spear : Spear = SPEAR.instantiate()
-	#if enemy.cardinal_direction == Vector2.DOWN:
-		#spear.global_position = enemy.global_position + (direction * 25)
-	#else:	
-		#spear.global_position = enemy.global_position + (direction * 18)
+	#spear.global_position = origin
 	#spear.fire(direction)
 	#enemy.add_sibling(spear)
-	#pass	
 	
 func spawn_spear() -> void:
-	var dir_name : String = enemy.anim_direction()   # "down" / "up" / "side"
-	var offset : Vector2 = MUZZLE[dir_name]
-	if dir_name == "side":
-		offset.x *= sign(enemy.sprite.scale.x) if enemy.sprite.scale.x != 0 else 1.0
-	var origin : Vector2 = enemy.global_position + offset
-	var direction : Vector2 = origin.direction_to(enemy.player.global_position + Vector2(0, -12))
+	if not is_instance_valid(enemy.player):
+		return
 	var spear : Spear = SPEAR.instantiate()
+	var origin : Vector2 = _muzzle_origin()
+	var tip : Vector2 = origin + spear.get_node("HurtBox").position   # tam faktycznie jest kolizja
+	var chest : Vector2 = enemy.global_position + Vector2(0, -15)
+	if _blocked(chest, tip):
+		spear.queue_free()   # strzała nie jest jeszcze w drzewie, więc to bezpieczne
+		return               # przeszkoda tuż przy łuczniku: nie strzelaj
+	var target : Vector2 = enemy.player.global_position + Vector2(0, -12)
 	spear.global_position = origin
-	spear.fire(direction)
-	enemy.add_sibling(spear)
-		
-#func check_los() -> bool:
-	#line_of_sight_ray.target_position = enemy.to_local(enemy.player.global_position)
-	#
-	##if line_of_sight_ray.get_collision_exceptions().size() == 0:
-		##line_of_sight_ray.add_exception(enemy)
-	#
-	#line_of_sight_ray.force_raycast_update()			
-	#var collider = line_of_sight_ray.get_collider()
-	#if line_of_sight_ray.is_colliding() and collider.is_in_group("player"):
-		#print("los ok")
-		#return true
-	#print("los nok")	
-	#return false	
+	spear.fire(tip.direction_to(target))
+	enemy.add_sibling(spear)	
 
 func check_los() -> bool:
+	var tip := _muzzle_origin() + Vector2(2, -15)   # taki sam offset jak HurtBox w spear.tscn
+	if _blocked(enemy.global_position + Vector2(0, -15), tip):
+		return false
+	if _blocked(tip, enemy.player.global_position + Vector2(0, -12)):
+		return false
 	if not is_instance_valid(enemy.player):
 		return false
-	
 	# 1. Calculate the vector from the RAY'S global position to the PLAYER'S global position
 	# Subtracting the ray's global position from the player's global position gives us 
 	# the exact vector needed to reach the player.
@@ -148,3 +142,16 @@ func check_los() -> bool:
 				return true
 				
 	return false
+
+func _muzzle_origin() -> Vector2:
+	var dir_name : String = enemy.anim_direction()
+	var offset : Vector2 = MUZZLE[dir_name]
+	if dir_name == "side":
+		offset.x *= sign(enemy.sprite.scale.x) if enemy.sprite.scale.x != 0 else 1.0
+	return enemy.global_position + offset
+
+func _blocked(from: Vector2, to: Vector2) -> bool:
+	var q := PhysicsRayQueryParameters2D.create(from, to, OBSTACLE_MASK)
+	q.collide_with_areas = false
+	q.exclude = [enemy.get_rid()]
+	return not enemy.get_world_2d().direct_space_state.intersect_ray(q).is_empty()
