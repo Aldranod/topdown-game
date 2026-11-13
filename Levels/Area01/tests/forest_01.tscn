@@ -319,7 +319,7 @@ tile_map_data = PackedByteArray("AAAnAAkAAAAKAAwAAAAoAAkAAAAOAAwAAAAmAAkAAAANAAw
 collision_enabled = false
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_r5pyd")]
-position = Vector2(2673.0776, 568.8854)
+position = Vector2(802.6007, 908.1078)
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_4si1w")]
 position = Vector2(592, -1096)
