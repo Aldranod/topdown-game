@@ -6,9 +6,9 @@ const OBSTACLE_MASK := 16   # warstwa 5: drzewa, budynki, ściany (taka jak w ma
 const PATHFINDER : PackedScene = preload("res://Enemies/pathfinder.tscn")
 
 const MUZZLE := {
-	"down": Vector2(20, 20),
-	"up":   Vector2(20, -20),
-	"side": Vector2(22, 0),   # x zostanie odbite zależnie od strony
+	"down": Vector2(-4, 10),
+	"up":   Vector2(-3, -21),
+	"side": Vector2(22, 0),   # bez zmian, x zostanie odbite zależnie od strony
 }
 
 @export var anim_name: String = "throw"
