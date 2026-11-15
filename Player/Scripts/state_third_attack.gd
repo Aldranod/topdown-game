@@ -32,7 +32,7 @@ func Enter() -> void:
 		player.velocity = move_direction * charge_speed
 	player.start_attack()
 	hurt_box.attack_type = "sword"
-	player.UpdateAnimation("attack")
+	player.UpdateAnimation("attack3")
 	animation_player.animation_finished.connect(EndAttack)
 	hurt_box.did_damage.connect(_on_hit_landed)
 	audio.stream = attack_sound

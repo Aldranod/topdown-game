@@ -302,7 +302,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_843tw"]
 resource_name = "destroy_down"
 length = 0.6
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -322,10 +322,10 @@ tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.54999995),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -378,12 +378,26 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnemyStateMachine/Destroy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.51),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_death_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6e8c2"]
 resource_name = "destroy_side"
 length = 0.6
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -403,10 +417,10 @@ tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.54999995),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -459,12 +473,26 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnemyStateMachine/Destroy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.51),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_death_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_b6veq"]
 resource_name = "destroy_up"
 length = 0.6
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -484,10 +512,10 @@ tracks/1/path = NodePath("Sprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.15, 0.54999995),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.099999994, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0.742121, 0, 0.142034, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "audio"
 tracks/2/imported = false
@@ -540,6 +568,20 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnemyStateMachine/Destroy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.52),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_death_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wwfkb"]

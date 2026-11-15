@@ -29,7 +29,8 @@ func enter() -> void:
 	enemy.velocity = _direction * -knockback_speed
 	enemy.update_animation(anim_name)
 	EffectManager.hit_particles(enemy.global_position + Vector2(0,-20),-_direction,particle_settings)
-	enemy.animation_player.animation_finished.connect( _on_animation_finished)
+	#enemy.animation_player.animation_finished.connect( _on_animation_finished)
+	#get_tree().create_timer(_last_key_time()).timeout.connect(_on_death_finished)
 	drop_items()
 	#PlayerManager.reward_xp(enemy.xp_reward)
 	pass
@@ -48,10 +49,28 @@ func _on_enemy_destroyed( hurt_box : HurtBox) -> void:
 	_damage_position = hurt_box.global_position
 	state_machine.change_state( self)	
 
-func _on_animation_finished( _a : String) -> void:
+#func _on_animation_finished( _a : String) -> void:
+	#enemy._spawn_corpse(enemy.death_id)
+	#Messages.coward_check.emit(enemy)
+	#enemy.queue_free()	
+
+func _on_death_finished() -> void: # called from animation track
+	if not is_instance_valid(enemy):
+		return
 	enemy._spawn_corpse(enemy.death_id)
 	Messages.coward_check.emit(enemy)
-	enemy.queue_free()	
+	enemy.queue_free()
+
+func _last_key_time() -> float:
+	var a : Animation = enemy.animation_player.get_animation(enemy.animation_player.current_animation)
+	if a == null:
+		return 0.0
+	var t : float = 0.0
+	for i in a.get_track_count():
+		var n : int = a.track_get_key_count(i)
+		if n > 0:
+			t = maxf(t, a.track_get_key_time(i, n - 1))
+	return t
 	
 func disable_hurt_box() -> void:
 	var hurt_box : HurtBox = enemy.get_node_or_null("HurtBox")
