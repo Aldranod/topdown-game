@@ -262,6 +262,8 @@ func _on_third_attack_timer_timeout() -> void:
 
 # Call this from the Second Attack animation
 func start_third_attack_window() -> void:
+	if SaveManager.current_save.third_attack == false:
+		return
 	if not third_attack_timer.is_stopped():
 		third_attack_window_open = true
 		return

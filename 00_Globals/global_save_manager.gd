@@ -30,6 +30,7 @@ var current_save : Dictionary = {
 	abilities = [ "","","",""],
 	corpses = [],
 	dash = true,
+	third_attack = false,
 	doors =[]
 }
 
