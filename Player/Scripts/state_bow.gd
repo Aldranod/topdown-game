@@ -41,6 +41,11 @@ func _on_animation_finished(anim_name : String) -> void:
 	pass
 
 func spawn_arrow() -> void:
+	if state_machine.current_state == $"../Aim":
+		$"../Aim".release_arrow()   # kontroler: strzał z State_Aim, na klatce animacji
+		return
+	if state_machine.current_state != self:
+		return
 	var aim_target_pos: Vector2 = PlayerManager.player.get_global_mouse_position() + Vector2(0,5)
 	player.face_target(aim_target_pos)
 	var pivot_pos : Vector2 = $"../../AimPivot".global_position

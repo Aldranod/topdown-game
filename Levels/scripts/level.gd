@@ -8,7 +8,6 @@ enum WeatherType { None, HeavyRain, Fog, NoFog, Drizzle }
 @export var darkness : bool = false
 
 var weather_map : Dictionary = {}
-#$CanvasModulate
 @export_group("Weather Settings")
 @export var weather_active : bool = false
 @export var storm : bool = false
@@ -16,10 +15,6 @@ var weather_map : Dictionary = {}
 @export var weather_layer_2: WeatherType = WeatherType.None
 
 const CORPSE = preload("res://Enemies/corpse.tscn")
-#@export var weather : bool = false
-#@export var weather_mod1: WEATHER
-#@export var weather_mod2: WEATHER
-#@export var weather_mod3: WEATHER
 
 func _ready() -> void:
 	weather_map = {
@@ -35,7 +30,6 @@ func _ready() -> void:
 	play_cutscene()
 	darkness_check()
 	weather_check()
-	#LevelManager.time_tick.connect(lightning)
 	start_lightning_loop()
 	_restore_corpses()
 

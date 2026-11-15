@@ -18,8 +18,11 @@ const ARROW = preload("res://Interactables/arrow/wrath_arrow.tscn")
 var cooldown_timer: float = 0.0
 var already_firing: bool = false
 var snap_target: Node2D = null  # the enemy we're snapping toward
+var pending_dir : Vector2 = Vector2.ZERO
+var has_pending_arrow : bool = false
 
 func Enter() -> void:
+	has_pending_arrow = false
 	$"../../Label2".text = "aim"
 	$"../../AimPivotMouse/AimPivotMouseSprite".visible = false
 	player.aim_sprite_visible = true
@@ -35,6 +38,7 @@ func Enter() -> void:
 		aim_sprite.rotation = player.cardinal_direction.angle()	
 
 func Exit() -> void:
+	has_pending_arrow = false
 	$"../../AimPivotMouse/AimPivotMouseSprite".visible = true
 	player.aim_sprite_visible = false
 	aim_sprite.visible = false
@@ -60,8 +64,10 @@ func Process(delta: float) -> State:
 		var target_angle = dir_to_target.angle()
 		aim_sprite.rotation = lerp_angle(aim_sprite.rotation, target_angle, ads_snap_speed * delta)
 	set_direction()
-	if not already_firing:
-		player.UpdateAnimation("idle")
+	#if not already_firing:
+		#player.UpdateAnimation("idle")
+	if not already_firing and not player.animation_player.current_animation.begins_with("bow"):
+		player.UpdateAnimation("idle")	
 	if Input.is_action_just_released("aim"):
 		return idle
 	return null
@@ -86,8 +92,8 @@ func HandleInput(_event: InputEvent) -> State:
 		player.animation_player.animation_finished.connect(_on_animation_finished)
 
 	var fire_direction = Vector2.RIGHT.rotated(aim_sprite.global_rotation)
-	if not player.fire_arrow(ARROW, aim_sprite.global_position, fire_direction):
-		player.add_wrath(shoot_wrath_cost)   # zwrot kosztu, strzał zablokowany
+	pending_dir = fire_direction
+	has_pending_arrow = true
 	return null
 
 func _find_snap_target() -> Node2D:
@@ -133,3 +139,10 @@ func set_direction() -> void:
 		player.cardinal_direction = new_cardinal
 		player.DirectionChanged.emit(new_cardinal)
 		player.sprite.scale.x = -1 if new_cardinal == Vector2.LEFT else 1
+		
+func release_arrow() -> void:
+	if not has_pending_arrow:
+		return
+	has_pending_arrow = false
+	if not player.fire_arrow(ARROW, aim_sprite.global_position, pending_dir):
+		player.add_wrath(shoot_wrath_cost)   # zwrot kosztu, strzał zablokowany przez ścianę		
