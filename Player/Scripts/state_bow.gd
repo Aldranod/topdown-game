@@ -17,14 +17,14 @@ func Enter() -> void:
 	player.face_target(aim_target_pos)
 	player.UpdateAnimation("bow")	
 	player.animation_player.animation_finished.connect(_on_animation_finished)
-	var pivot_pos = $"../../AimPivot".global_position
-	var fire_direction = (aim_target_pos - pivot_pos).normalized()
-	print(fire_direction)
-	var arrow: Arrow = ARROW.instantiate()
-	player.get_parent().add_child(arrow) 
-	var spawn_dist: float = 48.0
-	arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
-	arrow.fire(fire_direction)
+	#var pivot_pos = $"../../AimPivot".global_position
+	#var fire_direction = (aim_target_pos - pivot_pos).normalized()
+	#print(fire_direction)
+	#var arrow: Arrow = ARROW.instantiate()
+	#player.get_parent().add_child(arrow) 
+	#var spawn_dist: float = 48.0
+	#arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
+	#arrow.fire(fire_direction)
 	pass
 	
 func Exit() -> void:
@@ -48,6 +48,17 @@ func _on_animation_finished(anim_name : String) -> void:
 	else:	
 		next_state = idle
 	pass
-	
+
+func spawn_arrow() -> void:
+	var aim_target_pos: Vector2 = PlayerManager.player.get_global_mouse_position() + Vector2(0,5)
+	player.face_target(aim_target_pos)
+	var pivot_pos = $"../../AimPivot".global_position
+	var fire_direction = (aim_target_pos - pivot_pos).normalized()
+	print(fire_direction)
+	var arrow: Arrow = ARROW.instantiate()
+	player.get_parent().add_child(arrow) 
+	var spawn_dist: float = 48.0
+	arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
+	arrow.fire(fire_direction)
 
 							

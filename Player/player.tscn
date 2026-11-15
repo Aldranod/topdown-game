@@ -821,7 +821,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_maysp"]
 resource_name = "bow_down"
-length = 0.2
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -830,15 +830,29 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [77, 78, 79, 78]
+"values": [221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Bow")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_arrow"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6rl0i"]
 resource_name = "bow_side"
-length = 0.2
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -847,15 +861,29 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [83, 84, 85, 84]
+"values": [234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Bow")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_arrow"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_1l10g"]
 resource_name = "bow_up"
-length = 0.2
+length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -864,10 +892,24 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [80, 81, 82, 81]
+"values": [195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/Bow")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_arrow"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_j2n6q"]
@@ -3155,7 +3197,6 @@ texture = ExtResource("46_1l10g")
 hframes = 18
 
 [node name="AimPivot" type="Node2D" parent="."]
-visible = false
 modulate = Color(1, 0.032915592, 0, 1)
 z_index = 11
 position = Vector2(0, -16)
@@ -3168,7 +3209,6 @@ texture = ExtResource("53_c4i3b")
 offset = Vector2(100, 0)
 
 [node name="AimPivotMouse" type="Node2D" parent="."]
-visible = false
 z_index = 100
 position = Vector2(0, -18)
 
