@@ -8,7 +8,6 @@ var next_state : State = null
 @onready var aim_sprite: Sprite2D = $"../../AimPivot/AimSprite"
 
 func _ready() -> void:
-	
 	pass
 	
 func Enter() -> void:
@@ -41,21 +40,11 @@ func _on_animation_finished(anim_name : String) -> void:
 		next_state = idle
 	pass
 
-#func spawn_arrow() -> void:
-	#var aim_target_pos: Vector2 = PlayerManager.player.get_global_mouse_position() + Vector2(0,5)
-	#player.face_target(aim_target_pos)
-	#var pivot_pos = $"../../AimPivot".global_position
-	#var fire_direction = (aim_target_pos - pivot_pos).normalized()
-	#print(fire_direction)
-	#var arrow: Arrow = ARROW.instantiate()
-	#player.get_parent().add_child(arrow) 
-	#var spawn_dist: float = 48.0
-	#arrow.global_position = pivot_pos + (fire_direction * spawn_dist)
-	#arrow.fire(fire_direction)
-
 func spawn_arrow() -> void:
 	var aim_target_pos: Vector2 = PlayerManager.player.get_global_mouse_position() + Vector2(0,5)
 	player.face_target(aim_target_pos)
 	var pivot_pos : Vector2 = $"../../AimPivot".global_position
-	player.fire_arrow(ARROW, pivot_pos, (aim_target_pos - pivot_pos).normalized())
+	var fire_direction : Vector2 = (aim_target_pos - pivot_pos).normalized()
+	if not player.fire_arrow(ARROW, pivot_pos, fire_direction):
+		player.add_wrath(player.player_abilities.shoot_wrath_cost)   # zwrot kosztu, strzał zablokowany przez ścianę
 							

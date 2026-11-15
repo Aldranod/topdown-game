@@ -7,6 +7,7 @@ signal player_dashing
 @export var player_inv: bool = false
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 const ARROW_SPAWN_DIST : float = 48.0
+const ARROW_MIN_DIST : float = 34.0   # tyle, żeby ogon strzały (15 px) był poza hitboxem gracza
 var _material: ShaderMaterial
 var _target_vignette: float = 0.2
 var _current_vignette: float = 0.2
@@ -322,16 +323,19 @@ func _is_over_abyss() -> bool:
 			return true
 	return false
 
-func fire_arrow(arrow_scene: PackedScene, origin: Vector2, dir: Vector2) -> void:
+func fire_arrow(arrow_scene: PackedScene, origin: Vector2, dir: Vector2) -> bool:
 	var dist : float = ARROW_SPAWN_DIST
-	# Jeśli przeszkoda jest bliżej niż punkt startu, strzała powstaje tuż przed nią
 	var q := PhysicsRayQueryParameters2D.create(origin, origin + dir * (dist + 15.0), 16)
 	q.collide_with_areas = false
 	q.exclude = [get_rid()]
 	var hit : Dictionary = get_world_2d().direct_space_state.intersect_ray(q)
 	if not hit.is_empty():
-		dist = maxf(origin.distance_to(hit.position) - 16.0, 0.0)
+		var wall_dist : float = origin.distance_to(hit.position)
+		if wall_dist < ARROW_MIN_DIST:
+			return false   # ściana tuż przy graczu: nie strzelaj
+		dist = wall_dist - 16.0
 	var arrow : Arrow = arrow_scene.instantiate()
 	get_parent().add_child(arrow)
 	arrow.global_position = origin + dir * dist
-	arrow.fire(dir)	
+	arrow.fire(dir)
+	return true
