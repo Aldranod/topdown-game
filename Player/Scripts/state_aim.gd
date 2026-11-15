@@ -86,10 +86,11 @@ func HandleInput(_event: InputEvent) -> State:
 		player.animation_player.animation_finished.connect(_on_animation_finished)
 
 	var fire_direction = Vector2.RIGHT.rotated(aim_sprite.global_rotation)
-	var arrow: Arrow = ARROW.instantiate()
-	player.get_parent().add_child(arrow)
-	arrow.global_position = aim_sprite.global_position + (fire_direction * 58.0)
-	arrow.fire(fire_direction)
+	#var arrow: Arrow = ARROW.instantiate()
+	#player.get_parent().add_child(arrow)
+	#arrow.global_position = aim_sprite.global_position + (fire_direction * 58.0)
+	#arrow.fire(fire_direction)
+	player.fire_arrow(ARROW, aim_sprite.global_position, fire_direction)
 	return null
 
 func _find_snap_target() -> Node2D:

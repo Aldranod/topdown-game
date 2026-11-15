@@ -6,6 +6,7 @@ signal player_dashing
 @export var dash_cooldown_duration: float = 1.5
 @export var player_inv: bool = false
 const DIR_4 = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+const ARROW_SPAWN_DIST : float = 48.0
 var _material: ShaderMaterial
 var _target_vignette: float = 0.2
 var _current_vignette: float = 0.2
@@ -320,3 +321,17 @@ func _is_over_abyss() -> bool:
 		if area.is_in_group("abyss"):
 			return true
 	return false
+
+func fire_arrow(arrow_scene: PackedScene, origin: Vector2, dir: Vector2) -> void:
+	var dist : float = ARROW_SPAWN_DIST
+	# Jeśli przeszkoda jest bliżej niż punkt startu, strzała powstaje tuż przed nią
+	var q := PhysicsRayQueryParameters2D.create(origin, origin + dir * (dist + 15.0), 16)
+	q.collide_with_areas = false
+	q.exclude = [get_rid()]
+	var hit : Dictionary = get_world_2d().direct_space_state.intersect_ray(q)
+	if not hit.is_empty():
+		dist = maxf(origin.distance_to(hit.position) - 16.0, 0.0)
+	var arrow : Arrow = arrow_scene.instantiate()
+	get_parent().add_child(arrow)
+	arrow.global_position = origin + dir * dist
+	arrow.fire(dir)	
