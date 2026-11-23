@@ -33,7 +33,7 @@ height = 45.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oij8y"]
 radius = 11.0
-height = 46.0
+height = 32.0
 
 [sub_resource type="Animation" id="Animation_t8cwk"]
 length = 0.001
@@ -1038,7 +1038,7 @@ _data = {
 &"destroy": SubResource("Animation_vjyi2")
 }
 
-[node name="SkeletonArcher" type="CharacterBody2D"]
+[node name="SkeletonArcher" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 256
 collision_mask = 720
 script = ExtResource("1_2tuhv")
@@ -1086,7 +1086,6 @@ shape = SubResource("CircleShape2D_fjr0p")
 debug_color = Color(0.12156863, 0.13333334, 0.5686275, 0.59607846)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_oij8y")
 

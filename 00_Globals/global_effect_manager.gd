@@ -11,12 +11,13 @@ func damage_text(_damage : int, _pos : Vector2) -> void:
 	add_child(_t)
 	_t.start(str(_damage),_pos)
 	pass
-	
-func frame_freeze(timescale : float, duration: float) -> void:
+
+func frame_freeze(timescale : float, duration : float) -> void:
+	if Engine.time_scale < 1.0:
+		return   # już trwa zamrożenie: nie przedłużaj go
 	Engine.time_scale = timescale
-	await get_tree().create_timer(duration * timescale).timeout
+	await get_tree().create_timer(duration, true, false, true).timeout   # czas rzeczywisty
 	Engine.time_scale = 1.0
-	pass
 
 func emit_dust( node: Node2D) -> void:
 	var _d = DUST.instantiate()

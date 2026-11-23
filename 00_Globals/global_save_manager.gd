@@ -29,9 +29,10 @@ var current_save : Dictionary = {
 	],
 	abilities = [ "","","",""],
 	corpses = [],
+	doors =[],
 	dash = true,
-	third_attack = false,
-	doors =[]
+	third_attack = true,
+	shoot_move = false
 }
 
 func save_game() -> void:
@@ -143,7 +144,7 @@ func add_enemy_death(id : String) -> void:
 func check_enemy_death(id : String) -> bool:
 	return enemy_persistence.has(id)
 	
-func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, scene_path: String, pose: float) -> void:
+func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, scene_path: String, pose: float, color_html: String = "ffffffff") -> void:
 	for c in current_save.corpses:
 		if c.id == enemy_id:
 			return
@@ -153,7 +154,8 @@ func add_corpse(enemy_id: String, pos_x: float, pos_y: float, scale_x: float, sc
 		pos_y = pos_y,
 		scale_x = scale_x,
 		scene_path = scene_path,
-		pose = pose  # NEW
+		pose = pose,  # NEW
+		color = color_html
 	})
 	
 func get_corpses() -> Array:

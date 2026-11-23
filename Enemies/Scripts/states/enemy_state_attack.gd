@@ -6,7 +6,7 @@ class_name EnemyStateAttack extends EnemyState
 var anim_name : String = "attack"
 var _animation_finished : bool = false
 var _direction :  Vector2
-@onready var attack_hurt_box: HurtBox = $"../../Sprite2D/AttackHurtBox"
+@onready var attack_hurt_box: HurtBox = _find_hurt_box()
 
 @export_category("AI")
 
@@ -63,3 +63,9 @@ func attack_select() -> void:
 	else:
 		anim_name = "attack"			
 	pass
+
+func _find_hurt_box() -> HurtBox:
+	for p in ["../../Sprite2D/AttackHurtBox", "../../Sprite2DAttack/AttackHurtBox"]:
+		if has_node(p):
+			return get_node(p)
+	return null	

@@ -485,7 +485,7 @@ position = Vector2(42, -26)
 shape = SubResource("RectangleShape2D_anawp")
 
 [node name="LevelTransitionInteract" parent="." instance=ExtResource("30_jgsv0")]
-position = Vector2(256, -1120)
+position = Vector2(256, -1112)
 level = "uid://c2psdgro52ttf"
 size = 1
 side = 2

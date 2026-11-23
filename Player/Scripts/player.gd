@@ -178,9 +178,9 @@ func update_hp( delta : int) -> void:
 	hp = clampi( hp + delta, 0, max_hp)
 	PlayerHud.update_hp( hp, max_hp)
 	if hp <= max_hp * 0.3:  # Low health
-		_target_vignette = 0.5
+		_target_vignette = 0.7
 	else:  # Full health
-		_target_vignette = 0.1
+		_target_vignette = 0.3
 	pass
 	
 func make_invulnerable( _duration : float = 1.0 ) -> void:
@@ -339,3 +339,10 @@ func fire_arrow(arrow_scene: PackedScene, origin: Vector2, dir: Vector2) -> bool
 	arrow.global_position = origin + dir * dist
 	arrow.fire(dir)
 	return true
+
+func has_bow() -> bool:
+	return player_abilities.abilities.has("ARROW")
+
+func can_move_while_shooting() -> bool:
+	return SaveManager.current_save.get("shoot_move", false)
+	

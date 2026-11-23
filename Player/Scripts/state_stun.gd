@@ -23,7 +23,7 @@ func Enter() -> void:
 	EffectManager.set_hitspark("player",player.global_position,false, direction)
 	EffectManager.hit_particles(player.global_position + Vector2(0,-20),-direction,particle_settings)
 	PlayerManager.shake_camera(hurt_box.damage)
-	EffectManager.frame_freeze(0.1,0.26)
+	EffectManager.frame_freeze(0.2,0.08)
 	player.velocity = direction * -knockback_speed
 	player.SetDirection()
 	player.UpdateAnimation("stun")

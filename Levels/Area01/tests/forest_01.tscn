@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://cad42r81oka2x"]
+[gd_scene load_steps=61 format=4 uid="uid://cad42r81oka2x"]
 
 [ext_resource type="Script" uid="uid://gmpt3se7oed1" path="res://Levels/scripts/level.gd" id="1_n8ytn"]
 [ext_resource type="AudioStream" uid="uid://cnri55i1pvodj" path="res://Levels/Music/example_music_03.ogg" id="2_nfhwk"]
@@ -27,6 +27,7 @@
 [ext_resource type="Resource" uid="uid://ouvi02c4yox5" path="res://items/ability_arrow.tres" id="28_pxegb"]
 [ext_resource type="PackedScene" uid="uid://yyl1c805t6tl" path="res://Enemies/SkeletonArcher/SkeletonArcher.tscn" id="33_4wrjy"]
 [ext_resource type="Script" uid="uid://t5gj045daqup" path="res://Levels/Area01/tests/wall_gates.gd" id="33_blcwu"]
+[ext_resource type="PackedScene" uid="uid://dmoikh4ryeg5" path="res://Enemies/ZombieSoldier1/ZombieSoldier1.tscn" id="33_gakbc"]
 [ext_resource type="PackedScene" uid="uid://55x2ugrkellt" path="res://Interactables/dialog/dialog_interaction.tscn" id="35_3x8nt"]
 [ext_resource type="Script" uid="uid://doa5j8sxy5b7q" path="res://Interactables/dialog/scripts/dialog_text.gd" id="36_lxscg"]
 [ext_resource type="Resource" uid="uid://b465fltph6hko" path="res://npc/shopkeeper.tres" id="37_1xqa7"]
@@ -67,6 +68,50 @@ spread = 0.0
 initial_velocity_max = 100.0
 gravity = Vector3(0, 500, 0)
 alpha_curve = SubResource("CurveTexture_lav2n")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qukn3"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_hqw0x"]
+offsets = PackedFloat32Array(0, 0.99126637)
+colors = PackedColorArray(0.48320764, 0.48320764, 0.48320764, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4wrjy"]
+gradient = SubResource("Gradient_hqw0x")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_gakbc"]
+offsets = PackedFloat32Array(0, 0.34594595, 0.7135135, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.51891893, 0.51891893, 0.51891893, 1, 0.79325444, 0.79325444, 0.79325444, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_swmht"]
+gradient = SubResource("Gradient_gakbc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3x8nt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 35, 1)
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.75
+scale_max = 1.25
+color_ramp = SubResource("GradientTexture1D_swmht")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.089999974
+turbulence_enabled = true
+turbulence_influence_max = 0.19600001
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4wrjy"]
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="Animation" id="Animation_qseal"]
 length = 0.001
@@ -110,6 +155,7 @@ radius = 35.0
 y_sort_enabled = true
 script = ExtResource("1_n8ytn")
 music = ExtResource("2_nfhwk")
+darkness = true
 weather_active = true
 weather_layer_1 = 1
 weather_layer_2 = 2
@@ -117,7 +163,7 @@ weather_layer_2 = 2
 [node name="Weather" type="Node" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Weather"]
-color = Color(0.72156864, 0.7254902, 0.85490197, 1)
+color = Color(0.33876127, 0.36097515, 0.4609375, 1)
 
 [node name="WeatherManager" parent="Weather" node_paths=PackedStringArray("particle", "color_rect") instance=ExtResource("46_ex721")]
 unique_name_in_owner = true
@@ -300,6 +346,83 @@ process_material = SubResource("ParticleProcessMaterial_u7eyc")
 
 [node name="Leafs" parent="Weather" instance=ExtResource("45_ku5et")]
 position = Vector2(408, 352)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Weather"]
+material = SubResource("CanvasItemMaterial_qukn3")
+position = Vector2(911.8872, 570.1063)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_4wrjy")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_3x8nt")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Weather"]
+material = SubResource("CanvasItemMaterial_qukn3")
+position = Vector2(320, 8)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_4wrjy")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_3x8nt")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Weather"]
+material = SubResource("CanvasItemMaterial_qukn3")
+position = Vector2(1312, 592)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_4wrjy")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_3x8nt")
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Weather"]
+material = SubResource("CanvasItemMaterial_qukn3")
+position = Vector2(382.44736, -490.88275)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_4wrjy")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_3x8nt")
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Weather"]
+material = SubResource("CanvasItemMaterial_qukn3")
+position = Vector2(320, -576)
+amount = 5
+amount_ratio = 0.7324
+texture = SubResource("GradientTexture2D_4wrjy")
+lifetime = 2.0
+randomness = 0.73
+visibility_rect = Rect2(-100, -100, 400, 400)
+process_material = SubResource("ParticleProcessMaterial_3x8nt")
+
+[node name="LightRay" type="Sprite2D" parent="Weather"]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_4wrjy")
+position = Vector2(71.999985, -264)
+rotation = -0.6736971
+scale = Vector2(0.4, 1.5)
+skew = -0.0837758
+texture = ExtResource("50_03vu2")
+offset = Vector2(0, 5)
+
+[node name="LightRay2" type="Sprite2D" parent="Weather"]
+modulate = Color(0.4071215, 0.4249623, 0.34646276, 0.654902)
+z_index = 10
+material = SubResource("CanvasItemMaterial_4wrjy")
+position = Vector2(168, -720)
+rotation = -0.6736971
+scale = Vector2(0.4, 1.5)
+skew = -0.0837758
+texture = ExtResource("50_03vu2")
+offset = Vector2(0, 5)
 
 [node name="Tilemaps" type="Node2D" parent="."]
 modulate = Color(0.6261257, 0.6261257, 0.6261257, 1)
@@ -2436,11 +2559,11 @@ position = Vector2(1688, 296)
 position = Vector2(1920, -120)
 
 [node name="ItemPickup" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 
 [node name="ItemPickup2" parent="Props" instance=ExtResource("8_t5ank")]
-position = Vector2(762.5842, -98.72669)
+position = Vector2(762.5842, -98.726685)
 item_data = ExtResource("9_1jhny")
 item_count = 2
 
@@ -3059,6 +3182,9 @@ position = Vector2(579.3388, -652.11566)
 [node name="SkeletonArcher3" parent="Enemies" instance=ExtResource("33_4wrjy")]
 position = Vector2(2748.9343, 190.25214)
 
+[node name="ZombieSoldier1" parent="Enemies" instance=ExtResource("33_gakbc")]
+position = Vector2(1136, 600)
+
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="Border3" type="StaticBody2D" parent="Borders"]
@@ -3069,7 +3195,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border3"]
 position = Vector2(992, -40)
-polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -416, -616, -440, -592, -440, -552, -400, -528, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -256, -424, -248, -440, -232, -448, -208, -440, -184, -416, -176, -448, -152, -424, -80, -408, -40, -400, 8, -416, 64, -552, 120, -592, 120, -600, 176, -584, 304, -512, 312, -440, 256, -384, 280, -352, 248, -224, 224, -144, 184, -72, 272, -24, 304, -16, 360, 8, 400, 56, 376, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 480, 552, 496, 560, 536, 568, 568, 544, 632, 528, 680, 480, 704, 392, 680, 216, 648, 192, 616, 200, 616, 224, 560, 224, 552, 192, 512, 192, 512, 112, 600, 112, 608, 80, 624, 56, 608, 40, 584, -32, 656, -80, 776, -112, 896, 864, 424, 848, 128, 848, -528, 752, -656, 424, -664, 16)
+polygon = PackedVector2Array(-600, -256, -592, -368, -552, -440, -480, -656, -448, -640, -416, -616, -384, -584, -400, -528, -472, -448, -536, -344, -536, -264, -488, -288, -456, -264, -432, -256, -424, -248, -400, -216, -416, -176, -448, -152, -424, -80, -408, -40, -400, 8, -416, 64, -552, 120, -592, 120, -600, 176, -584, 304, -512, 312, -440, 256, -384, 280, -352, 248, -224, 224, -144, 184, -72, 272, -24, 304, -16, 360, 8, 400, 56, 376, 88, 384, 48, 616, 80, 752, 144, 752, 184, 688, 208, 520, 296, 456, 480, 552, 496, 560, 536, 568, 568, 544, 632, 528, 680, 480, 704, 392, 680, 216, 648, 192, 616, 200, 616, 224, 560, 224, 552, 192, 512, 192, 512, 112, 600, 112, 608, 80, 624, 56, 608, 40, 584, -32, 656, -80, 776, -112, 896, 864, 424, 848, 128, 848, -528, 752, -656, 424, -664, 16)
 
 [node name="Border4" type="StaticBody2D" parent="Borders"]
 z_index = 2
@@ -3108,7 +3234,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Borders/Border8"]
 position = Vector2(-39.354736, 162.88196)
-polygon = PackedVector2Array(88, -176, 96, -224, 32, -264, -96.64526, -210.88196, -8.645264, -186.88196, -32.645264, -114.88196, -96.64526, -114.88196, -88.64526, -42.881958, -24.645264, -42.881958, 64, -112, 88, -112, 96, -144)
+polygon = PackedVector2Array(88, -176, 96, -224, 32, -264, -96.64526, -210.88196, -120.64526, -154.88196, -96.64526, -114.88196, -88.64526, -42.881958, -24.645264, -42.881958, 64, -112, 88, -112, 96, -144)
 
 [node name="Border6" type="StaticBody2D" parent="Borders"]
 z_index = 2

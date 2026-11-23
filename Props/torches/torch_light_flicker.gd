@@ -1,14 +1,28 @@
 extends PointLight2D
 
+@export var energy_variation := 0.12
+@export var scale_variation := 0.05
+@export var sway := 3.0          # px, lekkie "pływanie" światła
+@export var speed := 0.6
+
+var _noise := FastNoiseLite.new()
+var _t := 0.0
+var _base_energy := 1.0
+var _base_scale := 1.0
+var _base_pos := Vector2.ZERO
+
 func _ready() -> void:
-	flicker()
-	
-func flicker() -> void:
-	if not is_inside_tree():
-		return
-	else:	
-		energy = randf() * 0.1 + 0.9
-		scale = Vector2(1,1) * energy
-		await get_tree().create_timer(0.1333).timeout
-		flicker()
-	pass	
+	_noise.seed = randi()
+	_noise.frequency = 1.0
+	_base_energy = energy
+	_base_scale = texture_scale
+	_base_pos = position
+
+func _process(delta: float) -> void:
+	_t += delta * speed
+	energy = _base_energy + _noise.get_noise_1d(_t * 3.0) * energy_variation
+	texture_scale = _base_scale * (1.0 + _noise.get_noise_1d(_t * 2.0 + 50.0) * scale_variation)
+	position = _base_pos + Vector2(
+		_noise.get_noise_1d(_t + 100.0),
+		_noise.get_noise_1d(_t + 200.0)
+	) * sway

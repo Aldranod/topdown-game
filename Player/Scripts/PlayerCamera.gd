@@ -71,7 +71,7 @@ func _on_scene_transition() -> void:
 	pass
 
 func add_camera_shake(val : float) -> void:
-	shake_trauma = val
+	shake_trauma = minf(shake_trauma + val * 0.5, 1.0)
 	
 func get_shake_vector() -> Vector2:
 	var amount : float = pow(shake_trauma * shake_power, 2)

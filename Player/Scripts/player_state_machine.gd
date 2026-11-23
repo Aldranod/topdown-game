@@ -43,6 +43,8 @@ func Initialize( _player : Player) -> void:
 func change_state( new_state: State) -> void:
 	if new_state == null || new_state == current_state:
 		return
+	if new_state is State_Aim and not PlayerManager.player.has_bow():
+		return   # bez łuku nie da się celować	
 	
 	next_state = new_state
 	

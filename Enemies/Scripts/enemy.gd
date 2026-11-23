@@ -32,6 +32,7 @@ var distance_in_pixel : float
 var initial_position
 @export var in_ambush: bool = false
 @export var coward: bool = false
+var _leaving_ambush : bool = false
 
 func _ready():
 	sprite_x_scale = sprite.scale.x
@@ -52,6 +53,7 @@ func _ready():
 	hit_box.Damaged.connect( _take_damage )
 	if in_ambush:
 		hit_box.monitorable = false
+		set_collision_mask_value(5, false)   # w zasadzce może stać w kolizji drzewa
 	else:
 		hit_box.monitorable = true	 
 	pass
@@ -61,6 +63,11 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	initial_position = global_position
+	if _leaving_ambush:
+		set_collision_mask_value(5, false)   # nadpisuje Chase/Flee, które włączają warstwę 5
+		if not _overlaps_walls():
+			_leaving_ambush = false
+			set_collision_mask_value(5, true)
 	move_and_slide()
 	dust_emit()
 
@@ -105,7 +112,7 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 	hp -= hurt_box.damage		
 	PlayerManager.shake_camera(hurt_box.damage)	
 	EffectManager.damage_text(hurt_box.damage, global_position + Vector2(0,-36))
-	EffectManager.frame_freeze(0.1,0.26)	
+	EffectManager.frame_freeze(0.05, 0.06 if hp > 0 else 0.12)	
 	if hp > 0:
 		enemy_damaged.emit( hurt_box)
 		return	
@@ -150,8 +157,9 @@ func clear_collisions() -> void:
 func exit_ambush() -> void:
 	hit_box.set_deferred("monitorable", true)
 	in_ambush = false
+	_leaving_ambush = true
 	pass	
-
+	
 func _spawn_corpse(enemy_id: String) -> void:
 	if corpse_data == null:
 		return
@@ -175,10 +183,22 @@ func _spawn_corpse(enemy_id: String) -> void:
 		global_position.y,
 		sprite.scale.x,
 		corpse_data.resource_path,  # store .tres path for restoration
-		pose
+		pose,
+		corpse_color.to_html(true)
 	)
 func _flee_or_not(killed_enemy : CharacterBody2D) -> void:
-	if coward and hp > 0:
+	if coward and hp > 0 and not in_ambush:
 		if global_position.distance_to(killed_enemy.global_position) <= 100:
 			state_machine.change_state($EnemyStateMachine/Flee)
 	pass	
+
+func _overlaps_walls() -> bool:
+	var shape_node := get_node_or_null("CollisionShape2D") as CollisionShape2D
+	if shape_node == null:
+		return false
+	var q := PhysicsShapeQueryParameters2D.new()
+	q.shape = shape_node.shape
+	q.transform = shape_node.global_transform
+	q.collision_mask = 16   # warstwa 5
+	q.exclude = [get_rid()]
+	return not get_world_2d().direct_space_state.intersect_shape(q, 1).is_empty()	

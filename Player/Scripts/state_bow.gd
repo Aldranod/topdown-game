@@ -2,6 +2,7 @@ class_name State_Bow extends State
 
 const ARROW = preload("res://Interactables/arrow/wrath_arrow.tscn")
 
+@export var move_speed : float = 50.0
 @onready var idle: State = $"../Idle"
 var direction : Vector2 = Vector2.ZERO
 var next_state : State = null
@@ -24,8 +25,11 @@ func Exit() -> void:
 	pass
 	
 func Process(_delta: float) -> State:
-	player.velocity = Vector2.ZERO
-	return next_state
+	if player.can_move_while_shooting():
+		player.velocity = player.direction * move_speed
+	else:
+		player.velocity = Vector2.ZERO
+	return next_state	
 
 func Physics(_delta: float) -> State:
 	return null	
